@@ -1,0 +1,307 @@
+@import "../../../../styles.scss";
+
+//websafe colors
+ 
+body{
+    min-height: 100%;
+    height: 100%;
+  }
+
+
+.tx-color-v-lg{
+    color: $color-very-light-green;
+}
+.tx-color-lg{
+    color: $color-light-green;
+}
+
+.sample-logo{
+    font-family: 'Quicksand', sans-serif;
+    font-size: 55px;
+}
+
+.app-name{
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 600;
+}
+
+
+
+.business-top-section{
+    // background:$color-main-purple;
+    background-image: url(https://images.pexels.com/photos/3183153/pexels-photo-3183153.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940);
+    position: relative;
+    height: 100%;
+}
+
+
+
+
+.text-block{
+    position: absolute;
+    background:rgba($color-dark-purple, .5);
+}
+
+.login-link{
+    color: $color-light-green;
+    font-family: 'Quicksand', sans-serif;
+
+}
+
+/*
+SECTION BELOW THE MAIN PAGE
+*/ 
+
+/*
+Media Query 
+*/
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+    .sample-logo{
+        font-size: 30px;}
+    .heading{
+       
+        margin-left: 15px;
+        font-size: 26px;
+        font-family: 'Roboto', sans-serif;
+        font-weight: 200;
+    }
+    .btn-custom{
+        margin-left:15px;
+        margin-top: 10px;
+    }
+    .custom-btn-input{
+        font-size: 16px;
+        font-family: 'Quicksand', sans-serif;
+    }
+    .sub-heading{
+        font-size: 20px;
+        font-family: 'Open Sans', sans-serif;
+        font-weight: 400;
+    }
+    .login-link{
+        font-size:20px;
+    }
+    .section-text{
+        font-size: 18px;
+        font-family: 'Roboto', sans-serif;
+        font-weight: 300;
+       
+    }
+    .busines-sec h3{
+        font-family: 'Open Sans', sans-serif;
+        font-size: 26px;
+        margin-bottom: 20px;
+    }
+    .section-3 h4{
+        font-family: 'Open Sans', sans-serif;
+        font-size: 20px;
+    }
+  
+    
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+    // margins
+    .sample-logo{
+        font-size:35px;}
+    .heading{
+        font-size: 25px;
+        font-family: 'Roboto', sans-serif;
+        font-weight: 200;
+    }
+    .sub-heading{
+        font-size: 20px;
+        font-family: 'Open Sans', sans-serif;
+        font-weight: 400;
+        
+    }
+    .custom-btn-input{
+        font-size: 18px;
+        font-family: 'Quicksand', sans-serif;
+    }
+     // margins
+    .custom-mt-2{
+        margin-top:10px;
+    }
+    .custom-ml-2{
+       margin-left: 10px ;
+    }
+    .section-text{
+        font-size: 22px;
+        font-family: 'Roboto', sans-serif;
+        font-weight: 300;
+       
+    }
+    .busines-sec h3{
+        font-family: 'Open Sans', sans-serif;
+        font-size: 36px;
+        margin-bottom: 20px;
+        margin-top: 20px;
+
+    }
+    .section-3 h4{
+        font-family: 'Open Sans', sans-serif;
+        font-size: 18px;
+    }
+    .section-3 .section-text{
+        font-family: 'Roboto', sans-serif;
+        font-size: 15px;
+        font-weight: 300;
+    }
+    .custom-height{
+        height: 166px;
+    }
+    
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+    // fonts
+    .sample-logo{
+        font-size: 40px;}
+    .heading{
+        margin-top: 200px;
+        font-size: 35px;
+        font-family: 'Roboto', sans-serif;
+        font-weight: 200;
+    }
+    .custom-btn-input{
+        font-size: 20px;
+        font-family: 'Quicksand', sans-serif;
+    }
+    
+    .sub-heading{
+        font-size:28px;
+        font-family: 'Open Sans', sans-serif;
+        font-weight: lighter;
+         
+    }
+    //margins
+    .custom-mt-2{
+        margin-top:60px;
+    }
+    .custom-ml-2{
+        margin-left: 60px ;
+    }
+    .section-text{
+        font-size: 22px;
+        font-family: 'Roboto', sans-serif;
+        font-weight: 300;
+       
+    }
+    .busines-sec h3{
+        font-family: 'Open Sans', sans-serif;
+        font-size: 36px;
+        margin-bottom: 20px;
+        margin-top: 20px;
+
+    }
+    .section-3 h4{
+        font-family: 'Open Sans', sans-serif;
+        font-size: 24px;
+    }
+    .section-3 .section-text{
+        font-family: 'Roboto', sans-serif;
+        font-size: 18px;
+        font-weight: 300;
+    }
+    .custom-height{
+        height: 166px;
+    }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+    // margins
+    .sample-logo{
+        font-size: 45px;}
+    .heading{
+        font-size: 45px;
+          font-family: 'Roboto', sans-serif;
+        font-weight: 200;
+    }
+    .sub-heading{
+        font-size:35px;
+        font-family: 'Open Sans', sans-serif;
+        font-weight: lighter;
+        color: chocolate;
+    }
+    .custom-btn-input{
+        font-size: 25px;
+        font-family: 'Quicksand', sans-serif;
+    }
+     // margins
+    .custom-mt-2{
+        margin-top:80px;
+    }
+    .custom-ml-2{
+        margin-left: 80px ;
+    }
+    //don't need to include it in other screens
+    .section-text{
+        font-size: 28px;
+        font-family: 'Roboto', sans-serif;
+        font-weight: 200;
+       
+    }
+    .busines-sec h3{
+        font-family: 'Open Sans', sans-serif;
+        font-size: 45px;
+        margin-bottom: 20px;
+        margin-top: 20px;
+
+    }
+    .section-3 .section-text{
+        font-family: 'Roboto', sans-serif;
+        font-size: 24px;
+        font-weight: 300;
+        margin-bottom: 10px;
+    }
+    .custom-height{
+        height: 278px;
+    }
+
+    
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+
+    // fonts
+    .sample-logo{
+        font-size: 55px;}
+   
+    .heading{
+        font-size: 55px;
+        font-family: 'Roboto', sans-serif;
+        font-weight: 200;
+    }
+    .custom-btn-input{
+        font-size: 28px;
+        font-family: 'Quicksand', sans-serif;
+    }
+     .custom-btn-input.input-bottom{
+         font-size: 20px;
+     }
+     // margins
+    .sub-heading{
+        font-size:45px;
+        font-family: 'Roboto', sans-serif;
+        font-weight:300;
+       
+    }
+    .custom-mt-2{
+        margin-top:100px;
+    }
+    .custom-ml-2{
+        margin-left: 100px ;
+    }
+    .custom-height{
+        height: 278px;
+    }
+    
+
+}
