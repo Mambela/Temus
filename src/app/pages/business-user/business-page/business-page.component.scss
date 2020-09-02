@@ -213,6 +213,7 @@ Media Query
     }
 }
 
+
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 992px) {
     // margins
@@ -236,9 +237,8 @@ Media Query
      // margins
     .custom-mt-2{
         margin-top:80px;
-    }
-    .custom-ml-2{
         margin-left: 80px ;
+       
     }
     //don't need to include it in other screens
     .section-text{
@@ -252,8 +252,12 @@ Media Query
         font-size: 45px;
         margin-bottom: 20px;
         margin-top: 20px;
-
     }
+    .section-3 h4{
+        font-family: 'Open Sans', sans-serif;
+        font-size: 22px;
+    }
+
     .section-3 .section-text{
         font-family: 'Roboto', sans-serif;
         font-size: 24px;
@@ -265,6 +269,24 @@ Media Query
     }
 
     
+}
+
+@media only screen and (min-width:1200px)and (max-width: 1400px) and (orientation: landscape)
+{
+    .heading{
+        margin-top: -70px;
+
+    }
+    h1.heading{
+        font-size: 40px;
+    }
+    h4.sub-heading{
+        font-size:33px;
+
+    }
+    .custom-btn-input{
+     font-size: 22px;   
+    }
 }
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
@@ -295,6 +317,7 @@ Media Query
     }
     .custom-mt-2{
         margin-top:100px;
+        
     }
     .custom-ml-2{
         margin-left: 100px ;

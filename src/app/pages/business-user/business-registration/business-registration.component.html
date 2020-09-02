@@ -11,12 +11,289 @@
                     <!-- </div> -->
 
         </div>
-        <div class="container">
+        <div class="col-md-12 col-lg-10 mx-auto ">
                 <h1 class="text-center mt-2">Registro de conta business </h1>
-                <div class="col-sm-12 col-md-8 bg-white">
+                                      
+                    <div id="stepper1" class="bs-stepper">
+                        <div class="d-sm-none d-md-block">
+                            <div class="bs-stepper-header  ">
 
-                         Lorem, ipsum dolor sit amet consectetur adipisicing elit. Error sit consequuntur numquam cum repellendus, impedit dolores, ullam architecto ex atque aspernatur quae nostrum facere quod? Est eligendi fuga alias exercitationem!
-                </div>
+                            <div class="step" data-target="#registration-step-l-1">
+                                <button class="step-trigger">
+                                <span class="bs-stepper-circle">1</span>
+                                <span class="bs-stepper-label">Identificação da Empresa</span>
+                                </button>
+                            </div>
+
+                          <div class="line"></div>
+                            <div class="step" data-target="#registration-step-l-2">
+                                <button class="step-trigger">
+                                <span class="bs-stepper-circle">2</span>
+                                <span class="bs-stepper-label">Dados de Utilizador</span>
+                                </button>
+                            </div>
+
+                          <div class="line"></div>
+                            <div class="step" data-target="#registration-step-l-3">
+                                <button class="step-trigger">
+                                <span class="bs-stepper-circle">3</span>
+                                <span class="bs-stepper-label">informações de Contacto</span>
+                                </button>
+                            </div>
+
+                          <div class="line"></div>
+                          <div class="step" data-target="#registration-step-l-4">
+                            <button class="step-trigger">
+                              <span class="bs-stepper-circle">4</span>
+                              <span class="bs-stepper-label">Endereço</span>
+                            </button>
+                          </div>
+
+                          <div class="line"></div>
+                          <div class="step" data-target="#registration-step-l-5">
+                            <button class="step-trigger">
+                              <span class="bs-stepper-circle">5</span>
+                              <span class="bs-stepper-label">Verificar dados</span>
+                            </button>
+                          </div>
+
+                            </div>
+                         </div>
+                        <div class="col-sm-12 col-md-10 col-lg-8 mx-auto py-5">
+                            <div class="bs-stepper-content mt-4 ">
+
+                                <form (ngSubmit)="onSubmit()">
+                                
+                                                <div id="registration-step-l-1" class="content">
+
+                                                        <div class="col-12 bg-white py-3 pb-5 p-md-5   step-content">
+                                                            <div class="row ">
+                                                                <div class="form-group col-sm-12 col-md-12 col-lg-6 ">
+                                                                    <label for="exampleFormControlInput1">Nome do seu negócio</label>
+                                                                    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Nome da sua empresa">
+                                                                </div>
+                                                                <div class=" col-sm-12 col-md-12 col-lg-6 mb-3">
+                                                                    <label for="validationCustom04">Categoria do seu negocio</label>
+                                                                    <select class="custom-select" id="validationCustom04">
+                                                                    <option selected disabled value="">Choose...</option>
+                                                                    <option>...</option>
+                                                                    </select>
+                                                                    
+                                                                </div>
+                                                            </div>
+                                                            <div class="btn-group-step-1 bg-danger col-sm-12">
+                                                                <button type="button" (click)="next()" class="btn btn-success float-right">Continuar</button>
+                                                            </div>
+                                                        </div>
+                                                </div>
+
+                                                <div id="registration-step-l-2" class="content">
+
+                                                    <div class="col-12 bg-white py-3 pb-5  p-md-5 step-content p-min-s">
+                                                        <div class="row">
+                                                            <div class="form-group  col-md-12 col-lg-6">
+                                                                <label for="exampleFormControlInput1">Email</label>
+                                                                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="exemplo@empresa.com">
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            
+                                                            <!-- <div class="form-group col-sm-12 col-md-6">
+                                                                <label for="exampleFormControlInput1">Nome do seu negócio</label>
+                                                                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="name@Nome da sua empresa">
+                                                            </div> -->
+                                                            <br> <br>
+                                                            <div class="form-group  col-md-12 col-lg-6">
+                                                                <label for="exampleFormControlInput1">Senha</label>
+                                                                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder=" ************* ">
+                                                            </div>
+                                                            <div class="form-group   col-md-12 col-lg-6">
+                                                                <label for="exampleFormControlInput1">Confirmar Senha</label>
+                                                                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder=" ************* ">
+                                                            </div>
+                                                        </div>
+                                                        <div class="btn-group-step-2 ">
+                                                            <button type="button" (click)="previous()" class="btn  btn-success float-left">Retroceder </button>
+                                                            <button type="button" (click)="next()" class="btn btn-success float-right">Continuar</button>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+
+                                                <div id="registration-step-l-3" class="content">
+
+                                                    <div class="col-12 bg-white py-3 pb-5 p-md-5 step-content">
+
+                                                        <div class="row">
+                                                            <div class="form-group col-md-12 col-lg-6 ">
+                                                                <label for="telefone">Telefone 1</label>
+                                                                <input type="text" class="form-control" id="telefone" placeholder="222 984 563">
+                                                            </div>
+                                                            <div class="form-group col-md-12 col-lg-6 ">
+                                                                <label for="telefone">Telefone 2</label>
+                                                                <input type="text" class="form-control" id="telefone" placeholder="+244923456">
+                                                            </div>
+                                                            <div class="form-group col-md-12 col-lg-6 ">
+                                                                <label for="exampleFormControlInput1">Pagina Web</label>
+                                                                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="www.exemplo.com">
+                                                            </div>
+                                                            <div class="form-group col-md-12 col-lg-9">        
+                                                                <label for="exampleFormControlInput1">Logotipo</label>                                                       
+                                                                <div class="col-md-12 col-lg-6">
+                                                                    <img src="../../../../assets/images/placeholder.png" class="img-fluid">
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                         <div class="btn-group-step-3">
+                                                            <button type="button" (click)="previous()" class="btn btn-success   float-left">Retroceder</button>
+                                                            <button type="button" (click)="next()" class="btn btn-success  float-right">Continuar</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div id="registration-step-l-4" class="content">
+                                                    <div class="col-sm-12 bg-white py-sm-3 pb-5 p-md-5 step-content">
+                                                        <div class="row address-section">
+                                                            <div class="col-sm-12 col-md-12 col-lg-6 ">
+    
+                                                                <div class=" col-sm-12">
+                                                                    <label for="validationCustom04">País</label>
+                                                                    <select class="custom-select" id="validationCustom04" disabled>
+                                                                    <option selected disabled value="">Angola</option>
+                                                                    <option>...</option>
+                                                                    </select>
+                                                                     
+                                                                </div>
+                                                                <div class=" col-sm-12">
+                                                                    <label for="validationCustom04">Cidade</label>
+                                                                    <select class="custom-select" id="validationCustom04">
+                                                                    <option selected disabled value="">Choose...</option>
+                                                                    <option>...</option>
+                                                                    </select>
+                                                                     
+                                                                </div>
+                                                                <div class=" col-sm-12">
+                                                                    <label for="validationCustom04">Munícipio</label>
+                                                                    <select class="custom-select" id="validationCustom04">
+                                                                    <option selected disabled value="">Choose...</option>
+                                                                    <option>...</option>
+                                                                    </select>
+                                                                  
+                                                                </div>
+                                                                <div class=" col-sm-12">
+                                                                    <label for="validationCustom04">Bairro</label>
+                                                                    <select class="custom-select" id="validationCustom04">
+                                                                    <option selected disabled value="">Choose...</option>
+                                                                    <option>...</option>
+                                                                    </select>
+                                                                   
+                                                                </div>
+                                                                <div class=" col-sm-12">
+                                                                    <label for="validationCustom04">Rua</label>
+                                                                    <select class="custom-select" id="validationCustom04">
+                                                                    <option selected disabled value="">Choose...</option>
+                                                                    <option>...</option>
+                                                                    </select>                                                              
+                                                                </div>
+                                                                
+    
+                                                            </div>
+                                                            <div class="col-md-12 col-lg-5 mx-auto" >
+                                                                <label>Selecione o seu local no Mapa</label>
+                                                                <div class="col-12 bg-light" #id>
+
+                                                                </div>
+    
+                                                            </div>
+                                                        </div>
+                                                         <div class="btn-group-step-4 py-3 mt-md-0">
+                                                                <button type="button" (click)="previous()" class="btn btn-success   float-left">Retroceder</button>
+                                                                <button type="button" (click)="next()" class="btn btn-success   float-right">Continuar</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+                                                 <div id="registration-step-l-5" class="content  bg-white shadow-sm rounded">
+                                                        <div class="col-12 py-3 pb-5 p-md-5 step-content">
+                                                            <div class="col-12">
+                                                                <div class="row">
+                                                                    <div class="  col-md-12 col-lg-7">
+                                                                        <table class="table table-sm">
+                                                                             
+                                                                            <tbody>
+                                                                              <tr>
+                                                                                <td>Nome do seu negócio</td>
+                                                                                <td class="txt-grey font-weight-bold">Loja Monte Engil</td>
+                                                                                
+                                                                              </tr>
+                                                                              <tr>
+                                                                                <td>Categoria do seu negocio</td>
+                                                                                <td  class="txt-grey font-weight-bold">Construção Civil </td>
+                                                                              </tr>
+                                                                              <tr>
+                                                                                <td>Email</td>
+                                                                                <td  class="txt-grey font-weight-bold">Thornton</td>
+                                                                              </tr>
+                                                                              <tr>
+                                                                                <td>Telefone 1</td>
+                                                                                <td  class="txt-grey font-weight-bold">Thornton</td>
+                                                                              </tr>
+                                                                              <tr>
+                                                                                <td>Telefone 2</td>
+                                                                                <td  class="txt-grey font-weight-bold">Thornton</td>
+                                                                              </tr>
+                                                                              <tr>
+                                                                                <td>Pagina Web</td>
+                                                                                <td  class="txt-grey font-weight-bold">Thornton</td>
+                                                                              </tr>
+                                                                              <tr>
+                                                                                <td>Logotipo</td>
+                                                                                <td  class="txt-grey font-weight-bold">Thornton</td>
+                                                                              </tr>
+                                                                              <tr>
+                                                                                <td>País</td>
+                                                                                <td  class="txt-grey font-weight-bold">Thornton</td>
+                                                                              </tr>
+                                                                              <tr>
+                                                                                <td>Cidade</td>
+                                                                                <td  class="txt-grey font-weight-bold">Thornton</td>
+                                                                              </tr>
+                                                                              <tr>
+                                                                                <td>Munícipio</td>
+                                                                                <td  class="txt-grey font-weight-bold">Thornton</td>
+                                                                              </tr>
+                                                                              <tr>
+                                                                                <td>Bairro</td>
+                                                                                <td  class="txt-grey font-weight-bold">Thornton</td>
+                                                                              </tr>
+                                                                              <tr>
+                                                                                <td>Rua</td>
+                                                                                <td  class="txt-grey font-weight-bold">Thornton</td>
+                                                                              </tr>
+                                                                            </tbody>
+                                                                          </table>
+                                                                    </div>
+                                                                    <div class="col-md-12 col-lg-5 ">
+                                                                        <img src="../../../../assets/images/placeholder.png" class="img-fluid"/>
+                                                                    </div>
+                                                                    
+                                                                </div>
+                                                            </div>
+                                                            <div class="btn-group-step-5 mt-sm-3 mt-md-0">
+                                                             
+                                                                    <button type="button" (click)="previous()" class="btn btn-success   float-left">Retroceder</button>
+                                                                    <button type="submit" class="btn btn-success  float-right">Confirmar</button>
+                                                            </div>
+                                                        </div>
+                                                </div>
+                                </form>
+                            </div>
+                        </div>
+
+                    </div>
+                         
+                <!-- </div> col  -->
         </div>
     </div>
 

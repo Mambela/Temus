@@ -4,6 +4,9 @@
 Fonts Being used
 */
 
+ 
+@import '~bs-stepper/dist/css/bs-stepper.min.css';
+
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Quicksand:wght@300;400;500;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Manjari:wght@100;400;700&family=Roboto:wght@100;300;400;500;700;900&display=swap');
 
@@ -140,16 +143,20 @@ TEXT COLORS
     color: $color-very-light-green;
 }
 
-.text-color-dark-grey{
+.txt-dark-grey{
     color: $color-dark-grey;
 }
-.text-color-normal-grey{
+.txt-grey{
     color: $color-normal-grey;
 
 }
-.text-color-very-light-grey{
+.txt-grey-1{
     color: $color-very-light-grey;
 }
+
+.btn {
+    font-family: 'Quicksand', sans-serif;
+ }
 
 
 
@@ -176,3 +183,5 @@ TEXT COLORS
 @media only screen and (min-width: 1200px) {
    
 }
+/* Importing Bootstrap SCSS file. */
+@import '~bootstrap/scss/bootstrap';
