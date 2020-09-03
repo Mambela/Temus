@@ -7,6 +7,9 @@ import { BusinessPageComponent } from './pages/business-user/business-page/busin
 import { BusinessRegistrationComponent } from './pages/business-user/business-registration/business-registration.component';
 import { MainFooterComponent } from './sections/main-footer/main-footer.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { MapComponent } from './sections/map/map.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { PopMapComponent } from './sections/pop-map/pop-map.component';
  
  
 
@@ -16,12 +19,16 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     BusinessPageComponent,
     BusinessRegistrationComponent,
     MainFooterComponent,
+    MapComponent,
+    PopMapComponent,
  
   ],
   imports: [
-    BrowserModule,AppRoutingModule, NgbModule 
+    BrowserModule,AppRoutingModule, NgbModule, FontAwesomeModule 
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule { 
+  
+}

@@ -1,3 +1,8 @@
+<head>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.4.1/mapbox-gl.css' rel='stylesheet' />
+</head>
+
+ 
  <body>
     <div class="min-vh-100 min-vw-100  ">
         <div class="py-2 my-top-nav bg-color-dark-purple">         
@@ -200,8 +205,10 @@
     
                                                             </div>
                                                             <div class="col-md-12 col-lg-5 mx-auto" >
-                                                                <label>Selecione o seu local no Mapa</label>
-                                                                <div class="col-12 bg-light" #id>
+                                                                <label> Selecione o seu local no Mapa <span class="expand-map text-success" (click)="expandMap()"> <i class="fas fa-expand-alt"></i></span> </label>
+                                                                <div class="col-12 bg-light" class="map-height" id="sm-map">
+                                                                    
+                                                                    <!-- <app-map></app-map> -->
 
                                                                 </div>
     
@@ -296,6 +303,9 @@
                 <!-- </div> col  -->
         </div>
     </div>
+
+
+     
 
 <app-main-footer class="custom-background"></app-main-footer>
 </body>

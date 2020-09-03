@@ -6,6 +6,7 @@ Fonts Being used
 
  
 @import '~bs-stepper/dist/css/bs-stepper.min.css';
+@import '~@fortawesome/fontawesome-free/css/all.min.css';
 
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Quicksand:wght@300;400;500;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Manjari:wght@100;400;700&family=Roboto:wght@100;300;400;500;700;900&display=swap');
@@ -20,10 +21,13 @@ Fonts Being used
 
 
 
-h1{
+h1 h2 h3 h4 h5 h6{
     font-family:'Quicksand', sans-serif;
   }
   
+p{
+    font-family: 'Roboto', sans-serif;
+}
   
 
 
