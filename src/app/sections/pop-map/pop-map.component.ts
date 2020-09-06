@@ -1,3 +1,5 @@
+import { locationCoordinates } from './../../data/models/supporting/mapcoordinates';
+import { RegistrationMapService } from './../../core-services/utility-service/registration-map.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PopMapComponent implements OnInit {
 
-  constructor() { }
+
+
+  constructor(private mapservice:RegistrationMapService) { }
 
   ngOnInit(): void {
+
+    this.mapservice.coordinatesUpdated.subscribe((coordinates:locationCoordinates) =>{
+
+      console.log('Longitude ->',coordinates.lat,coordinates.lng);
+
+    });
+
   }
 
 }

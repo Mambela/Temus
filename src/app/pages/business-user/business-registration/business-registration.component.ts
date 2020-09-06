@@ -1,26 +1,54 @@
+import { AddressesService } from './../../../core-services/http-service/addresses-service.service';
+import { CategoriadataService } from './../../../core-services/DataService/categoria/categoriadata-service.service';
+import { CategoryService } from './../../../core-services/http-service/category-service.service';
+import { BasicModel } from './../../../data/models/supporting/basic-model.model';
+import { locationCoordinates } from './../../../data/models/supporting/mapcoordinates';
 import { PopMapComponent } from './../../../sections/pop-map/pop-map.component';
 import { RegistrationMapService } from './../../../core-services/utility-service/registration-map.service';
 import { Component, OnInit } from '@angular/core';
+import {Observable, of} from 'rxjs';
+import { debounceTime, distinctUntilChanged, map, filter, switchMap, tap, catchError } from 'rxjs/operators';
 import Stepper from 'bs-stepper';
-import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap'
+ 
+ 
 @Component({
   selector: 'app-business-registration',
   templateUrl: './business-registration.component.html',
   styleUrls: ['./business-registration.component.scss']
 })
 export class BusinessRegistrationComponent implements OnInit {
-  
-  closeResult = '';
 
+  //being used to assign a municipio for the rua 
+  neighborhood:number=null;
+  neighborhoodSelected= false;
+
+  provinces:BasicModel[];
+  municipalities:BasicModel[];
+  neighbourhoods:BasicModel[];
+  streets:BasicModel[];
+
+  searching=false;
+  searchingFailed = false;
+  categorias:BasicModel[];
+
+
+
+  closeResult = '';
+  currentUserLocation:locationCoordinates; 
   private stepper: Stepper;
 
- constructor(private modalService: NgbModal,private map: RegistrationMapService) {
 
-  }
+  constructor(private modalService: NgbModal,private mapboxmap: RegistrationMapService,
+    private categoriaData:CategoriadataService,private addressService: AddressesService,
+    private categoriaService:CategoryService) {
+    }
 
   ngOnInit(): void {
+  
 
-    this.map.getUserLocation('sm-map');
+    this.mapValues();
+    this.getAllProvinces();
 
     this.stepper = new Stepper(document.querySelector('#stepper1'), {
       linear: false,
@@ -28,6 +56,48 @@ export class BusinessRegistrationComponent implements OnInit {
     })
 
   }
+
+  /**
+   * THis code handles the typeahead search to load the categoria 
+   * **/ 
+  resultformatter = ( categoria: {designacao: BasicModel}) => categoria.designacao;
+
+  streetresultformatter = (StreetList: {street : BasicModel})=> StreetList.street;
+  
+   categoriaSearch = (text$: Observable<string>)=> 
+    text$.pipe(
+      debounceTime(300),
+      distinctUntilChanged(),
+      
+      tap(()=> this.searching = true),
+      switchMap(term => 
+         this.categoriaService.searchCategoria(term).pipe(
+           tap(() => this.searchingFailed = false),
+            catchError(() => {
+              this.searchingFailed = true;
+              return of([]);
+            })),
+          ),
+          tap(() =>this.searching =false)
+    )
+
+    streetSearch = (streetText$: Observable<string>)=> 
+    streetText$.pipe(
+      debounceTime(300),
+      distinctUntilChanged(),
+      
+      tap(()=> this.searching = true),
+      switchMap(term => 
+         this.addressService.getStreetsbyNeighbourhood(this.neighborhood,term).pipe(
+           tap(() => this.searchingFailed = false),
+            catchError(() => {
+              this.searchingFailed = true;
+              return of([]);
+            })),
+          ),
+          tap(() =>this.searching =false)
+    )
+  
 
   //This function belong to the Stepper
   next() {
@@ -42,8 +112,63 @@ export class BusinessRegistrationComponent implements OnInit {
     return false;
   }
 
- 
+  /**
+   * Handle Address drop downs
+   * @it is used to get Values of the provinces, municipalities,bairro 
+   * */ 
+  
+  getAllProvinces(){
 
+    this.addressService.getPronvinces().subscribe((provinceResp:BasicModel[]) =>{
+        
+      this.provinces = provinceResp['data'];
+      console.log(provinceResp);
+    });
+
+  }
+
+  getMunicipalitybyProvinces(event){
+    const provinciaID = event.target.value;
+
+    console.log(provinciaID);
+
+    this.addressService.getMunicipalities(provinciaID).subscribe((municipalitiesResp:BasicModel[])=>{
+
+      console.log(municipalitiesResp);
+      
+      this.municipalities = municipalitiesResp['data'];
+
+    });
+
+  }
+  
+  getNeighboorhoodsbyMunicipality(event){
+    const municipality = event.target.value;
+
+    this.addressService.getNeighbourhood(municipality).subscribe((neighborhoodResp:BasicModel[])=>{
+
+    console.log(neighborhoodResp);
+  
+    this.neighbourhoods = neighborhoodResp['data'];
+
+    });
+
+  }
+
+  getStreetsbyNeighbourhood(event){
+    this.neighborhood = event.target.value;
+
+    console.log(this.neighborhood);
+    this.neighborhoodSelected = true;
+
+  }
+
+
+  /**
+   * End of the Address drop downs 
+   * */  
+
+ 
   
   //Function to open the map in a modal. 
 
@@ -66,5 +191,22 @@ export class BusinessRegistrationComponent implements OnInit {
       return `with: ${reason}`;
     }
   }
+
+  mapValues()
+  {
+    this.mapboxmap.getUserLocation('sm-map');
+
+    this.mapboxmap.coordinatesUpdated.subscribe((coordinates: locationCoordinates)=>{
+        
+                this.currentUserLocation = coordinates;
+    });
+  }
+
+  // search = (text$: Observable<string>) => text$.pipe(
+  //   debounceTime(200),
+  //   distinctUntilChanged(),
+  //   filter(term => term.length >= 2),
+  //   map(term => states.filter(state => new RegExp(term, 'mi').test(state.name)).slice(0, 10))
+  // )
 
 }
