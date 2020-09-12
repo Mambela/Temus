@@ -1,3 +1,5 @@
+import { streetModel } from './../../data/models/supporting/street-model.model';
+
 import { catchError, tap } from 'rxjs/operators';
 import { BasicModel } from './../../data/models/supporting/basic-model.model';
 import { STOREDCONSTANTS } from './../../module/constants.service';
@@ -65,7 +67,7 @@ export class AddressesService {
 
   getStreetsbyNeighbourhood(idComuna:number,term:string)
   {
-    return this.http.get<BasicModel[]>(this.CONSTANTS.BASEURL() + "localizacao-rua-by-comuna/" + idComuna+"/"+term,
+    return this.http.get<streetModel[]>(this.CONSTANTS.BASEURL() + "localizacao-rua-by-comuna/" + idComuna+"/"+term,
     {
       headers:{"Accept":"application/json"}          
     }).pipe(
@@ -73,7 +75,7 @@ export class AddressesService {
           
         return throwError(error);
       }),
-      tap((Ruas:BasicModel[])=>{
+      tap((Ruas:streetModel[])=>{
         
 
         console.log(Ruas);

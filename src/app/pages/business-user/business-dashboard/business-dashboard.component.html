@@ -1,0 +1,62 @@
+<body>
+    
+
+
+<app-business-topnavbar></app-business-topnavbar>
+<ng-sidebar-container>
+     
+    <ng-sidebar [(opened)]="_opened" 
+    [(dock)]="_docked"
+    [mode]="_Mode">
+         
+
+         <app-sidebar></app-sidebar>
+        
+       
+    </ng-sidebar>
+
+    <div ng-sidebar-content>
+      <div class="row mt-2">
+         
+         
+
+         <div class="col-6 ">
+            <button class="btn btn-outline-success ml-2" (click)="_toggleSidebar()"><i class="fas fa-bars"></i> Menu</button>
+         </div>
+         <div class="col-6">
+            <span class="  mr-md-n3 mt-2"><i class="  text-success float-right mt-2 fas fa-lg" (click)="_toggleRightbar()" [ngClass]="{' fa-caret-square-right': _rightBarOpened === true,
+                                                                                                                             ' fa-caret-square-left ': !_rightBarOpened}"></i></span>
+         </div> 
+      </div>
+      
+      
+      <div class="col-md-12 col-xl-11 mx-auto ml-2 bg-white mt-4 "> 
+
+         <h3> Ola, Master Life</h3>
+               <!-- <button type="button" class="btn btn-sm btn-outline-success" (click)="_toggleSidebar()"><i class="fas fa-caret-square-left text-success"></i> </button> -->
+         <p>business-dashboard works!</p>
+
+      </div>
+
+     
+   
+        
+    </div>
+
+    <ng-sidebar [(opened)]="_rightBarOpened" 
+    position="right"
+    [(dock)]="_docked"
+    [mode]="_Mode"
+    class="right-sidebar"
+    >
+         
+
+        <app-rightsidebar>
+
+        </app-rightsidebar>
+        
+       
+    </ng-sidebar>
+</ng-sidebar-container>
+
+</body>

@@ -1,0 +1,23 @@
+<body>
+    
+<app-business-topnavbar></app-business-topnavbar>
+  <ng-sidebar-container>
+     
+    <ng-sidebar [(opened)]="_opened" 
+    [(dock)]="_docked"
+    [mode]="_Mode">
+         
+
+         <app-sidebar></app-sidebar>
+        
+       
+    </ng-sidebar>
+
+    <div ng-sidebar-content>
+        <button type="button" class="btn btn-sm btn-outline-success" (click)="_toggleSidebar()">Open Side bar</button>
+        <p>business-content-page works!</p>
+    </div>
+</ng-sidebar-container>
+
+
+</body>

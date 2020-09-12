@@ -67,31 +67,35 @@
                         <div class="col-sm-12 col-md-10 col-lg-8 mx-auto py-5">
                             <div class="bs-stepper-content mt-4 ">
 
-                                <form (ngSubmit)="onSubmit()">
+                                <form #saveUserData="ngForm"  (ngSubmit)="onSubmit(saveUserData)">
                                 
                                                 <div id="registration-step-l-1" class="content">
 
                                                         <div class="col-12 bg-white py-3 pb-5 p-md-5   step-content">
                                                             <div class="row ">
                                                                 <div class="form-group col-sm-12 col-md-12 col-lg-6 ">
-                                                                    <label for="exampleFormControlInput1">Nome do seu negócio</label>
-                                                                    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Nome da sua empresa">
+                                                                    <label for="businessName">Nome do seu negócio</label>
+                                                                    <input type="text" name="nameOfBusiness" class="form-control" id="businessName" placeholder="Nome da sua empresa" [(ngModel)]="businessName" >
+                                                                    <small class="text-danger">*Por-favor insira o nome do seu negócio </small>
                                                                 </div>
                                                                 <div class=" col-sm-12 col-md-12 col-lg-6 mb-3">
                                                                     <label for="typeahead-basic">Categoria do seu negócio</label>
-                                                                    <input id="typeahead-basic" type="text" class="form-control"  name="categoria" [class.is-invalid]="searchingFailed"
+                                                                    <input id="typeahead-basic" type="text" class="form-control"  name="businesscategoria" [class.is-invalid]="searchingFailed"
                                                                          [ngbTypeahead]="categoriaSearch"
-                                                                         [(ngModel)]="categorias"
+                                                                         [(ngModel)]="selectedCategoria"
                                                                          [resultFormatter]="resultformatter"    
-                                                                         [inputFormatter]="resultformatter"     
-                                                                        placeholder="Insira nome da categoria "                                      
+                                                                         [inputFormatter]="resultformatter"  
+                                                                         [editable]='false'   
+                                                                        (selectItem)='userSelectedCategoria($event)'
+                                                                        placeholder="Insira nome da categoria"                                      
                                                                         />
                                                                         <small *ngIf="searching" class="form-text text-muted">a pesquisar...</small>
                                                                         <div class="invalid-feedback" *ngIf="searchingFailed">Desculpa, as suggestões não foram encontradas.</div>
                                                                 </div>
                                                             </div>
+                                                            
                                                             <div class="btn-group-step-1 bg-danger col-sm-12">
-                                                                <button type="button" (click)="next()" class="btn btn-success float-right">Continuar</button>
+                                                                <button type="button" (click)="onfinaliseBusinessInfo(businessName)" class="btn btn-success float-right">Continuar</button>
                                                             </div>
                                                         </div>
                                                 </div>
@@ -102,7 +106,7 @@
                                                         <div class="row">
                                                             <div class="form-group  col-md-12 col-lg-6">
                                                                 <label for="exampleFormControlInput1">Email</label>
-                                                                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="exemplo@empresa.com">
+                                                                <input type="text" class="form-control" name="businessEmail" id="exampleFormControlInput1" placeholder="exemplo@empresa.com" [(ngModel)]="businessEmail">
                                                             </div>
                                                         </div>
                                                         <div class="row">
@@ -114,16 +118,16 @@
                                                             <br> <br>
                                                             <div class="form-group  col-md-12 col-lg-6">
                                                                 <label for="exampleFormControlInput1">Senha</label>
-                                                                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder=" ************* ">
+                                                                <input type="password" class="form-control" name="businessPassword" id="exampleFormControlInput1" placeholder=" *************" [(ngModel)]="businessPassword">
                                                             </div>
                                                             <div class="form-group   col-md-12 col-lg-6">
                                                                 <label for="exampleFormControlInput1">Confirmar Senha</label>
-                                                                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder=" ************* ">
+                                                                <input type="password" class="form-control" name="businessConfirmPassword" id="exampleFormControlInput1" placeholder=" *************"  [(ngModel)]="businessPasswordConfir">
                                                             </div>
                                                         </div>
                                                         <div class="btn-group-step-2 ">
                                                             <button type="button" (click)="previous()" class="btn  btn-success float-left">Retroceder </button>
-                                                            <button type="button" (click)="next()" class="btn btn-success float-right">Continuar</button>
+                                                            <button type="button" (click)="onfinaliseAccountData(businessEmail,businessPassword,businessPasswordConfir)" class="btn btn-success float-right">Continuar</button>
                                                         </div>
 
                                                     </div>
@@ -136,27 +140,29 @@
                                                         <div class="row">
                                                             <div class="form-group col-md-12 col-lg-6 ">
                                                                 <label for="telefone">Telefone 1</label>
-                                                                <input type="text" class="form-control" id="telefone" placeholder="222 984 563">
+                                                                <input type="tel" class="form-control" id="telefone" placeholder="222 984 563" name="businessTel1" [(ngModel)]="businessPhoneNumber1">
                                                             </div>
                                                             <div class="form-group col-md-12 col-lg-6 ">
                                                                 <label for="telefone">Telefone 2</label>
-                                                                <input type="text" class="form-control" id="telefone" placeholder="+244923456">
+                                                                <input type="tel" class="form-control" id="telefone" placeholder="+244923456" name="businessTel2" [(ngModel)]="businessPhoneNumber2">
                                                             </div>
                                                             <div class="form-group col-md-12 col-lg-6 ">
                                                                 <label for="exampleFormControlInput1">Pagina Web</label>
-                                                                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="www.exemplo.com">
+                                                                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="www.exemplo.com" name="businessWepPage" [(ngModel)]="businessWebsite">
                                                             </div>
                                                             <div class="form-group col-md-12 col-lg-9">        
                                                                 <label for="exampleFormControlInput1">Logotipo</label>                                                       
                                                                 <div class="col-md-12 col-lg-6">
-                                                                    <img src="../../../../assets/images/placeholder.png" class="img-fluid">
+                                                                    <input type="file" class="form-control" hidden #uploader (change)="uploadImage($event)" name="businessLogo" />
+                                                                    <img [src]="imgURL" class="img-fluid imageUpload" (click)="uploader.click()">
+                                                                    <small class="text-color-main-purple"> Click para adicionar Logotipo</small>
                                                                 </div>
                                                             </div>
 
                                                         </div>
                                                          <div class="btn-group-step-3">
                                                             <button type="button" (click)="previous()" class="btn btn-success   float-left">Retroceder</button>
-                                                            <button type="button" (click)="next()" class="btn btn-success  float-right">Continuar</button>
+                                                            <button type="button" (click)="onfinaliseContactDetais(businessPhoneNumber1)" class="btn btn-success  float-right">Continuar</button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -204,7 +210,8 @@
                                                                     [ngbTypeahead]="streetSearch"
                                                                     [(ngModel)]="streets"
                                                                     [resultFormatter]="streetresultformatter"    
-                                                                    [inputFormatter]="streetresultformatter"    
+                                                                    [inputFormatter]="streetresultformatter" 
+                                                                    (selectItem)='userSelectedRua($event)'   
                                                                     placeholder="Insira o nome da rua"
                                                                     />      
                                                                     <small *ngIf="searching" class="form-text text-muted">a pesquisar...</small>
@@ -225,7 +232,7 @@
                                                         </div>
                                                          <div class="btn-group-step-4 py-3 mt-md-0">
                                                                 <button type="button" (click)="previous()" class="btn btn-success   float-left">Retroceder</button>
-                                                                <button type="button" (click)="next()" class="btn btn-success   float-right">Continuar</button>
+                                                                <button type="button" (click)="onfinaliseAddress()" class="btn btn-success   float-right">Continuar</button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -233,68 +240,74 @@
                                                  <div id="registration-step-l-5" class="content  bg-white shadow-sm rounded">
                                                         <div class="col-12 py-3 pb-5 p-md-5 step-content">
                                                             <div class="col-12">
-                                                                <div class="row">
-                                                                    <div class="  col-md-12 col-lg-7">
-                                                                        <table class="table table-sm">
+                                                                <div class="row" >
+                                                                    <div class="  col-md-12 col-lg-5">
+                                                                        <table class="table table-sm table-borderless">
                                                                              
                                                                             <tbody>
                                                                               <tr>
                                                                                 <td>Nome do seu negócio</td>
-                                                                                <td class="txt-grey font-weight-bold">Loja Monte Engil</td>
+                                                                                <td class="txt-grey font-weight-bold user-input">{{businessName}}</td>
                                                                                 
                                                                               </tr>
                                                                               <tr>
+                                                                                  <!-- //[(ngModel)]="selectedCategoria.designacao" -->
                                                                                 <td>Categoria do seu negocio</td>
-                                                                                <td  class="txt-grey font-weight-bold">Construção Civil </td>
+                                                                                <td  class="txt-grey font-weight-bold user-input" name="finalCategoria">{{businessCategoriaDesignacao}}</td>
                                                                               </tr>
                                                                               <tr>
                                                                                 <td>Email</td>
-                                                                                <td  class="txt-grey font-weight-bold">Thornton</td>
+                                                                                <td  class="txt-grey font-weight-bold user-input"   name="finalEmail">{{businessEmail}}</td>
                                                                               </tr>
                                                                               <tr>
                                                                                 <td>Telefone 1</td>
-                                                                                <td  class="txt-grey font-weight-bold">Thornton</td>
+                                                                                <td  class="txt-grey font-weight-bold user-input" name="finalPhone1">{{businessPhoneNumber1}}</td>
                                                                               </tr>
                                                                               <tr>
                                                                                 <td>Telefone 2</td>
-                                                                                <td  class="txt-grey font-weight-bold">Thornton</td>
+                                                                                <td  class="txt-grey font-weight-bold user-input" name="finalPhone1">{{businessPhoneNumber2}}</td>
                                                                               </tr>
                                                                               <tr>
                                                                                 <td>Pagina Web</td>
-                                                                                <td  class="txt-grey font-weight-bold">Thornton</td>
+                                                                                <td  class="txt-grey font-weight-bold user-input" name="finalPhone2">{{businessPhoneNumber1}}</td>
                                                                               </tr>
-                                                                              <tr>
+                                                                              <!-- <tr>
                                                                                 <td>Logotipo</td>
-                                                                                <td  class="txt-grey font-weight-bold">Thornton</td>
+                                                                                <td  class="txt-grey font-weight-bold user-input"></td>
                                                                               </tr>
                                                                               <tr>
                                                                                 <td>País</td>
-                                                                                <td  class="txt-grey font-weight-bold">Thornton</td>
-                                                                              </tr>
+                                                                                <td  class="txt-grey font-weight-bold user-input"></td>
+                                                                              </tr> -->
                                                                               <tr>
-                                                                                <td>Cidade</td>
-                                                                                <td  class="txt-grey font-weight-bold">Thornton</td>
+                                                                                <td>Provincia</td>
+                                                                                <td  class="txt-grey font-weight-bold user-input" name="finalProvince">{{businessProvince}}</td>
                                                                               </tr>
                                                                               <tr>
                                                                                 <td>Munícipio</td>
-                                                                                <td  class="txt-grey font-weight-bold">Thornton</td>
+                                                                                <td  class="txt-grey font-weight-bold user-input" name="finalMunicipality">{{businessMunicipality}}</td>
                                                                               </tr>
                                                                               <tr>
                                                                                 <td>Bairro</td>
-                                                                                <td  class="txt-grey font-weight-bold">Thornton</td>
+                                                                                <td  class="txt-grey font-weight-bold user-input" name="finalNeighbourhood">{{businessNeighbourhood}}</td>
                                                                               </tr>
                                                                               <tr>
                                                                                 <td>Rua</td>
-                                                                                <td  class="txt-grey font-weight-bold">Thornton</td>
+                                                                                <td  class="txt-grey font-weight-bold user-input" name="finalRua">{{businessRuaDesignacao}}</td>
                                                                               </tr>
                                                                             </tbody>
                                                                           </table>
                                                                     </div>
-                                                                    <div class="col-md-12 col-lg-5 ">
-                                                                        <img src="../../../../assets/images/placeholder.png" class="img-fluid"/>
+                                                                    <div class="col-md-12 col-lg-6 ">
+                                                                        <img [src]="imgURL" class="img-fluid"/>
                                                                     </div>
                                                                     
                                                                 </div>
+                                                                <!-- <div class="mx-auto">
+                                                                    <app-saving-loader></app-saving-loader>
+                                                                </div> -->
+
+                                                                
                                                             </div>
                                                             <div class="btn-group-step-5 mt-sm-3 mt-md-0">
                                                              

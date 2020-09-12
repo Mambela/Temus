@@ -20,13 +20,18 @@ interface IchoosenCoordinates{
 export class RegistrationMapService {
 
   //@Output()
-   coordinatesUpdated = new EventEmitter<locationCoordinates>();
+  coordinatesUpdated = new EventEmitter<locationCoordinates>();
+  distanceUpdated = new EventEmitter<any>();
   
   map: mapboxgl.Map;
-
-  style = 'mapbox://styles/jacklumba/ckelwsq9p1qnu19lqlu43x6us'
+  distance:number;
+  //Style mapbox://styles/mapbox/streets-v11
+  //style 2 mapbox://styles/jacklumba/ckelwsq9p1qnu19lqlu43x6us
+  style = 'mapbox://styles/mapbox/streets-v11';
   private lat;
   private lng;
+  private initLat;
+  private iniLng;
   zoom = 13;
   container = '';
  
@@ -96,9 +101,9 @@ export class RegistrationMapService {
         this.lng = marker.getLngLat().lng;
         this.lat = marker.getLngLat().lat;
      
-       
-
+      
         this.emmitCoord();
+        this.emitDistance();
         
       });
 
@@ -115,6 +120,8 @@ export class RegistrationMapService {
             this.showPosition(position);
             this.lat = position.coords.latitude;
             this.lng = position.coords.longitude;
+            this.iniLng = position.coords.longitude;
+            this.initLat = position.coords.latitude;
               
 
           });
@@ -123,6 +130,34 @@ export class RegistrationMapService {
         
           alert("Your location could not be lcoated");
         }
+
+  }
+
+
+
+  // Calculate the distance between the user location and marker
+  calculateDistanceToMarker():any
+  {
+    const R = 6371;
+    let dLat = this.deg2rad(this.lat - this.initLat);
+    let dlng = this.deg2rad(this.lng - this.iniLng);
+      
+
+    let a = 
+    Math.sin(dLat/2) * Math.sin(dLat/2) + 
+    Math.cos(this.deg2rad(this.initLat)) * Math.cos(this.deg2rad(this.lat)) *
+    Math.sin(dlng/2) * Math.sin(dlng/2);
+
+    let c = 2 * Math.atan2(Math.sqrt(a),Math.sqrt(1-a));
+    let d = R * c; 
+
+    return d;
+
+  }
+
+  deg2rad(deg:any){
+
+    return deg * (Math.PI/180);
 
   }
 
@@ -144,6 +179,29 @@ export class RegistrationMapService {
 
 
   }
+
+  emitDistance()
+  {
+
+    let distance = this.calculateDistanceToMarker();
+    let distanceMessage:String;
+
+    if(distance > 0){
+     
+      distance = distance.toFixed(2);
+
+      distanceMessage = "Marcador a "+ distance * 1000 +"  metros da sua localização atual ";
+
+    }
+
+    this.distanceUpdated.emit(distanceMessage);
+
+  }
+
+
+  
+
+
 
   
 

@@ -1,0 +1,21 @@
+
+
+@import "../../../../../styles.scss";
+
+body{
+    min-height: 100vh;
+    height: 100%;
+    background-color: $color-lavender;
+  }
+
+
+ng-sidebar-container{
+    height: 100vh;
+  }
+  
+  ::ng-deep .ng-sidebar{
+    background-color: white;
+    width: 30vh;
+    padding: 0.5em 0.5em;
+  
+  }

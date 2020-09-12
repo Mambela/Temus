@@ -9,7 +9,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PopMapComponent implements OnInit {
 
-
+ distanceToMarker:number;
+ distanceMessage:string =" ";
 
   constructor(private mapservice:RegistrationMapService) { }
 
@@ -20,6 +21,25 @@ export class PopMapComponent implements OnInit {
       console.log('Longitude ->',coordinates.lat,coordinates.lng);
 
     });
+
+    this.showDistanceToMarker();
+
+  }
+
+  showDistanceToMarker()
+  {
+    this.mapservice.distanceUpdated.subscribe((distanceMessage:string) =>{
+
+        this.distanceMessage = distanceMessage;
+        console.log(distanceMessage);
+
+    });
+
+  
+    //Check if the distance is in KM or Meter
+   
+
+
 
   }
 

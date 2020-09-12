@@ -1,3 +1,6 @@
+import { BusinessContentPageComponent } from './../pages/business-user/business-dashboard/business-content-page/business-content-page.component';
+
+import { BusinessDashboardComponent } from './../pages/business-user/business-dashboard/business-dashboard.component';
 import { BusinessRegistrationComponent } from './../pages/business-user/business-registration/business-registration.component';
 import { BusinessPageComponent } from './../pages/business-user/business-page/business-page.component';
 import { NgModule } from '@angular/core';
@@ -7,7 +10,10 @@ import {Routes, RouterModule}from '@angular/router'
 
 const appRoutes: Routes=[
   {path:'business',component:BusinessPageComponent},
-  {path:'business-registration',component:BusinessRegistrationComponent}
+  {path:'business-registration',component:BusinessRegistrationComponent},
+  {path:'business-dashboard',component:BusinessDashboardComponent},
+  {path:'business-page',component:BusinessContentPageComponent}
+
 
   
 ]

@@ -13,6 +13,14 @@ import { MapComponent } from './sections/map/map.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { PopMapComponent } from './sections/pop-map/pop-map.component';
 import { FormsModule } from '@angular/forms';
+import { SavingLoaderComponent } from './sections/loaders/saving-loader/saving-loader.component';
+import { BusinessDashboardComponent } from './pages/business-user/business-dashboard/business-dashboard.component';
+import {SidebarModule} from 'ng-sidebar';
+import { SidebarComponent } from './sections/business/sidebar/sidebar.component';
+import { BusinessProductsComponent } from './pages/business-user/business-dashboard/business-products/business-products.component';
+import { BusinessContentPageComponent } from './pages/business-user/business-dashboard/business-content-page/business-content-page.component';
+import { BusinessTopnavbarComponent } from './pages/business-user/business-dashboard/business-topnavbar/business-topnavbar.component';
+import { RightsidebarComponent } from './sections/business/rightsidebar/rightsidebar.component';
  
  
 
@@ -24,10 +32,17 @@ import { FormsModule } from '@angular/forms';
     MainFooterComponent,
     MapComponent,
     PopMapComponent,
+    SavingLoaderComponent,
+    BusinessDashboardComponent,
+    SidebarComponent,
+    BusinessProductsComponent,
+    BusinessContentPageComponent,
+    BusinessTopnavbarComponent,
+    RightsidebarComponent,
  
   ],
   imports: [
-    BrowserModule,AppRoutingModule,FormsModule, NgbModule, FontAwesomeModule,HttpClientModule 
+    BrowserModule,AppRoutingModule,FormsModule, NgbModule, FontAwesomeModule,SidebarModule.forRoot(),HttpClientModule 
   ],
   providers: [],
   bootstrap: [AppComponent]

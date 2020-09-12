@@ -47,8 +47,23 @@ label{
     cursor: pointer;
 }
 
+.imageUpload{
+    height: 185px;
+    width: 296px;
+    max-height: 185px;
+    max-width: 296px;
+}
+ 
 
+.imageUpload:hover{
+    cursor: pointer;
+}
 
+td.user-input{
+    color: green;
+    font-family: 'Quicksand', sans-serif !important;
+    font-weight: 100;
+}    
 
 // 320px — 480px: Mobile devices
 // 481px — 768px: iPads, Tablets

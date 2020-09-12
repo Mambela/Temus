@@ -1,3 +1,5 @@
+import { SavingLoaderComponent } from './../../../sections/loaders/saving-loader/saving-loader.component';
+import { streetModel } from './../../../data/models/supporting/street-model.model';
 import { AddressesService } from './../../../core-services/http-service/addresses-service.service';
 import { CategoriadataService } from './../../../core-services/DataService/categoria/categoriadata-service.service';
 import { CategoryService } from './../../../core-services/http-service/category-service.service';
@@ -9,7 +11,9 @@ import { Component, OnInit } from '@angular/core';
 import {Observable, of} from 'rxjs';
 import { debounceTime, distinctUntilChanged, map, filter, switchMap, tap, catchError } from 'rxjs/operators';
 import Stepper from 'bs-stepper';
-import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap'
+import {NgbModal, ModalDismissReasons, NgbModalConfig} from '@ng-bootstrap/ng-bootstrap'
+import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
  
  
 @Component({
@@ -18,6 +22,38 @@ import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap'
   styleUrls: ['./business-registration.component.scss']
 })
 export class BusinessRegistrationComponent implements OnInit {
+  
+  /**
+   * User Details
+  */
+  businessName:string;
+  businessEmail:string;businessPassword:string;businessPasswordConfir:string;
+  businessPhoneNumber1:number; businessPhoneNumber2:number; businessWebsite:string;
+  // businessCountry:string;
+  businessCategoriaID:number = 0;
+  businessCategoriaDesignacao:string ="";
+
+  businessRuaID:number = 0;
+  businessRuaDesignacao:string ="";
+
+  businessProvince:string;businessMunicipality:string; businessNeighbourhood:string; 
+
+  /**
+   * End of user Details
+   * */ 
+
+    //Needed for image operation 
+  logoName:string;
+  imagePath;
+  imgURL: any="../../../../assets/images/placeholder.png";
+  message: string;
+  fileName:string='Choose file';
+  uploadedFile:File=null;
+
+  /**
+   * 
+   * */ 
+  
 
   //being used to assign a municipio for the rua 
   neighborhood:number=null;
@@ -26,22 +62,52 @@ export class BusinessRegistrationComponent implements OnInit {
   provinces:BasicModel[];
   municipalities:BasicModel[];
   neighbourhoods:BasicModel[];
-  streets:BasicModel[];
+  streets:streetModel;
 
+
+  //USed for the search of Categoria
   searching=false;
   searchingFailed = false;
-  categorias:BasicModel[];
+  selectedCategoria:BasicModel;
 
+ 
+  
+  
+  userSelectedCategoria(event: any) {
+    const categoria:BasicModel = event.item;
+    
+    this.businessCategoriaID = categoria.id;
+    this.businessCategoriaDesignacao = categoria.designacao;
 
+    
+  }
+
+  userSelectedRua(event:any){
+
+    const ruaObj:streetModel = event.item;
+    
+    this.businessRuaID = ruaObj.id;
+    this.businessRuaDesignacao = ruaObj.rua;
+    
+  }
+  
+  
 
   closeResult = '';
   currentUserLocation:locationCoordinates; 
   private stepper: Stepper;
 
+  sampleCategoria:string;
+
+   
+
 
   constructor(private modalService: NgbModal,private mapboxmap: RegistrationMapService,
     private categoriaData:CategoriadataService,private addressService: AddressesService,
-    private categoriaService:CategoryService) {
+    private categoriaService:CategoryService,modalConfig:NgbModalConfig,private router: Router) {
+
+      
+       
     }
 
   ngOnInit(): void {
@@ -62,7 +128,7 @@ export class BusinessRegistrationComponent implements OnInit {
    * **/ 
   resultformatter = ( categoria: {designacao: BasicModel}) => categoria.designacao;
 
-  streetresultformatter = (StreetList: {street : BasicModel})=> StreetList.street;
+  streetresultformatter = (StreetList: {rua : streetModel})=> StreetList.rua;
   
    categoriaSearch = (text$: Observable<string>)=> 
     text$.pipe(
@@ -99,7 +165,100 @@ export class BusinessRegistrationComponent implements OnInit {
     )
   
 
-  //This function belong to the Stepper
+/**
+ * Form Management
+ * */  
+ onfinaliseBusinessInfo(setbusinessname)
+ {
+   
+   
+  // if((setbusinessname != null && this.businessCategoriaDesignacao != null) || (setbusinessname != null &&  this.businessCategoriaDesignacao =="" )) 
+  if((this.businessCategoriaDesignacao != "") && (setbusinessname != null))
+  {
+    this.businessName = setbusinessname;
+    this.next(); 
+  }
+  else{
+    
+  }
+
+ }
+
+ onfinaliseAccountData(stEmail,stPassword,stPasswordConfirm)
+ {
+    if( (stEmail != null ) && (stPassword != null) && (stPasswordConfirm != null))
+    {
+      if(stPassword == stPasswordConfirm)
+        {
+          this.next();
+        }  
+        else{
+          // Password dont match
+        }
+      
+    }
+    else{
+      //Passwords empty 
+    }
+
+
+ }
+
+ onfinaliseContactDetais(stBusinessNumber1)
+ {
+    if(stBusinessNumber1 != null)
+    {
+      //Password 
+      this.next();
+    }
+    else{
+      //Password empty
+    }
+ }
+
+ onfinaliseAddress(){
+
+  if(this.businessRuaDesignacao != null || this.businessRuaDesignacao != "")
+  {
+    this.next();
+  }
+
+ }
+
+ 
+
+
+ uploadImage(event)
+ {
+  this.uploadedFile =<File>event.target.files[0];
+  // this.uploadedFile = event.target.files[0];
+
+  this.previewImage(this.uploadedFile);
+  this.fileName = this.uploadedFile.name;
+
+ }
+ 
+
+previewImage(files) {
+
+    if (files.length === 0)
+      return;
+ 
+    var mimeType = files.type;
+    if (mimeType.match(/image\/*/) == null) {
+      this.message = "So podes usar images!";
+      return;
+    }
+ 
+    var reader = new FileReader();
+    this.imagePath = files;
+    reader.readAsDataURL(files); 
+    reader.onload = (_event) => { 
+      this.imgURL = reader.result; 
+    }
+}
+
+ //This function belong to the Stepper
   next() {
     this.stepper.next();
   }
@@ -108,7 +267,18 @@ export class BusinessRegistrationComponent implements OnInit {
     this.stepper.previous();
   }
 
-  onSubmit() {
+  onSubmit(businessRegisterForm:NgForm) {
+    // ,backdrop:'static',keyboard:false
+
+    // this.modalService.open(SavingLoaderComponent,{ariaLabelledBy: 'modal-basic-title',size:'md',backdropClass:'light-modal-backdrop',centered:true}).result.then((result) => {
+    //   this.closeResult = `Closed with: ${result}`;
+    // }, (reason) => {
+    //   this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    // });
+
+    this.router.navigate(['/business-dashboard']);
+
+    console.log(businessRegisterForm);
     return false;
   }
 
@@ -130,6 +300,10 @@ export class BusinessRegistrationComponent implements OnInit {
   getMunicipalitybyProvinces(event){
     const provinciaID = event.target.value;
 
+    this.businessProvince = event.target.options[event.target.options.selectedIndex].text;
+
+    
+
     console.log(provinciaID);
 
     this.addressService.getMunicipalities(provinciaID).subscribe((municipalitiesResp:BasicModel[])=>{
@@ -145,6 +319,8 @@ export class BusinessRegistrationComponent implements OnInit {
   getNeighboorhoodsbyMunicipality(event){
     const municipality = event.target.value;
 
+    this.businessMunicipality = event.target.options[event.target.options.selectedIndex].text;
+
     this.addressService.getNeighbourhood(municipality).subscribe((neighborhoodResp:BasicModel[])=>{
 
     console.log(neighborhoodResp);
@@ -157,9 +333,13 @@ export class BusinessRegistrationComponent implements OnInit {
 
   getStreetsbyNeighbourhood(event){
     this.neighborhood = event.target.value;
+  
+    this.businessNeighbourhood = event.target.options[event.target.options.selectedIndex].text;
 
     console.log(this.neighborhood);
     this.neighborhoodSelected = true;
+
+    // this.streets =null;
 
   }
 
@@ -167,8 +347,10 @@ export class BusinessRegistrationComponent implements OnInit {
   /**
    * End of the Address drop downs 
    * */  
+  
+  
 
- 
+   
   
   //Function to open the map in a modal. 
 

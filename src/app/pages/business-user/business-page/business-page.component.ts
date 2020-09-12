@@ -9,11 +9,13 @@ import { faCoffee } from '@fortawesome/free-solid-svg-icons';
 })
 export class BusinessPageComponent implements OnInit {
 
-  
+
 
   constructor() { }
 
   ngOnInit(): void {
   }
+
+ 
 
 }
