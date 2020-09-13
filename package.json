@@ -29,6 +29,7 @@
     "bs-stepper": "^1.7.0",
     "jquery": "^1.9.1",
     "mapbox-gl": "^1.12.0",
+    "ng-circle-progress": "^1.5.1",
     "ng-sidebar": "^9.4.2",
     "popper.js": "^1.16.1",
     "rxjs": "~6.5.4",

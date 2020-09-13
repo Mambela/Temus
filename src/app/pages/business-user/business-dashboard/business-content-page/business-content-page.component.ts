@@ -7,7 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BusinessContentPageComponent implements OnInit {
 
-  _opened: boolean = true;
+  _opened: boolean = false;
+  _rightBarOpened: boolean = false;
   _docked: boolean = true;
   _Mode:string = 'push';
 
@@ -18,5 +19,9 @@ export class BusinessContentPageComponent implements OnInit {
   
   _toggleSidebar() { 
     this._opened = !this._opened;
+  }
+  _toggleRightbar()
+  {
+    this._rightBarOpened = !this._rightBarOpened;
   }
 }

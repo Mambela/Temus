@@ -19,3 +19,15 @@ ng-sidebar-container{
     padding: 0.5em 0.5em;
   
   }
+
+  ::ng-deep .ng-sidebar{
+    background-color: white;
+    width: 30vh;
+    padding: 0.5em 0.5em;
+
+}
+
+::ng-deep .ng-sidebar--right{
+    width: 20vh;
+
+}

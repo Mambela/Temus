@@ -21,7 +21,12 @@ import { BusinessProductsComponent } from './pages/business-user/business-dashbo
 import { BusinessContentPageComponent } from './pages/business-user/business-dashboard/business-content-page/business-content-page.component';
 import { BusinessTopnavbarComponent } from './pages/business-user/business-dashboard/business-topnavbar/business-topnavbar.component';
 import { RightsidebarComponent } from './sections/business/rightsidebar/rightsidebar.component';
- 
+import { NgCircleProgressModule } from 'ng-circle-progress';
+import { BusinessServiceComponent } from './pages/business-user/business-dashboard/business-service/business-service.component';
+import { BusinessEventsComponent } from './pages/business-user/business-dashboard/business-events/business-events.component';
+import { BusinessPostsComponent } from './pages/business-user/business-dashboard/business-posts/business-posts.component';
+import { BusinessMediaComponent } from './pages/business-user/business-dashboard/business-media/business-media.component';
+
  
 
 @NgModule({
@@ -39,10 +44,23 @@ import { RightsidebarComponent } from './sections/business/rightsidebar/rightsid
     BusinessContentPageComponent,
     BusinessTopnavbarComponent,
     RightsidebarComponent,
+    BusinessServiceComponent,
+    BusinessEventsComponent,
+    BusinessPostsComponent,
+    BusinessMediaComponent,
+  
  
   ],
   imports: [
-    BrowserModule,AppRoutingModule,FormsModule, NgbModule, FontAwesomeModule,SidebarModule.forRoot(),HttpClientModule 
+    BrowserModule,AppRoutingModule,FormsModule, NgbModule, FontAwesomeModule,SidebarModule.forRoot(),HttpClientModule,
+    NgCircleProgressModule.forRoot({
+      radius: 100,
+      outerStrokeWidth: 16,
+      innerStrokeWidth: 8,
+      outerStrokeColor: "#78C000",
+      innerStrokeColor: "#C7E596",
+      animationDuration: 300,
+    }), 
   ],
   providers: [],
   bootstrap: [AppComponent]
@@ -50,14 +68,6 @@ import { RightsidebarComponent } from './sections/business/rightsidebar/rightsid
 export class AppModule { 
 
 
-  constructor(private servicesCategoria: CategoryService)
-  {
-
-  }
-
-  loadCategorias()
-  {
-    this.servicesCategoria.getLocalsCategoria().subscribe();
-  }
+  
   
 }

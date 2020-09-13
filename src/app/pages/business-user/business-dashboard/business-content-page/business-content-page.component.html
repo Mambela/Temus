@@ -14,9 +14,113 @@
     </ng-sidebar>
 
     <div ng-sidebar-content>
-        <button type="button" class="btn btn-sm btn-outline-success" (click)="_toggleSidebar()">Open Side bar</button>
-        <p>business-content-page works!</p>
+          <div class="row mt-2">
+
+            <div class="col-6 ">
+              <button class="btn btn-outline-success ml-2" (click)="_toggleSidebar()"><i class="fas fa-bars"></i> Menu</button>
+            </div>
+            <div class="col-6">
+              <span class="  mr-md-n3 mt-2"><i class="  text-success float-right mt-2 fas fa-lg" (click)="_toggleRightbar()" [ngClass]="{' fa-caret-square-right': _rightBarOpened === true,
+                                                                                                                                ' fa-caret-square-left ': !_rightBarOpened}"></i></span>
+            </div> 
+        </div>
+        <!-- <div class="col-12 pl-5">
+          <h3>Sua Página</h3>
+        </div> -->
+        
+
+        <div class="col-md-12 col-xl-11 mx-auto ml-2 bg-white mt-4 "> 
+
+         
+                <!-- <button type="button" class="btn btn-sm btn-outline-success" (click)="_toggleSidebar()"><i class="fas fa-caret-square-left text-success"></i> </button> -->
+          <div class="row">
+            <div class="col-sm-2 ml-3"> 
+              <img src="https://i.pinimg.com/236x/ab/5a/73/ab5a738539e17fb0b4adb350a11f39f6--logo-design-contest-media-marketing.jpg"
+              class=" img-fluid mt-2 mx-auto"/>
+            </div>
+            <div class="col-sm-7 bg-success pt-2">
+
+              <h3>Master life</h3>
+              <p> Hoteleria e Restauração</p>
+
+              <p>Rua Commandante Dangereux, Luanda</p>
+              <p>+244 226 684 324</p>
+              <p>masterlifeinformation@gmail.com</p>
+              <p>www.masterlife.com</p>
+
+            
+              <!-- <table class="table table-borderless">
+                
+                <tbody>
+                  <tr>
+                    <td scope="row">
+                      <h3>Master life</h3>
+                      <p> Hoteleria e Restauração</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td scope="row">Rua Commandante Dangereux, Luanda</td>
+                  </tr>
+                  <tr>
+                    <td scope="row">+244 226 684 324</td>
+                  </tr>
+                  <tr>
+                    <td scope="row"> masterlifeinformation@gmail.com</td>
+                  </tr>
+                  <tr>
+                    <td scope="row">www.masterlife.com</td>
+                  </tr>
+                  
+                </tbody>
+              </table> -->
+            </div>
+            <div class="col-sm-2">
+              <div class="col-sm-12">
+                <button class="btn btn-light my-2 px-4"> Agendar</button> <br>
+
+                <button class="btn btn-success my-2 px-4"> Check-In</button>
+                <button class="btn btn-light my-2 px-4"> Obter Direcções</button> 
+              </div>
+            </div>
+          </div>
+          
+        </div>
+        
+        <div class="col-md-12 col-xl-11 mx-auto ml-2 bg-white mt-4 ">
+              <div class="row">
+                <div class="col-sm-8 bg-warning">
+                  <div class="row">
+                    <div class="col-sm-3 bg-info mx-auto">
+                      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tenetur cupiditate iste eum incidunt labore veniam, culpa fuga et! A voluptatibus, nemo iure quae odit explicabo quidem eum ut enim debitis!
+                    </div>
+                    <div class="col-sm-8 bg-light mx-auto">
+
+                      div with seguir and all that 
+                    </div>
+                  </div>  
+                </div>
+                <div class="col-sm-4 bg-danger">
+                    Localizacao 
+                </div>
+              </div>
+        </div>
     </div>
+
+    <ng-sidebar [(opened)]="_rightBarOpened" 
+    position="right"
+    [(dock)]="_docked"
+    [mode]="_Mode"
+    class="right-sidebar"
+    >
+         
+
+        <app-rightsidebar>
+
+        </app-rightsidebar>
+        
+       
+    </ng-sidebar>
+
 </ng-sidebar-container>
 
 
