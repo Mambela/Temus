@@ -16,8 +16,9 @@
             <label class="text-success" [innerHTML]="distanceMessage" name="userDistanceMsg"></label>
         </div>
         <div class="col-sm-12 col-md-4">
-            <button class="btn btn-sm btn-outline-success float-right" type="button"> Usar este ponto como local </button>
+            <button class="btn btn-sm btn-outline-success float-right" type="button" (click)="activeModal.close('Close click')"> Usar este ponto como local </button>
         </div>
+        
     </div>
 </div>
     

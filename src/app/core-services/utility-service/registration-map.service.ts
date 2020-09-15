@@ -93,7 +93,7 @@ export class RegistrationMapService {
 
 
       //Allows the user to choose his coordinates.
-
+      this.emmitCoord();
       marker.on('drag',()=>{
 
 
@@ -132,6 +132,8 @@ export class RegistrationMapService {
         }
 
   }
+  
+
 
 
 
@@ -197,7 +199,12 @@ export class RegistrationMapService {
     this.distanceUpdated.emit(distanceMessage);
 
   }
+  
 
+  getUserCurrentCoordiantes()
+  {
+      
+  }
 
   
 

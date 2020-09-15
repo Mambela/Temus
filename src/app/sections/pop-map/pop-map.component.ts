@@ -1,6 +1,7 @@
 import { locationCoordinates } from './../../data/models/supporting/mapcoordinates';
 import { RegistrationMapService } from './../../core-services/utility-service/registration-map.service';
 import { Component, OnInit } from '@angular/core';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-pop-map',
@@ -12,7 +13,7 @@ export class PopMapComponent implements OnInit {
  distanceToMarker:number;
  distanceMessage:string =" ";
 
-  constructor(private mapservice:RegistrationMapService) { }
+  constructor(private mapservice:RegistrationMapService,public activeModal: NgbActiveModal) { }
 
   ngOnInit(): void {
 
@@ -34,6 +35,9 @@ export class PopMapComponent implements OnInit {
         console.log(distanceMessage);
 
     });
+
+
+
 
   
     //Check if the distance is in KM or Meter

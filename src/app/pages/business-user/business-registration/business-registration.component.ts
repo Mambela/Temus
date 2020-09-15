@@ -1,3 +1,5 @@
+import { TemusMessage } from './../../../data/models/supporting/respMessages.model';
+import { AuthService } from './../../../core-services/http-service/auth.service';
 import { SavingLoaderComponent } from './../../../sections/loaders/saving-loader/saving-loader.component';
 import { streetModel } from './../../../data/models/supporting/street-model.model';
 import { AddressesService } from './../../../core-services/http-service/addresses-service.service';
@@ -11,9 +13,11 @@ import { Component, OnInit } from '@angular/core';
 import {Observable, of} from 'rxjs';
 import { debounceTime, distinctUntilChanged, map, filter, switchMap, tap, catchError } from 'rxjs/operators';
 import Stepper from 'bs-stepper';
-import {NgbModal, ModalDismissReasons, NgbModalConfig} from '@ng-bootstrap/ng-bootstrap'
+import {NgbModal, ModalDismissReasons, NgbModalConfig, NgbActiveModal} from '@ng-bootstrap/ng-bootstrap'
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+
+import { HttpEventType } from '@angular/common/http';
  
  
 @Component({
@@ -23,6 +27,8 @@ import { Router } from '@angular/router';
 })
 export class BusinessRegistrationComponent implements OnInit {
   
+  
+
   /**
    * User Details
   */
@@ -32,6 +38,9 @@ export class BusinessRegistrationComponent implements OnInit {
   // businessCountry:string;
   businessCategoriaID:number = 0;
   businessCategoriaDesignacao:string ="";
+
+  isCompleted:boolean = false;
+  hasErrors:boolean = false;
 
   businessRuaID:number = 0;
   businessRuaDesignacao:string ="";
@@ -49,7 +58,7 @@ export class BusinessRegistrationComponent implements OnInit {
   message: string;
   fileName:string='Choose file';
   uploadedFile:File=null;
-
+  uploadingProgress:number;
   /**
    * 
    * */ 
@@ -104,9 +113,11 @@ export class BusinessRegistrationComponent implements OnInit {
 
   constructor(private modalService: NgbModal,private mapboxmap: RegistrationMapService,
     private categoriaData:CategoriadataService,private addressService: AddressesService,
-    private categoriaService:CategoryService,modalConfig:NgbModalConfig,private router: Router) {
+    private categoriaService:CategoryService,private modalConfig:NgbModalConfig,private router: Router,
+    private authenticationService:AuthService) {
 
-      
+      modalConfig.backdrop = 'static' ;
+      modalConfig.keyboard = false;
        
     }
 
@@ -115,6 +126,8 @@ export class BusinessRegistrationComponent implements OnInit {
 
     this.mapValues();
     this.getAllProvinces();
+
+
 
     this.stepper = new Stepper(document.querySelector('#stepper1'), {
       linear: false,
@@ -266,21 +279,92 @@ previewImage(files) {
   previous(){
     this.stepper.previous();
   }
+  
+  showSavingLoader()
+  {
+    
+    this.modalService.open(SavingLoaderComponent,{ariaLabelledBy: 'modal-basic-title',size:'md',backdropClass:'light-modal-backdrop',centered:true}).result.then((result) => {
+      
+    });
+  }
+
+
+  closeLoading(){
+ //   this.activeModal.close()
+   this.modalService.dismissAll();
+  }
+
+
 
   onSubmit(businessRegisterForm:NgForm) {
-    // ,backdrop:'static',keyboard:false
 
-    // this.modalService.open(SavingLoaderComponent,{ariaLabelledBy: 'modal-basic-title',size:'md',backdropClass:'light-modal-backdrop',centered:true}).result.then((result) => {
-    //   this.closeResult = `Closed with: ${result}`;
-    // }, (reason) => {
-    //   this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-    // });
+    let respMessage:any;
+    //this.router.navigate(['/business-dashboard']);
+    
+    this.isCompleted = false;
+    this.showSavingLoader();
 
-    this.router.navigate(['/business-dashboard']);
+    // step 1
+    const _businessName = this.businessName;
+    const _businessCategory = this.businessCategoriaID;
+  
+
+
+    // step 2
+    const _email = this.businessEmail;
+    const _password = this.businessPassword
+    const _password_confirmation =  this.businessPasswordConfir;
+
+    // step 3
+    const _phone1 = this.businessPhoneNumber1;
+    const _phone2 = this.businessPhoneNumber2;
+    const _web = this.businessWebsite;
+    const _locationID = this.businessRuaID;
+    const _logo ='';
+    const _lng = this.currentUserLocation.lng;
+    const _lat =  this.currentUserLocation.lng;
+
+
+    this.authenticationService.userSignUp(_businessName,_email,_password,_password_confirmation,
+                                          _phone1,_phone2,_web,_locationID,_businessCategory,_lat,_lng,this.uploadedFile).subscribe((event)=>{
+
+      
+      
+      
+      
+
+        if(event.type === HttpEventType.UploadProgress)
+        {
+          console.log('Upload Progress: '+ Math.round(event.loaded / event.total * 100) + '%');
+          this.uploadingProgress = Math.round(event.loaded / event.total * 100);
+        }
+        else if(event.type == HttpEventType.Response){
+          
+            respMessage = event.body;
+            console.log(respMessage.message);
+            this.isCompleted = true;
+            this.hasErrors = false;
+            this.closeLoading();
+        }
+
+      },(errorMessage)=>{
+        this.hasErrors = true;
+          
+        this.isCompleted = true;
+        console.log(errorMessage);
+    // 
+    });
 
     console.log(businessRegisterForm);
-    return false;
+   
   }
+
+  //Reroute to the 
+  continueActivity()
+  {
+    this.router.navigate(['/business']);
+  }
+
 
   /**
    * Handle Address drop downs
@@ -381,6 +465,7 @@ previewImage(files) {
     this.mapboxmap.coordinatesUpdated.subscribe((coordinates: locationCoordinates)=>{
         
                 this.currentUserLocation = coordinates;
+                console.log('Values',coordinates.lat,coordinates.lng);
     });
   }
 

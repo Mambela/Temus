@@ -221,8 +221,8 @@
     
                                                             </div>
                                                             <div class="col-md-12 col-lg-5 mx-auto" >
-                                                                <label> Selecione o seu local no Mapa <span class="expand-map text-success" (click)="expandMap()"> <i class="fas fa-expand-alt"></i></span> </label>
-                                                                <div class="col-12 bg-light" class="map-height" id="sm-map">
+                                                                <label> Click para ampliar o mapa<span class="expand-map text-success" (click)="expandMap()"> <i class="fas fa-expand-alt"></i></span> </label>
+                                                                <div class="col-12 bg-light" class="map-height" id="sm-map" disabled>
                                                                     
                                                                     <!-- <app-map></app-map> -->
 
@@ -238,10 +238,10 @@
                                                 </div>
                                                 
                                                  <div id="registration-step-l-5" class="content  bg-white shadow-sm rounded">
-                                                        <div class="col-12 py-3 pb-5 p-md-5 step-content">
+                                                        <div class="col-12 py-3 pb-5 p-md-5 step-content" *ngIf="!isCompleted">
                                                             <div class="col-12">
                                                                 <div class="row" >
-                                                                    <div class="  col-md-12 col-lg-5">
+                                                                    <div class="  col-md-12 col-lg-8">
                                                                         <table class="table table-sm table-borderless">
                                                                              
                                                                             <tbody>
@@ -298,22 +298,59 @@
                                                                             </tbody>
                                                                           </table>
                                                                     </div>
-                                                                    <div class="col-md-12 col-lg-6 ">
+                                                                    <div class="col-md-12 col-lg-4 ">
                                                                         <img [src]="imgURL" class="img-fluid"/>
                                                                     </div>
                                                                     
                                                                 </div>
-                                                                <!-- <div class="mx-auto">
-                                                                    <app-saving-loader></app-saving-loader>
-                                                                </div> -->
-
-                                                                
+                                                                                                                             
                                                             </div>
                                                             <div class="btn-group-step-5 mt-sm-3 mt-md-0">
                                                              
                                                                     <button type="button" (click)="previous()" class="btn btn-success   float-left">Retroceder</button>
                                                                     <button type="submit" class="btn btn-success  float-right">Confirmar</button>
                                                             </div>
+                                                        </div>
+                                                        <div class="col-12 py-3 pb-5 p-md-5 step-content" *ngIf="isCompleted">
+                                                            
+                                                            <!-- Display Error Divs -->
+                                                            <div class="container mt-4 " *ngIf="hasErrors">
+                                                                <div class="col-md-10 bg-danger mx-auto border border-danger" > 
+                                                                        <div class="row ">
+                                                                            
+                                                                            <div class="col-md-11 mt-3"> <h3 class="text-white text-break"><i class="fas fa-times"></i> &nbsp; Desculpa {{businessName}} aconteceu um erro durante o cadastro</h3></div>
+                                                                        </div>
+                                                                        <div class="row bg-white p-4">
+                                                                            <br>
+                                                                            <br>
+                                                                            <h6 class=" text-break success-message text-danger"> <i class="far fa-dot-circle"></i> Email enviado com link para activar a sua conta. Verifique a sua 
+                                                                                conta para abrir o seu negocio.</h6>
+                                                                            <h6 class=" text-break success-message text-danger"> <i class="far fa-dot-circle"></i> Email enviado com link para activar a sua conta. Verifique a sua 
+                                                                                    conta para abrir o seu negocio.</h6>
+                                                                            <h6 class=" text-break success-message text-danger"> <i class="far fa-dot-circle"></i> Email enviado com link para activar a sua conta. Verifique a sua 
+                                                                                        conta para abrir o seu negocio.</h6>
+                                                                        </div>
+                                                                 </div>
+                                                            </div>
+
+                                                            <!-- Display Success Div -->
+                                                            <div class="container mt-4 " *ngIf="!hasErrors">
+                                                                <div class="col-md-10 bg-success mx-auto border border-success"> 
+                                                                        <div class="row ">
+                                                                            
+                                                                            <div class="col-md-11 mt-3"> <h3 class="text-white text-break"><i class="far fa-check-circle"></i> &nbsp; {{businessName}} cadastrado com sucesso</h3></div>
+                                                                        </div>
+                                                                        <div class="row bg-white p-4">
+                                                                            <br>
+                                                                            <br>
+                                                                            <h6 class=" text-break success-message">Email enviado com link para activar a sua conta. Verifique a sua 
+                                                                                conta para abrir o seu negócio.</h6>
+                                                                                <button class="btn btn-success" (click)="continueActivity()">Continuar</button>
+                                                                        </div>
+                                                                 </div>
+                                                            </div>
+
+
                                                         </div>
                                                 </div>
                                 </form>

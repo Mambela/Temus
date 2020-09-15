@@ -40,7 +40,7 @@ export class CategoryService {
   {
     
 
-    return this.http.get<BasicModel[]>(this.storedValues.BASEURL() + 'search-local-categoria/' + term,
+    return this.http.get<BasicModel[]>(this.storedValues.BASEURL() + 'getEmpresaCategoria/' + term,
       
       {headers:{"Accept": "application/json"}
       }).pipe( catchError(error=> {
