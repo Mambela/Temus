@@ -1,3 +1,4 @@
+import { RegistrationMapService } from './../../../../core-services/utility-service/registration-map.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -12,9 +13,12 @@ export class BusinessContentPageComponent implements OnInit {
   _docked: boolean = true;
   _Mode:string = 'push';
 
-  constructor() { }
+  constructor(private mapBox: RegistrationMapService) { 
+    
+  }
 
   ngOnInit(): void {
+    this.loadMiniMap();
   }
   
   _toggleSidebar() { 
@@ -24,4 +28,10 @@ export class BusinessContentPageComponent implements OnInit {
   {
     this._rightBarOpened = !this._rightBarOpened;
   }
+
+  loadMiniMap()
+  {
+    this.mapBox.prepareMapAroundMe("map-around-me");
+  }
+
 }

@@ -1,3 +1,7 @@
+<head>
+  <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.4.1/mapbox-gl.css' rel='stylesheet' />
+</head>
+
 <body>
     
 <app-business-topnavbar></app-business-topnavbar>
@@ -16,8 +20,8 @@
     <div ng-sidebar-content>
           <div class="row mt-2">
 
-            <div class="col-6 ">
-              <button class="btn btn-outline-success ml-2" (click)="_toggleSidebar()"><i class="fas fa-bars"></i> Menu</button>
+            <div class="col-6 pl-4">
+              <a (click)="_toggleSidebar()"><i class="fas fa-bars fa-2x"></i> </a>
             </div>
             <div class="col-6">
               <span class="  mr-md-n3 mt-2"><i class="  text-success float-right mt-2 fas fa-lg" (click)="_toggleRightbar()" [ngClass]="{' fa-caret-square-right': _rightBarOpened === true,
@@ -29,81 +33,148 @@
         </div> -->
         
 
-        <div class="col-md-12 col-xl-11 mx-auto ml-2 bg-white mt-4 "> 
+        <div class="col-md-12 col-xl-11 mx-auto ml-2  mt-4 "> 
 
          
                 <!-- <button type="button" class="btn btn-sm btn-outline-success" (click)="_toggleSidebar()"><i class="fas fa-caret-square-left text-success"></i> </button> -->
-          <div class="row">
-            <div class="col-sm-2 ml-3"> 
+          <div class="row bg-white rounded">
+            <div class="col-sm-2 "> 
               <img src="https://i.pinimg.com/236x/ab/5a/73/ab5a738539e17fb0b4adb350a11f39f6--logo-design-contest-media-marketing.jpg"
               class=" img-fluid mt-2 mx-auto"/>
             </div>
-            <div class="col-sm-7 bg-success pt-2">
+            <div class="col-sm-12 col-md-7  pt-2">
 
               <h3>Master life</h3>
               <p> Hoteleria e Restauração</p>
 
-              <p>Rua Commandante Dangereux, Luanda</p>
-              <p>+244 226 684 324</p>
-              <p>masterlifeinformation@gmail.com</p>
-              <p>www.masterlife.com</p>
+              <p> <i class="fas fa-map-marked-alt fa-lg"></i>&nbsp;&nbsp; Rua Commandante Dangereux, Luanda</p>
+              <p><i class="fas fa-phone-alt fa-lg"></i>&nbsp;&nbsp;+244 226 684 324</p>
+              <p><i class="fas fa-at fa-lg"></i>&nbsp;&nbsp;masterlifeinformation@gmail.com</p>
+              <p><i class="fas fa-globe fa-lg"></i>&nbsp;&nbsp;www.masterlife.com</p>
 
             
-              <!-- <table class="table table-borderless">
-                
-                <tbody>
-                  <tr>
-                    <td scope="row">
-                      <h3>Master life</h3>
-                      <p> Hoteleria e Restauração</p>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td scope="row">Rua Commandante Dangereux, Luanda</td>
-                  </tr>
-                  <tr>
-                    <td scope="row">+244 226 684 324</td>
-                  </tr>
-                  <tr>
-                    <td scope="row"> masterlifeinformation@gmail.com</td>
-                  </tr>
-                  <tr>
-                    <td scope="row">www.masterlife.com</td>
-                  </tr>
-                  
-                </tbody>
-              </table> -->
+            
             </div>
-            <div class="col-sm-2">
-              <div class="col-sm-12">
-                <button class="btn btn-light my-2 px-4"> Agendar</button> <br>
+            <div class="col-sm-12 col-md-3 pt-5">
+              <div class="row justify-content-end">
+                <div class="col-sm-8">
+                  <button class="btn btn-outline-dark btn-sm my-2 px-4"> Agendar</button> <br>
+  
+                  <button class="btn btn-success btn-sm my-2 px-4"> Check-In</button> <br>
+                  <button class="btn btn-outline-dark btn-sm my-2 px-4"> Direcções</button> 
+                </div>
+              </div>
+             
+            </div>
+          </div>
+          <div class="row mt-4 justify-content-center">
+            <div class="col-sm-12 col-md-2   ">
+              <div class="row bg-white p-3 mb-4 rounded">
+                  <h4 class="col-12">Sobre</h4>
+                <hr>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam atque quam non voluptas illum dolorum iste blanditiis quidem at deserunt natus et nihil quae eum, autem ut fugiat? Natus, quia.</p>
+              </div>
+              
+              <div class="row bg-white p-3 rounded">
+                <h4 class="col-12">Fotos</h4> 
+                <hr>
+                <div class="col-sm-12 col-md-6 my-2">
+                  <img src="../../../../../assets/sample/food1.jpg" class="img-fluid" alt="">
+                </div>
+                <div class="col-sm-12 col-md-6 my-2">
+                  <img src="../../../../../assets/sample/food1.jpg" class="img-fluid" alt="">
+                </div>
+                <div class="col-sm-12 col-md-6 my-2">
+                  <img src="../../../../../assets/sample/food2.jpg" class="img-fluid" alt="">
+                </div>
+                <div class="col-sm-12 col-md-6 my-2">
+                  <img src="../../../../../assets/sample/food3.jpg" class="img-fluid" alt="">
+                </div>
+              </div>
+            </div>
 
-                <button class="btn btn-success my-2 px-4"> Check-In</button>
-                <button class="btn btn-light my-2 px-4"> Obter Direcções</button> 
+            <!-- posts  -->
+            <div class="col-sm-12 col-md-6 mx-2">
+                  
+              <div class="p-4 bg-white rounded">
+                  <div class="row justify-content-center">
+                        <div class="col-sm-4">
+                          <button class="btn btn-outline-dark px-4"> <i class="fas fa-plus-square"></i>&nbsp; Seguir</button>
+                        </div>
+                        <div class="col-sm-4">
+                          <button class="btn btn-outline-dark px-4"><i class="fas fa-smile"></i> Avaliar</button>
+                        </div>
+                        <div class="col-sm-4">
+                          <button class="btn btn-outline-dark px-3"><i class="fas fa-envelope "></i> Mensagem</button>
+                        </div>
+                      </div>
+                  
+                    <div class="row justify-content-between py-2">
+                        <div class="col-md-4  px-auto my-2"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i></div>
+                        <div class="col-md-4 text-right my-2"> <span class="mx-1"><i class="fas fa-map-pin fa-lg"></i>33</span> <span class="mx-1"><i class="far fa-comments fa-lg"></i>76</span> <span class="mx-1"><i class="fas fa-tags fa-lg"></i>18</span></div>
+                    </div>
+                    <div class="row text-center">
+                      <div class="col-sm-4"> <p>Todos os dias </p> </div>
+                      <div class="col-sm-4"> <p> <span class="text-success">Aberto </span> 12:00 - 22:00</p></div>
+                      <div class="col-sm-4 text-info" > <span><i class="far fa-clock"></i> Actualizado ha 3 dias</span> </div>
+                    </div>
+                    <hr>
+                    <br>
+              </div>
+
+              <div class="col-sm-12 my-4">
+                <app-userpost></app-userpost>
+              </div>
+              
+            </div>
+
+            <div class="col-sm-12 col-md-3 ">
+              <div class="row bg-white rounded py-3">
+                <h4 class="col-12"> Localização</h4>
+                <div class="col-sm-12 col-md-12">
+                  <div class="col-12 bg-light" class="map-height" id="map-around-me" disabled>                                         
+                    <!-- <app-map></app-map> -->
+
+                  </div>
+                </div>
+                <div class="col-sm-12 ">
+                    <h5>Locais Próximos</h5>
+                    <ul class="list-unstyled">
+                      <li>Restaurante Weza</li>
+                      <li>Shopping Mall</li>
+                      <li>Loja Damaze</li>
+                      <li>Facilisis in pretium nisl aliquet</li>
+                      <li>Nulla volutpat aliquam velit</li>
+                    </ul>
+                </div>
+              
+                <hr class="col-10 mx-auto">
+                <div class="row pl-4">
+                  <h5 class="col-12 mx-auto">Horário de Funcionamento</h5>
+                  <ul class="list-unstyled ml-3">
+                    <li class="txt-grey">2a Feira: <span>Fechado </span></li>
+                    <li class="txt-grey">3a Feira: <span>Fechado </span></li>
+                    <li class="txt-grey"> 4a Feira: <span>Fechado </span></li>
+                    <li class="txt-grey">5a Feira: <span>Fechado </span></li>
+                    <li class="txt-grey">6a Feira: <span>Fechado </span></li>
+                    <li class="txt-grey"> Sábado: <span>12:00 - 00:00 </span></li>
+                    <li class="txt-grey">Domingo: <span>12:00 - 21:00 </span></li>
+
+                  </ul>
+                  
+                </div>
+              </div>
+
+              <div class="row py-3 rounded bg-white my-3">
+                <h4 class="col-12"> Serviços</h4>
+
+
               </div>
             </div>
           </div>
-          
         </div>
         
-        <div class="col-md-12 col-xl-11 mx-auto ml-2 bg-white mt-4 ">
-              <div class="row">
-                <div class="col-sm-8 bg-warning">
-                  <div class="row">
-                    <div class="col-sm-3 bg-info mx-auto">
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tenetur cupiditate iste eum incidunt labore veniam, culpa fuga et! A voluptatibus, nemo iure quae odit explicabo quidem eum ut enim debitis!
-                    </div>
-                    <div class="col-sm-8 bg-light mx-auto">
-
-                      div with seguir and all that 
-                    </div>
-                  </div>  
-                </div>
-                <div class="col-sm-4 bg-danger">
-                    Localizacao 
-                </div>
-              </div>
-        </div>
+        
     </div>
 
     <ng-sidebar [(opened)]="_rightBarOpened" 

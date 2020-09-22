@@ -20,8 +20,8 @@
          
          
 
-         <div class="col-6 ">
-            <button class="btn btn-outline-success ml-2" (click)="_toggleSidebar()"><i class="fas fa-bars"></i> Menu</button>
+         <div class="col-6 pl-4 ">
+            <a (click)="_toggleSidebar()"><i class="fas fa-bars fa-2x"></i> </a>
          </div>
          <div class="col-6">
             <span class="  mr-md-n3 mt-2"><i class="  text-success float-right mt-2 fas fa-lg" (click)="_toggleRightbar()" [ngClass]="{' fa-caret-square-right': _rightBarOpened === true,
@@ -32,15 +32,18 @@
       
       <div class="col-md-12 col-xl-11 mx-auto ml-2 mt-5 "> 
 
-         <h3 class="mb-5"> Ola, Master Life</h3>
+         <h3 class="mb-5" *ngIf="isAuthenticated"> Ola, {{companyData.designacao}}</h3>
                <!-- <button type="button" class="btn btn-sm btn-outline-success" (click)="_toggleSidebar()"><i class="fas fa-caret-square-left text-success"></i> </button> -->
         <hr>
          <div class="row mt-4">
-            <div class="col-sm-12 col-md-5 bg-white mx-auto my-4 pt-4 px-3 rounded">
+            <div class="col-sm-12 col-md-5 bg-white mx-auto my-4  p-3 rounded">
                <div class="row parent-container">
                   <div class="col-sm-8">
                      <h4 class="card-title"> PRODUTOS </h4>
-                      <p class="content-count"> 350,897</p>
+                     <div class="col-sm-3 mt-md-n4" *ngIf="isLoading">
+                        <app-data-loading></app-data-loading>
+                      </div>
+                      <p class="content-count" *ngIf="!isLoading"> {{numberOfProducts}}</p>
 
                   </div>
                   <div class="col-sm-4">
@@ -50,17 +53,20 @@
                   </div>
                   <hr>
                   <div class="col-sm-12 parent-child">
-                     <a class="dash-links ml-3"> Adicionar Produtos</a>
+                     <a class="dash-links ml-3"> Adicionar Produto</a>
                   </div>
                </div>
             </div>
 
-            <div class="col-sm-12 col-md-5 bg-white mx-auto my-4 pt-4 px-3 rounded">
+            <div class="col-sm-12 col-md-5 bg-white mx-auto my-4  p-3 rounded">
                <div class="row parent-container">
                   <div class="col-sm-8">
                      <h4 class="card-title"> SERVIÇOS </h4>
-                      <p class="content-count"> 350,897</p>
-
+                     <div class="col-sm-3 mt-md-n4" *ngIf="isLoading">
+                        <app-data-loading></app-data-loading>
+                      </div>
+                      <p class="content-count" *ngIf="!isLoading"> {{numberOfServices}}</p>
+                    
                   </div>
                   <div class="col-sm-4">
                      <div class="col-sm-8 float-right">
@@ -69,16 +75,19 @@
                   </div>
                   <hr>
                   <div class="col-sm-12 parent-child">
-                     <a class="dash-links ml-3"> Adicionar Produtos</a>
+                     <a class="dash-links ml-3"> Adicionar Serviço</a>
                   </div>
                </div>
             </div>
 
-            <div class="col-sm-12 col-md-5 bg-white mx-auto my-4 pt-4 px-3 rounded">
+            <div class="col-sm-12 col-md-5 bg-white mx-auto my-4  p-3 rounded">
                <div class="row parent-container">
                   <div class="col-sm-8">
                      <h4 class="card-title">EVENTOS</h4>
-                      <p class="content-count"> 350,897</p>
+                     <div class="col-sm-3 mt-md-n4" *ngIf="isLoading">
+                        <app-data-loading></app-data-loading>
+                      </div>
+                      <p class="content-count" *ngIf="!isLoading"> {{numberOfEvents}}</p>
 
                   </div>
                   <div class="col-sm-4">
@@ -88,12 +97,12 @@
                   </div>
                   <hr>
                   <div class="col-sm-12 parent-child">
-                     <a class="dash-links ml-3"> Adicionar Produtos</a>
+                     <a class="dash-links ml-3"> Adicionar Evento</a>
                   </div>
                </div>
             </div>
 
-            <div class="col-sm-12 col-md-5 bg-white mx-auto my-4 pt-4 px-3 rounded">
+            <div class="col-sm-12 col-md-5 bg-white mx-auto my-4 p-3 rounded">
                <div class="row parent-container">
                   <div class="col-sm-8">
                      <h4 class="card-title"> COMMENTÁRIOS </h4>
@@ -105,7 +114,7 @@
                         <img src="../../../../assets/images/svg/dashboardIcons/colorfull/comment.svg" class="img-fluid"/>
                      </div>
                   </div>
-                  <hr>
+                  
                   <div class="col-sm-12 parent-child">
                      <a class="dash-links ml-3"> Visitas ao perfil </a><br>
                      <a class="dash-links ml-3"> Commentários e avaliações </a><br>

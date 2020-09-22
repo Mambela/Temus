@@ -25,7 +25,23 @@ Fonts Being used
 h1 {
     font-family:'Quicksand', sans-serif;
   }
+h2{
+    font-family:'Quicksand', sans-serif;
+}
+
 h3{
+    font-family:'Quicksand', sans-serif;
+}
+
+h4{
+    font-family:'Quicksand', sans-serif;
+}
+
+h5{
+    font-family:'Quicksand', sans-serif;
+}
+
+h6{
     font-family:'Quicksand', sans-serif;
 }
 
@@ -59,7 +75,7 @@ $color-ghost-white:#f8f8ff;
 
 
 $color-dark-green:#006400;
-$color-main-green:#008000;
+$color-main-green:#5cb85c ;
 $color-light-green:#00ff00;
 $color-very-light-green:#98fb98;
 $color-mintcream:#f5fffa;
@@ -188,7 +204,11 @@ TEXT COLORS
 @media only screen and (min-width: 992px) {}
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
-@media only screen and (min-width: 1200px) {
+@media only screen and (min-width:1200px)and (max-width: 1400px) and (orientation: landscape)
+{ }
+
+
+@media only screen and (min-width: 1400px) {
    
 }
 /* Importing Bootstrap SCSS file. */

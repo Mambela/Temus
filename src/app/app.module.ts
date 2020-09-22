@@ -26,6 +26,9 @@ import { BusinessServiceComponent } from './pages/business-user/business-dashboa
 import { BusinessEventsComponent } from './pages/business-user/business-dashboard/business-events/business-events.component';
 import { BusinessPostsComponent } from './pages/business-user/business-dashboard/business-posts/business-posts.component';
 import { BusinessMediaComponent } from './pages/business-user/business-dashboard/business-media/business-media.component';
+import { UserpostComponent } from './sections/userpost/userpost.component';
+import { SideLoaderComponent } from './sections/loaders/side-loader/side-loader.component';
+import { DataLoadingComponent } from './sections/loaders/data-loading/data-loading.component';
 
  
 
@@ -48,6 +51,9 @@ import { BusinessMediaComponent } from './pages/business-user/business-dashboard
     BusinessEventsComponent,
     BusinessPostsComponent,
     BusinessMediaComponent,
+    UserpostComponent,
+    SideLoaderComponent,
+    DataLoadingComponent,
   
  
   ],

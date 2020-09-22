@@ -15,19 +15,26 @@ ng-sidebar-container{
   
   ::ng-deep .ng-sidebar{
     background-color: white;
-    width: 30vh;
+    width: 37vh;
     padding: 0.5em 0.5em;
   
   }
 
-  ::ng-deep .ng-sidebar{
-    background-color: white;
+::ng-deep .ng-sidebar--right{
     width: 30vh;
-    padding: 0.5em 0.5em;
 
 }
 
-::ng-deep .ng-sidebar--right{
-    width: 20vh;
+::ng-deep .ng-sidebar::-webkit-scrollbar{
+  display: none;
+}
+/* Hide Scrollbar for IE, Edge and FireFox */
+::ng-deep .ng-sidebar{
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
 
+.map-height{
+  height: 200px;
+  border-radius: 2px;
 }

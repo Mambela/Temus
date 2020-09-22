@@ -13,14 +13,22 @@ ng-sidebar-container{
 
 ::ng-deep .ng-sidebar{
     background-color: white;
-    width: 30vh;
+    width: 37vh;
     padding: 0.5em 0.5em;
 
 }
 
 ::ng-deep .ng-sidebar--right{
-    width: 20vh;
+    width: 30vh;
 
+}
+::ng-deep .ng-sidebar::-webkit-scrollbar{
+    display: none;
+}
+/* Hide Scrollbar for IE, Edge and FireFox */
+::ng-deep .ng-sidebar{
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }
 
 .card-title{
@@ -49,4 +57,22 @@ a.dash-links{
 a.dash-links:hover{
     cursor: pointer;
     color: $color-main-green;
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width:1200px)and (max-width: 1400px) and (orientation: landscape)
+{  
+ 
 }

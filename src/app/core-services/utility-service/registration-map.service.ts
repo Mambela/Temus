@@ -23,17 +23,17 @@ export class RegistrationMapService {
   coordinatesUpdated = new EventEmitter<locationCoordinates>();
   distanceUpdated = new EventEmitter<any>();
   
-  map: mapboxgl.Map;
-  distance:number;
-  //Style mapbox://styles/mapbox/streets-v11
-  //style 2 mapbox://styles/jacklumba/ckelwsq9p1qnu19lqlu43x6us
-  style = 'mapbox://styles/mapbox/streets-v11';
-  private lat;
-  private lng;
-  private initLat;
-  private iniLng;
-  zoom = 13;
-  container = '';
+      map: mapboxgl.Map;
+      distance:number;
+      //Style mapbox://styles/mapbox/streets-v11
+      //style 2 mapbox://styles/jacklumba/ckelwsq9p1qnu19lqlu43x6us
+      style = 'mapbox://styles/mapbox/streets-v11';
+      private lat;
+      private lng;
+      private initLat;
+      private iniLng;
+      zoom = 13;
+      container = '';
  
 
   constructor() { 
@@ -54,10 +54,59 @@ export class RegistrationMapService {
         {
             this.buildMap();
         }
-       
- 
+        
+  }
+  
+
+  //Method to build location 
+  public prepareMapAroundMe(container)
+  {
+
+    this.zoom = 13;
+
+    this.container = container;
+    
+      if(navigator.geolocation){
+      
+            navigator.geolocation.getCurrentPosition((position)=>{
+              // this.showPosition(position);
+              this.lat = position.coords.latitude;
+              this.lng = position.coords.longitude;
+              this.iniLng = position.coords.longitude;
+              this.initLat = position.coords.latitude;
+            
+              this.buildMapAroundMe();
+      
+            });
+          }
+          else{
+          
+            alert("Your location could not be lcoated");
+          }
+
+
+        if(!!this.lng && !!this.lat)
+          {
+          
+          this.buildMapAroundMe();
+                    
+        }  
   }
 
+  private buildMapAroundMe()
+  {
+
+    console.log("Longitude",this.lng);
+    this.map = new mapboxgl.Map({
+      container:this.container,
+      style:this.style,
+      zoom:this.zoom,
+      center:[this.lng,this.lat]      
+      // center:[0.000000,0.0000]      
+      
+    });
+    console.log("Registration ",this.lng,this.lat);
+  }
 
   private buildMap(){
      
@@ -73,14 +122,10 @@ export class RegistrationMapService {
         
        this.map.addControl(new mapboxgl.NavigationControl());
       
-       
       
        this.createMarker(this.lng,this.lat);
 
-        // marker.on('dragend', onDragEnd);
-
-       
-        
+        // marker.on('dragend', onDragEnd);        
   }
 
   createMarker(lng,lat)

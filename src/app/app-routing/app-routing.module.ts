@@ -1,3 +1,4 @@
+import { BusinessProductsComponent } from './../pages/business-user/business-dashboard/business-products/business-products.component';
 import { BusinessContentPageComponent } from './../pages/business-user/business-dashboard/business-content-page/business-content-page.component';
 
 import { BusinessDashboardComponent } from './../pages/business-user/business-dashboard/business-dashboard.component';
@@ -12,7 +13,8 @@ const appRoutes: Routes=[
   {path:'business',component:BusinessPageComponent},
   {path:'business-registration',component:BusinessRegistrationComponent},
   {path:'business-dashboard',component:BusinessDashboardComponent},
-  {path:'business-page',component:BusinessContentPageComponent}
+  {path:'business-page',component:BusinessContentPageComponent},
+  {path:'business-products',component:BusinessProductsComponent}
 
 
   

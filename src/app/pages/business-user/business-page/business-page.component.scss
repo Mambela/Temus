@@ -56,6 +56,11 @@ SECTION BELOW THE MAIN PAGE
 Media Query 
 */
 
+
+.custom-font{
+
+    font-family: 'Quicksand', sans-serif;
+}
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
     .sample-logo{

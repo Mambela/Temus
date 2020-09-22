@@ -1,3 +1,5 @@
+import { BusinessPageComponent } from './../business-page/business-page.component';
+import { DatasharingService } from './../../../core-services/DataService/share/datasharing.service';
 import { TemusMessage } from './../../../data/models/supporting/respMessages.model';
 import { AuthService } from './../../../core-services/http-service/auth.service';
 import { SavingLoaderComponent } from './../../../sections/loaders/saving-loader/saving-loader.component';
@@ -114,7 +116,7 @@ export class BusinessRegistrationComponent implements OnInit {
   constructor(private modalService: NgbModal,private mapboxmap: RegistrationMapService,
     private categoriaData:CategoriadataService,private addressService: AddressesService,
     private categoriaService:CategoryService,private modalConfig:NgbModalConfig,private router: Router,
-    private authenticationService:AuthService) {
+    private authenticationService:AuthService,private receiveName:DatasharingService) {
 
       modalConfig.backdrop = 'static' ;
       modalConfig.keyboard = false;
@@ -126,8 +128,11 @@ export class BusinessRegistrationComponent implements OnInit {
 
     this.mapValues();
     this.getAllProvinces();
+    this.getBusinessName();
+    
+    
 
-
+    console.log("business name",this.businessName);
 
     this.stepper = new Stepper(document.querySelector('#stepper1'), {
       linear: false,
@@ -351,6 +356,7 @@ previewImage(files) {
         this.hasErrors = true;
           
         this.isCompleted = true;
+        this.closeLoading();
         console.log(errorMessage);
     // 
     });
@@ -466,6 +472,15 @@ previewImage(files) {
         
                 this.currentUserLocation = coordinates;
                 console.log('Values',coordinates.lat,coordinates.lng);
+    });
+  }
+
+  getBusinessName()
+  {
+    this.receiveName.companyName.subscribe((name:string)=>{
+      this.businessName = name;
+
+      
     });
   }
 
