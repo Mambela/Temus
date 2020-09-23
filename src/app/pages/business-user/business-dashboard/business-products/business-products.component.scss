@@ -45,6 +45,44 @@ hr.dashed {
   }
 
 
+.isLoadingProduct{
+    background-color: #ffffff;
+    /* background-image: url("http://loadinggif.com/images/image-selection/30.gif"); */
+    background-image: url("../../../../../assets/loaders/gifs/Spinner_green.gif");
+    background-size: 25px 25px;
+    background-position:right center;
+    background-repeat: no-repeat;
+}
+.styled-select select{
+
+    font-family: 'Quicksand',sans-serif;
+    color: $color-dark-grey;
+    font-weight: 400;
+
+}
+
+.availability{
+    font-size: smaller;
+    font-family: 'Roboto',sans-serif;
+}
+
+table thead tr
+{
+    font-family: 'Roboto',sans-serif;
+}
+
+table tbody tr
+{
+    font-family: 'Roboto',sans-serif;
+    font-size: 14px;
+}
+
+table tbody tr :hover{
+    cursor: pointer;
+}
+
+
+
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {}
 

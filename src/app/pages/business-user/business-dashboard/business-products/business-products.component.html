@@ -24,11 +24,12 @@
                 </div> 
              </div>
              
+             <!-- Contetnt of the page  -->
             <div class="col-12">
                 <h2 class="col-12"> Gerencia de Produtos</h2>
                 <div class="row ml-4 mt-4 justify-content-between px-4">
-                    <div class="col-sm-6"><h4>Produtos <span> 350,456</span> </h4>  </div>
-                    <div class="col-sm-3"> <p> <span>Categoria</span><i class="fas fa-angle-right fa-lg mt-4 mx-2"></i><span>Tipo</span> </p></div>
+                    <div class="col-sm-6"><h4>Produtos <span> {{productCount}}</span> </h4>  </div>
+                    <div class="col-sm-3"> <p> <span>{{selectedCategoria}}</span><i class="fas fa-angle-right fa-lg mt-4 mx-2"></i><span>{{selectedTipo}}</span> </p></div>
                     
                 </div>
                 <hr class="col-11 dashed">
@@ -36,22 +37,19 @@
 
                     <div class="row justify-content-end ml-3">
                         <div class="col-sm-6 col-md-3">
-                            <input type="text" class="form-control" placeholder="First name">
+                            <!-- <input type="text" class="form-control" placeholder="First name"> -->
                           </div>
-                          <div class="col-sm-6 col-md-3">
-                            <select class="custom-select custom-select mb-3">
-                                <option selected>Open this select menu</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
+                          <div class="col-sm-6 col-md-3 styled-select">
+                            <select class="custom-select custom-select mb-3" (change)="onCategoriaChange($event)">
+                                <option selected value="reset">Selecione Categoria</option>
+                                <option value="{{categoria.id}}" *ngFor="let categoria of productCategoria">{{categoria.designacao}}</option>
+                                
                               </select>
                           </div>
-                          <div class="col-sm-6 col-md-3">
-                            <select class="custom-select custom-select mb-3">
-                                <option selected>Open this select menu</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
+                          <div class="col-sm-6 col-md-3 styled-select">
+                            <select class="custom-select custom-select mb-3"  (change)="onTipoChange($event)">
+                                <option selected value="reset">Selecione Tipo</option>
+                                <option value="{{tipo.id}}" *ngFor="let tipo of productTipo">{{tipo.designacao}}</option>
                               </select>
                           </div> 
                           <div class="col-sm-6 col-md-3">
@@ -60,10 +58,10 @@
                     </div>
                 </div>
                 <div class="col-sm-11">
-                    <table class="table table-striped bg-white">
+                    <table class="table table-hover bg-white">
                         <thead >
                         <tr class="py-5 text-success">
-                          <th class="py-3" scope="col">#</th>
+                          
                           <th scope="col">Nome do Produto</th>
                           <th scope="col">Preço</th>
                           <th scope="col">Stock</th>
@@ -72,22 +70,28 @@
                           <th scope="col">Ações</th>
                         </tr>
                         </thead>
-                        <tbody>
-                        <tr *ngFor="let country of countries; index as i">
-                          <th scope="row">{{ i + 1 }}</th>
+                         
+                        <tbody *ngIf="!isLoadingProdutos">
+                        <tr *ngFor="let product of listOfProducts; index as i">
+                           
                           <td>
-                            <img [src]="'https://upload.wikimedia.org/wikipedia/commons/' + country.flag" class="mr-2" style="width: 20px">
-                            {{ country.name }}
+                            {{ product.designacao }}
                           </td>
-                          <td>{{ country.area | number }}</td>
-                          <td>{{ country.population | number }}</td>
-                          <td>{{ country.population | number }}</td>
-                          <td>{{ country.population | number }}</td>
+                          <td>{{ product.preco | number}} akz</td>
+                          <td>{{ product.stock | number }}</td>
+                          <td> 
+                              <p class="availability"> <span *ngIf="product.estado === 'true'"><i class="fas fa-circle text-success"></i> Disponivel</span> 
+                                <span *ngIf="product.estado === 'false'"><i class="fas fa-circle text-danger"></i> Indisponivel</span></p>
+                          </td>
+                          <td>{{ product.categoria }}</td>
                           <td class="text-grey"><span class="text-grey"><i class="txt-grey fas fa-trash"></i></span>&nbsp; &nbsp;&nbsp; <span><i class="txt-grey fas fa-pen"></i></span></td>
 
                         </tr>
                         </tbody>
                       </table>
+                      <div class="col-sm-2 justify-content-center mx-auto" *ngIf="isLoadingProdutos">
+                        <app-data-loading></app-data-loading>
+                      </div>
                 </div>
                 
      

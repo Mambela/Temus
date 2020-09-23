@@ -43,7 +43,7 @@
                      <div class="col-sm-3 mt-md-n4" *ngIf="isLoading">
                         <app-data-loading></app-data-loading>
                       </div>
-                      <p class="content-count" *ngIf="!isLoading"> {{numberOfProducts}}</p>
+                      <p class="content-count" *ngIf="!isLoading"> {{numberOfProducts | number}}</p>
 
                   </div>
                   <div class="col-sm-4">
@@ -65,7 +65,7 @@
                      <div class="col-sm-3 mt-md-n4" *ngIf="isLoading">
                         <app-data-loading></app-data-loading>
                       </div>
-                      <p class="content-count" *ngIf="!isLoading"> {{numberOfServices}}</p>
+                      <p class="content-count" *ngIf="!isLoading"> {{numberOfServices | number}}</p>
                     
                   </div>
                   <div class="col-sm-4">
@@ -87,7 +87,7 @@
                      <div class="col-sm-3 mt-md-n4" *ngIf="isLoading">
                         <app-data-loading></app-data-loading>
                       </div>
-                      <p class="content-count" *ngIf="!isLoading"> {{numberOfEvents}}</p>
+                      <p class="content-count" *ngIf="!isLoading"> {{numberOfEvents | number}}</p>
 
                   </div>
                   <div class="col-sm-4">

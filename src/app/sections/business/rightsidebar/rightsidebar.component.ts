@@ -1,3 +1,4 @@
+import { CompanyService } from './../../../core-services/http-service/company-service.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +8,41 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RightsidebarComponent implements OnInit {
 
-  constructor() { }
+
+  percent:number=10;
+  color:string;
+  profileIscomplete:boolean;
+
+  constructor(private companyService:CompanyService) { }
 
   ngOnInit(): void {
+
+    this.loadCompanyService();
   }
+
+  loadCompanyService()
+  {
+      this.companyService.getProfileProgress().subscribe((profileProgess)=>{
+
+         this.percent = profileProgess['profile_progress'];
+          
+         if(this.percent < 45)
+         {
+          this.color ="#e53935";
+         }else if(this.percent > 45 && this.percent < 75)
+         {
+            this.color="#ff6f00";
+         }
+         else{
+          
+            this.color ="#008000";
+         }
+
+
+      });
+
+  }
+
+
 
 }

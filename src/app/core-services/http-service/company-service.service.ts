@@ -4,7 +4,7 @@ import { AuthService } from './auth.service';
 import { STOREDCONSTANTS } from './../../module/constants.service';
 import { HttpClient } from '@angular/common/http';
 import { Injectable, OnDestroy } from '@angular/core';
-import { throwError, Subscription } from 'rxjs';
+import { throwError, Subscription, BehaviorSubject } from 'rxjs';
  
 
 @Injectable({
@@ -13,7 +13,10 @@ import { throwError, Subscription } from 'rxjs';
 export class CompanyService implements OnDestroy {
 
   tokenSubscr:Subscription;
-  
+  produtoCountSubj= new BehaviorSubject<number>(0);
+  serviceCountSubj= new BehaviorSubject<number>(0);
+  eventCountSubj= new BehaviorSubject<number>(0);
+
   tokenDT:TokenData;
       
 
@@ -39,9 +42,14 @@ export class CompanyService implements OnDestroy {
 
           return throwError(error);
 
-        }),tap((respdata)=>{
+        }),tap((companyData)=>{
           
-          console.log("Response data",respdata);
+     
+          this.produtoCountSubj.next(companyData[0].productCount);
+          this.serviceCountSubj.next(companyData[0].serviceCount);
+          this.eventCountSubj.next(companyData[0].eventCount);
+          
+
 
         })
     );
