@@ -1,3 +1,6 @@
+import { DialogboxComponent } from './../../../../sections/dialogbox/dialogbox.component';
+import { AddNewProductServiceComponent } from './../../../../sections/business/add-new-product-service/add-new-product-service.component';
+import { NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
 import { EmpresaProdutoModel } from './../../../../data/models/business-user/empresa-product.model';
 import { EmpresaServicoModel } from './../../../../data/models/business-user/empresa-servico.model';
 import { BasicModel } from './../../../../data/models/supporting/basic-model.model';
@@ -6,43 +9,10 @@ import { CompanyService } from './../../../../core-services/http-service/company
 import { Subscription } from 'rxjs';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import { CategoryService } from 'src/app/core-services/http-service/category-service.service';
+import { NgbModalBackdrop } from '@ng-bootstrap/ng-bootstrap/modal/modal-backdrop';
 
-
-interface Country {
-  name: string;
-  flag: string;
-  area: number;
-  population: number;
-}
-
-const COUNTRIES: Country[] = [
-  {
-    name: 'Russia',
-    flag: 'f/f3/Flag_of_Russia.svg',
-    area: 17075200,
-    population: 146989754
-  },
-  {
-    name: 'Canada',
-    flag: 'c/cf/Flag_of_Canada.svg',
-    area: 9976140,
-    population: 36624199
-  },
-  {
-    name: 'United States',
-    flag: 'a/a4/Flag_of_the_United_States.svg',
-    area: 9629091,
-    population: 324459463
-  },
-  {
-    name: 'China',
-    flag: 'f/fa/Flag_of_the_People%27s_Republic_of_China.svg',
-    area: 9596960,
-    population: 1409517397
-  }
-];
-
-
+ 
 
 @Component({
   selector: 'app-business-products',
@@ -53,8 +23,7 @@ const COUNTRIES: Country[] = [
 
 export class BusinessProductsComponent implements OnInit, OnDestroy {
   
-
-  countries = COUNTRIES;
+ 
 
   _opened: boolean = true;
   _rightBarOpened: boolean = false;
@@ -81,7 +50,7 @@ export class BusinessProductsComponent implements OnInit, OnDestroy {
   subGetProdutoTipo:Subscription;
 
 
-  constructor(private companyService:CompanyService,private productService:ProductsService) {
+  constructor(private companyService:CompanyService,private productService:ProductsService,private serviceModal:NgbModal,private categorySer:CategoryService,private config:NgbModalConfig) {
     this.getProductCount();
    }
 
@@ -115,9 +84,36 @@ export class BusinessProductsComponent implements OnInit, OnDestroy {
     
   }
 
+  /**
+   * Methods to Handle Delete and edit a Product
+   * **/ 
+  onDeleteProduct(product:string,id:number){
+
+    console.log(product);
+    this.config.backdrop = 'static';
+   
+
+     
+
+   const modalRef = this.serviceModal.open(DialogboxComponent,{size:'md',backdropClass:'light-modal-backdrop',centered:true}) ;
+
+    modalRef.componentInstance.id = id;
+    modalRef.componentInstance.source="produto";
+    modalRef.componentInstance.message = 'Tem certeza de que deseja excluir o produto ';
+    modalRef.componentInstance.object_name = product;
+    modalRef.componentInstance.purpose= "Delete";
+  
+    
+  }
+
+  onEditProduct(){
+
+  }
+
+
 
  /**
-   * Methods to handle categoria adn Tipo 
+   * Methods to handle categoria adn Tipo  adn load products by the type
    * 
    * */ 
   getProductCategoria()
@@ -188,7 +184,22 @@ export class BusinessProductsComponent implements OnInit, OnDestroy {
 
     }
 
-  
+
+    /**
+     * Methods to handle Products 
+     *   Such as add product and add Edit
+     * **/ 
+  onAddProduct()
+  {
+    this.config.backdrop = true;
+      const modalRef = this.serviceModal.open(AddNewProductServiceComponent,{size:'lg',backdropClass:'light-modal-backdrop',centered:false});
+
+      modalRef.componentInstance.sourceParent = "Product";
+
+      
+    
+  }
+ 
   
   _toggleSidebar() { 
     this._opened = !this._opened;
@@ -198,7 +209,6 @@ export class BusinessProductsComponent implements OnInit, OnDestroy {
     this._rightBarOpened = !this._rightBarOpened;
   }
    
-
   ngOnDestroy(){
     this.productCountSubscrip.unsubscribe();
     // this.subGetProdutoTipo.unsubscribe

@@ -13,7 +13,7 @@
            
         </ng-sidebar>
         
-        <div ng-sidebar-content class="pt-3">
+        <div ng-sidebar-content class="pt-2">
             <div class="row mt-2">
                 <div class="col-6 pl-4 ">
                    <a class="left-menu" (click)="_toggleSidebar()"><i class="fas fa-bars fa-2x text-dark"></i> </a>
@@ -26,10 +26,10 @@
              
              <!-- Contetnt of the page  -->
             <div class="col-12">
-                <h2 class="col-12"> Gerencia de Produtos</h2>
-                <div class="row ml-4 mt-4 justify-content-between px-4">
-                    <div class="col-sm-6"><h4>Produtos <span> {{productCount}}</span> </h4>  </div>
-                    <div class="col-sm-3"> <p> <span>{{selectedCategoria}}</span><i class="fas fa-angle-right fa-lg mt-4 mx-2"></i><span>{{selectedTipo}}</span> </p></div>
+                <h3 class="col-12"> Gerencia de Produtos</h3>
+                <div class="row ml-4 mt-2 justify-content-between px-4">
+                    <div class="col-sm-6"><h5>Produtos <span> {{productCount}}</span> </h5>  </div>
+                    <div class="col-sm-3"> <p> <span>{{selectedCategoria}}</span><i class="fas fa-angle-right fa-lg mt-1 mx-2"></i><span>{{selectedTipo}}</span> </p></div>
                     
                 </div>
                 <hr class="col-11 dashed">
@@ -40,7 +40,7 @@
                             <!-- <input type="text" class="form-control" placeholder="First name"> -->
                           </div>
                           <div class="col-sm-6 col-md-3 styled-select">
-                            <select class="custom-select custom-select mb-3" (change)="onCategoriaChange($event)">
+                            <select class="custom-select custom-select mb-1" (change)="onCategoriaChange($event)">
                                 <option selected value="reset">Selecione Categoria</option>
                                 <option value="{{categoria.id}}" *ngFor="let categoria of productCategoria">{{categoria.designacao}}</option>
                                 
@@ -53,7 +53,7 @@
                               </select>
                           </div> 
                           <div class="col-sm-6 col-md-3">
-                           <button class="btn btn-success">Adicionar Produto</button>
+                           <button class="btn btn-success" (click)="onAddProduct()" *ngIf="!isLoadingCategoria">Adicionar Produto</button>
                           </div>
                     </div>
                 </div>
@@ -80,11 +80,11 @@
                           <td>{{ product.preco | number}} akz</td>
                           <td>{{ product.stock | number }}</td>
                           <td> 
-                              <p class="availability"> <span *ngIf="product.estado === 'true'"><i class="fas fa-circle text-success"></i> Disponivel</span> 
-                                <span *ngIf="product.estado === 'false'"><i class="fas fa-circle text-danger"></i> Indisponivel</span></p>
+                               <span *ngIf="product.estado === 'true'"><i class="fas fa-circle text-success"></i> Disponivel</span> 
+                                <span *ngIf="product.estado === 'false'"><i class="fas fa-circle text-danger"></i> Indisponivel</span> 
                           </td>
                           <td>{{ product.categoria }}</td>
-                          <td class="text-grey"><span class="text-grey"><i class="txt-grey fas fa-trash"></i></span>&nbsp; &nbsp;&nbsp; <span><i class="txt-grey fas fa-pen"></i></span></td>
+                          <td class="text-grey"><span class="text-grey"><i class="txt-grey fas fa-trash" (click)="onDeleteProduct(product.designacao,product.id)"></i></span>&nbsp; &nbsp;&nbsp; <span><i class="txt-grey fas fa-pen"></i></span></td>
 
                         </tr>
                         </tbody>

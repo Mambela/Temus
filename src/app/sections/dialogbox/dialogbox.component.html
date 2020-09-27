@@ -1,0 +1,22 @@
+
+<!-- FOR DELETE OPTION  -->
+<div class="p-2" *ngIf="purpose === 'Delete'">
+    <div class="col-12">
+        <h6>{{message}} <span class="font-weight-bold text-color-main-purple">"{{object_name}}" </span> ?</h6>
+        <hr>
+    </div>
+    <div class="col-12">
+        <div class="alert alert-warning">
+            <span class="font-weight-bold">Atenção </span>Todas as informações associadas a este {{source}} serão excluídas permanentemente. <br>
+            <span class="font-weight-bold text-danger">Esta operação não pode ser desfeita.</span> 
+
+        </div>
+    </div>
+    <div class="col-12">
+        <hr>
+            <div class="row justify-content-end" >
+                <button class="btn btn-light btn-sm mx-3" (click)="activeModal.close('Close')"> Cancelar</button>
+                <button class="btn btn-danger btn-sm" (click)="onConfirmOperation()">Confirmar</button>
+            </div>
+    </div>
+</div>

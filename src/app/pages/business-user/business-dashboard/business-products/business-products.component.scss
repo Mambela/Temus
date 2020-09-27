@@ -4,6 +4,8 @@ body{
     min-height: 100vh;
     height: 100%;
     background-color: $color-lavender;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
   }
 
 .left-menu::hover{
@@ -40,9 +42,9 @@ ng-sidebar-container{
 }
 
 
-hr.dashed {
-    border-top: 3px dashed $color-normal-grey;
-  }
+// hr.dashed {
+//     border-top: 3px dashed $color-normal-grey;
+//   }
 
 
 .isLoadingProduct{
@@ -77,8 +79,10 @@ table tbody tr
     font-size: 14px;
 }
 
-table tbody tr :hover{
+table tbody  :hover{
     cursor: pointer;
+    background-color: $color-mintcream !important;
+    color: $color-main-green !important;
 }
 
 

@@ -1,4 +1,4 @@
-import { CategoriadataService } from './../DataService/categoria/categoriadata-service.service';
+import { CategoriaProductService } from '../DataService/categoria/categoriaProductdata-service.service';
 import { BasicModel } from './../../data/models/supporting/basic-model.model';
 import { STOREDCONSTANTS } from './../../module/constants.service';
 import { Injectable } from '@angular/core';
@@ -11,7 +11,7 @@ import {HttpClient, HttpParams} from '@angular/common/http';
 })
 export class CategoryService {
 
-  constructor(private storedValues:STOREDCONSTANTS,private http:HttpClient,private categoriaDataService : CategoriadataService) { }
+  constructor(private storedValues:STOREDCONSTANTS,private http:HttpClient,private categoriaDataService : CategoriaProductService) { }
 
   // constructor(private storedValues:STOREDCONSTANTS,private http:HttpClient) { }
 
@@ -28,7 +28,7 @@ export class CategoryService {
         return throwError(error);
           }),tap((categoriaResponse:BasicModel[])=>{
        
-           this.categoriaDataService.setCategoriaDetail(categoriaResponse['data']);
+          //  this.categoriaDataService.setCategoriaDetail(categoriaResponse['data']);
             
         })
       
@@ -58,6 +58,29 @@ export class CategoryService {
 
     );
   }
+
+  getProdutoCategoria_byParam(param:any=""){
+
+    return this.http.get<BasicModel[]>(this.storedValues.BASEURL() + 'search-produto-categoria/' + param,
+      
+      {headers:{"Accept": "application/json","Authorization":"Bearer "+this.storedValues.userToken}
+      }).pipe( catchError(error=> {
+        console.log('locals with param error',error);
+
+        return throwError(error);
+      }),tap((categoriaResponse:BasicModel[])=>{
+        
+
+        console.log(categoriaResponse);
+      //  return categoriaResponse[0].designacao;
+        
+        
+      })
+
+    );
+    
+  }
+
 
 
 }

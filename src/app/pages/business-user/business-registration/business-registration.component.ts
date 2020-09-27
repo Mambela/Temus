@@ -5,7 +5,7 @@ import { AuthService } from './../../../core-services/http-service/auth.service'
 import { SavingLoaderComponent } from './../../../sections/loaders/saving-loader/saving-loader.component';
 import { streetModel } from './../../../data/models/supporting/street-model.model';
 import { AddressesService } from './../../../core-services/http-service/addresses-service.service';
-import { CategoriadataService } from './../../../core-services/DataService/categoria/categoriadata-service.service';
+
 import { CategoryService } from './../../../core-services/http-service/category-service.service';
 import { BasicModel } from './../../../data/models/supporting/basic-model.model';
 import { locationCoordinates } from './../../../data/models/supporting/mapcoordinates';
@@ -114,7 +114,7 @@ export class BusinessRegistrationComponent implements OnInit {
 
 
   constructor(private modalService: NgbModal,private mapboxmap: RegistrationMapService,
-    private categoriaData:CategoriadataService,private addressService: AddressesService,
+    private addressService: AddressesService,
     private categoriaService:CategoryService,private modalConfig:NgbModalConfig,private router: Router,
     private authenticationService:AuthService,private receiveName:DatasharingService) {
 

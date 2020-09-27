@@ -29,6 +29,8 @@ import { BusinessMediaComponent } from './pages/business-user/business-dashboard
 import { UserpostComponent } from './sections/userpost/userpost.component';
 import { SideLoaderComponent } from './sections/loaders/side-loader/side-loader.component';
 import { DataLoadingComponent } from './sections/loaders/data-loading/data-loading.component';
+import { AddNewProductServiceComponent } from './sections/business/add-new-product-service/add-new-product-service.component';
+import { DialogboxComponent } from './sections/dialogbox/dialogbox.component';
 
  
 
@@ -54,6 +56,8 @@ import { DataLoadingComponent } from './sections/loaders/data-loading/data-loadi
     UserpostComponent,
     SideLoaderComponent,
     DataLoadingComponent,
+    AddNewProductServiceComponent,
+    DialogboxComponent,
   
  
   ],

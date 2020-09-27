@@ -5,6 +5,7 @@ export class EmpresaProdutoModel{
     preco:number;
     imagem:string;
     descricao:string;
+    visualisar_preco:number;
     estado:string;
     designacao:string;
     categoria:string;

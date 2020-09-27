@@ -47,8 +47,15 @@ h6{
 
 p{
     font-family: 'Roboto', sans-serif;
+
 }
   
+
+label
+{
+    font-family: 'Quicksand',sans-serif;
+    font-weight: 500;
+}
 
 
 // $color-dark-purple:#471B52;
@@ -183,6 +190,29 @@ TEXT COLORS
  }
 
 
+ hr.dashed {
+    border-top: 3.5px dashed $color-normal-grey;
+  }
+
+
+  .custom-control-input:focus~.custom-control-label::before {
+    border-color: #28a745 !important;
+    box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25) !important;
+  }
+  
+  .custom-control-input:checked~.custom-control-label::before {
+    border-color: #28a745 !important;
+    background-color: #28a745 !important;
+  }
+  
+  .custom-control-input:focus:not(:checked)~.custom-control-label::before {
+    border-color: #5bd778 !important;
+  }
+  
+  .custom-control-input:not(:disabled):active~.custom-control-label::before {
+    background-color: #d6f5dd !important;
+    border-color: #d6f5dd !important;
+  }
 
 
   // 320px — 480px: Mobile devices
