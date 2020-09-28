@@ -1,7 +1,7 @@
 export class EmpresaProdutoModel{
 
     id:number;
-    stock:number;
+    stock:number=0;
     preco:number;
     imagem:string;
     descricao:string;

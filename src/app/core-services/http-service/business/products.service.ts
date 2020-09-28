@@ -202,6 +202,57 @@ export class ProductsService {
       }));
   }
 
+  updateEmpresaProduto(previousImage:string=null,imageFile:File=null,price:number,availability:boolean,produtoID:number,description:string,stock:number){
+    
+    let formData = new FormData();
+    formData.append('acctId',this.storedConstants.userId.toString());
+    formData.append('id',produtoID.toString());
+    formData.append('preco',price.toString());
+    formData.append('disponibilidade',String(availability));
+    formData.append('produto_id',produtoID.toString());
+    formData.append('descricao',description);
+    formData.append('stock',stock.toString());
+    formData.append('_method','put');
+   
+  
+    
+      if(imageFile)
+      {
+        formData.append('imagem',imageFile,imageFile.name);  
+      }
+      else{
+        formData.append('oldimagem',previousImage);
+      }
 
+    return this.http.post(this.storedConstants.BASEURL() + "empresa-produto",
+      formData
+    ,{
+      headers:{"Accept":"application/json","Authorization":"Bearer "+this.storedConstants.userToken},
+      observe:'events',
+      reportProgress:true 
+    }).pipe(catchError((error)=>{
+      return throwError(error);
+    }),tap((respadata)=>{
+        
+      console.log(respadata);
+      })
+    );
+
+  }
+
+  removeProduto(produtoID:number){
+    return this.http.delete(this.storedConstants.BASEURL() +"empresa-produto/"+produtoID,
+      {
+        headers:{"Accept":"application/json","Authorization":"Bearer "+this.storedConstants.userToken},
+        observe:'events',
+        reportProgress:true 
+      }).pipe(catchError((error)=>{
+          return throwError(error);
+      }),tap((respdata)=>{
+        console.log(respdata)
+      })
+
+      );
+  }
   
 }

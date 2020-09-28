@@ -40,10 +40,8 @@ export class AddNewProductServiceComponent implements OnInit {
   uploadingProgress:number;
 
   listOf_Categories:BasicModel[];
-  listOfService_Categories:BasicModel[];
-
-  listOfProd_Types:BasicModel[];
-  listOfService_Types:BasicModel[];
+    listOfProd_Types:BasicModel[];
+ 
   
 
   //user selected product
@@ -195,7 +193,7 @@ onCategoriaChange(event:any){
           // this.uploadMessageType = "success";
           // this.uploadMessage = "Servico adicionado aos seus Serviços.";
           console.log(
-           "Servico adicionado aos seus Serviços.")
+           "Produto adicionado aos seus Serviços.")
         }
         else{
           

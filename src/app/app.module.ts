@@ -31,6 +31,7 @@ import { SideLoaderComponent } from './sections/loaders/side-loader/side-loader.
 import { DataLoadingComponent } from './sections/loaders/data-loading/data-loading.component';
 import { AddNewProductServiceComponent } from './sections/business/add-new-product-service/add-new-product-service.component';
 import { DialogboxComponent } from './sections/dialogbox/dialogbox.component';
+import { AddNewServiceComponent } from './sections/business/add-new-service/add-new-service.component';
 
  
 
@@ -58,6 +59,7 @@ import { DialogboxComponent } from './sections/dialogbox/dialogbox.component';
     DataLoadingComponent,
     AddNewProductServiceComponent,
     DialogboxComponent,
+    AddNewServiceComponent,
   
  
   ],

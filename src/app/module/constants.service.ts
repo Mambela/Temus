@@ -20,6 +20,7 @@ export class STOREDCONSTANTS{
     public userRole:string;
     public userId:number;
     private URL: string = 'http://127.0.0.1:8000/api/';
+    private resourceURL: string = 'http://127.0.0.1:8000/';
     public userToken: string;
 
     setToken:TokenData;
@@ -33,6 +34,11 @@ export class STOREDCONSTANTS{
     {
         
         return this.URL;
+    }
+
+    public getBASEURL(){
+
+        return this.resourceURL;
     }
    
     // getTokenData()

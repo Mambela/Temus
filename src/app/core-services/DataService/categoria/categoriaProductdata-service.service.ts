@@ -1,4 +1,5 @@
-import { BasicModel } from '../../../data/models/supporting/basic-model.model';
+import { BasicModel } from './../../../data/models/supporting/basic-model.model';
+
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 
@@ -12,6 +13,11 @@ export class CategoriaProductService {
 
   typeChanged = new Subject<BasicModel[]>();
   types:BasicModel[];
+
+
+  serviceCategoriaChanged = new Subject<BasicModel[]>();
+  serviceCategoria:BasicModel[];
+
 
   constructor() { }
 
@@ -37,5 +43,20 @@ export class CategoriaProductService {
 
     return this.types;
   }
+
+
+
+  setServiceCategoria(serviceCategoria:BasicModel[])
+  {
+      this.serviceCategoria = serviceCategoria;
+      this.serviceCategoriaChanged.next(this.serviceCategoria);
+  }
+
+  getServiceCategoria()
+  {
+    return this.serviceCategoria;
+  }
+
+
 
 }

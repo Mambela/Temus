@@ -1,6 +1,9 @@
+import { HttpEventType } from '@angular/common/http';
+import { NgForm } from '@angular/forms';
+import { STOREDCONSTANTS } from './../../../../module/constants.service';
 import { DialogboxComponent } from './../../../../sections/dialogbox/dialogbox.component';
 import { AddNewProductServiceComponent } from './../../../../sections/business/add-new-product-service/add-new-product-service.component';
-import { NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbModalConfig, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { EmpresaProdutoModel } from './../../../../data/models/business-user/empresa-product.model';
 import { EmpresaServicoModel } from './../../../../data/models/business-user/empresa-servico.model';
 import { BasicModel } from './../../../../data/models/supporting/basic-model.model';
@@ -11,6 +14,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { CategoryService } from 'src/app/core-services/http-service/category-service.service';
 import { NgbModalBackdrop } from '@ng-bootstrap/ng-bootstrap/modal/modal-backdrop';
+import { chownSync } from 'fs';
 
  
 
@@ -22,8 +26,8 @@ import { NgbModalBackdrop } from '@ng-bootstrap/ng-bootstrap/modal/modal-backdro
 
 
 export class BusinessProductsComponent implements OnInit, OnDestroy {
-  
- 
+   
+
 
   _opened: boolean = true;
   _rightBarOpened: boolean = false;
@@ -47,10 +51,37 @@ export class BusinessProductsComponent implements OnInit, OnDestroy {
   selectedCategoria:string="Categoria";
   selectedTipo:string="Tipo";
 
-  subGetProdutoTipo:Subscription;
+  
+
+  /**
+   * TO EDIT PRODUCT 
+  */
+ 
+ logoName:string;
+  imagePath;
+  imgURL: any="../../../../assets/images/placeholder.png";
+  message: string;
+  fileName:string='Choose file';
+  uploadedFile:File=null;
+  uploadingProgress:number;
+
+  producttoEdit:EmpresaProdutoModel;
+  productAvailable:boolean=false;
+  prodAvailability:string="Indisponivel";
+
+  priceDisplay:boolean =false;
+  productPrice_availability:string="Ocultar ";
+  
 
 
-  constructor(private companyService:CompanyService,private productService:ProductsService,private serviceModal:NgbModal,private categorySer:CategoryService,private config:NgbModalConfig) {
+  uploadPercentage:number;
+  uploadMessage:string;
+  uploadMessageType:string;
+  isUploadingServico:boolean;
+
+
+  constructor(private companyService:CompanyService,private productService:ProductsService,private modalService:NgbModal,
+              private categorySer:CategoryService,private config:NgbModalConfig,private storedConstant:STOREDCONSTANTS) {
     this.getProductCount();
    }
 
@@ -84,31 +115,7 @@ export class BusinessProductsComponent implements OnInit, OnDestroy {
     
   }
 
-  /**
-   * Methods to Handle Delete and edit a Product
-   * **/ 
-  onDeleteProduct(product:string,id:number){
 
-    console.log(product);
-    this.config.backdrop = 'static';
-   
-
-     
-
-   const modalRef = this.serviceModal.open(DialogboxComponent,{size:'md',backdropClass:'light-modal-backdrop',centered:true}) ;
-
-    modalRef.componentInstance.id = id;
-    modalRef.componentInstance.source="produto";
-    modalRef.componentInstance.message = 'Tem certeza de que deseja excluir o produto ';
-    modalRef.componentInstance.object_name = product;
-    modalRef.componentInstance.purpose= "Delete";
-  
-    
-  }
-
-  onEditProduct(){
-
-  }
 
 
 
@@ -149,7 +156,7 @@ export class BusinessProductsComponent implements OnInit, OnDestroy {
     this.isLoadingProdutos = true;
     this.listOfProducts = null;
         let categoria = stcategoria;
-        this.subGetProdutoTipo = this.productService.getCompanyProductsByChoice(choice,categoria).subscribe((ProdutoList:EmpresaProdutoModel[])=>{     
+          this.productService.getCompanyProductsByChoice(choice,categoria).subscribe((ProdutoList:EmpresaProdutoModel[])=>{     
           this.listOfProducts = ProdutoList;
           this.isLoadingProdutos = false;
         });
@@ -192,14 +199,210 @@ export class BusinessProductsComponent implements OnInit, OnDestroy {
   onAddProduct()
   {
     this.config.backdrop = true;
-      const modalRef = this.serviceModal.open(AddNewProductServiceComponent,{size:'lg',backdropClass:'light-modal-backdrop',centered:false});
+      const modalRef = this.modalService.open(AddNewProductServiceComponent,{size:'lg',backdropClass:'light-modal-backdrop',centered:false});
 
       modalRef.componentInstance.sourceParent = "Product";
-
-      
     
   }
+     /**
+   * Methods to Handle Delete and edit a Product
+   * **/ 
+  onDeleteProduct(product:string,id:number){
+
+    console.log(product);
+    this.config.backdrop = 'static';
+   
+
+     
+
+   const modalRef = this.modalService.open(DialogboxComponent,{size:'md',backdropClass:'light-modal-backdrop',centered:true}) ;
+
+    modalRef.componentInstance.id = id;
+    modalRef.componentInstance.source="produto";
+    modalRef.componentInstance.message = 'Tem certeza de que deseja excluir o produto ';
+    modalRef.componentInstance.object_name = product;
+    modalRef.componentInstance.purpose= "Delete";
+  
+    
+  }
+  /**
+   * Edit Product  
+   **/ 
+
+  onEditProduct(content,product:EmpresaProdutoModel){
+
+    this.modalService.open(content,{size:'lg',backdropClass:'light-modal-backdrop',centered:false});
+
+    this.producttoEdit = product
+
+    
+    
+    // console.log(this.storedConstant.getBASEURL());
+
+    if(product.imagem === "no_product.png")
+    {
+      
+      this.imgURL = this.storedConstant.getBASEURL()+"storage/"+product.imagem;
+    }
+    else{
+      this.imgURL =this.storedConstant.getBASEURL()+"storage/provided/empresa/"+this.storedConstant.userId+"/produtos/"+product.imagem;
+
+    }
+        if(product.estado ==='true')
+        {
+          this.productAvailable = true;
+          this.prodAvailability = "Disponivel";
+        }else{
+          this.productAvailable = false;
+          this.prodAvailability = "Indisponivel";
+        }
+
+  }
+
+
+  closeModal()
+  {
+    // this.activeModal.close();
+    this.modalService.dismissAll();
+  }
+
+  uploadImage(event)
+ {
+  this.uploadedFile =<File>event.target.files[0];
+  // this.uploadedFile = event.target.files[0];
+
+  this.previewImage(this.uploadedFile);
+  this.fileName = this.uploadedFile.name;
+
+ }
+
+ onAvailabilityChange(val:any){
+    
+  if(val)
+  {
+    this.productAvailable = false;
+    this.prodAvailability = "Indisponivel";
+  }
+  else{
+    this.productAvailable = true;
+    this.prodAvailability = "Disponivel";
+  }
  
+   
+}
+
+onUpdateProduct(updateForm:NgForm)
+  {
+       
+    let description = updateForm.value.prod_descript;
+    let price = updateForm.value.prod_Price;
+    let stock = updateForm.value.prod_Stock;
+
+
+     if(this.uploadedFile === null)
+     {
+       
+        //update the product with old image
+        this.productService.updateEmpresaProduto(this.producttoEdit.imagem,null,price,this.productAvailable,this.producttoEdit.id,description,stock).subscribe((event)=>{
+
+          if(event.type === HttpEventType.UploadProgress){
+            console.log('Upload Progress: '+ Math.round(event.loaded / event.total * 100) + '%');
+            this.uploadPercentage = Math.round(event.loaded / event.total * 100);
+          }
+          else if(event.type == HttpEventType.Response){
+            console.log(event);
+            console.log(event.body['data']['id']);
+
+            if(event.body['data']['id'])
+            {
+              this.uploadMessageType = "success";
+              this.uploadMessage = "Serviço actualizado com successo!";
+              this.isUploadingServico = false;
+            }
+            else{
+              this.uploadMessageType = "unsuccess";
+              this.uploadMessage = "Occorreo um erro ao actualizar o serviço.";
+            }
+          }
+
+        });
+
+     }
+     else{
+        
+      this.productService.updateEmpresaProduto(null,this.uploadedFile,price,this.productAvailable,this.producttoEdit.id,description,stock).subscribe((event)=>{
+          
+        if(event.type === HttpEventType.UploadProgress){
+          console.log('Upload Progress: '+ Math.round(event.loaded / event.total * 100) + '%');
+          this.uploadPercentage = Math.round(event.loaded / event.total * 100);
+        }
+        else if(event.type == HttpEventType.Response){
+          console.log(event);
+          console.log(event.body['data']['id']);
+
+          if(event.body['data']['id'])
+          {
+            this.uploadMessageType = "success";
+            this.uploadMessage = "Serviço actualizado com successo!";
+            this.isUploadingServico = false;
+          }
+          else{
+            this.uploadMessageType = "unsuccess";
+            this.uploadMessage = "Occorreo um erro ao actualizar o serviço.";
+          }
+        }
+
+
+      });
+      //update the product with a new Image
+
+       
+     }
+
+  }
+
+onDisplayPrice(val:any)
+{
+
+  if(val)
+  {
+    this.priceDisplay = false;
+    this.productPrice_availability = "Ocultar";
+  }
+  else{
+    this.priceDisplay = true;
+    this.productPrice_availability = "Mostrar";
+  }
+  console.log("Display price", this.priceDisplay);
+
+}
+ 
+
+previewImage(files) {
+
+    if (files.length === 0)
+      return;
+ 
+    var mimeType = files.type;
+    if (mimeType.match(/image\/*/) == null) {
+      this.message = "So podes usar images!";
+      return;
+    }
+ 
+    var reader = new FileReader();
+    this.imagePath = files;
+    reader.readAsDataURL(files); 
+    reader.onload = (_event) => { 
+      this.imgURL = reader.result; 
+    }
+}
+
+
+
+  /***
+   *  
+   * */ 
+  
   
   _toggleSidebar() { 
     this._opened = !this._opened;
