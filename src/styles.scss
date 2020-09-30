@@ -146,6 +146,9 @@ TEXT COLORS
 .text-color-dark-purple{
     color: $color-dark-purple;
 }
+.txt-dk-purple{
+    color: $color-dark-purple;
+}
 .text-color-main-purple{
     color: $color-main-purple;
 }
@@ -191,7 +194,8 @@ TEXT COLORS
 
 
  hr.dashed {
-    border-top: 3.5px dashed $color-normal-grey;
+    border-top: 1px dashed $color-main-purple;
+	border-bottom: 1px dashed #fff;
   }
 
 
@@ -214,6 +218,16 @@ TEXT COLORS
     border-color: #d6f5dd !important;
   }
 
+  .bg-menu{
+    
+    background-color: $color-lavender !important;
+  }
+
+  .bg-menu:hover{
+    background-color:$color-very-light-grey  !important;
+    // color: $color-ghost-white !important;
+    
+  }
 
   // 320px — 480px: Mobile devices
 // 481px — 768px: iPads, Tablets

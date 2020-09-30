@@ -1,3 +1,5 @@
+import { AddNewServiceComponent } from './../../../sections/business/add-new-service/add-new-service.component';
+import { AddNewProductServiceComponent } from './../../../sections/business/add-new-product-service/add-new-product-service.component';
 import { TokenData } from './../../../data/models/supporting/token-model';
 import { CompanyService } from './../../../core-services/http-service/company-service.service';
 import { CompanyData } from './../../../data/models/business-user/company-model';
@@ -5,6 +7,7 @@ import { AuthService } from './../../../core-services/http-service/auth.service'
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
 
 
 @Component({
@@ -34,7 +37,7 @@ export class BusinessDashboardComponent implements OnInit {
   tokenData:TokenData;
   private tokenSub: Subscription;
 
-  constructor(private authService:AuthService,private router:Router, private companyService:CompanyService) { }
+  constructor(private authService:AuthService,private router:Router, private companyService:CompanyService,private modalService:NgbModal,private config:NgbModalConfig) { }
   
 
   ngOnInit(): void {
@@ -99,5 +102,26 @@ export class BusinessDashboardComponent implements OnInit {
 
     });
   }
+
+  onAddProduct(){
+
+    this.config.backdrop = true;
+      const modalRef = this.modalService.open(AddNewProductServiceComponent,{size:'lg',backdropClass:'light-modal-backdrop',centered:false});
+
+      modalRef.componentInstance.sourceParent = "Product";
+
+  }
+
+  onAddService(){
+    this.config.backdrop = true;
+    const modalRef = this.modalService.open(AddNewServiceComponent,{size:'lg',backdropClass:'light-modal-backdrop',centered:false});
+
+    modalRef.componentInstance.sourceParent = "Product";
+  }
+
+  onAddEvent(){
+
+  }
+
 
 }

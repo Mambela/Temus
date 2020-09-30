@@ -32,6 +32,7 @@ import { DataLoadingComponent } from './sections/loaders/data-loading/data-loadi
 import { AddNewProductServiceComponent } from './sections/business/add-new-product-service/add-new-product-service.component';
 import { DialogboxComponent } from './sections/dialogbox/dialogbox.component';
 import { AddNewServiceComponent } from './sections/business/add-new-service/add-new-service.component';
+import { BusinessPostsPageComponent } from './pages/business-user/business-dashboard/business-posts-page/business-posts-page.component';
 
  
 
@@ -60,6 +61,7 @@ import { AddNewServiceComponent } from './sections/business/add-new-service/add-
     AddNewProductServiceComponent,
     DialogboxComponent,
     AddNewServiceComponent,
+    BusinessPostsPageComponent,
   
  
   ],

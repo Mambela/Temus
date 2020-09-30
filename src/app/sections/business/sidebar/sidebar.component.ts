@@ -1,3 +1,5 @@
+import { BasicModel } from './../../../data/models/supporting/basic-model.model';
+import { ProductsService } from './../../../core-services/http-service/business/products.service';
 import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
@@ -13,7 +15,10 @@ export class SidebarComponent implements OnInit {
   _docked: boolean = true;
   _Mode:string = 'push';
 
-  constructor() { }
+  isLoadingCategoria:boolean;
+  productCategoria:BasicModel[];
+
+  constructor(private productService:ProductsService) { }
 
   ngOnInit(): void {
   }
@@ -21,4 +26,19 @@ export class SidebarComponent implements OnInit {
   _toggleSidebar() {
     this._opened = !this._opened;
   }
+  
+  getProductCategoria()
+  {
+      this.isLoadingCategoria = true;
+      this.productService.getProductCategoria().subscribe((respCategoria:BasicModel[])=>{
+            
+        this.productCategoria = respCategoria['data'];
+        this.isLoadingCategoria = false;
+      });
+
+      // this.productService.getProductCategoria();
+
+  }
+
+
 }

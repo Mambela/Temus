@@ -12,10 +12,10 @@
             
            
         </ng-sidebar>
-        <div ng-sidebar-content class="pt-3">
+        <div ng-sidebar-content class="pt-1">
             <div class="row mt-2">
                 <div class="col-6 pl-4 ">
-                   <a class="left-menu" (click)="_toggleSidebar()"><i class="fas fa-bars fa-2x text-dark"></i> </a>
+                   <button class="left-menu btn btn-light border-0 bg-menu" (click)="_toggleSidebar()"><i class="fas fa-bars fa-lg text-dark"></i> </button>
                 </div>
                 <div class="col-6">
                    <span class="  mr-md-n3 mt-2"><i class="  text-success float-right mt-2 fas fa-lg" (click)="_toggleRightbar()" [ngClass]="{' fa-caret-square-right': _rightBarOpened === true,
@@ -23,9 +23,9 @@
                 </div> 
              </div>
              <div class="col-12">
-                <h2 class="col-12"> Gerencia de Serviços</h2>
+                <h4 class="col-12"> Gerencia de Serviços</h4>
                 <div class="row ml-4 mt-2 justify-content-between px-4">
-                    <div class="col-sm-6"><h4>Serviços <span> {{serviceCount}}</span> </h4>  </div>
+                    <div class="col-sm-6"><h6>Serviços <span> {{serviceCount}}</span> </h6>  </div>
                     <div class="col-sm-5"> <p> <span>{{selectedCategoria}}</span><i class="fas fa-angle-right fa-lg mt-2 mx-2"></i><span>{{selectedTipo}}</span> </p></div>
                     
                 </div>
