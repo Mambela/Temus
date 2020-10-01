@@ -2,7 +2,7 @@ import { HttpEventType } from '@angular/common/http';
 import { NgForm } from '@angular/forms';
 import { STOREDCONSTANTS } from './../../../../module/constants.service';
 import { DialogboxComponent } from './../../../../sections/dialogbox/dialogbox.component';
-import { AddNewProductServiceComponent } from './../../../../sections/business/add-new-product-service/add-new-product-service.component';
+import { AddNewProductServiceComponent } from '../../../../components/business-user/add-new-product-service/add-new-product-service.component';
 import { NgbModal, NgbModalConfig, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { EmpresaProdutoModel } from './../../../../data/models/business-user/empresa-product.model';
 import { EmpresaServicoModel } from './../../../../data/models/business-user/empresa-servico.model';

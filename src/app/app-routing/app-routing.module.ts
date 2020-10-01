@@ -1,3 +1,6 @@
+import { BusinessProfileComponent } from './../pages/business-user/business-profile/business-profile.component';
+import { BusinessPostsComponent } from './../pages/business-user/business-dashboard/business-posts/business-posts.component';
+
 import { BusinessServiceComponent } from './../pages/business-user/business-dashboard/business-service/business-service.component';
 import { BusinessProductsComponent } from './../pages/business-user/business-dashboard/business-products/business-products.component';
 import { BusinessContentPageComponent } from './../pages/business-user/business-dashboard/business-content-page/business-content-page.component';
@@ -18,9 +21,10 @@ const appRoutes: Routes=[
   {path:'business-page',component:BusinessContentPageComponent},
   {path:'business-products',component:BusinessProductsComponent},
   {path:'business-services',component:BusinessServiceComponent},
-  {path:'business-events',component:BusinessEventsComponent}
-
-
+  {path:'business-events',component:BusinessEventsComponent},
+  {path:'business-posts',component:BusinessPostsComponent},
+  {path:'business-advertisement',component:BusinessPostsComponent},
+  {path:'business-profile',component:BusinessProfileComponent}
 
 
   

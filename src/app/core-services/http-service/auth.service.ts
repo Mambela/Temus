@@ -209,7 +209,10 @@ export class AuthService {
         this.storedValues.userToken = tokenData._access_token;
         this.companyDataSubj.next(loadedCompany);
         this.tokenDataSubj.next(loadedToken);
-        this.router.navigate(['/business-dashboard']);
+            // this.router.navigate(['/business-dashboard']);
+
+        this.router.navigate(['/business-profile']);
+
          
       }
  

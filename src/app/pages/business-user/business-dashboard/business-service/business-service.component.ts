@@ -1,8 +1,9 @@
+import { AddNewServiceComponent } from '../../../../components/business-user/add-new-service/add-new-service.component';
 import { HttpEventType } from '@angular/common/http';
 import { NgForm } from '@angular/forms';
 import { STOREDCONSTANTS } from './../../../../module/constants.service';
 import { DialogboxComponent } from './../../../../sections/dialogbox/dialogbox.component';
-import { AddNewServiceComponent } from './../../../../sections/business/add-new-service/add-new-service.component';
+
 import { NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
 import { BasicModel } from './../../../../data/models/supporting/basic-model.model';
 import { CompanyServicesService } from './../../../../core-services/http-service/business/services.service';

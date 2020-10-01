@@ -1,5 +1,7 @@
-import { BasicModel } from './../../../data/models/supporting/basic-model.model';
-import { ProductsService } from './../../../core-services/http-service/business/products.service';
+import { ProductsService } from '../../../core-services/http-service/business/products.service';
+import { BasicModel } from '../../../data/models/supporting/basic-model.model';
+
+
 import { Component, Input, OnInit } from '@angular/core';
 
 @Component({

@@ -1,1 +1,71 @@
-<p>business-posts works!</p>
+<body>
+    <app-business-topnavbar></app-business-topnavbar>
+    <ng-sidebar-container>
+         
+        <ng-sidebar [(opened)]="_opened" 
+        [(dock)]="_docked"
+        [mode]="_Mode">
+             
+    
+             <app-sidebar></app-sidebar>
+            
+        </ng-sidebar>
+        <div ng-sidebar-content>
+            <div class="row mt-2">
+               
+               <div class="col-6 pl-4 ">
+                  <button class="left-menu btn btn-light border-0 bg-menu" (click)="_toggleSidebar()"><i class="fas fa-bars fa-lg text-dark"></i> </button>
+               </div>
+               <div class="col-6">
+                  <span class="  mr-md-n3 mt-2"><i class="  text-success float-right mt-2 fas fa-lg" (click)="_toggleRightbar()" [ngClass]="{' fa-caret-square-right': _rightBarOpened === true,
+                                                                                                                                   ' fa-caret-square-left ': !_rightBarOpened}"></i></span>
+               </div> 
+            </div>
+
+            <div class="col-12">
+                <h4 class="col-12"> Postagem </h4>
+                <div class="row ml-4 mt-2 justify-content-between px-4">
+                  
+                    
+                </div>
+                <hr class="col-11 dashed">
+
+                <div class="col-md-12">
+                    
+                    <div class="col-sm-10 mx-auto">
+                        <div class="row justify-content-center">
+                            <div class="form-group col-12">
+                                
+                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-10 mx-auto">
+                        <app-single-post *ngFor="let item of listSample"></app-single-post>
+                    </div>
+
+                    
+
+                </div>
+                
+            </div>
+
+        </div>
+
+        <ng-sidebar [(opened)]="_rightBarOpened" 
+        position="right"
+        [(dock)]="_docked"
+        [mode]="_Mode"
+        class="right-sidebar"
+        > 
+            <app-rightsidebar></app-rightsidebar>
+            
+        </ng-sidebar>
+        
+    </ng-sidebar-container>
+
+</body>
+
+
+

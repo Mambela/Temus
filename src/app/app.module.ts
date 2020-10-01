@@ -1,3 +1,4 @@
+
 import { CategoryService } from './core-services/http-service/category-service.service';
 import { AppRoutingModule } from './app-routing/app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
@@ -16,11 +17,11 @@ import { FormsModule } from '@angular/forms';
 import { SavingLoaderComponent } from './sections/loaders/saving-loader/saving-loader.component';
 import { BusinessDashboardComponent } from './pages/business-user/business-dashboard/business-dashboard.component';
 import {SidebarModule} from 'ng-sidebar';
-import { SidebarComponent } from './sections/business/sidebar/sidebar.component';
+import { SidebarComponent } from './components/business-user/sidebar/sidebar.component';
 import { BusinessProductsComponent } from './pages/business-user/business-dashboard/business-products/business-products.component';
 import { BusinessContentPageComponent } from './pages/business-user/business-dashboard/business-content-page/business-content-page.component';
 import { BusinessTopnavbarComponent } from './pages/business-user/business-dashboard/business-topnavbar/business-topnavbar.component';
-import { RightsidebarComponent } from './sections/business/rightsidebar/rightsidebar.component';
+import { RightsidebarComponent } from './components/business-user/rightsidebar/rightsidebar.component';
 import { NgCircleProgressModule } from 'ng-circle-progress';
 import { BusinessServiceComponent } from './pages/business-user/business-dashboard/business-service/business-service.component';
 import { BusinessEventsComponent } from './pages/business-user/business-dashboard/business-events/business-events.component';
@@ -29,10 +30,12 @@ import { BusinessMediaComponent } from './pages/business-user/business-dashboard
 import { UserpostComponent } from './sections/userpost/userpost.component';
 import { SideLoaderComponent } from './sections/loaders/side-loader/side-loader.component';
 import { DataLoadingComponent } from './sections/loaders/data-loading/data-loading.component';
-import { AddNewProductServiceComponent } from './sections/business/add-new-product-service/add-new-product-service.component';
+import { AddNewProductServiceComponent } from './components/business-user/add-new-product-service/add-new-product-service.component';
 import { DialogboxComponent } from './sections/dialogbox/dialogbox.component';
-import { AddNewServiceComponent } from './sections/business/add-new-service/add-new-service.component';
-import { BusinessPostsPageComponent } from './pages/business-user/business-dashboard/business-posts-page/business-posts-page.component';
+import { AddNewServiceComponent } from './components/business-user/add-new-service/add-new-service.component';
+
+import { SinglePostComponent } from './sections/single-post/single-post.component';
+import { BusinessProfileComponent } from './pages/business-user/business-profile/business-profile.component';
 
  
 
@@ -61,7 +64,10 @@ import { BusinessPostsPageComponent } from './pages/business-user/business-dashb
     AddNewProductServiceComponent,
     DialogboxComponent,
     AddNewServiceComponent,
-    BusinessPostsPageComponent,
+    
+    SinglePostComponent,
+    
+    BusinessProfileComponent,
   
  
   ],
@@ -75,7 +81,9 @@ import { BusinessPostsPageComponent } from './pages/business-user/business-dashb
       innerStrokeColor: "#C7E596",
       animationDuration: 300,
       showSubtitle:false
-    }), 
+    }),
+ 
+     
   ],
   providers: [],
   bootstrap: [AppComponent]

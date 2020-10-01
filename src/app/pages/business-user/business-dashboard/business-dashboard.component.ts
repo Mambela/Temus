@@ -1,5 +1,7 @@
-import { AddNewServiceComponent } from './../../../sections/business/add-new-service/add-new-service.component';
-import { AddNewProductServiceComponent } from './../../../sections/business/add-new-product-service/add-new-product-service.component';
+import { CompanyServicesService } from './../../../core-services/http-service/business/services.service';
+import { ProductsService } from './../../../core-services/http-service/business/products.service';
+import { AddNewServiceComponent } from '../../../components/business-user/add-new-service/add-new-service.component';
+import { AddNewProductServiceComponent } from '../../../components/business-user/add-new-product-service/add-new-product-service.component';
 import { TokenData } from './../../../data/models/supporting/token-model';
 import { CompanyService } from './../../../core-services/http-service/company-service.service';
 import { CompanyData } from './../../../data/models/business-user/company-model';
@@ -25,6 +27,8 @@ export class BusinessDashboardComponent implements OnInit {
 
 
   companyData:CompanyData;
+
+  isLoadingCategoria = true;
   
   isLoading:boolean = true;
 
@@ -37,7 +41,9 @@ export class BusinessDashboardComponent implements OnInit {
   tokenData:TokenData;
   private tokenSub: Subscription;
 
-  constructor(private authService:AuthService,private router:Router, private companyService:CompanyService,private modalService:NgbModal,private config:NgbModalConfig) { }
+  constructor(private authService:AuthService,private router:Router, private companyService:CompanyService,
+            private modalService:NgbModal,private config:NgbModalConfig, private productService:ProductsService,
+            private companyManageService: CompanyServicesService) { }
   
 
   ngOnInit(): void {
@@ -46,6 +52,8 @@ export class BusinessDashboardComponent implements OnInit {
 
     this.verifyAuthentication();  
     this.getuserData();
+    this.onLoadServiceCategoria();
+    this.getProductCategoria();
     
   }
   
@@ -120,6 +128,19 @@ export class BusinessDashboardComponent implements OnInit {
   }
 
   onAddEvent(){
+
+  }
+
+  getProductCategoria()
+  {
+      this.isLoadingCategoria = true;
+      this.productService.getProductCategoria().subscribe();
+
+  }
+
+  onLoadServiceCategoria(){
+
+    this.companyManageService.getServiceCategoria().subscribe();
 
   }
 
