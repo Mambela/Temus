@@ -1,33 +1,49 @@
+<head>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.4.1/mapbox-gl.css' rel='stylesheet' />
+  </head>
+  
 <body>
     <app-business-topnavbar></app-business-topnavbar>
+
+   
     
     <div class="row justify-content-center">
-        <div class="col-md-10 ml-1 my-2">
-            <h4> Perfil </h4>
+        <div class="col-md-8 ml-1 mt-3 ">
+            <div class="row">
+                <div class="col-md-5">
+                    <h4> Perfil </h4>
+                </div>
+                <div class="col-md-7 mt-3   text-right">
+                    <h6 class=""> <a [routerLink]="['/business-dashboard']" class="mr-1 text-color-main-green" >Painel de Controlo</a> <span> <i class="fas fa-chevron-right fa-lg" > </i>  Editando o Perfil da Empresa</span></h6>
+                </div>
+            </div>    
         </div>
+        
+        
+        
         <br>
     </div>
     
-    <div class="row justify-content-center mt-3">
+    <div class="row justify-content-center mt-1">
 
 
             <div class="col-md-3  ">
                 <div class="list-group">
-                    <a class="list-group-item list-group-item-action active" (click)="showAccount()">
+                    <a class="list-group-item list-group-item-action " (click)="showAccount()"  [ngClass]="{active: accountIsActive}">
                         <span class="col-12 mr-3 profile"><i class="fas fa-lock txt-dk-purple"></i>&nbsp; Conta</span> 
                         <!-- <small class="col-12 text-secondary">Modifique informações como senha</small> -->
                     </a>
-                    <a class="list-group-item list-group-item-action " (click)="showCompany()"> 
+                    <a class="list-group-item list-group-item-action " (click)="showCompany()" [ngClass]="{active: companyDetailsIsActive}"> 
                         <span class="col-12 mr-3 profile "><i class="fas fa-info txt-dk-purple"></i>&nbsp;Dados da empresa </span>
                         
                     </a>
-                    <a  class="list-group-item list-group-item-action" (click)="showAddress()"> 
+                    <a  class="list-group-item list-group-item-action" (click)="showAddress()" [ngClass]="{active: addressIsActive}"> 
                         <span class="col-12 mr-3 profile"><i class="fas fa-map-marked-alt txt-dk-purple"></i> &nbsp;Endereço</span>
                     </a>
-                    <a  class="list-group-item list-group-item-action" (click)="showSector()">
+                    <a  class="list-group-item list-group-item-action" (click)="showSector()" [ngClass]="{active: sectorIsActive}">
                         <span class="col-12 mr-3 profile"><i class="fas fa-list txt-dk-purple"></i>&nbsp; Sector / Categoria</span>
                     </a>
-                    <a  class="list-group-item list-group-item-action" (click)="showWorkingHours()">
+                    <a  class="list-group-item list-group-item-action" (click)="showWorkingHours()" [ngClass]="{active: workingHoursIsActive}">
                         <span class="col-12 mr-3 profile "><i class="far fa-clock txt-dk-purple"></i>&nbsp;Horário de Trabalho</span>
                     </a>
                 </div>
@@ -38,67 +54,593 @@
 
                 <div class="row">
                     <div class="col-md-2">
-                        <img src="https://i.pinimg.com/236x/ab/5a/73/ab5a738539e17fb0b4adb350a11f39f6--logo-design-contest-media-marketing.jpg" alt="" class="img-fluid rounded-circle">
+                        <img [src]="imgURL" alt="" class="img-fluid img-thumbnail rounded-circle">
                     </div>
 
                     <div class="col-md-8">
-                        <h6 class="font-weight-bold mt-4">Bytebymemory</h6>
+                        <h6 class="font-weight-bold mt-4">{{companyData.designacao}}</h6>
                     </div>
 
                 </div>
 
-                
-                <form>
-                    <div class="form-row">
-                      <div class="form-group col-md-6">
-                        <label for="inputEmail4">Email</label>
-                        <input type="email" class="form-control" id="inputEmail4">
-                      </div>
-                       
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <label for="inputEmail4">Senha Actual</label>
-                            <input type="email" class="form-control" id="inputEmail4">
-                          </div>
-                        
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <label for="inputEmail4">Senha</label>
-                            <input type="email" class="form-control" id="inputEmail4">
-                          </div>
-                          <div class="form-group col-md-6">
-                            <label for="inputEmail4">Confirmação da Senha</label>
-                            <input type="email" class="form-control" id="inputEmail4">
-                          </div>
-                    </div>
-                    <div class="col-12">
-                        <div class="alert alert-warning"> Saiba que ao Alterar as informações da sua conta o applicativo. Você será desconectado</div>
-                    </div>
-                    
-                    <div class="row justify-content-end pr-3">
-                        <button type="submit" class="btn btn-success">Actualizar Dados</button>
-                    </div>
-                    
-                  </form>
+                <div class="col-md-12">    
+                        <form>
+                            <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="inputEmail4">Email</label>
+                                <input type="email" class="form-control" id="inputEmail4" value="{{companyData.email}}">
+                            </div>
+                            
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="inputEmail4">Senha Actual</label>
+                                    <input type="password" class="form-control" id="inputEmail4">
+                                </div>
+                                
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="inputEmail4">Nova Senha</label>
+                                    <input type="password" class="form-control" id="inputEmail4">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="inputEmail4">Confirmação da Senha</label>
+                                    <input type="password" class="form-control" id="inputEmail4">
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="alert alert-warning"> <small> Saiba que ao Alterar as informações da sua conta o applicativo. Você será desconectado </small> </div>
+                            </div>
+                            
+                            <div class="row justify-content-end pr-3">
+                                <button type="submit" class="btn btn-success">Actualizar Dados</button>
+                            </div>
+                            
+                        </form>
+                </div>
             </div>
 
             <!-- Company -->
-            <div class="col-md-6 bg-white p-4 rounded border" *ngIf="companyDetailsIsActive">
+            <div class="col-md-6 bg-white p-4 rounded border profile-content" *ngIf="companyDetailsIsActive">
+            
+                  
 
-                
+                        <!-- <h5 class="font-weight-bold">Bytebymemory</h5> -->
+                        <div class="row">
+                            <div class="col-md-2">
+                                <img [src]="imgURL" (click)="uploader.click()" alt="" class="img-fluid img-thumbnail rounded-circle">
+                                <input type="file" class="form-control" hidden #uploader (change)="uploadImage($event)" name="businessLogo" />
+                                
+                            </div>
+                            <div class="col-md-4 mt-3"> <span class="text-success font-weight-bold">Upload novo logotipo </span> &nbsp;&nbsp; </div>
+                        </div>
+
+                        <div class="col-md-12">               
+                            
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="inputEmail4">Email</label>
+                                    <input type="text" class="form-control" id="inputEmail4" #companyEmail [(ngModel)]="companyData.email">
+                                </div>
+                                
+                            </div>
+        
+                            <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="inputEmail4">Nome da Empresa</label>
+                                        <input type="text" class="form-control" id="inputEmail4" #companyName [(ngModel)]="companyData.designacao">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="inputEmail4">Website</label>
+                                        <input type="text" class="form-control" id="inputEmail4" #companyWebsite [(ngModel)]="companyData.website"  >
+                                    </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="inputEmail4">Telefone 1</label>
+                                    <input type="number" class="form-control" id="inputEmail4" #phone1 [(ngModel)]="companyData.telefone" >
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="inputEmail4">Telefone 2</label>
+                                    <input type="number" class="form-control" id="inputEmail4" #phone2 [(ngModel)]="companyData.telefone_2" >
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleFormControlTextarea1">Sobre a Empresa</label>
+                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="about_company" #description [(ngModel)]="companyData.description">
+                                    
+                                </textarea>
+                            </div>
+                            <div class="row justify-content-end pr-3">
+                                <button type="button" class="btn btn-success" (click)="OnUpdateCompanyDetails(companyEmail,companyName,companyWebsite,phone1,phone2,description)">Actualizar Dados</button>
+                            </div>
+                        </div>
+                    
+
             </div>
+        
 
             <!-- Address -->
-            <div class="col-md-6 bg-white p-4 rounded border" *ngIf="addressIsActive"></div>
-            
-            <!-- Working Hours -->
-            <div class="col-md-6 bg-white p-4 rounded border" *ngIf="sectorIsActive"></div>
+            <div class="col-md-6   bg-white p-4 rounded border profile-content" *ngIf="addressIsActive">
 
-            <div class="col-md-6 bg-white p-4 rounded border" *ngIf="workingHoursIsActive">
+                <h5 class="ml-4">Endereço Atual</h5>
+
+                <div class="row justify-content-center mb-4">
+                    <div class="col-md-10 bg-color-light-purple border rounded-right">
+                        <table class="table table-sm table-borderless">
+                            <tbody>
+                              <tr>
+                          
+                                <td> <label class="ml-4 text-success" for=""><span class="font-weight-bold text-color-dark-purple">Provincia </span> {{companyAddress.province}}</label></td>
+                                <td><label class="ml-4 text-success" for=""><span class="font-weight-bold text-color-dark-purple">Municipio </span> {{companyAddress.municipio}}</label></td>
+                               
+                              </tr>
+                              <tr>
+                          
+                                <td> <label class="ml-4 text-success" for=""><span class="font-weight-bold text-color-dark-purple">Bairro </span> {{companyAddress.bairro}}</label></td>
+                                <td><label class="ml-4 text-success" for=""><span class="font-weight-bold text-color-dark-purple">Rua </span> {{companyAddress.rua}}</label></td>
+                               
+                              </tr>
+                            </tbody>
+                          </table>
+                    </div>
+                </div>
+              
+                
+                              
+              
+                <div class="col-md-12">        
+                  
+                    <div class="col-md-11">
+                        
+                        <div class="alert alert-success" role="alert" *ngIf="isSuccess">
+                            {{message}}
+                        </div>
+                        <div class="row mb-3">
+
+                        <div class="col-sm-6 col-md-6 styled-select">
+                            <label> Provincia </label>
+                            <select class="custom-select custom-select mb-1"  (change)="getMunicipalitybyProvinces($event)">
+                            <option selected value="reset">Selecione Provincia</option>
+                                <option value="{{province.id}}" *ngFor="let province of provinces" >{{province.designacao}}</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-6 col-md-6 styled-select">
+                            <label> Municipio </label>
+                            <select class="custom-select custom-select mb-1"  (change)="getNeighboorhoodsbyMunicipality($event)">
+                                <option selected value="reset">Selecione Municipio</option>
+                                <option value="{{municipio.id}}" *ngFor="let municipio of municipalities">{{municipio.designacao}}</option>
+                            </select>
+                        </div>
+                        </div>
+                        <div class="row ">
+                        <div class="col-sm-6 col-md-6 styled-select">
+                        <label> Bairro </label>
+                        <select class="custom-select custom-select mb-1" (change)="getStreetsbyNeighbourhood($event)">
+                        <option selected value="reset">Selecione Bairro</option>
+                        <option value="{{bairro.id}}" *ngFor="let bairro of neighbourhoods">{{bairro.designacao}}</option>
+
+                        </select>
+                        </div>
+                        <div class="col-sm-6 col-md-6 styled-select">
+                        <label> Rua </label>
+                        <input class="form-control" type="text" id="validationCustom04" name="rua_business" [class.is-invalid]="searchingFailed"
+                        [ngbTypeahead]="streetSearch"
+                        [(ngModel)]="streets"
+                        [resultFormatter]="streetresultformatter"    
+                        [inputFormatter]="streetresultformatter" 
+                        (selectItem)='userSelectedRua($event)'   
+                        placeholder="Insira o nome da rua"
+                        />      
+                        <small *ngIf="searching" class="form-text text-muted">a pesquisar...</small>
+                        <div class="invalid-feedback" *ngIf="searchingFailed">Desculpa, as suggestões para rua não foram encontradas. Por favor mude os parametos dos municipios e bairros</div>      
+                        </div>
+                        </div>
+
+                    </div>
+                    <div class="row pt-3">
+                        <div class="col-sm-12">
+                           
+                        </div>
+
+                        <div class="col-sm-6">
+                            <div class="col-12 bg-light" class="map-height" id="map-around-me" disabled>                                         
+                                <!-- <app-map></app-map> -->
+            
+                              </div>
+                        </div>
+                        <div class="col-sm-10">
+                            <div class="alert alert-warning">
+                                <small> É muito importante que os dados a cima são preenchidos. Selecione tambem a sua empresa no mapa se não ele nao aparece no mapa.</small>
+                             </div>
+                        </div>
+                    </div>
+                    <div class="row justify-content-end pr-3">
+                        <button type="button" (click)="onUpdateAddress()" class="btn btn-success">Actualizar Dados</button>
+                    </div>
+                </div>
 
             </div>
+            
+            <!-- Update Sector -->
+            <div class="col-md-6 bg-white p-4 rounded border profile-content" *ngIf="sectorIsActive">
+                <h5 class="ml-4">Categoria da sua Empresa </h5>
+                <!-- <h5 class="ml-3">{{companyData.designacao}}</h5> -->
+                
+                <form #updateSector="ngForm" (ngSubmit)="onUpdateCompanySector(updateSector)">
+                    
+                    <div class="row mt-4 ml-3">
+                        <div class="col-md-10 py-1 ml-2 mb-2 alert alert-success">
+
+                            <h6 class="text-dark">A sua empresa pertence a categoria <span class="font-weight-bold">{{currentCategoria}} </span></h6>
+                        </div>
+                        <div class="col-sm-6 col-md-6 styled-select ">
+                            <label> Categoria da sua empresa </label>
+                            <select class="custom-select custom-select mb-1"  name="categoria" ngModel>
+                                <option selected value="reset">Selecione Categoria</option>
+                                <option  ></option>  
+                                
+                            </select>
+                        </div>
+                        <!-- <div class="col-sm-6 col-md-6 styled-select">
+                            <label> Sub categoria da sua empresa </label>
+                            <select class="custom-select custom-select mb-1"  name="tipo" ngModel>
+                                <option selected value="reset">Selecione Categoria</option>
+                                <option  ></option>  
+                                
+                            </select>
+                        </div> -->
+                    </div>
+
+                    <div class="row justify-content-end pr-3 mb-4 mr-3 action-div  ">
+                        
+                        <button type="submit" class="btn btn-success">Actualizar Dados</button>                    
+                    </div>
+                </form>
+            </div>
+            
+            <!-- Working Hours -->
+            <div class="col-md-6 bg-white py-4 px-2 rounded border profile-content" *ngIf="workingHoursIsActive">
+                <h5 class="ml-4">Horas de trabalho</h5>
+            
+            <div>
+
+                
+                <form (ngSubmit)="onUpdateWorkHr(workHr)" #workHr="ngForm">
+                
+
+                    <div class="row px-5 py-3">
+                        <form action=""></form>
+                        <table class="table table-sm table-borderless t-3">
+                            <thead>
+                            <tr>
+                                <th scope="col">Dia</th>
+                                <th scope="col">Abre</th>
+                                <th scope="col">Fecha</th>
+                                <th></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                <!-- MONDAY -->
+                            <tr>
+                            
+                                <td>
+                                    <div class="custom-control custom-switch">
+                                        <input class="custom-control-input" type="checkbox" #mondayWhr
+                                        [checked]="_Monday_WrHr"  [ngModel]="_Monday_WrHr" (change)="onOpenDay(mondayWhr)"
+                                        name="mondayWrHr" id="openMonday">
+                                        <label class="custom-control-label" for="openMonday">Segunda-Feira</label>
+                                    </div>
+                                </td>
+                                <td *ngIf="_Monday_WrHr">     
+                                    <div class="col-sm-12 col-md-9">
+                                        <select class="custom-select custom-select-sm mb-1" name="mondayOpenTime" #MondayOpeninHr (change)="TestDropHr(MondayOpeninHr)">
+                                            <option selected value="00">Fechado</option>
+                                            <option  >00:00</option>  <option>00:30</option>  <option  >01:00</option>  <option  >01:30</option>  <option>02:00</option> <option> 02:30</option>  <option>03:00</option> <option> 03:30</option> 
+                                            <option  >04:00</option>  <option>04:30</option>  <option>05:00</option>  <option  >05:30</option>  <option>06:00</option>  <option>06:30</option><option>07:00</option><option>07:30</option>               
+                                            <option >08:00</option>  <option >08:30</option>  <option>09:00</option>  <option  >09:30</option>  <option>10:00</option>  <option>10:30</option><option>11:00</option><option>11:30</option>               
+                                            <option  >12:00</option>  <option>12:30</option>  <option>13:00</option>  <option  >13:30</option>  <option>14:00</option>  <option>14:30</option><option>15:00</option><option>15:30</option>               
+                                            <option  >16:00</option>  <option>16:30</option>  <option>17:00</option>  <option  >17:30</option>  <option>18:00</option>  <option>18:30</option><option>19:00</option><option>19:30</option>               
+                                            <option  >20:00</option>  <option>20:30</option>  <option>21:00</option>  <option  >21:30</option>  <option>22:00</option>  <option>22:30</option><option>23:00</option><option>23:30</option>               
+                    
+                    
+                                        </select>
+                                    </div>
+                                </td>
+                                <td *ngIf="_Monday_WrHr">
+                                    <div class="col-sm-12 col-md-9">
+                                        <select class="custom-select custom-select-sm mb-1" name="mondayCloseTime" #MondayCloseinTime (change)="TestDropHr(MondayCloseinTime)">
+                                            <option value="00">Fechado</option>
+                                            <option  >00:00</option>  <option>00:30</option>  <option  >01:00</option>  <option  >01:30</option>  <option>02:00</option> <option> 02:30</option>  <option>03:00</option> <option> 03:30</option> 
+                                            <option  >04:00</option>  <option>04:30</option>  <option>05:00</option>  <option  >05:30</option>  <option>06:00</option>  <option>06:30</option><option>07:00</option><option>07:30</option>               
+                                            <option  >08:00</option>  <option>08:30</option>  <option>09:00</option>  <option  >09:30</option>  <option>10:00</option>  <option>10:30</option><option>11:00</option><option>11:30</option>               
+                                            <option  >12:00</option>  <option>12:30</option>  <option>13:00</option>  <option  >13:30</option>  <option>14:00</option>  <option>14:30</option><option>15:00</option><option>15:30</option>               
+                                            <option  >16:00</option>  <option>16:30</option>  <option>17:00</option>  <option  >17:30</option>  <option>18:00</option>  <option>18:30</option><option>19:00</option><option>19:30</option>               
+                                            <option  >20:00</option>  <option>20:30</option>  <option>21:00</option>  <option  >21:30</option>  <option>22:00</option>  <option>22:30</option><option>23:00</option><option>23:30</option>               
+                    
+                    
+                                        </select>
+                                    </div>
+                                </td>
+                               
+                                </tr>
+
+                                <!-- TUESDAY -->
+                                <tr>
+                            
+                                    <td>
+                                        <div class="custom-control custom-switch">
+                                        <input class="custom-control-input" type="checkbox"  #tuesdayWhr
+                                        [checked]="_Tuesday_WrHr"  [ngModel]="_Tuesday_WrHr" (change)="onOpenDay(tuesdayWhr)"
+                                        name="tuesdayWrHr" id="openTuesday">
+                                        <label class="custom-control-label" for="openTuesday">Terça-Feira</label>
+                                    </div>
+                                    </td>
+                                    <td *ngIf="_Tuesday_WrHr">
+                                        <div class="col-sm-12 col-md-9">
+                                            <select class="custom-select custom-select-sm mb-1" name="tuesdayOpenTime" #tuesdayOpeninTime (change)="TestDropHr(tuesdayOpeninTime)">
+                                                <option selected value="00">Fechado</option>
+                                                <option value="00:00" >00:00</option><option value="00:0">00:30</option>  <option value="00:00" >01:00</option>  <option value="00:00" >01:30</option>  <option value="00:00">02:00</option> 
+                                                <option value="00:00"> 02:30</option><option value="00:00"> 03:00</option> <option value="00:00"> 03:30</option> <option value="00:00" >04:00</option>  <option value="00:00">04:30</option> 
+                                                <option value="00:00">05:00</option><option value="00:00">05:30</option>  <option value="00:00">06:00</option>  <option value="00:00">06:30</option><option value="00:00">07:00</option>
+                                                <option value="00:00">07:30</option><option value="00:00">08:00</option>  <option value="00:00">08:30</option>  <option value="00:00">09:00</option>  <option value="00:00">09:30</option> 
+                                                <option value="00:00">10:00</option><option value="00:00">10:30</option><option value="00:00">11:00</option><option value="00:00">11:30</option><option value="00:00">12:00</option>  
+                                                <option value="00:00">12:30</option><option value="00:00">13:00</option>  <option value="00:00">13:30</option>  <option value="00:00">14:00</option>  <option value="00:00">14:30</option>
+                                                <option value="00:00">15:00</option><option value="00:00">15:30</option><option value="00:00">16:00</option><option value="00:00">16:30</option>  <option value="00:00">17:00</option>  
+                                                <option value="00:00">17:30</option><option value="00:00">18:00</option>  <option value="00:00">18:30</option><option value="00:00">19:00</option><option value="00:00">19:30</option>               
+                                                <option value="00:00">20:00</option><option value="00:00">20:30</option>  <option value="00:00">21:00</option>  <option value="00:00">21:30</option>  <option value="00:00">22:00</option>  
+                                                <option value="00:00">22:30</option><option value="00:00">23:00</option><option value="00:00">23:30</option>               
+                        
+                        
+                                            </select>
+                                        </div>
+                                    </td>
+                                    <td *ngIf="_Tuesday_WrHr">
+                                        <div class="col-sm-12 col-md-9">
+                                            <select class="custom-select custom-select-sm mb-1" name="tuesdayCloseTime" #tuesdayCloseTime (change)="TestDropHr(tuesdayCloseTime)">
+                                                <option selected value="00">Fechado</option>
+                                                <option  >00:00</option>  <option>00:30</option>  <option  >01:00</option>  <option  >01:30</option>  <option>02:00</option> <option> 02:30</option>  <option>03:00</option> <option> 03:30</option> 
+                                                <option  >04:00</option>  <option>04:30</option>  <option>05:00</option>  <option  >05:30</option>  <option>06:00</option>  <option>06:30</option><option>07:00</option><option>07:30</option>               
+                                                <option  >08:00</option>  <option>08:30</option>  <option>09:00</option>  <option  >09:30</option>  <option>10:00</option>  <option>10:30</option><option>11:00</option><option>11:30</option>               
+                                                <option  >12:00</option>  <option>12:30</option>  <option>13:00</option>  <option  >13:30</option>  <option>14:00</option>  <option>14:30</option><option>15:00</option><option>15:30</option>               
+                                                <option  >16:00</option>  <option>16:30</option>  <option>17:00</option>  <option  >17:30</option>  <option>18:00</option>  <option>18:30</option><option>19:00</option><option>19:30</option>               
+                                                <option  >20:00</option>  <option>20:30</option>  <option>21:00</option>  <option  >21:30</option>  <option>22:00</option>  <option>22:30</option><option>23:00</option><option>23:30</option>               
+                        
+                        
+                                            </select>
+                                        </div>
+                                    </td>
+                                    </tr>
+
+                                <!-- WEDNESDAY -->
+                                    <tr>
+                            
+                                        <td>
+                                            <div class="custom-control custom-switch">
+                                            <input class="custom-control-input" type="checkbox"  #wednesdayWhr
+                                            [checked]="_Wednesday_WrHr"  [ngModel]="_Wednesday_WrHr" (change)="onOpenDay(wednesdayWhr)"
+                                            name="wednesdayWrHr" id="openWednesday">
+                                            <label class="custom-control-label" for="openWednesday">Quarta-Feira</label>
+                                        </div>
+                                        </td>
+                                            <td *ngIf="_Wednesday_WrHr">
+                                                <div class="col-sm-12 col-md-9">
+                                                    <select class="custom-select custom-select-sm mb-1" name="wednesdayOpenTime" #wednesdayOpenTime (change)="TestDropHr(wednesdayOpenTime)" required>
+                                                        <option selected value="00">Fechado</option>
+                                                        <option  >00:00</option>  <option>00:30</option>  <option  >01:00</option>  <option  >01:30</option>  <option>02:00</option> <option> 02:30</option>  <option>03:00</option> <option> 03:30</option> 
+                                                        <option  >04:00</option>  <option>04:30</option>  <option>05:00</option>  <option  >05:30</option>  <option>06:00</option>  <option>06:30</option><option>07:00</option><option>07:30</option>               
+                                                        <option >08:00</option>  <option >08:30</option>  <option>09:00</option>  <option  >09:30</option>  <option>10:00</option>  <option>10:30</option><option>11:00</option><option>11:30</option>               
+                                                        <option  >12:00</option>  <option>12:30</option>  <option>13:00</option>  <option  >13:30</option>  <option>14:00</option>  <option>14:30</option><option>15:00</option><option>15:30</option>               
+                                                        <option  >16:00</option>  <option>16:30</option>  <option>17:00</option>  <option  >17:30</option>  <option>18:00</option>  <option>18:30</option><option>19:00</option><option>19:30</option>               
+                                                        <option  >20:00</option>  <option>20:30</option>  <option>21:00</option>  <option  >21:30</option>  <option>22:00</option>  <option>22:30</option><option>23:00</option><option>23:30</option>               
+                                
+                                
+                                                    </select>
+                                                </div>
+                                            </td>
+                                            <td *ngIf="_Wednesday_WrHr">
+                                                <div class="col-sm-12 col-md-9">
+                                                    <select class="custom-select custom-select-sm mb-1" name="wednesdayCloseTime" #wednesdayCloseTime (change)="TestDropHr(wednesdayCloseTime)" required>
+                                                        <option selected value="00">Fechado</option>
+                                                        <option  >00:00</option>  <option>00:30</option>  <option  >01:00</option>  <option  >01:30</option>  <option>02:00</option> <option> 02:30</option>  <option>03:00</option> <option> 03:30</option> 
+                                                        <option  >04:00</option>  <option>04:30</option>  <option>05:00</option>  <option  >05:30</option>  <option>06:00</option>  <option>06:30</option><option>07:00</option><option>07:30</option>               
+                                                        <option  >08:00</option>  <option>08:30</option>  <option>09:00</option>  <option  >09:30</option>  <option>10:00</option>  <option>10:30</option><option>11:00</option><option>11:30</option>               
+                                                        <option  >12:00</option>  <option>12:30</option>  <option>13:00</option>  <option  >13:30</option>  <option>14:00</option>  <option>14:30</option><option>15:00</option><option>15:30</option>               
+                                                        <option  >16:00</option>  <option>16:30</option>  <option>17:00</option>  <option  >17:30</option>  <option>18:00</option>  <option>18:30</option><option>19:00</option><option>19:30</option>               
+                                                        <option  >20:00</option>  <option>20:30</option>  <option>21:00</option>  <option  >21:30</option>  <option>22:00</option>  <option>22:30</option><option>23:00</option><option>23:30</option>               
+                                
+                                
+                                                    </select>
+                                                </div>
+                                            </td>
+                                        </tr>
+                            
+                            <!-- THursday -->
+                            <tr>
+                                <td>
+                                    <div class="custom-control custom-switch">
+                                    <input class="custom-control-input" type="checkbox"  #thursdayWhr
+                                    [checked]="_Thursday_WrHr"  [ngModel]="_Thursday_WrHr" (change)="onOpenDay(thursdayWhr)"
+                                    name="thursdayWrHr" id="openThursday">
+                                    <label class="custom-control-label" for="openThursday">Quinta-Feira</label>
+                                </div>
+                                </td>
+                                <td *ngIf="_Thursday_WrHr">
+                                    <div class="col-sm-12 col-md-9">
+                                        <select class="custom-select custom-select-sm mb-1" name="thursdayOpenTime" #thursdayOpenTime (change)="TestDropHr(thursdayOpenTime)"  required>
+                                            <option selected value="00">Fechado</option>
+                                            <option  >00:00</option>  <option>00:30</option>  <option  >01:00</option>  <option  >01:30</option>  <option>02:00</option> <option> 02:30</option>  <option>03:00</option> <option> 03:30</option> 
+                                            <option  >04:00</option>  <option>04:30</option>  <option>05:00</option>  <option  >05:30</option>  <option>06:00</option>  <option>06:30</option><option>07:00</option><option>07:30</option>               
+                                            <option >08:00</option>  <option >08:30</option>  <option>09:00</option>  <option  >09:30</option>  <option>10:00</option>  <option>10:30</option><option>11:00</option><option>11:30</option>               
+                                            <option  >12:00</option>  <option>12:30</option>  <option>13:00</option>  <option  >13:30</option>  <option>14:00</option>  <option>14:30</option><option>15:00</option><option>15:30</option>               
+                                            <option  >16:00</option>  <option>16:30</option>  <option>17:00</option>  <option  >17:30</option>  <option>18:00</option>  <option>18:30</option><option>19:00</option><option>19:30</option>               
+                                            <option  >20:00</option>  <option>20:30</option>  <option>21:00</option>  <option  >21:30</option>  <option>22:00</option>  <option>22:30</option><option>23:00</option><option>23:30</option>               
+                    
+                    
+                                        </select>
+                                    </div>
+                                </td>
+                                <td *ngIf="_Thursday_WrHr">
+                                    <div class="col-sm-12 col-md-9">
+                                        <select class="custom-select custom-select-sm mb-1" name="thursdayCloseTime" #thursdayCloseTime (change)="TestDropHr(thursdayCloseTime)" required>
+                                            <option selected value="00">Fechado</option>
+                                            <option  >00:00</option>  <option>00:30</option>  <option  >01:00</option>  <option  >01:30</option>  <option>02:00</option> <option> 02:30</option>  <option>03:00</option> <option> 03:30</option> 
+                                            <option  >04:00</option>  <option>04:30</option>  <option>05:00</option>  <option  >05:30</option>  <option>06:00</option>  <option>06:30</option><option>07:00</option><option>07:30</option>               
+                                            <option  >08:00</option>  <option>08:30</option>  <option>09:00</option>  <option  >09:30</option>  <option>10:00</option>  <option>10:30</option><option>11:00</option><option>11:30</option>               
+                                            <option  >12:00</option>  <option>12:30</option>  <option>13:00</option>  <option  >13:30</option>  <option>14:00</option>  <option>14:30</option><option>15:00</option><option>15:30</option>               
+                                            <option  >16:00</option>  <option>16:30</option>  <option>17:00</option>  <option  >17:30</option>  <option>18:00</option>  <option>18:30</option><option>19:00</option><option>19:30</option>               
+                                            <option  >20:00</option>  <option>20:30</option>  <option>21:00</option>  <option  >21:30</option>  <option>22:00</option>  <option>22:30</option><option>23:00</option><option>23:30</option>               
+                    
+                    
+                                        </select>
+                                    </div>
+                                </td>
+                            </tr>
+                            
+                            <!-- FRIDAY  -->
+                            <tr> 
+                                <td>
+                                    <div class="custom-control custom-switch">
+                                    <input class="custom-control-input" type="checkbox"   #fridyWhr
+                                    [checked]="_Friday_WrHr"  [ngModel]="_Friday_WrHr" (change)="onOpenDay(fridyWhr)"
+                                    name="fridayWrHr" id="openFriday">
+                                    <label class="custom-control-label" for="openFriday">Sexta-Feira</label>
+                                    </div>
+                                </td>
+                                <td *ngIf="_Friday_WrHr">
+                                    <div class="col-sm-12 col-md-9">
+                                        <select class="custom-select custom-select-sm mb-1" name="fridayOpenTime" #fridayOpenTime  (change)="TestDropHr(fridayOpenTime)" >
+                                            <option selected value="00">Fechado</option>
+                                            <option  >00:00</option>  <option>00:30</option>  <option  >01:00</option>  <option  >01:30</option>  <option>02:00</option> <option> 02:30</option>  <option>03:00</option> <option> 03:30</option> 
+                                            <option  >04:00</option>  <option>04:30</option>  <option>05:00</option>  <option  >05:30</option>  <option>06:00</option>  <option>06:30</option><option>07:00</option><option>07:30</option>               
+                                            <option >08:00</option>  <option >08:30</option>  <option>09:00</option>  <option  >09:30</option>  <option>10:00</option>  <option>10:30</option><option>11:00</option><option>11:30</option>               
+                                            <option  >12:00</option>  <option>12:30</option>  <option>13:00</option>  <option  >13:30</option>  <option>14:00</option>  <option>14:30</option><option>15:00</option><option>15:30</option>               
+                                            <option  >16:00</option>  <option>16:30</option>  <option>17:00</option>  <option  >17:30</option>  <option>18:00</option>  <option>18:30</option><option>19:00</option><option>19:30</option>               
+                                            <option  >20:00</option>  <option>20:30</option>  <option>21:00</option>  <option  >21:30</option>  <option>22:00</option>  <option>22:30</option><option>23:00</option><option>23:30</option>               
+                    
+                    
+                                        </select>
+                                    </div>
+                                </td>
+                                <td *ngIf="_Friday_WrHr">
+                                    <div class="col-sm-12 col-md-9">
+                                        <select class="custom-select custom-select-sm mb-1" name="fridayCloseTime" #fridayCloseTime  (change)="TestDropHr(fridayCloseTime)" >
+                                            <option selected value="00">Fechado</option>
+                                            <option  >00:00</option>  <option>00:30</option>  <option  >01:00</option>  <option  >01:30</option>  <option>02:00</option> <option> 02:30</option>  <option>03:00</option> <option> 03:30</option> 
+                                            <option  >04:00</option>  <option>04:30</option>  <option>05:00</option>  <option  >05:30</option>  <option>06:00</option>  <option>06:30</option><option>07:00</option><option>07:30</option>               
+                                            <option  >08:00</option>  <option>08:30</option>  <option>09:00</option>  <option  >09:30</option>  <option>10:00</option>  <option>10:30</option><option>11:00</option><option>11:30</option>               
+                                            <option  >12:00</option>  <option>12:30</option>  <option>13:00</option>  <option  >13:30</option>  <option>14:00</option>  <option>14:30</option><option>15:00</option><option>15:30</option>               
+                                            <option  >16:00</option>  <option>16:30</option>  <option>17:00</option>  <option  >17:30</option>  <option>18:00</option>  <option>18:30</option><option>19:00</option><option>19:30</option>               
+                                            <option  >20:00</option>  <option>20:30</option>  <option>21:00</option>  <option  >21:30</option>  <option>22:00</option>  <option>22:30</option><option>23:00</option><option>23:30</option>               
+                    
+                    
+                                        </select>
+                                    </div>
+                                </td>
+                                </tr>
+                            
+                            <!-- SATURDAY -->
+                                <tr>
+                                    <td>
+                                        <div class="custom-control custom-switch">
+                                        <input class="custom-control-input" type="checkbox"  #saturdayWhr
+                                        [checked]="_Saturday_WrHr"  [ngModel]="_Saturday_WrHr" (change)="onOpenDay(saturdayWhr)"
+                                        name="satudayWrHr" id="openSaturday">
+                                        <label class="custom-control-label" for="openSaturday">Sábado</label>
+                                        </div>
+                                    </td>
+                                        <td *ngIf="_Saturday_WrHr">
+                                            <div class="col-sm-12 col-md-9">
+                                                <select class="custom-select custom-select-sm mb-1" name="saturdayOpenTime" #saturdayOpenTime (change)="TestDropHr(saturdayOpenTime)" >
+                                                    <option selected value="00">Fechado</option>
+                                                    <option  >00:00</option>  <option>00:30</option>  <option  >01:00</option>  <option  >01:30</option>  <option>02:00</option> <option> 02:30</option>  <option>03:00</option> <option> 03:30</option> 
+                                                    <option  >04:00</option>  <option>04:30</option>  <option>05:00</option>  <option  >05:30</option>  <option>06:00</option>  <option>06:30</option><option>07:00</option><option>07:30</option>               
+                                                    <option >08:00</option>  <option >08:30</option>  <option>09:00</option>  <option  >09:30</option>  <option>10:00</option>  <option>10:30</option><option>11:00</option><option>11:30</option>               
+                                                    <option  >12:00</option>  <option>12:30</option>  <option>13:00</option>  <option  >13:30</option>  <option>14:00</option>  <option>14:30</option><option>15:00</option><option>15:30</option>               
+                                                    <option  >16:00</option>  <option>16:30</option>  <option>17:00</option>  <option  >17:30</option>  <option>18:00</option>  <option>18:30</option><option>19:00</option><option>19:30</option>               
+                                                    <option  >20:00</option>  <option>20:30</option>  <option>21:00</option>  <option  >21:30</option>  <option>22:00</option>  <option>22:30</option><option>23:00</option><option>23:30</option>               
+                            
+                            
+                                                </select>
+                                            </div>
+                                        </td>
+                                        <td *ngIf="_Saturday_WrHr">
+                                            <div class="col-sm-12 col-md-9">
+                                                <select class="custom-select custom-select-sm mb-1" name="saturdayCloseTime" #saturdayCloseTime (change)="TestDropHr(saturdayCloseTime)" >
+                                                    <option selected  value="00">Fechado</option>
+                                                    <option  >00:00</option>  <option>00:30</option>  <option  >01:00</option>  <option  >01:30</option>  <option>02:00</option> <option> 02:30</option>  <option>03:00</option> <option> 03:30</option> 
+                                                    <option  >04:00</option>  <option>04:30</option>  <option>05:00</option>  <option  >05:30</option>  <option>06:00</option>  <option>06:30</option><option>07:00</option><option>07:30</option>               
+                                                    <option  >08:00</option>  <option>08:30</option>  <option>09:00</option>  <option  >09:30</option>  <option>10:00</option>  <option>10:30</option><option>11:00</option><option>11:30</option>               
+                                                    <option  >12:00</option>  <option>12:30</option>  <option>13:00</option>  <option  >13:30</option>  <option>14:00</option>  <option>14:30</option><option>15:00</option><option>15:30</option>               
+                                                    <option  >16:00</option>  <option>16:30</option>  <option>17:00</option>  <option  >17:30</option>  <option>18:00</option>  <option>18:30</option><option>19:00</option><option>19:30</option>               
+                                                    <option  >20:00</option>  <option>20:30</option>  <option>21:00</option>  <option  >21:30</option>  <option>22:00</option>  <option>22:30</option><option>23:00</option><option>23:30</option>               
+                            
+                            
+                                                </select>
+                                            </div>
+                                        </td>
+                                    </tr>
+                            
+                            <!-- SUNDAY -->
+                                <tr>
+                                    <td>
+                                        <div class="custom-control custom-switch">
+                                        <input class="custom-control-input" type="checkbox"  #sundayWhr
+                                        [checked]="_Sunday_WrHr"  [ngModel]="_Sunday_WrHr" (change)="onOpenDay(sundayWhr)"
+                                        name="sundayWrHr" id="openSunday">
+                                        <label class="custom-control-label" for="openSunday">Domingo</label>
+                                        </div>
+                                    </td>
+                                        <td *ngIf="_Sunday_WrHr">
+                                            <div class="col-sm-12 col-md-9">
+                                                <select class="custom-select custom-select-sm mb-1" name="domingoOpenTime" #domingoOpenTime (change)="TestDropHr(domingoOpenTime)"  >
+                                                    <option selected value="00">Fechado</option>
+                                                    <option  >00:00</option>  <option>00:30</option>  <option  >01:00</option>  <option  >01:30</option>  <option>02:00</option> <option> 02:30</option>  <option>03:00</option> <option> 03:30</option> 
+                                                    <option  >04:00</option>  <option>04:30</option>  <option>05:00</option>  <option  >05:30</option>  <option>06:00</option>  <option>06:30</option><option>07:00</option><option>07:30</option>               
+                                                    <option >08:00</option>  <option >08:30</option>  <option>09:00</option>  <option  >09:30</option>  <option>10:00</option>  <option>10:30</option><option>11:00</option><option>11:30</option>               
+                                                    <option  >12:00</option>  <option>12:30</option>  <option>13:00</option>  <option  >13:30</option>  <option>14:00</option>  <option>14:30</option><option>15:00</option><option>15:30</option>               
+                                                    <option  >16:00</option>  <option>16:30</option>  <option>17:00</option>  <option  >17:30</option>  <option>18:00</option>  <option>18:30</option><option>19:00</option><option>19:30</option>               
+                                                    <option  >20:00</option>  <option>20:30</option>  <option>21:00</option>  <option  >21:30</option>  <option>22:00</option>  <option>22:30</option><option>23:00</option><option>23:30</option>               
+                            
+                            
+                                                </select>
+                                            </div>
+                                        </td>
+                                        <td *ngIf="_Sunday_WrHr">
+                                            <div class="col-sm-12 col-md-9">
+                                                <select class="custom-select custom-select-sm mb-1" name="domingoCloseTime" #domingoCloseTime (change)="TestDropHr(domingoCloseTime)" >
+                                                    <option selected value="00">Fechado</option>
+                                                    <option  >00:00</option>  <option>00:30</option>  <option  >01:00</option>  <option  >01:30</option>  <option>02:00</option> <option> 02:30</option>  <option>03:00</option> <option> 03:30</option> 
+                                                    <option  >04:00</option>  <option>04:30</option>  <option>05:00</option>  <option  >05:30</option>  <option>06:00</option>  <option>06:30</option><option>07:00</option><option>07:30</option>               
+                                                    <option  >08:00</option>  <option>08:30</option>  <option>09:00</option>  <option  >09:30</option>  <option>10:00</option>  <option>10:30</option><option>11:00</option><option>11:30</option>               
+                                                    <option >12:00</option>  <option>12:30</option>  <option>13:00</option>  <option  >13:30</option>  <option>14:00</option>  <option>14:30</option><option>15:00</option><option>15:30</option>               
+                                                    <option  >16:00</option>  <option>16:30</option>  <option>17:00</option>  <option  >17:30</option>  <option>18:00</option>  <option>18:30</option><option>19:00</option><option>19:30</option>               
+                                                    <option  >20:00</option>  <option>20:30</option>  <option>21:00</option>  <option  >21:30</option>  <option>22:00</option>  <option>22:30</option><option>23:00</option><option>23:30</option>               
+                            
+                            
+                                                </select>
+                                            </div>
+                                        </td>                    
+                                    </tr>
+                            
+                            </tbody>
+                        </table>
+                    </div>
+
+                    
+                    <div class="row justify-content-end pr-3 mb-4 mr-3 action-div  ">
+                        
+                        <button type="submit" class="btn btn-success">Actualizar Dados</button>                    
+                    </div>
+                </form>
+            </div>
+
+            </div>
+
+            <app-toaster-container></app-toaster-container>
+
     </div>
+
     
 </body>

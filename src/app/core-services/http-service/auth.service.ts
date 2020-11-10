@@ -18,7 +18,7 @@ interface AuthResponseData{
 interface iTokenStructure{
   token_type:string;
   expires_in:number;
-  _access_token:string;
+  access_token:string;
   refresh_token:string;
 }
 
@@ -131,8 +131,13 @@ export class AuthService {
   signOut(){
     this.companyDataSubj.next(null);
     this.tokenDataSubj.next(null);
+     
+    
+    localStorage.clear();
+    
 
     this.router.navigate(['/business']);
+
     
   }
 
@@ -147,9 +152,10 @@ export class AuthService {
     const Company  = new CompanyData(companyDetails.id,companyDetails.designacao,companyDetails.referencia,
                               companyDetails.website,companyDetails.user_id,companyDetails.localizacao_id,
                               companyDetails.logo,companyDetails.categoria_id,companyDetails.tipo_id,
-                              companyDetails.telephone,companyDetails.description);
+                              companyDetails.telefone,companyDetails.description,companyDetails.email,companyDetails.telefone_2);
 
-
+    
+                              console.log("Access token ",tokenDetails.access_token);
 
     /**
      * Create a new expiration date that will be handled in the application 
@@ -157,17 +163,17 @@ export class AuthService {
     const expirationDate = new Date(new Date().getTime() + tokenDetails.expires_in * 10000); 
     
     
-    this.storedValues.userToken = tokenDetails._access_token;
+    this.storedValues.userToken = tokenDetails.access_token;
 
     /**
      * Handle the token information that comes with the resonse of the data that you are currenty receinving from the server. 
      * */ 
-    const Token = new TokenData(tokenDetails.token_type,expirationDate,tokenDetails._access_token,tokenDetails.refresh_token);                           
+    const Token = new TokenData(tokenDetails.token_type,expirationDate,tokenDetails.access_token,tokenDetails.refresh_token);                           
 
     this.companyDataSubj.next(Company);
     this.tokenDataSubj.next(Token);
 
-    this.storedValues.userToken = tokenDetails._access_token;
+    this.storedValues.userToken = tokenDetails.access_token;
     this.storedValues.userId = companyDetails.id;
 
     localStorage.setItem(this.localStorageCompany,JSON.stringify(Company));
@@ -186,7 +192,7 @@ export class AuthService {
       
     
 
-    this.storedValues.userToken = tokenData._access_token;
+    this.storedValues.userToken = tokenData.access_token;
     this.storedValues.userId = companyData.id;
       
      if(!companyData || !tokenData)
@@ -195,18 +201,18 @@ export class AuthService {
      }
 
       const loadedCompany = new CompanyData(companyData.id,companyData.designacao,companyData.referencia,companyData.website,companyData.user_id
-          ,companyData.localizacao_id,companyData.logo,companyData.categoria_id,companyData.tipo_id,companyData.telephone,companyData.description);
+          ,companyData.localizacao_id,companyData.logo,companyData.categoria_id,companyData.tipo_id,companyData.telefone,companyData.description,companyData.email,companyData.telefone_2);
 
           const expirationDate = new Date(new Date().getTime() + tokenData.expires_in * 10000);      
 
-          const loadedToken = new TokenData(tokenData.token_type,expirationDate,tokenData._access_token,tokenData.refresh_token);
+          const loadedToken = new TokenData(tokenData.token_type,expirationDate,tokenData.access_token,tokenData.refresh_token);
   
        
 
       if(companyData.id)
       {
        
-        this.storedValues.userToken = tokenData._access_token;
+        this.storedValues.userToken = tokenData.access_token;
         this.companyDataSubj.next(loadedCompany);
         this.tokenDataSubj.next(loadedToken);
             // this.router.navigate(['/business-dashboard']);

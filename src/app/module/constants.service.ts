@@ -41,16 +41,16 @@ export class STOREDCONSTANTS{
         return this.resourceURL;
     }
    
-    // getTokenData()
-    //   {
+    getTokenData()
+      {
     
-    //     const tokenData:any= JSON.parse(localStorage.getItem("tokenData"));
-    //     const expirationDate = new Date(new Date().getTime() + tokenData.expires_in * 10000);   
+        const tokenData:any= JSON.parse(localStorage.getItem("tokenData"));
+        const expirationDate = new Date(new Date().getTime() + tokenData.expires_in * 10000);   
 
-    //     // setToken = new TokenData(tokenData.token_type,expirationDate,tokenData.access_token,tokenData.refresh_token);
+        this.setToken = new TokenData(tokenData.token_type,expirationDate,tokenData.access_token,tokenData.refresh_token);
 
-        
-     
-    //   }
+        return this.setToken._access_token;
+         
+      }
 
 }

@@ -1,3 +1,4 @@
+import { ToasterComponent } from './sections/toast/toaster/toaster.component';
 
 import { CategoryService } from './core-services/http-service/category-service.service';
 import { AppRoutingModule } from './app-routing/app-routing.module';
@@ -36,6 +37,8 @@ import { AddNewServiceComponent } from './components/business-user/add-new-servi
 
 import { SinglePostComponent } from './sections/single-post/single-post.component';
 import { BusinessProfileComponent } from './pages/business-user/business-profile/business-profile.component';
+import { ToasterContainerComponent } from './sections/toast/toaster-container/toaster-container.component';
+
 
  
 
@@ -68,6 +71,9 @@ import { BusinessProfileComponent } from './pages/business-user/business-profile
     SinglePostComponent,
     
     BusinessProfileComponent,
+    
+    ToasterContainerComponent,
+    ToasterComponent,
   
  
   ],

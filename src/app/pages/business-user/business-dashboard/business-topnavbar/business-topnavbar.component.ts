@@ -15,7 +15,7 @@ import { Route } from '@angular/compiler/src/core';
 export class BusinessTopnavbarComponent implements OnInit, OnDestroy {
 
   isAuthenticated = false;
-
+  imgSRC:string ="https://i.pinimg.com/236x/ab/5a/73/ab5a738539e17fb0b4adb350a11f39f6--logo-design-contest-media-marketing.jpg";
   companyData:CompanyData;
   tokenData:TokenData;
 
@@ -37,14 +37,13 @@ export class BusinessTopnavbarComponent implements OnInit, OnDestroy {
     this.userSub = this.authService.companyDataSubj.subscribe((company:CompanyData)=>{
 
       this.isAuthenticated = !company ? false : true;
-      
     
-
-      
       
       if(this.isAuthenticated)
       {
         this.companyData = company;
+        this.imgSRC =this.storeValues.getBASEURL()+"storage/provided/empresa/"+this.companyData.id+"/logo/"+this.companyData.logo;
+        console.log(this.imgSRC);
       }
       else{
         this.router.navigate(['/business']);
@@ -58,6 +57,11 @@ export class BusinessTopnavbarComponent implements OnInit, OnDestroy {
     
     });
 
+  }
+  signOut()
+  {
+    
+    this.authService.signOut();
   }
 
   onLogOut()
