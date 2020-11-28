@@ -1,0 +1,167 @@
+
+
+<div class="px-4 pt-3 bg-color-very-light-purple rounded">
+
+    <h3> Adicionar Produto</h3>
+    
+    <form #addNewToMyProdutoForm="ngForm" (ngSubmit)="onAddToMyProduto(addNewToMyProdutoForm)">
+    <div class="row justify-content-between">
+        <div class="col-sm-8">
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                  <input type="text" class="form-control form-control-sm border-0 border-bottom" id="inputEmail4" placeholder="Insira Designação do Produto"
+                        name="businesscategoria" [class.is-invalid]="searchingFailed"
+                        [ngbTypeahead]="productSearch"
+                        [(ngModel)]="selectedProduct"
+                        [resultFormatter]="resultformatter"    
+                        [inputFormatter]="resultformatter"  
+                        [editable]='false'   
+                       (selectItem)='userSelectedProduct($event)'
+                       placeholder="Insira nome da categoria" 
+                  >
+                </div>
+                <div class="form-group col-md-6">
+                    <select class="custom-select custom-select-sm mb-3 border-0 " (change)="onCategoriaChange($event)" name="creatCategoria" ngModel >
+                        <option selected value="reset">Selecione Categoria</option>
+                        <option value="{{category.id}}"  *ngFor="let category of listOf_Categories">{{category.designacao}}</option>
+                    </select>
+                  </div>
+              </div>
+             
+        </div>
+        <div class="col-sm-3 float-right">
+            <button class="btn btn-sm btn-success" (click)="openCreateService_or_Product(contentCreateService)" >Criar novo Produto</button>
+        </div>
+    </div>
+    
+    <hr class="mt-md-n2 dashed">
+
+    <div class="alert alert-warning" role="alert"> 
+          <span class="font-weight-bold">Atenção: </span> O Produto que você está criando será adicionado aos Produtos da sua empresa 
+    </div>
+
+    
+
+    <div class="row justify-content-center">
+        <!-- <div class="col-sm-12 col-md-2">
+        </div> -->
+        
+        <div class="col-sm-12 col-md-10 ">
+            <div class="form-row">
+
+                <div class="col-md-6">
+                    <div class="form-group ">
+                        <label for="inputEmail4">Designação do Produto</label>
+                        <input type="text" class="form-control form-control-sm border-0 " id="inputEmail4" disable value="{{selectedProductName}}" required>
+                      </div>
+
+                    <div class="form-group">
+                        <label for="inputPassword4">Descrição do Produto</label>
+                        <textarea class="form-control form-control-sm border-0" id="exampleFormControlTextarea1" rows="3" required ngModel name="prod_descript"></textarea>
+                      </div>
+                    
+                  
+                    <div class="form-group ">
+                        <label for="inputPrice">Preço</label>
+                        <input type="number" min="1" class="form-control form-control-sm border-0" id="inputPrice" ngModel name="prod_Price">
+                     </div>
+                   
+                     <div class="custom-control custom-switch col ml-1 mt-2">
+                        <input class="custom-control-input" type="checkbox" 
+                        [checked]="priceDisplay"  [ngModel]="priceDisplay" (change)="onDisplayPrice(priceDisplay)"
+                        name="productPriceAvailable" id="customPriceAval">
+                        <label class="custom-control-label" for="customPriceAval"> {{productPrice_availability}} preço nas pesquisas</label>
+                      </div>
+
+                </div>
+                <div class="col-md-6 ">
+                    <div class="form-group px-4">
+                        <label for="inputEmail4">Stock do Produto</label>
+                    <input type="number" class="form-control form-control-sm border-0 " id="inputEmail4" name="prod_Stock" disable required ngModel>
+                      </div>
+                    <div class="col-md-12 col-lg-12">
+                        <input type="file" class="form-control" hidden #uploader (change)="uploadImage($event)" name="businessLogo" />
+                        <img [src]="imgURL" class="img-fluid imageUpload" (click)="uploader.click()">
+                        <small class="text-color-main-purple  ">Click para adicionar foto do Produto</small>
+                    </div>
+                    <div class="custom-control custom-switch col ml-4 mt-2">
+                        <input class="custom-control-input" type="checkbox" 
+                        [checked]="produtoAvailable"  [ngModel]="produtoAvailable" (change)="onAvailabilityChange(produtoAvailable)"
+                        name="produtoAvailable" id="customCheck1">
+                        <label class="custom-control-label" for="customCheck1">Produto {{availability}}</label>
+                      </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row justify-content-end">
+        <button type="submit" class="btn btn-success mr-2 mt-2">Adicionar Produto</button>
+    </div>
+    <br>
+    </form>
+</div>
+
+
+
+<ng-template #contentCreateService let-modal class="rounded-0 ">
+
+    <form #createNewProductForm="ngForm" (ngSubmit)="onCreateProduct(createNewProductForm)" >
+   
+
+    <div class="col-sm-12 bg-color-very-light-purple">
+
+        <div class="col-sm-12 p-4">
+            <h4>Criar Produto</h4>
+            <div class="row">
+                <div class="col-sm-6   styled-select">
+                    <select class="custom-select custom-select-sm mb-3" (change)="onCategoriaChange($event)" name="creatCategoria" ngModel >
+                        <option selected value="reset">Selecione Categoria</option>
+                        <option value="{{category.id}}"  *ngFor="let category of listOf_Categories">{{category.designacao}}</option>
+                    </select>
+                        <!-- <input id="typeahead-basic" type="text" class="form-control form-control-sm"  name="businesscategoria" [class.is-invalid]="searchingFailed"
+                        [ngbTypeahead]="categoriaSearch"
+                        [(ngModel)]="selectedCategoria"
+                        [resultFormatter]="resultformatter"    
+                        [inputFormatter]="resultformatter"  
+                        [editable]='false'   
+                       (selectItem)='userSelectedCategoria($event)'
+                       placeholder="Insira nome da categoria"                                      
+                       />
+                       <small *ngIf="searching" class="form-text text-muted">a pesquisar...</small>
+                       <div class="invalid-feedback" *ngIf="searchingFailed">Desculpa, as suggestões não encontradas.</div> -->
+                        <!-- <option value="{{categoria.id}}" *ngFor="let categoria of listOf_Categories">{{categoria.designacao}}</option> -->
+                        
+                    
+                </div>
+
+                <div class="col-sm-6   styled-select">
+                    <select class="custom-select custom-select-sm mb-3"  name="creatType" ngModel>
+                        <option selected value="reset">Selecione Tipo</option>
+                        <option value="{{type.id}}" *ngFor="let type of listOfProd_Types">{{type.designacao}}</option>
+                        
+                    </select>
+                </div>
+                <div class="form-group col-12">
+                    <label for="inputPassword4">Nome do Produto</label>
+                    <input type="text" class="form-control form-control-sm border-0" id="inputPassword4" placeholder="Insira a designação do Produto para adicionar" ngModel name="prodName">
+                </div>
+
+                
+                <hr class="col-sm-10">               
+            </div>
+            <div class="row justify-content-end">
+                <label class="mx-4 text-success">{{productCreated}}</label>
+                <button class="btn btn-success btn-sm ml-1" type="submit">Criar Produto</button>
+            </div>
+
+        </div>
+
+    </div>
+    </form>
+   
+  </ng-template>
+
+
+

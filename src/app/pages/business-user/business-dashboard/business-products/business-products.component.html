@@ -1,0 +1,192 @@
+<body>
+    <app-business-topnavbar></app-business-topnavbar>
+
+    <ng-sidebar-container>
+     
+        <ng-sidebar [(opened)]="_opened" 
+        [(dock)]="_docked"
+        [mode]="_Mode">
+             
+    
+             <app-sidebar></app-sidebar>
+            
+           
+        </ng-sidebar>
+        
+        <div ng-sidebar-content class="pt-1">
+            <div class="row mt-2">
+                <div class="col-6 pl-4 ">
+                  <button class="left-menu btn btn-light border-0 bg-menu" (click)="_toggleSidebar()"><i class="fas fa-bars fa-lg text-dark"></i> </button>
+                </div>
+                <div class="col-6">
+                   <span class="  mr-md-n3 mt-2"><i class="  text-success float-right mt-2 fas fa-lg" (click)="_toggleRightbar()" [ngClass]="{' fa-caret-square-right': _rightBarOpened === true,
+                                                                                                                                    ' fa-caret-square-left ': !_rightBarOpened}"></i></span>
+                </div> 
+             </div>
+             
+             <!-- Contetnt of the page  -->
+            <div class="col-12">
+                <h4 class="col-12"> Gerencia de Produtos</h4>
+                <div class="row ml-4 mt-2 justify-content-between px-4">
+                    <div class="col-sm-6"><h6>Produtos <span> {{productCount}}</span> </h6>  </div>
+                    <div class="col-sm-3"> <p> <span>{{selectedCategoria}}</span><i class="fas fa-angle-right fa-lg mt-1 mx-2"></i><span>{{selectedTipo}}</span> </p></div>
+                    
+                </div>
+                <hr class="col-11 dashed">
+                <div class="col sm-12 col-md-12">
+
+                    <div class="row justify-content-end ml-3">
+                        <div class="col-sm-6 col-md-3">
+                            <!-- <input type="text" class="form-control" placeholder="First name"> -->
+                          </div>
+                          <div class="col-sm-6 col-md-3 styled-select">
+                            <select class="custom-select custom-select mb-1" (change)="onCategoriaChange($event)">
+                                <option selected value="reset">Selecione Categoria</option>
+                                <option value="{{categoria.id}}" *ngFor="let categoria of productCategoria">{{categoria.designacao}}</option>
+                                
+                              </select>
+                          </div>
+                          <div class="col-sm-6 col-md-3 styled-select">
+                            <select class="custom-select custom-select mb-3"  (change)="onTipoChange($event)">
+                                <option selected value="reset">Selecione Tipo</option>
+                                <option value="{{tipo.id}}" *ngFor="let tipo of productTipo">{{tipo.designacao}}</option>
+                              </select>
+                          </div> 
+                          <div class="col-sm-6 col-md-3">
+                           <button class="btn btn-success" (click)="onAddProduct()" *ngIf="!isLoadingCategoria">Adicionar Produto</button>
+                          </div>
+                    </div>
+                </div>
+                <div class="col-sm-11">
+                    <table class="table table-hover bg-white">
+                        <thead >
+                        <tr class="py-5 text-success">
+                          
+                          <th scope="col">Nome do Produto</th>
+                          <th scope="col">Preço</th>
+                          <th scope="col">Stock</th>
+                          <th scope="col">Estado</th>
+                          <th scope="col">Categoria</th>
+                          <th scope="col">Ações</th>
+                        </tr>
+                        </thead>
+                         
+                        <tbody *ngIf="!isLoadingProdutos">
+                        <tr *ngFor="let product of listOfProducts; index as i">
+                           
+                          <td>
+                            {{ product.designacao }}
+                          </td>
+                          <td>{{ product.preco | number}} akz</td>
+                          <td>{{ product.stock | number }}</td>
+                          <td> 
+                               <span *ngIf="product.estado === 'true'"><i class="fas fa-circle text-success"></i> Disponivel</span> 
+                                <span *ngIf="product.estado === 'false'"><i class="fas fa-circle text-danger"></i> Indisponivel</span> 
+                          </td>
+                          <td>{{ product.categoria }}</td>
+                          <td class="text-grey"><span class="text-grey"><i class="txt-grey fas fa-trash" (click)="onDeleteProduct(product.designacao,product.id)"></i></span>&nbsp; &nbsp;&nbsp; <span><i class="txt-grey fas fa-pen" (click)="onEditProduct(contentEditProduct,product)"></i></span></td>
+
+                        </tr>
+                        </tbody>
+                      </table>
+                      <div class="col-sm-2 justify-content-center mx-auto" *ngIf="isLoadingProdutos">
+                        <app-data-loading></app-data-loading>
+                      </div>
+                </div>
+                
+     
+            </div>
+        </div>
+        <ng-sidebar [(opened)]="_rightBarOpened" 
+    position="right"
+    [(dock)]="_docked"
+    [mode]="_Mode"
+    class="right-sidebar"
+    >
+         
+
+        <app-rightsidebar>
+
+        </app-rightsidebar>
+        
+       
+    </ng-sidebar>
+    </ng-sidebar-container>
+</body>
+
+
+
+
+<ng-template #contentEditProduct let-modal class="rounded-0 px-4 bg-color-very-light-purple">
+
+  <div class="bg-color-very-light-purple">
+
+  <div class="col-sm-10 mt-3"><h3> Atualizar Produto</h3></div>
+
+  <form #updateProductForm="ngForm" (ngSubmit)="onUpdateProduct(updateProductForm)" >
+
+  <div class="row justify-content-center">
+    <!-- <div class="col-sm-12 col-md-2">
+    </div> -->
+    
+    <div class="col-sm-12 col-md-10 ">
+        <div class="form-row">
+
+            <div class="col-md-6">
+                <div class="form-group ">
+                    <label for="inputEmail4">Editando Produto - {{producttoEdit.designacao}}</label>
+                     
+                  </div>
+
+                <div class="form-group">
+                    <label for="inputPassword4">Descrição do Produto</label>
+                    <textarea class="form-control form-control-sm border-0" id="exampleFormControlTextarea1" rows="3" required [(ngModel)]="producttoEdit.descricao" name="prod_descript" > </textarea>
+                  </div>
+                
+              
+                <div class="form-group ">
+                    <label for="inputPrice">Preço</label>
+                    <input type="number" min="1" class="form-control form-control-sm border-0" id="inputPrice" [(ngModel)]="producttoEdit.preco" name="prod_Price" >
+                 </div>
+               
+                 <div class="custom-control custom-switch col ml-1 mt-2">
+                    <input class="custom-control-input" type="checkbox" 
+                    [checked]="priceDisplay"  [ngModel]="priceDisplay" (change)="onDisplayPrice(priceDisplay)"
+                    name="productPriceAvailable" id="customPriceAval">
+                    <label class="custom-control-label" for="customPriceAval"> {{productPrice_availability}} preço nas pesquisas</label>
+                  </div>
+
+            </div>
+            <div class="col-md-6 ">
+                <div class="form-group px-4">
+                    <label for="inputEmail4">Stock do Produto</label>
+                <input type="number" class="form-control form-control-sm border-0 " id="inputEmail4" name="prod_Stock" disable required [(ngModel)]="producttoEdit.stock" >
+                  </div>
+                <div class="col-md-12 col-lg-12">
+                    <input type="file" class="form-control" hidden #uploader (change)="uploadImage($event)" name="businessLogo" />
+                    <img [src]="imgURL" class="img-fluid imageUpload" (click)="uploader.click()">
+                    <small class="text-color-main-purple  ">Click para adicionar foto do Produto</small>
+                </div>
+                <div class="custom-control custom-switch col ml-4 mt-2">
+                    <input class="custom-control-input" type="checkbox" 
+                    [checked]="productAvailable"  [ngModel]="productAvailable" (change)="onAvailabilityChange(productAvailable)"
+                    name="productAvailable" id="customCheck1">
+                    <label class="custom-control-label" for="customCheck1">Produto {{prodAvailability}}</label>
+                  </div>
+                
+            </div>
+        </div>
+        <hr>
+        <div class="row justify-content-end my-3">
+          <label class="mx-4 text-success"> </label>
+
+          <button class="btn btn-sm btn-secondary" (click)="closeModal()" >Cancelar</button>
+          <button class="btn btn-success btn-sm ml-1" type="submit">Atualizar Produto</button>
+      </div>
+    </div>
+  </div>
+
+  </form>
+
+</div>
+</ng-template>

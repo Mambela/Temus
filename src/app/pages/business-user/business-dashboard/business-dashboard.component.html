@@ -1,0 +1,153 @@
+<body>
+    
+
+
+<app-business-topnavbar></app-business-topnavbar>
+<ng-sidebar-container>
+     
+    <ng-sidebar [(opened)]="_opened" 
+    [(dock)]="_docked"
+    [mode]="_Mode">
+         
+
+         <app-sidebar></app-sidebar>
+        
+       
+    </ng-sidebar>
+
+    <div ng-sidebar-content>
+      <div class="row mt-2">
+         
+         
+
+         <div class="col-6 pl-4 ">
+            <button class="left-menu btn btn-light border-0 bg-menu" (click)="_toggleSidebar()"><i class="fas fa-bars fa-lg text-dark"></i> </button>
+         </div>
+         <div class="col-6">
+            <span class="  mr-md-n3 mt-2"><i class="  text-success float-right mt-2 fas fa-lg" (click)="_toggleRightbar()" [ngClass]="{' fa-caret-square-right': _rightBarOpened === true,
+                                                                                                                             ' fa-caret-square-left ': !_rightBarOpened}"></i></span>
+         </div> 
+      </div>
+      
+      
+      <div class="col-md-12 col-xl-11 mx-auto ml-2 mt-5 "> 
+
+         <h4 class="mb-5" *ngIf="isAuthenticated"> Ola, {{companyData.designacao}}</h4>
+               <!-- <button type="button" class="btn btn-sm btn-outline-success" (click)="_toggleSidebar()"><i class="fas fa-caret-square-left text-success"></i> </button> -->
+        <hr>
+         <div class="row mt-4">
+            <div class="col-sm-12 col-md-5 bg-white mx-auto my-4  p-3 rounded">
+               <div class="row parent-container">
+                  <div class="col-sm-8">
+                     <h5 class="card-title"> PRODUTOS </h5>
+                     <div class="col-sm-3 mt-md-n4" *ngIf="isLoading">
+                        <app-data-loading></app-data-loading>
+                      </div>
+                      <p class="content-count" *ngIf="!isLoading"> {{numberOfProducts | number}}</p>
+
+                  </div>
+                  <div class="col-sm-4">
+                     <div class="col-sm-8 float-right">
+                        <img src="../../../../assets/images/svg/dashboardIcons/colorfull/cosmetics.svg" class="img-fluid"/>
+                     </div>
+                  </div>
+                  <hr>
+                  <div class="col-sm-12 parent-child">
+                     <a class="dash-links ml-3" (click)="onAddProduct()"> Adicionar Produto</a>
+                  </div>
+               </div>
+            </div>
+
+            <div class="col-sm-12 col-md-5 bg-white mx-auto my-4  p-3 rounded">
+               <div class="row parent-container">
+                  <div class="col-sm-8">
+                     <h5 class="card-title"> SERVIÇOS </h5>
+                     <div class="col-sm-3 mt-md-n4" *ngIf="isLoading">
+                        <app-data-loading></app-data-loading>
+                      </div>
+                      <p class="content-count" *ngIf="!isLoading"> {{numberOfServices | number}}</p>
+                    
+                  </div>
+                  <div class="col-sm-4">
+                     <div class="col-sm-8 float-right">
+                        <img src="../../../../assets/images/svg/dashboardIcons/colorfull/electrical-service.svg" class="img-fluid"/>
+                     </div>
+                  </div>
+                  <hr>
+                  <div class="col-sm-12 parent-child">
+                     <a class="dash-links ml-3" (click)="onAddService()"> Adicionar Serviço</a>
+                  </div>
+               </div>
+            </div>
+
+            <div class="col-sm-12 col-md-5 bg-white mx-auto my-4  p-3 rounded">
+               <div class="row parent-container">
+                  <div class="col-sm-8">
+                     <h5 class="card-title">EVENTOS</h5>
+                     <div class="col-sm-3 mt-md-n4" *ngIf="isLoading">
+                        <app-data-loading></app-data-loading>
+                      </div>
+                      <p class="content-count" *ngIf="!isLoading"> {{numberOfEvents | number}}</p>
+
+                  </div>
+                  <div class="col-sm-4">
+                     <div class="col-sm-8 float-right">
+                        <img src="../../../../assets/images/svg/dashboardIcons/colorfull/calendar.svg" class="img-fluid"/>
+                     </div>
+                  </div>
+                  <hr>
+                  <div class="col-sm-12 parent-child">
+                     <a class="dash-links ml-3"> Adicionar Evento</a>
+                  </div>
+               </div>
+            </div>
+
+            <div class="col-sm-12 col-md-5 bg-white mx-auto my-4 p-3 rounded">
+               <div class="row parent-container">
+                  <div class="col-sm-8">
+                     <h5 class="card-title"> COMMENTÁRIOS </h5>
+                      <!-- <p class="content-count"> 350,897</p> -->
+
+                  </div>
+                  <div class="col-sm-4">
+                     <div class="col-sm-8 float-right">
+                        <img src="../../../../assets/images/svg/dashboardIcons/colorfull/comment.svg" class="img-fluid"/>
+                     </div>
+                  </div>
+                  
+                  <div class="col-sm-12 parent-child">
+                     <a class="dash-links ml-3"> Visitas ao perfil </a><br>
+                     <a class="dash-links ml-3"> Commentários e avaliações </a><br>
+                     <a class="dash-links ml-3"> Tendências </a>
+
+                     
+                  </div>
+               </div>
+            </div>
+           
+         </div>
+
+      </div>
+
+     
+   
+        
+    </div>
+
+    <ng-sidebar [(opened)]="_rightBarOpened" 
+    position="right"
+    [(dock)]="_docked"
+    [mode]="_Mode"
+    class="right-sidebar"
+    >
+         
+
+        <app-rightsidebar>
+
+        </app-rightsidebar>
+        
+       
+    </ng-sidebar>
+</ng-sidebar-container>
+
+</body>

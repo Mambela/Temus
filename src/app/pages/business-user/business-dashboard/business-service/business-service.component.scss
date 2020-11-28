@@ -1,0 +1,67 @@
+@import "../../../../../styles.scss";
+
+body{
+    min-height: 100vh;
+    height: 100%;
+    background-color: $color-lavender;
+  }
+
+.left-menu::hover{
+    cursor: pointer;
+
+}
+
+ng-sidebar-container{
+    height: 100vh;
+}
+
+::ng-deep .ng-sidebar{
+    background-color: white;
+    width: 37vh;
+    padding: 0.5em 0.5em;
+
+}
+
+::ng-deep .ng-sidebar--right{
+    width: 30vh;
+
+}
+
+// .ng-sidebar{
+    
+// }
+::ng-deep .ng-sidebar::-webkit-scrollbar{
+    display: none;
+}
+/* Hide Scrollbar for IE, Edge and FireFox */
+::ng-deep .ng-sidebar{
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+
+// hr.dashed {
+//     border-top: 3px dashed $color-normal-grey;
+//   }
+
+  .availability{
+    font-size: smaller;
+    font-family: 'Roboto',sans-serif;
+}
+
+table thead tr
+{
+    font-family: 'Roboto',sans-serif;
+}
+
+table tbody tr
+{
+    font-family: 'Roboto',sans-serif;
+    font-size: 14px;
+}
+
+table tbody :hover{
+    cursor: pointer;
+    background-color: $color-mintcream !important;
+    color: $color-main-green !important;
+}

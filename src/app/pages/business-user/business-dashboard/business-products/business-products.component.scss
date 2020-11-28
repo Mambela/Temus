@@ -1,0 +1,111 @@
+@import "../../../../../styles.scss";
+
+body{
+    min-height: 100vh;
+    height: 100%;
+    background-color: $color-lavender;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+.left-menu::hover{
+    cursor: pointer;
+
+}
+
+ng-sidebar-container{
+    height: 100vh;
+}
+
+::ng-deep .ng-sidebar{
+    background-color: white;
+    width: 37vh;
+    padding: 0.5em 0.5em;
+
+}
+
+::ng-deep .ng-sidebar--right{
+    width: 30vh;
+
+}
+
+// .ng-sidebar{
+    
+// }
+::ng-deep .ng-sidebar::-webkit-scrollbar{
+    display: none;
+}
+/* Hide Scrollbar for IE, Edge and FireFox */
+::ng-deep .ng-sidebar{
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+
+// hr.dashed {
+//     border-top: 3px dashed $color-normal-grey;
+//   }
+
+
+.isLoadingProduct{
+    background-color: #ffffff;
+    /* background-image: url("http://loadinggif.com/images/image-selection/30.gif"); */
+    background-image: url("../../../../../assets/loaders/gifs/Spinner_green.gif");
+    background-size: 25px 25px;
+    background-position:right center;
+    background-repeat: no-repeat;
+}
+.styled-select select{
+
+    font-family: 'Quicksand',sans-serif;
+    color: $color-dark-grey;
+    font-weight: 400;
+
+}
+
+.availability{
+    font-size: smaller;
+    font-family: 'Roboto',sans-serif;
+}
+
+table thead tr
+{
+    font-family: 'Roboto',sans-serif;
+}
+
+table tbody tr
+{
+    font-family: 'Roboto',sans-serif;
+    font-size: 14px;
+}
+
+table tbody  :hover{
+    cursor: pointer;
+    background-color: $color-mintcream !important;
+    color: $color-main-green !important;
+}
+
+
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width:1200px)and (max-width: 1400px) and (orientation: landscape)
+{ 
+    
+}
+
+
+@media only screen and (min-width: 1400px) {
+   
+}

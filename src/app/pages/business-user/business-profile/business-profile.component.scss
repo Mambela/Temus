@@ -1,0 +1,50 @@
+@import '../../../../styles.scss';
+
+body{
+    min-height: 100vh;
+    height: 100%;
+    background-color: $color-lavender;
+  }
+
+
+  a.active{
+      color: $color-main-purple !important;
+      font-weight: 800;
+  }
+
+  a.active .fa{
+    color: $color-main-purple !important;
+}
+
+  .active{
+      
+      background-color: whitesmoke !important;
+      border-top: none !important;
+      border-left: none !important;
+      border-bottom:1px solid lightgrey !important;
+      border-top:1px solid lightgrey !important;
+      border-right: 3px solid $color-main-purple !important;
+      
+  }
+  .profile{
+    font-family: 'Quicksand',sans-serif;
+    font-weight: 600;
+     
+  }
+
+  .profile-content
+  {
+    height: 580px;
+    position: relative;
+  }
+
+  .action-div{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+  }
+
+
+  .list-group :hover{
+    cursor: pointer;
+  }

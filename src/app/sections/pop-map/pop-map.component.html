@@ -1,0 +1,26 @@
+<div class="col-12 p-4  map-modal">
+
+    <div>
+        <h3>Selecione o seu local no mapa</h3>
+    </div>
+
+    <div class="col-md-12 col-lg-12 act-map" > 
+        <app-map></app-map>
+       
+
+    </div>
+
+    <hr class="mx-3m mx-auto">
+    <div class="row">
+        <div class="col-sm-12 col-md-8">
+            <label class="text-success" [innerHTML]="distanceMessage" name="userDistanceMsg"></label>
+        </div>
+        <div class="col-sm-12 col-md-4">
+            <button class="btn btn-sm btn-outline-success float-right" type="button" (click)="activeModal.close('Close click')"> Usar este ponto como local </button>
+        </div>
+        
+    </div>
+</div>
+    
+
+    

@@ -1,0 +1,75 @@
+<div class="container-fluid ">
+    <div class="row">
+       
+        <div class="h-25 my-2"> 
+            <div class="col-md-6  mx-auto">
+                <img [src]="imgSRC"
+                class="rounded-circle img-fluid"
+                />
+            </div>
+            
+        </div>
+ 
+        
+        <nav id="sidebarMenu" class="col-md-3 col-lg-12 d-md-block  sidebar collapse  pt-5">
+            <!-- <div class="sidebar-sticky pt-3 col-sm-12  "> -->
+                        <ul class="nav flex-column ">
+                            <li class="nav-item">
+                                <a class="nav-link" [routerLink]="['/business-dashboard']" routerLinkActive="active" >
+                                
+                                    <i class="fas fa-columns "></i>&nbsp;Painel de Controlo
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                            <a class="nav-link" [routerLink]="['/business-page']" routerLinkActive="active"  >
+                                <i class="fas fa-pager  "></i>&nbsp;Página
+                            </a>
+                            </li>
+                            <li class="nav-item">
+                            <a class="nav-link" [routerLink]="['/business-products']" routerLinkActive="active" >
+                                <span > <i class="fas fa-shopping-basket  "></i></span>&nbsp;Produtos
+                            </a>
+                            </li>
+                            <li class="nav-item">
+                            <a class="nav-link" [routerLink]="['/business-services']" routerLinkActive="active" >
+                                <span >
+                                <i class="fas fa-screwdriver   "></i>&nbsp; Serviços
+                                </span>
+                            </a>
+                            </li>
+                            <li class="nav-item">
+                            <a class="nav-link" [routerLink]="['/business-events']" routerLinkActive="active" >
+                                <span >
+                                <i class="fas fa-calendar-week   "></i>&nbsp;Eventos
+                                </span>
+                            </a>
+                            </li>
+                            <li class="nav-item">
+                            <a class="nav-link" [routerLink]="['/business-advertisement']" routerLinkActive="active" >
+                                <span >
+                                    <i class="fas fa-bullhorn "></i>&nbsp;Criar Anuncio
+                                </span>
+                              
+                            </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" [routerLink]="['/business-posts']" routerLinkActive="active" >
+                                    <span >
+                                        <i class="fas fa-sticky-note "></i>&nbsp;Postagens
+                                        </span>
+                                
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">
+                                <span data-feather="layers"></span>
+                                <i class="fas fa-photo-video "></i>&nbsp;Conteudo de midia
+                                </a>
+                            </li>
+                        </ul>
+    
+            
+            <!-- </div> -->
+        </nav>
+    </div>
+</div>
