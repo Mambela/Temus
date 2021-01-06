@@ -11,8 +11,10 @@ import { BusinessPageComponent } from './../pages/business-user/business-page/bu
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import {Routes, RouterModule}from '@angular/router'
+import {Routes, RouterModule}from '@angular/router';
 import { BusinessEventsComponent } from '../pages/business-user/business-dashboard/business-events/business-events.component';
+import { LandingPageComponent } from '../pages/start-page/landing-page/landing-page.component';
+
 
 const appRoutes: Routes=[
   {path:'business',component:BusinessPageComponent},
@@ -24,7 +26,8 @@ const appRoutes: Routes=[
   {path:'business-events',component:BusinessEventsComponent},
   {path:'business-posts',component:BusinessPostsComponent},
   {path:'business-advertisement',component:BusinessPostsComponent},
-  {path:'business-profile',component:BusinessProfileComponent}
+  {path:'business-profile',component:BusinessProfileComponent},
+  {path:'', component:LandingPageComponent}
 
 
   
