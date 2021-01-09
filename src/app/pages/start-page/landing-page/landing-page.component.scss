@@ -1,9 +1,131 @@
-.header-container header {
-    width: 100%;
-    height: 5.5rem;
+@import "src/styles.scss";
+
+$font-default: "Nunito";
+
+
+// body 
+
+.background-wallpaper {
+  width: 100%;
+  height: 100vh;
+  background-image: url("./image/fenda-da-tundavala.jpg");
+  background-size: cover;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.top {
-    display: flex;
-    justify-content: space-between;
+// header 
+
+.h-wrapper {
+  width: 100%;
+  height: 5.5rem;
+  background-color: $color-dark-purple;
+
+  .h-container {
+    .content-title {
+      .title {
+        color: white;
+        font-size: 30px;
+        font-weight: bold;
+        font-family: $font-default;
+      }
+
+      .title-point {
+        color: green;
+        font-size: 30px;
+        font-weight: bold;
+      }
+    }
+
+    .content-buttons {
+      height: 35px;
+
+      ul {
+        .h-btn-custom {
+          min-width: 10rem;
+          max-height: 3.5rem;
+          font-size: 15px;
+          font-weight: bold;
+          margin-left: 1rem;
+          border-radius: 1rem;
+          white-space: nowrap;
+        }
+      }
+    }
+  }
+}
+
+// search Bar
+.search-container {
+    width: 65%;
+    height: 4rem;
+    background-color: white;
+    overflow: hidden;
+    border-radius: 10px;
+    position: relative;
+
+    .icon-search {
+        width: 4.3rem;
+        height: 4rem;
+
+        img {
+            width: 1.4rem;
+            height: 1.5rem;
+        }
+    }
+
+    input {
+        width: 65%;
+        height: 4rem;
+        border: none;
+    }
+
+    button {
+        width: 15rem;
+        height: 4rem;
+        position: absolute;
+        right: 0;
+        background-color: $color-light-green;
+        border: none;
+
+
+    }
+
+
+}
+
+
+// footer 
+
+.f-wrapper {
+  width: 100%;
+  height: 5rem;
+  color: white;
+  background-color: $color-dark-grey;
+
+  .f-container {
+      position: relative;
+
+    li {
+      font-size: 14px;
+      font-family: $font-default;
+
+      + li {
+        margin-left: 2rem;
+      }
+
+      &:last-child {
+        position: absolute;
+        margin-right: 1.5rem;
+        right: 0;
+      }
+    }
+
+    a {
+      text-decoration: none;
+      color: white;
+    }
+  }
 }
