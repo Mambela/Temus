@@ -19,7 +19,7 @@ export class BusinessPageComponent implements OnInit {
   isAuthenticated = false;
 
   
-  showAuthform:boolean = false
+  showAuthform:boolean = false;
   isLoading = false;
   authError:any;
   

@@ -231,6 +231,23 @@ TEXT COLORS
     
   }
 
+
+//Border thickness
+.border-2 {
+    border-width:2px !important;
+}
+  .border-3 {
+    border-width:3px !important;
+}
+
+.border-4 {
+    border-width:4px !important;
+}
+
+.border-5 {
+    border-width:5px !important;
+}
+
   // 320px — 480px: Mobile devices
 // 481px — 768px: iPads, Tablets
 // 769px — 1024px: Small screens, laptops
