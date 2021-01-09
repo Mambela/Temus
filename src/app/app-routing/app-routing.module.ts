@@ -15,14 +15,14 @@ import { BusinessPageComponent } from './../pages/business-user/business-page/bu
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import {Routes, RouterModule}from '@angular/router'
+import {Routes, RouterModule}from '@angular/router';
 import { BusinessEventsComponent } from '../pages/business-user/business-dashboard/business-events/business-events.component';
 import { SearchProdutoComponent } from '../pages/regular-user/search/search-produto/search-produto.component';
 import { SearchEventoComponent } from '../pages/regular-user/search/search-evento/search-evento.component';
 import { SearchLocalComponent } from '../pages/regular-user/search/search-local/search-local.component';
 
 const appRoutes: Routes=[
-  {path: '', component:MainPageComponent},
+  // {path: '', component:MainPageComponent},
   {path:'business',component:BusinessPageComponent},
   {path:'business-registration',component:BusinessRegistrationComponent},
   {path:'business-dashboard',component:BusinessDashboardComponent},
