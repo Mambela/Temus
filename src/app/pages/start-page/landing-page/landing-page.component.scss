@@ -2,8 +2,7 @@
 
 $font-default: "Nunito";
 
-
-// body 
+// body
 
 .background-wallpaper {
   width: 100%;
@@ -16,7 +15,7 @@ $font-default: "Nunito";
   justify-content: center;
 }
 
-// header 
+// header
 
 .h-wrapper {
   width: 100%;
@@ -59,45 +58,52 @@ $font-default: "Nunito";
 
 // search Bar
 .search-container {
+  width: 65%;
+  height: 4rem;
+  background-color: white;
+  overflow: hidden;
+  border-radius: 10px;
+  position: relative;
+
+  .icon-search {
+    width: 4.3rem;
+    height: 4rem;
+
+    img {
+      width: 1.4rem;
+      height: 1.5rem;
+    }
+  }
+
+  input {
     width: 65%;
     height: 4rem;
-    background-color: white;
-    overflow: hidden;
-    border-radius: 10px;
+    border: none;
+  }
+
+  .list-search-option {
+    width: 10rem;
+    height: 4rem;
     position: relative;
 
-    .icon-search {
-        width: 4.3rem;
-        height: 4rem;
-
-        img {
-            width: 1.4rem;
-            height: 1.5rem;
-        }
+    .custom-select {
+      width: 100%;
+      height: 100%;
+      border: none;
     }
+  }
 
-    input {
-        width: 65%;
-        height: 4rem;
-        border: none;
-    }
-
-    button {
-        width: 15rem;
-        height: 4rem;
-        position: absolute;
-        right: 0;
-        background-color: $color-light-green;
-        border: none;
-
-
-    }
-
-
+  button {
+    width: 15rem;
+    height: 4rem;
+    position: absolute;
+    right: 0;
+    background-color: $color-light-green;
+    border: none;
+  }
 }
 
-
-// footer 
+// footer
 
 .f-wrapper {
   width: 100%;
@@ -106,7 +112,7 @@ $font-default: "Nunito";
   background-color: $color-dark-grey;
 
   .f-container {
-      position: relative;
+    position: relative;
 
     li {
       font-size: 14px;
