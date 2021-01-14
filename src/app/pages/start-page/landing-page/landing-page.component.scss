@@ -69,9 +69,11 @@ $font-default: "Nunito";
     width: 4.3rem;
     height: 4rem;
 
-    img {
-      width: 1.4rem;
-      height: 1.5rem;
+    .icon {
+      width: 100%;
+      height: 100%;
+      color: black;
+      border: none;
     }
   }
 
@@ -100,6 +102,8 @@ $font-default: "Nunito";
     right: 0;
     background-color: $color-light-green;
     border: none;
+    color: white;
+    font-size: 15px;
   }
 }
 
