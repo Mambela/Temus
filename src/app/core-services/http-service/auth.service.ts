@@ -217,8 +217,13 @@ export class AuthService {
         this.tokenDataSubj.next(loadedToken);
             // this.router.navigate(['/business-dashboard']);
 
-        this.router.navigate(['/business-profile']);
+        // alert(companyData.)
 
+        //this.router.navigate(['/business-dashboard']);
+        //this.router.navigate(['/business-dashboard']);
+        this.router.navigate(['/pesquisa']);
+
+        
          
       }
  

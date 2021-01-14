@@ -38,6 +38,15 @@ import { AddNewServiceComponent } from './components/business-user/add-new-servi
 import { SinglePostComponent } from './sections/single-post/single-post.component';
 import { BusinessProfileComponent } from './pages/business-user/business-profile/business-profile.component';
 import { ToasterContainerComponent } from './sections/toast/toaster-container/toaster-container.component';
+import { MainPageComponent } from './pages/regular-user/main-page/main-page.component';
+import { SearchComponent } from './pages/regular-user/search/search.component';
+import { TemplatesComponent } from './components/templates/templates.component';
+import { UnathenticatedNavBarComponent } from './components/regular-user/unathenticated-nav-bar/unathenticated-nav-bar.component';
+
+import { SearchServiceComponent } from './pages/regular-user/search/search-service/search-service.component';
+import { SearchProdutoComponent } from './pages/regular-user/search/search-produto/search-produto.component';
+import { SearchEventoComponent } from './pages/regular-user/search/search-evento/search-evento.component';
+import { SearchLocalComponent } from './pages/regular-user/search/search-local/search-local.component';
 
 
  
@@ -74,6 +83,22 @@ import { ToasterContainerComponent } from './sections/toast/toaster-container/to
     
     ToasterContainerComponent,
     ToasterComponent,
+    MainPageComponent,
+    SearchComponent,
+    TemplatesComponent,
+    UnathenticatedNavBarComponent,
+    
+    
+    SearchServiceComponent,
+    
+    
+    SearchProdutoComponent,
+    
+    
+    SearchEventoComponent,
+    
+    
+    SearchLocalComponent,
   
  
   ],

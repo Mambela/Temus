@@ -223,7 +223,65 @@ hr.dashed {
   // color: $color-ghost-white !important;
 }
 
-// 320px — 480px: Mobile devices
+.btn {
+    font-family: 'Quicksand', sans-serif;
+ }
+
+
+ hr.dashed {
+    border-top: 1px dashed $color-main-purple;
+	border-bottom: 1px dashed #fff;
+  }
+
+
+  .custom-control-input:focus~.custom-control-label::before {
+    border-color: #28a745 !important;
+    box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25) !important;
+  }
+  
+  .custom-control-input:checked~.custom-control-label::before {
+    border-color: #28a745 !important;
+    background-color: #28a745 !important;
+  }
+  
+  .custom-control-input:focus:not(:checked)~.custom-control-label::before {
+    border-color: #5bd778 !important;
+  }
+  
+  .custom-control-input:not(:disabled):active~.custom-control-label::before {
+    background-color: #d6f5dd !important;
+    border-color: #d6f5dd !important;
+  }
+
+  .bg-menu{
+    
+    background-color: $color-lavender !important;
+  }
+
+  .bg-menu:hover{
+    background-color:$color-very-light-grey  !important;
+    // color: $color-ghost-white !important;
+    
+  }
+
+
+//Border thickness
+.border-2 {
+    border-width:2px !important;
+}
+  .border-3 {
+    border-width:3px !important;
+}
+
+.border-4 {
+    border-width:4px !important;
+}
+
+.border-5 {
+    border-width:5px !important;
+}
+
+  // 320px — 480px: Mobile devices
 // 481px — 768px: iPads, Tablets
 // 769px — 1024px: Small screens, laptops
 // 1025px — 1200px: Desktops, large screens

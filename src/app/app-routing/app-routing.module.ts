@@ -1,3 +1,7 @@
+import { SearchServiceComponent } from './../pages/regular-user/search/search-service/search-service.component';
+import { TemplatesComponent } from './../components/templates/templates.component';
+import { SearchComponent } from './../pages/regular-user/search/search.component';
+import { MainPageComponent } from './../pages/regular-user/main-page/main-page.component';
 import { BusinessProfileComponent } from './../pages/business-user/business-profile/business-profile.component';
 import { BusinessPostsComponent } from './../pages/business-user/business-dashboard/business-posts/business-posts.component';
 
@@ -13,10 +17,12 @@ import { CommonModule } from '@angular/common';
 
 import {Routes, RouterModule}from '@angular/router';
 import { BusinessEventsComponent } from '../pages/business-user/business-dashboard/business-events/business-events.component';
-import { LandingPageComponent } from '../pages/start-page/landing-page/landing-page.component';
-
+import { SearchProdutoComponent } from '../pages/regular-user/search/search-produto/search-produto.component';
+import { SearchEventoComponent } from '../pages/regular-user/search/search-evento/search-evento.component';
+import { SearchLocalComponent } from '../pages/regular-user/search/search-local/search-local.component';
 
 const appRoutes: Routes=[
+  // {path: '', component:MainPageComponent},
   {path:'business',component:BusinessPageComponent},
   {path:'business-registration',component:BusinessRegistrationComponent},
   {path:'business-dashboard',component:BusinessDashboardComponent},
@@ -27,7 +33,18 @@ const appRoutes: Routes=[
   {path:'business-posts',component:BusinessPostsComponent},
   {path:'business-advertisement',component:BusinessPostsComponent},
   {path:'business-profile',component:BusinessProfileComponent},
-  {path:'', component:LandingPageComponent}
+  {path:'pesquisa',component:SearchComponent,
+    children:[
+        {path:'local',component:SearchLocalComponent},
+        {path:'servico',component:SearchServiceComponent},
+        {path:'produto',component:SearchProdutoComponent},
+        {path:'evento',component:SearchEventoComponent}
+    ]
+  },
+  {path:'template',component:TemplatesComponent},
+  
+
+  
 
 
   
