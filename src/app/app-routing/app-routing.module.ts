@@ -21,6 +21,11 @@ import { SearchProdutoComponent } from '../pages/regular-user/search/search-prod
 import { SearchEventoComponent } from '../pages/regular-user/search/search-evento/search-evento.component';
 import { SearchLocalComponent } from '../pages/regular-user/search/search-local/search-local.component';
 
+// Eládio imports
+import { LandingPageComponent } from '../pages/start-page/landing-page/landing-page.component';
+
+// End Eládio imports
+
 const appRoutes: Routes=[
   // {path: '', component:MainPageComponent},
   {path:'business',component:BusinessPageComponent},
@@ -42,10 +47,7 @@ const appRoutes: Routes=[
     ]
   },
   {path:'template',component:TemplatesComponent},
-  
-
-  
-
+  {path:'',component:LandingPageComponent}
 
   
 ]
