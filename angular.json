@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "Temus"
+    }
+  },
+  "defaultProject": "Temus",
+  "cli": {
+    "analytics": false
+  }
 }
