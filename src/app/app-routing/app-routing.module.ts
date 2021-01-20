@@ -27,7 +27,7 @@ import { LandingPageComponent } from '../pages/start-page/landing-page/landing-p
 // End Eládio imports
 
 const appRoutes: Routes=[
-   {path: '', component:MainPageComponent},
+   {path: '', component:LandingPageComponent},
   {path:'business',component:BusinessPageComponent},
   {path:'business-registration',component:BusinessRegistrationComponent},
   {path:'business-dashboard',component:BusinessDashboardComponent},
@@ -46,9 +46,7 @@ const appRoutes: Routes=[
         {path:'evento',component:SearchEventoComponent}
     ]
   },
-  {path:'template',component:TemplatesComponent},
-  {path:'',component:LandingPageComponent}
-
+  {path:'template',component:TemplatesComponent}
   
 ]
 
