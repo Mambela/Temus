@@ -1,3 +1,5 @@
+import { CategoriaDataServiceService } from './../../../../core-services/DataService/categoria/categoria-data-service.service';
+import { CompanyInfoServiceService } from './../../../../core-services/http-service/business/Company Service/company-info-service.service';
 import { HttpEventType } from '@angular/common/http';
 import { NgForm } from '@angular/forms';
 import { STOREDCONSTANTS } from './../../../../module/constants.service';
@@ -7,12 +9,12 @@ import { NgbModal, NgbModalConfig, NgbActiveModal } from '@ng-bootstrap/ng-boots
 import { EmpresaProdutoModel } from './../../../../data/models/business-user/empresa-product.model';
 import { EmpresaServicoModel } from './../../../../data/models/business-user/empresa-servico.model';
 import { BasicModel } from './../../../../data/models/supporting/basic-model.model';
-import { ProductsService } from './../../../../core-services/http-service/business/products.service';
-import { CompanyService } from './../../../../core-services/http-service/company-service.service';
+import { ProductsService } from '../../../../core-services/http-service/business/Produto Services/products.service';
+
 import { Subscription } from 'rxjs';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
-import { CategoryService } from 'src/app/core-services/http-service/category-service.service';
+import { CategoryService } from 'src/app/core-services/http-service/business/Category Services/category-service.service';
 import { NgbModalBackdrop } from '@ng-bootstrap/ng-bootstrap/modal/modal-backdrop';
 import { chownSync } from 'fs';
 
@@ -80,8 +82,8 @@ export class BusinessProductsComponent implements OnInit, OnDestroy {
   isUploadingServico:boolean;
 
 
-  constructor(private companyService:CompanyService,private productService:ProductsService,private modalService:NgbModal,
-              private categorySer:CategoryService,private config:NgbModalConfig,private storedConstant:STOREDCONSTANTS) {
+  constructor(private companyService:CompanyInfoServiceService,private productService:ProductsService,private modalService:NgbModal,
+              private categoriaDTService:CategoriaDataServiceService,private config:NgbModalConfig,private storedConstant:STOREDCONSTANTS) {
     this.getProductCount();
    }
 
@@ -126,14 +128,10 @@ export class BusinessProductsComponent implements OnInit, OnDestroy {
   getProductCategoria()
   {
       this.isLoadingCategoria = true;
-      this.productService.getProductCategoria().subscribe((respCategoria:BasicModel[])=>{
-            
-        this.productCategoria = respCategoria['data'];
-        this.isLoadingCategoria = false;
-      });
+      
+      this.productCategoria = this.categoriaDTService.getProdutoCategoria();
 
-      // this.productService.getProductCategoria();
-
+   
   }
 
   onTipoChange(event)

@@ -1,14 +1,14 @@
+import { CompanyInfoServiceService } from './../../../core-services/http-service/business/Company Service/company-info-service.service';
 import { HttpEventType } from '@angular/common/http';
 import { debounceTime, distinctUntilChanged, switchMap, tap, catchError, flatMap } from 'rxjs/operators';
 import { CategoriaProductService } from './../../../core-services/DataService/categoria/categoriaProductdata-service.service';
-import { ProductsService } from './../../../core-services/http-service/business/products.service';
+import { ProductsService } from '../../../core-services/http-service/business/Produto Services/products.service';
 import { BasicModel } from './../../../data/models/supporting/basic-model.model';
-import { CompanyService } from './../../../core-services/http-service/company-service.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgForm } from '@angular/forms';
 import { Component, OnInit, Input } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { CategoryService } from 'src/app/core-services/http-service/category-service.service';
+import { CategoryService } from 'src/app/core-services/http-service/business/Category Services/category-service.service';
 
 @Component({
   selector: 'app-add-new-product-service',
@@ -66,7 +66,7 @@ export class AddNewProductServiceComponent implements OnInit {
   priceDisplay:boolean;
 
 
-  constructor(private modalService:NgbModal, private companyservice:CompanyService,private productservice:ProductsService,
+  constructor(private modalService:NgbModal, private companyservice:CompanyInfoServiceService,private productservice:ProductsService,
               private cateProData:CategoriaProductService,private categoryService:CategoryService) { }
 
   ngOnInit(): void {

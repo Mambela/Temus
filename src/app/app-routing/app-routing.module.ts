@@ -22,7 +22,7 @@ import { SearchEventoComponent } from '../pages/regular-user/search/search-event
 import { SearchLocalComponent } from '../pages/regular-user/search/search-local/search-local.component';
 
 const appRoutes: Routes=[
-  // {path: '', component:MainPageComponent},
+   {path: '', component:MainPageComponent},
   {path:'business',component:BusinessPageComponent},
   {path:'business-registration',component:BusinessRegistrationComponent},
   {path:'business-dashboard',component:BusinessDashboardComponent},

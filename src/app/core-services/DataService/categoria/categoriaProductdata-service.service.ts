@@ -45,7 +45,7 @@ export class CategoriaProductService {
   }
 
 
-
+ //#region  Service Categoria
   setServiceCategoria(serviceCategoria:BasicModel[])
   {
       this.serviceCategoria = serviceCategoria;
@@ -56,6 +56,8 @@ export class CategoriaProductService {
   {
     return this.serviceCategoria;
   }
+
+  //#endregion
 
 
 

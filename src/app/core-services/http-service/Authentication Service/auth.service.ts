@@ -1,8 +1,8 @@
 import { Router } from '@angular/router';
-import { TokenData } from './../../data/models/supporting/token-model';
-import { CompanyData } from './../../data/models/business-user/company-model';
+import { TokenData } from '../../../data/models/supporting/token-model';
+import { CompanyData } from '../../../data/models/business-user/company-model';
 import { catchError, tap } from 'rxjs/operators';
-import { STOREDCONSTANTS } from './../../module/constants.service';
+import { STOREDCONSTANTS } from '../../../module/constants.service';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { throwError, Subject, BehaviorSubject } from 'rxjs';
@@ -219,12 +219,16 @@ export class AuthService {
 
         // alert(companyData.)
 
+        this.router.navigate(['/business-dashboard']);
         //this.router.navigate(['/business-dashboard']);
-        //this.router.navigate(['/business-dashboard']);
-        this.router.navigate(['/pesquisa']);
 
-        
-         
+       
+        //this.router.navigate(['/pesquisa']);  
+        // this.router.navigate(['']);
+      }
+      else
+      {
+        this.router.navigate(['']);
       }
  
   }

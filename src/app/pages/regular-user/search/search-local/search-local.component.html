@@ -6,58 +6,32 @@
             <label for="searchInput"> Onde</label>
             <input class="form-control " type="text" id="searchInput"/>
     
-              <label class="col-form-label col-form-label-sm " for="nomeparam">Categoria </label>
-              <select class="custom-select custom-select-sm mb-3 rounded-2 cursor" ngModel name="nomeparam">
-                  <option  class="cursor">Select local tipo</option>
-                  <option  class="cursor">Select local tipo</option>
-                  <option  class="cursor">Select local tipo</option>
-                  <option  class="cursor">Select local tipo</option>
-                  <option  class="cursor">Select local tipo</option>
-                  <option  class="cursor">Select local tipo</option>
-                  <option  class="cursor">Select local tipo</option>
-                  <option  class="cursor">Select local tipo</option>
-                  <option  class="cursor">Select local tipo</option>
-              </select>
-    
-              <label class="col-form-label col-form-label-sm " for="nomeparam">Sub-categoria </label>
-              <select class="custom-select custom-select-sm mb-3 rounded-2 cursor" ngModel name="nomeparam">
-                  <option  class="cursor">Select local tipo</option>
-                  <option  class="cursor">Select local tipo</option>
-                  <option  class="cursor">Select local tipo</option>
-                  <option  class="cursor">Select local tipo</option>
-                  <option  class="cursor">Select local tipo</option>
-                  <option  class="cursor">Select local tipo</option>
-                  <option  class="cursor">Select local tipo</option>
-                  <option  class="cursor">Select local tipo</option>
-                  <option  class="cursor">Select local tipo</option>
-              </select>
-    
+            <label class="col-form-label col-form-label-sm " for="nomeparam">Categoria </label>
+            <select class="custom-select custom-select-sm mb-3 rounded-2 cursor"  name="nomeparam" (change)="onCategoriaChange($event)">
+                <option selected value="reset" class="cursor">Selecione Categoria</option>
+                <option  value="{{categoria.id}}" class="cursor" *ngFor="let categoria of localCategoria"  >{{categoria.designacao}}</option>
+          
+            </select>
+  
+            <label class="col-form-label col-form-label-sm " for="nomeparam">Sub-categoria </label>
+            <select class="custom-select custom-select-sm mb-3 rounded-2 cursor" name="nomeparam" >
+              <option selected value="reset">Selecione Subcategoria</option>
+              <option value="{{tipo.id}}" *ngFor="let tipo of localSubCategoria">{{tipo.designacao}}</option>
+            </select>
               <hr>
      
               <label class="col-form-label col-form-label-sm " for="nomeparam">Municipio</label>
-              <select class="custom-select custom-select-sm mb-3 rounded-2 cursor" ngModel name="nomeparam">
-                  <option  class="cursor" >Municipio</option>
-                  <option  class="cursor">Select local tipo</option>
-                  <option  class="cursor">Select local tipo</option>
-                  <option  class="cursor">Select local tipo</option>
-                  <option  class="cursor">Select local tipo</option>
-                  <option  class="cursor">Select local tipo</option>
-                  <option  class="cursor">Select local tipo</option>
-                  <option  class="cursor">Select local tipo</option>
-                  <option  class="cursor">Select local tipo</option>
+              <select class="custom-select custom-select-sm mb-3 rounded-2 cursor" name="nomeparam" (change)="onMunicipioChange($event)">
+                  <option  class="cursor" selected >Municipios</option>
+                  <option  value="{{municipio.id}}" class="cursor"  *ngFor="let municipio of municipios">{{municipio.designacao}}</option>
+                   
               </select>
     
               <label class="col-form-label col-form-label-sm " for="nomeparam">Bairro </label>
-              <select class="custom-select custom-select-sm mb-3 rounded-2 cursor" ngModel name="Bairro">
+              <select class="custom-select custom-select-sm mb-3 rounded-2 cursor" name="Bairro">
                   <option  class="cursor" selected>Bairro</option>
-                  <option  class="cursor">Select local tipo</option>
-                  <option  class="cursor">Select local tipo</option>
-                  <option  class="cursor">Select local tipo</option>
-                  <option  class="cursor">Select local tipo</option>
-                  <option  class="cursor">Select local tipo</option>
-                  <option  class="cursor">Select local tipo</option>
-                  <option  class="cursor">Select local tipo</option>
-                  <option  class="cursor">Select local tipo</option>
+                  <option  value="{{bairro.id}}" class="cursor" *ngFor="let bairro of bairros">{{bairro.designacao}}</option>
+                  
               </select>
               <button class="btn btn-success"> Pesquisar </button>
           </div>

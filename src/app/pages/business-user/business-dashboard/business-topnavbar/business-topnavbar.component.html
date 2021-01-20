@@ -51,7 +51,7 @@
                             <button ngbDropdownItem class="text-dark"> <span><i class="fas fa-heart text-danger"></i></span> Favoritos</button>
                             <!-- <button ngbDropdownItem>Registo de Actividades</button>
                             <button ngbDropdownItem class="text-light">Estatica</button> -->
-                            <button ngbDropdownItem class="text-dark"><span><i class="fas fa-exchange-alt "></i>  Modo Utilisador Normal </span></button>
+                            <a ngbDropdownItem class="text-dark" [routerLink]="['/pesquisa']" routerLinkActive="router-link-active" ><span><i class="fas fa-exchange-alt "></i>  Modo Utilisador Normal </span></a>
                             <hr class="col-7">
                             <button ngbDropdownItem (click)="signOut()"> <span> <i class="fas fa-sign-out-alt text-dark"></i></span> Sair</button>
                           </div>

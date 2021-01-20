@@ -1,35 +1,24 @@
-import { BasicModel } from './../../../data/models/supporting/basic-model.model';
+import { CategoriaDataServiceService } from '../../../DataService/categoria/categoria-data-service.service';
+import { BasicModel } from '../../../../data/models/supporting/basic-model.model';
 import { catchError, tap } from 'rxjs/operators';
-import { EmpresaServicoModel } from './../../../data/models/business-user/empresa-servico.model';
-import { STOREDCONSTANTS } from './../../../module/constants.service';
+import { EmpresaServicoModel } from '../../../../data/models/business-user/empresa-servico.model';
+import { STOREDCONSTANTS } from '../../../../module/constants.service';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { throwError } from 'rxjs';
-import { CategoriaProductService } from '../../DataService/categoria/categoriaProductdata-service.service';
+import { CategoriaProductService } from '../../../DataService/categoria/categoriaProductdata-service.service';
+import { Console } from 'console';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CompanyServicesService {
 
-  constructor(private http:HttpClient,private storedConstants:STOREDCONSTANTS, private serviceDataService:CategoriaProductService) { }
+  constructor(private http:HttpClient,private storedConstants:STOREDCONSTANTS,
+              private categoriaDTService:CategoriaDataServiceService) { }
   
 
-  getServiceCategoria()
-  {
-    return  this.http.get<BasicModel[]>(this.storedConstants.BASEURL() + "servico-categorias",
-    {
-      headers:{"Accept":"application/json","Authorization":"Bearer "+this.storedConstants.userToken}
-    }).pipe(
-      catchError((error)=>{
-        return throwError(error);
-
-      }),tap((categoriaData:BasicModel[])=>{
-                    
-          this.serviceDataService.setServiceCategoria(categoriaData['data']);
-      })
-    )
-  }
+  
 
   getServiceType(categoriaId:number)
   {

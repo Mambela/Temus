@@ -1,20 +1,18 @@
-import { error } from 'protractor';
-import { CompanyData } from './../../data/models/business-user/company-model';
-import { TokenData } from './../../data/models/supporting/token-model';
 import { catchError, tap } from 'rxjs/operators';
-import { AuthService } from './auth.service';
-import { STOREDCONSTANTS } from './../../module/constants.service';
+import { AuthService } from '../../Authentication Service/auth.service';
+import { STOREDCONSTANTS } from './../../../../module/constants.service';
 import { HttpClient } from '@angular/common/http';
-import { Injectable, OnDestroy } from '@angular/core';
-import { throwError, Subscription, BehaviorSubject } from 'rxjs';
- 
+import { CompanyData } from './../../../../data/models/business-user/company-model';
+import { TokenData } from './../../../../data/models/supporting/token-model';
+import { Subscription, BehaviorSubject, throwError } from 'rxjs';
+import { Injectable } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
 })
-export class CompanyService implements OnDestroy {
+export class CompanyInfoServiceService {
 
-  tokenSubscr:Subscription;
+   tokenSubscr:Subscription;
   produtoCountSubj= new BehaviorSubject<number>(0);
   serviceCountSubj= new BehaviorSubject<number>(0);
   eventCountSubj= new BehaviorSubject<number>(0);
@@ -225,9 +223,6 @@ export class CompanyService implements OnDestroy {
     this.tokenSubscr.unsubscribe();
 
   }
-
-
-   
 
 
 }

@@ -2,7 +2,7 @@ import { TokenData } from './../../../../data/models/supporting/token-model';
 import { STOREDCONSTANTS } from './../../../../module/constants.service';
 import { Router } from '@angular/router';
 import { CompanyData } from './../../../../data/models/business-user/company-model';
-import { AuthService } from './../../../../core-services/http-service/auth.service';
+import { AuthService } from '../../../../core-services/http-service/Authentication Service/auth.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Route } from '@angular/compiler/src/core';

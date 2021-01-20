@@ -1,10 +1,11 @@
-import { CategoriaProductService } from '../../DataService/categoria/categoriaProductdata-service.service';
+import { CategoriaDataServiceService } from '../../../DataService/categoria/categoria-data-service.service';
+import { CategoriaProductService } from '../../../DataService/categoria/categoriaProductdata-service.service';
 
-import { EmpresaProdutoModel } from './../../../data/models/business-user/empresa-product.model';
-import { EmpresaServicoModel } from './../../../data/models/business-user/empresa-servico.model';
+import { EmpresaProdutoModel } from '../../../../data/models/business-user/empresa-product.model';
+import { EmpresaServicoModel } from '../../../../data/models/business-user/empresa-servico.model';
 import { catchError, tap } from 'rxjs/operators';
-import { BasicModel } from './../../../data/models/supporting/basic-model.model';
-import { STOREDCONSTANTS } from './../../../module/constants.service';
+import { BasicModel } from '../../../../data/models/supporting/basic-model.model';
+import { STOREDCONSTANTS } from '../../../../module/constants.service';
 import { Subscription, throwError } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -19,7 +20,8 @@ export class ProductsService {
   
   tokenSubscr:Subscription;
   
-  constructor(private http:HttpClient,private storedConstants:STOREDCONSTANTS,private prodDataService:CategoriaProductService) { }
+  constructor(private http:HttpClient,private storedConstants:STOREDCONSTANTS,private prodDataService:CategoriaProductService,
+              private categoriaDTService:CategoriaDataServiceService) { }
 
   getrequiredData()
   {
@@ -32,22 +34,7 @@ export class ProductsService {
   }
 
 
-  getProductCategoria(){
-      
-   // console.log("TOKEN INSIDE TGHE PRODUCT SERVICE",this.storedConstants.userToken);
-
-    return this.http.get<BasicModel[]>(this.storedConstants.BASEURL()+"produto-categorias",{
-      headers:{"Accept":"application/json","Authorization":"Bearer "+this.storedConstants.userToken}
-    }).pipe(
-      catchError((error)=>{
-        return throwError(error)
-      }),tap((produtoCategoria:BasicModel[])=>{
-        
-        this.prodDataService.setCategoriaDetail(produtoCategoria['data']);
-  
-      })
-    );
-  }
+ 
 
   getProdutoTipoByCategoria(categoriaID:number)
   {
@@ -60,7 +47,7 @@ export class ProductsService {
             return throwError(error);
             }),tap((tipoData:BasicModel[])=>{
 
-               
+               console.log(tipoData);
             })
             
           );

@@ -1,3 +1,5 @@
+import { CategoriaDataServiceService } from './../../../../core-services/DataService/categoria/categoria-data-service.service';
+import { CompanyInfoServiceService } from './../../../../core-services/http-service/business/Company Service/company-info-service.service';
 import { AddNewServiceComponent } from '../../../../components/business-user/add-new-service/add-new-service.component';
 import { HttpEventType } from '@angular/common/http';
 import { NgForm } from '@angular/forms';
@@ -6,9 +8,9 @@ import { DialogboxComponent } from './../../../../sections/dialogbox/dialogbox.c
 
 import { NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
 import { BasicModel } from './../../../../data/models/supporting/basic-model.model';
-import { CompanyServicesService } from './../../../../core-services/http-service/business/services.service';
+import { CompanyServicesService } from '../../../../core-services/http-service/business/Servicos services/services.service';
 import { EmpresaServicoModel } from './../../../../data/models/business-user/empresa-servico.model';
-import { CompanyService } from './../../../../core-services/http-service/company-service.service';
+
 import { Subscription } from 'rxjs';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { serialize } from 'v8';
@@ -60,7 +62,8 @@ export class BusinessServiceComponent implements OnInit, OnDestroy {
   isUploadingServico:boolean;
 
 
-  constructor(private companyService:CompanyService,private companyManageService:CompanyServicesService,private modalService:NgbModal, private config:NgbModalConfig,private storedConstant:STOREDCONSTANTS) { }
+  constructor(private companyService:CompanyInfoServiceService,private companyManageService:CompanyServicesService,private modalService:NgbModal, 
+              private config:NgbModalConfig,private storedConstant:STOREDCONSTANTS, private categoriaDTService:CategoriaDataServiceService) { }
 
   ngOnInit(): void {
     this.getServiceCount();
@@ -78,13 +81,9 @@ export class BusinessServiceComponent implements OnInit, OnDestroy {
   }
 
   onLoadServiceCategoria(){
-
-    this.companyManageService.getServiceCategoria().subscribe((serviceCategoria:BasicModel[])=>{
-              
-      this.serviceCategoria = serviceCategoria['data'];
-      console.log(serviceCategoria);
-
-    });
+  
+    this.serviceCategoria = this.categoriaDTService.getServicoCategoria();
+  
 
   }
 

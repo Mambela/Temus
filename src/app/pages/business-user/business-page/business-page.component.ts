@@ -1,6 +1,6 @@
 import { CompanyData } from './../../../data/models/business-user/company-model';
 import { Router } from '@angular/router';
-import { AuthService } from './../../../core-services/http-service/auth.service';
+import { AuthService } from '../../../core-services/http-service/Authentication Service/auth.service';
 import { NgForm } from '@angular/forms';
 import { DatasharingService } from './../../../core-services/DataService/share/datasharing.service';
 import { Component, OnInit } from '@angular/core';

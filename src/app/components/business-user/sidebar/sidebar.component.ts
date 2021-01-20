@@ -1,8 +1,9 @@
+import { FiltersService } from './../../../core-services/http-service/FiltersService/filters.service';
 import { STOREDCONSTANTS } from './../../../module/constants.service';
-import { AuthService } from './../../../core-services/http-service/auth.service';
+import { AuthService } from '../../../core-services/http-service/Authentication Service/auth.service';
 import { CompanyData } from './../../../data/models/business-user/company-model';
 import { Subscription } from 'rxjs';
-import { ProductsService } from '../../../core-services/http-service/business/products.service';
+import { ProductsService } from '../../../core-services/http-service/business/Produto Services/products.service';
 import { BasicModel } from '../../../data/models/supporting/basic-model.model';
 
 
@@ -34,7 +35,7 @@ export class SidebarComponent implements OnInit {
   isLoadingCategoria:boolean;
   productCategoria:BasicModel[];
 
-  constructor(private authService:AuthService,private productService:ProductsService,private storeValues:STOREDCONSTANTS) { }
+  constructor(private authService:AuthService,private productService:ProductsService,private storeValues:STOREDCONSTANTS,private filterService:FiltersService) { }
 
   ngOnInit(): void {
     this.getUserData();
@@ -47,13 +48,9 @@ export class SidebarComponent implements OnInit {
   getProductCategoria()
   {
       this.isLoadingCategoria = true;
-      this.productService.getProductCategoria().subscribe((respCategoria:BasicModel[])=>{
-            
-        this.productCategoria = respCategoria['data'];
-        this.isLoadingCategoria = false;
-      });
-
-      // this.productService.getProductCategoria();
+       
+      this.filterService.getProductCategoria().subscribe();
+      this.filterService.getServiceCategoria().subscribe();
 
   }
 

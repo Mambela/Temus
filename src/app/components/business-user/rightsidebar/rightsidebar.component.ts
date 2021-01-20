@@ -1,4 +1,5 @@
-import { CompanyService } from './../../../core-services/http-service/company-service.service';
+import { CompanyInfoServiceService } from './../../../core-services/http-service/business/Company Service/company-info-service.service';
+
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -13,7 +14,7 @@ export class RightsidebarComponent implements OnInit {
   color:string;
   profileIscomplete:boolean;
 
-  constructor(private companyService:CompanyService) { }
+  constructor(private companyService:CompanyInfoServiceService) { }
 
   ngOnInit(): void {
 

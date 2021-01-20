@@ -1,12 +1,12 @@
 import { BusinessPageComponent } from './../business-page/business-page.component';
 import { DatasharingService } from './../../../core-services/DataService/share/datasharing.service';
 import { TemusMessage } from './../../../data/models/supporting/respMessages.model';
-import { AuthService } from './../../../core-services/http-service/auth.service';
+import { AuthService } from '../../../core-services/http-service/Authentication Service/auth.service';
 import { SavingLoaderComponent } from './../../../sections/loaders/saving-loader/saving-loader.component';
 import { streetModel } from './../../../data/models/supporting/street-model.model';
-import { AddressesService } from './../../../core-services/http-service/addresses-service.service';
+import { AddressesService } from '../../../core-services/http-service/business/Addresses Service/addresses-service.service';
 
-import { CategoryService } from './../../../core-services/http-service/category-service.service';
+import { CategoryService } from '../../../core-services/http-service/business/Category Services/category-service.service';
 import { BasicModel } from './../../../data/models/supporting/basic-model.model';
 import { locationCoordinates } from './../../../data/models/supporting/mapcoordinates';
 import { PopMapComponent } from './../../../sections/pop-map/pop-map.component';

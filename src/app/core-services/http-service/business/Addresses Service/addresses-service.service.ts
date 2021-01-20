@@ -1,8 +1,8 @@
-import { streetModel } from './../../data/models/supporting/street-model.model';
+import { streetModel } from '../../../../data/models/supporting/street-model.model';
 
 import { catchError, tap } from 'rxjs/operators';
-import { BasicModel } from './../../data/models/supporting/basic-model.model';
-import { STOREDCONSTANTS } from './../../module/constants.service';
+import { BasicModel } from '../../../../data/models/supporting/basic-model.model';
+import { STOREDCONSTANTS } from '../../../../module/constants.service';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { throwError } from 'rxjs';

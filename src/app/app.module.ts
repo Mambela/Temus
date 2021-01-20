@@ -1,6 +1,5 @@
 import { ToasterComponent } from './sections/toast/toaster/toaster.component';
 
-import { CategoryService } from './core-services/http-service/category-service.service';
 import { AppRoutingModule } from './app-routing/app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';

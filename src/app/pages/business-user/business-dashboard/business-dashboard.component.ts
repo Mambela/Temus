@@ -1,12 +1,12 @@
+import { CompanyInfoServiceService } from './../../../core-services/http-service/business/Company Service/company-info-service.service';
 
-import { CompanyServicesService } from './../../../core-services/http-service/business/services.service';
-import { ProductsService } from './../../../core-services/http-service/business/products.service';
+import { CompanyServicesService } from '../../../core-services/http-service/business/Servicos services/services.service';
+import { ProductsService } from '../../../core-services/http-service/business/Produto Services/products.service';
 import { AddNewServiceComponent } from '../../../components/business-user/add-new-service/add-new-service.component';
 import { AddNewProductServiceComponent } from '../../../components/business-user/add-new-product-service/add-new-product-service.component';
 import { TokenData } from './../../../data/models/supporting/token-model';
-import { CompanyService } from './../../../core-services/http-service/company-service.service';
 import { CompanyData } from './../../../data/models/business-user/company-model';
-import { AuthService } from './../../../core-services/http-service/auth.service';
+import { AuthService } from '../../../core-services/http-service/Authentication Service/auth.service';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
@@ -42,7 +42,7 @@ export class BusinessDashboardComponent implements OnInit {
   tokenData:TokenData;
   private tokenSub: Subscription;
 
-  constructor(private authService:AuthService,private router:Router, private companyService:CompanyService,
+  constructor(private authService:AuthService,private router:Router, private companyService:CompanyInfoServiceService,
             private modalService:NgbModal,private config:NgbModalConfig, private productService:ProductsService,
             private companyManageService: CompanyServicesService) { }
   
@@ -53,8 +53,7 @@ export class BusinessDashboardComponent implements OnInit {
 
     this.verifyAuthentication();  
     this.getuserData();
-    this.onLoadServiceCategoria();
-    this.getProductCategoria();
+     
     
   }
   
@@ -132,18 +131,7 @@ export class BusinessDashboardComponent implements OnInit {
 
   }
 
-  getProductCategoria()
-  {
-      this.isLoadingCategoria = true;
-      this.productService.getProductCategoria().subscribe();
-
-  }
-
-  onLoadServiceCategoria(){
-
-    this.companyManageService.getServiceCategoria().subscribe();
-
-  }
+  
 
  
 

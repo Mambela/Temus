@@ -1,11 +1,12 @@
+import { CompanyInfoServiceService } from './../../../core-services/http-service/business/Company Service/company-info-service.service';
 import { ToasterService } from './../../../sections/toast/toaster.service';
 import { catchError, distinctUntilChanged, debounceTime, tap, switchMap } from 'rxjs/operators';
 import { STOREDCONSTANTS } from './../../../module/constants.service';
-import { CompanyService } from './../../../core-services/http-service/company-service.service';
+
 import { BasicModel } from './../../../data/models/supporting/basic-model.model';
 import { streetModel } from './../../../data/models/supporting/street-model.model';
-import { AddressesService } from './../../../core-services/http-service/addresses-service.service';
-import { AuthService } from './../../../core-services/http-service/auth.service';
+import { AddressesService } from '../../../core-services/http-service/business/Addresses Service/addresses-service.service';
+import { AuthService } from '../../../core-services/http-service/Authentication Service/auth.service';
 import { Subscription, Observable, of } from 'rxjs';
 import { CompanyData } from './../../../data/models/business-user/company-model';
 import { NgForm } from '@angular/forms';
@@ -121,7 +122,7 @@ export class BusinessProfileComponent implements OnInit,OnDestroy {
 
 
   constructor(private mapBox: RegistrationMapService,private authService:AuthService,private addressService: AddressesService, 
-              private companyservice: CompanyService,private storeValues:STOREDCONSTANTS,
+              private companyservice: CompanyInfoServiceService,private storeValues:STOREDCONSTANTS,
               private toaster: ToasterService) { 
                 
               }

@@ -1,6 +1,6 @@
-import { CategoriaProductService } from '../DataService/categoria/categoriaProductdata-service.service';
-import { BasicModel } from './../../data/models/supporting/basic-model.model';
-import { STOREDCONSTANTS } from './../../module/constants.service';
+import { CategoriaProductService } from '../../../DataService/categoria/categoriaProductdata-service.service';
+import { BasicModel } from '../../../../data/models/supporting/basic-model.model';
+import { STOREDCONSTANTS } from '../../../../module/constants.service';
 import { Injectable } from '@angular/core';
 import { catchError, tap, map } from 'rxjs/operators';
 import { throwError } from 'rxjs';
