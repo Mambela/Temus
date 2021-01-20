@@ -1,6 +1,6 @@
 @import "src/styles.scss";
 
-$font-default: "Nunito";
+$default-font: "Nunito", sans-serif;
 
 // body
 
@@ -13,6 +13,13 @@ $font-default: "Nunito";
   display: flex;
   align-items: center;
   justify-content: center;
+
+  .transparent {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-color: rgba(68, 41, 74, 0.4);
+  }
 }
 
 // header
@@ -28,7 +35,7 @@ $font-default: "Nunito";
         color: white;
         font-size: 30px;
         font-weight: bold;
-        font-family: $font-default;
+        font-family: $default-font;
       }
 
       .title-point {
@@ -120,7 +127,7 @@ $font-default: "Nunito";
 
     li {
       font-size: 14px;
-      font-family: $font-default;
+      font-family: $default-font;
 
       + li {
         margin-left: 2rem;
@@ -136,6 +143,77 @@ $font-default: "Nunito";
     a {
       text-decoration: none;
       color: white;
+    }
+  }
+}
+
+
+.modal-container {
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  z-index: 500;
+
+  background-color: rgba(0, 0, 0, 0.4);
+  &.teste {
+    visibility: hidden;
+  }
+
+  .modal-content {
+    width: 40rem;
+    height: 44rem;
+    background-color: #EFE1F0;
+    z-index: 510;
+    padding-top: 3rem;
+
+    border-radius: 2rem;
+    
+    h2 {
+      font-size: 35px;
+      font-weight: bold;
+      font-family: $default-font;
+      color: #747373;
+    }
+
+    form {
+      width: 30rem;
+      height: 65%;
+      margin-top: 3.2rem;
+      position: relative;
+
+      input {
+        width: 100%;
+        height: 3.5rem;
+        border: none;
+        border-radius: 1rem;
+        margin-bottom: 1.5rem;
+        padding-left: 1.5rem;
+
+        ::placeholder {
+          font-size: 14px;
+          font-family: $default-font;
+        }
+      }
+
+      :last-child {
+        position: absolute;
+        bottom: 0;
+
+        background-color: $color-light-green;
+        
+        font-size: 14px;
+        font-family: $default-font;
+        font-weight: bold;
+        color: white;
+      }
+    }
+    p {
+      font-size: 12px;
+      font-family: $default-font;
+      color: black;
+      a {
+        color: #009BFC;
+      }
     }
   }
 }
