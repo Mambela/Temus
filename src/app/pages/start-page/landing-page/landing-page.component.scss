@@ -155,7 +155,10 @@ $default-font: "Nunito", sans-serif;
   z-index: 500;
 
   background-color: rgba(0, 0, 0, 0.4);
-  &.teste {
+  &.sign-up {
+    visibility: hidden;
+  }
+  &.sign-in {
     visibility: hidden;
   }
 
