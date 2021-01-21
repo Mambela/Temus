@@ -10,14 +10,11 @@ $default-font: "Nunito", sans-serif;
   background-image: url("./image/fenda-da-tundavala.jpg");
   background-size: cover;
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
   .transparent {
     width: 100%;
     height: 100%;
     position: absolute;
+    z-index: 0;
     background-color: rgba(68, 41, 74, 0.4);
   }
 }
@@ -64,53 +61,73 @@ $default-font: "Nunito", sans-serif;
 }
 
 // search Bar
-.search-container {
-  width: 65%;
-  height: 4rem;
-  background-color: white;
-  overflow: hidden;
-  border-radius: 10px;
-  position: relative;
+.search {
+  width: 100%;
+  margin-bottom: 15rem;
 
-  .icon-search {
-    width: 4.3rem;
-    height: 4rem;
+  p {
+    font-size: 70px;
+    font-family: $default-font;
+    font-weight: bold;
+    color: white;
+    z-index: 100;
 
-    .icon {
-      width: 100%;
-      height: 100%;
-      color: black;
-      border: none;
+    .point {
+      font-size: 70px;
+      color: $color-light-green;
     }
   }
 
-  input {
+  .search-container {
     width: 65%;
     height: 4rem;
-    border: none;
-  }
-
-  .list-search-option {
-    width: 10rem;
-    height: 4rem;
+    background-color: white;
+    overflow: hidden;
+    border-radius: 10px;
     position: relative;
-
-    .custom-select {
-      width: 100%;
-      height: 100%;
+    bottom: 0;
+  
+    .icon-search {
+      width: 4.3rem;
+      height: 4rem;
+  
+      .icon {
+        width: 100%;
+        height: 100%;
+        color: black;
+        border: none;
+      }
+    }
+  
+    input {
+      width: 65%;
+      height: 4rem;
       border: none;
     }
-  }
-
-  button {
-    width: 15rem;
-    height: 4rem;
-    position: absolute;
-    right: 0;
-    background-color: $color-light-green;
-    border: none;
-    color: white;
-    font-size: 15px;
+  
+    .list-search-option {
+      width: auto;
+      height: 100%;
+      position: absolute;
+      right: 0;
+  
+      .custom-select {
+        width: 9.5rem;
+        height: 100%;
+        border: none;
+      }
+  
+      .btn-search {
+        width: 15rem;
+        height: 4rem;
+  
+        font-size: 18px;
+        font-weight: bold;
+        border: none;
+        color: white;
+        background-color: $color-light-green;
+      }
+    }
   }
 }
 
@@ -153,8 +170,8 @@ $default-font: "Nunito", sans-serif;
   height: 100vh;
   position: absolute;
   z-index: 500;
-
   background-color: rgba(0, 0, 0, 0.4);
+  
   &.sign-up {
     visibility: hidden;
   }
