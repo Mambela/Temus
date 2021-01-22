@@ -115,6 +115,7 @@ $default-font: "Nunito", sans-serif;
         width: 9.5rem;
         height: 100%;
         border: none;
+        margin-bottom: 2rem;
       }
   
       .btn-search {
@@ -171,7 +172,7 @@ $default-font: "Nunito", sans-serif;
   position: absolute;
   z-index: 500;
   background-color: rgba(0, 0, 0, 0.4);
-  
+
   &.sign-up {
     visibility: hidden;
   }
