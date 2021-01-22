@@ -115,6 +115,11 @@ $default-font: "Nunito", sans-serif;
         width: 9.5rem;
         height: 100%;
         border: none;
+
+
+        &:focus {
+          outline: none;
+        }
       }
   
       .btn-search {
@@ -172,12 +177,10 @@ $default-font: "Nunito", sans-serif;
   z-index: 500;
   background-color: rgba(0, 0, 0, 0.4);
 
-  &.sign-up {
+  &.sign-blur {
     visibility: hidden;
   }
-  &.sign-in {
-    visibility: hidden;
-  }
+
 
   .modal-content {
     width: 40rem;
