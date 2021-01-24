@@ -3,10 +3,12 @@
 /* Import Reset (Normalize) */
 @import "~normalize.css";
 
+/* Importing Bootstrap SCSS file. */
+@import "~bootstrap/scss/bootstrap";
+
 /*
 Fonts Being used
 */
-
 @import "~bs-stepper/dist/css/bs-stepper.min.css";
 @import "~@fortawesome/fontawesome-free/css/all.min.css";
 
@@ -15,16 +17,46 @@ Fonts Being used
 @import url("https://fonts.googleapis.com/css2?family=Manjari:wght@100;400;700&family=Roboto:wght@100;300;400;500;700;900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,600;1,700;1,800;1,900&display=swap");
 
-:root {
-  font-size: 62.5%;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style-type: none;
+  outline: none;
 }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    list-style-type: none;
-    outline: none;
+:root {
+  font-size: 62.5%;
+
+  // $color-dark-purple:#471B52;
+  // $color-main-purple:#8E24AA;
+  // $color-lavender:#EEDBF1;
+  // $color-ghost-white:#F8F2F9;
+
+  // $color-dark-green:#246713;
+  // $color-main-green:#4CAF50;
+  // $color-main-light-green:#71DB55;
+  // $color-very-light-green:#CBF3C0;
+  // $color-extreme-light-green:#F9FFF9;
+
+  // $color-dark-grey:#252525;
+  // $color-normal-grey:#707070;
+  // $color-very-light-grey:#CACACA;
+
+  $color-dark-purple: #471b52;
+  $color-main-purple: #800080;
+  $color-lavender: #e6e6fa;
+  $color-ghost-white: #f8f8ff;
+
+  $color-dark-green: #006400;
+  $color-main-green: #5cb85c;
+  $color-light-green: #00ff00;
+  $color-very-light-green: #98fb98;
+  $color-mintcream: #f5fffa;
+
+  $color-dark-grey: #252525;
+  $color-normal-grey: #707070;
+  $color-very-light-grey: #f1f1f1;
 }
 
 /* angular-cli file: src/styles.css */
@@ -67,36 +99,6 @@ label {
   font-family: "Quicksand", sans-serif;
   font-weight: 500;
 }
-
-// $color-dark-purple:#471B52;
-// $color-main-purple:#8E24AA;
-// $color-lavender:#EEDBF1;
-// $color-ghost-white:#F8F2F9;
-
-// $color-dark-green:#246713;
-// $color-main-green:#4CAF50;
-// $color-main-light-green:#71DB55;
-// $color-very-light-green:#CBF3C0;
-// $color-extreme-light-green:#F9FFF9;
-
-// $color-dark-grey:#252525;
-// $color-normal-grey:#707070;
-// $color-very-light-grey:#CACACA;
-
-$color-dark-purple: #471b52;
-$color-main-purple: #800080;
-$color-lavender: #e6e6fa;
-$color-ghost-white: #f8f8ff;
-
-$color-dark-green: #006400;
-$color-main-green: #5cb85c;
-$color-light-green: #00ff00;
-$color-very-light-green: #98fb98;
-$color-mintcream: #f5fffa;
-
-$color-dark-grey: #252525;
-$color-normal-grey: #707070;
-$color-very-light-grey: #f1f1f1;
 
 /*
 BACKGROUND COLORS
@@ -224,64 +226,59 @@ hr.dashed {
 }
 
 .btn {
-    font-family: 'Quicksand', sans-serif;
- }
+  font-family: "Quicksand", sans-serif;
+}
 
+hr.dashed {
+  border-top: 1px dashed $color-main-purple;
+  border-bottom: 1px dashed #fff;
+}
 
- hr.dashed {
-    border-top: 1px dashed $color-main-purple;
-	border-bottom: 1px dashed #fff;
-  }
+.custom-control-input:focus ~ .custom-control-label::before {
+  border-color: #28a745 !important;
+  box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25) !important;
+}
 
+.custom-control-input:checked ~ .custom-control-label::before {
+  border-color: #28a745 !important;
+  background-color: #28a745 !important;
+}
 
-  .custom-control-input:focus~.custom-control-label::before {
-    border-color: #28a745 !important;
-    box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25) !important;
-  }
-  
-  .custom-control-input:checked~.custom-control-label::before {
-    border-color: #28a745 !important;
-    background-color: #28a745 !important;
-  }
-  
-  .custom-control-input:focus:not(:checked)~.custom-control-label::before {
-    border-color: #5bd778 !important;
-  }
-  
-  .custom-control-input:not(:disabled):active~.custom-control-label::before {
-    background-color: #d6f5dd !important;
-    border-color: #d6f5dd !important;
-  }
+.custom-control-input:focus:not(:checked) ~ .custom-control-label::before {
+  border-color: #5bd778 !important;
+}
 
-  .bg-menu{
-    
-    background-color: $color-lavender !important;
-  }
+.custom-control-input:not(:disabled):active ~ .custom-control-label::before {
+  background-color: #d6f5dd !important;
+  border-color: #d6f5dd !important;
+}
 
-  .bg-menu:hover{
-    background-color:$color-very-light-grey  !important;
-    // color: $color-ghost-white !important;
-    
-  }
+.bg-menu {
+  background-color: $color-lavender !important;
+}
 
+.bg-menu:hover {
+  background-color: $color-very-light-grey !important;
+  // color: $color-ghost-white !important;
+}
 
 //Border thickness
 .border-2 {
-    border-width:2px !important;
+  border-width: 2px !important;
 }
-  .border-3 {
-    border-width:3px !important;
+.border-3 {
+  border-width: 3px !important;
 }
 
 .border-4 {
-    border-width:4px !important;
+  border-width: 4px !important;
 }
 
 .border-5 {
-    border-width:5px !important;
+  border-width: 5px !important;
 }
 
-  // 320px — 480px: Mobile devices
+// 320px — 480px: Mobile devices
 // 481px — 768px: iPads, Tablets
 // 769px — 1024px: Small screens, laptops
 // 1025px — 1200px: Desktops, large screens
@@ -309,5 +306,3 @@ hr.dashed {
 
 @media only screen and (min-width: 1400px) {
 }
-/* Importing Bootstrap SCSS file. */
-@import "~bootstrap/scss/bootstrap";
