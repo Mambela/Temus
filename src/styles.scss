@@ -3,14 +3,15 @@
 /* Import Reset (Normalize) */
 @import "~normalize.css";
 
-/* Importing Bootstrap SCSS file. */
-@import "~bootstrap/scss/bootstrap";
 
 /*
 Fonts Being used
 */
 @import "~bs-stepper/dist/css/bs-stepper.min.css";
 @import "~@fortawesome/fontawesome-free/css/all.min.css";
+
+/* Importing Bootstrap SCSS file. */
+@import "~bootstrap/scss/bootstrap";
 
 /* Texts fonts */
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans&family=Quicksand:wght@300;400;500;600;700&display=swap");
@@ -27,37 +28,36 @@ Fonts Being used
 
 :root {
   font-size: 62.5%;
-
-  // $color-dark-purple:#471B52;
-  // $color-main-purple:#8E24AA;
-  // $color-lavender:#EEDBF1;
-  // $color-ghost-white:#F8F2F9;
-
-  // $color-dark-green:#246713;
-  // $color-main-green:#4CAF50;
-  // $color-main-light-green:#71DB55;
-  // $color-very-light-green:#CBF3C0;
-  // $color-extreme-light-green:#F9FFF9;
-
-  // $color-dark-grey:#252525;
-  // $color-normal-grey:#707070;
-  // $color-very-light-grey:#CACACA;
-
-  $color-dark-purple: #471b52;
-  $color-main-purple: #800080;
-  $color-lavender: #e6e6fa;
-  $color-ghost-white: #f8f8ff;
-
-  $color-dark-green: #006400;
-  $color-main-green: #5cb85c;
-  $color-light-green: #00ff00;
-  $color-very-light-green: #98fb98;
-  $color-mintcream: #f5fffa;
-
-  $color-dark-grey: #252525;
-  $color-normal-grey: #707070;
-  $color-very-light-grey: #f1f1f1;
 }
+// $color-dark-purple:#471B52;
+// $color-main-purple:#8E24AA;
+// $color-lavender:#EEDBF1;
+// $color-ghost-white:#F8F2F9;
+
+// $color-dark-green:#246713;
+// $color-main-green:#4CAF50;
+// $color-main-light-green:#71DB55;
+// $color-very-light-green:#CBF3C0;
+// $color-extreme-light-green:#F9FFF9;
+
+// $color-dark-grey:#252525;
+// $color-normal-grey:#707070;
+// $color-very-light-grey:#CACACA;
+
+$color-dark-purple: #471b52;
+$color-main-purple: #800080;
+$color-lavender: #e6e6fa;
+$color-ghost-white: #f8f8ff;
+
+$color-dark-green: #006400;
+$color-main-green: #5cb85c;
+$color-light-green: #00ff00;
+$color-very-light-green: #98fb98;
+$color-mintcream: #f5fffa;
+
+$color-dark-grey: #252525;
+$color-normal-grey: #707070;
+$color-very-light-grey: #f1f1f1;
 
 /* angular-cli file: src/styles.css */
 
