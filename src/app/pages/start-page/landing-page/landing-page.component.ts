@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-landing-page',
   templateUrl: './landing-page.component.html',
-  styleUrls: ['./landing-page.component.scss']
+  styleUrls: ['./landing-page.component.scss'],
 })
 export class LandingPageComponent implements OnInit {
 
@@ -55,4 +55,24 @@ export class LandingPageComponent implements OnInit {
 
   }
 
+      if (signInVisibility == 'hidden') {
+        formSignIn.style.visibility = 'visible';
+        formSignUp.style.visibility = 'hidden';
+      } else {
+        formSignIn.style.visibility = 'hidden';
+      }
+    });
+
+    btnSignUp.addEventListener('click', (e: Event) => {
+      e.preventDefault();
+      let signUpVisibility = formSignUp.style.visibility;
+
+      if (signUpVisibility == 'hidden') {
+        formSignUp.style.visibility = 'visible';
+        formSignIn.style.visibility = 'hidden';
+      } else {
+        formSignUp.style.visibility = 'hidden';
+      }
+    });
+  }
 }

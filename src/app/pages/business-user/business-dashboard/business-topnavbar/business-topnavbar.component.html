@@ -1,64 +1,102 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-color-main-purple py-0">
-    <a class="navbar-brand" [routerLink]="['/']" routerLinkActive="router-link-active" ><h1 class="text-white sample-logo"> Temus<span class="tx-color-lg">.</span> </h1></a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-  
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-         
-      </ul>
-      <form class="form-inline my-2 my-lg-0">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
+  <a
+    class="navbar-brand"
+    [routerLink]="['/']"
+    routerLinkActive="router-link-active"
+    ><h1 class="text-white sample-logo">
+      Temus<span class="tx-color-lg">.</span>
+    </h1></a
+  >
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-toggle="collapse"
+    data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
 
-           
-          </li>
-          <li class="nav-item">
-            
-          </li>
-           
-          <li class="nav-item ">
-            <div class="col-sm-9 float-right">
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto"></ul>
+    <form class="form-inline my-2 my-lg-0">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active"></li>
+        <li class="nav-item"></li>
+
+        <li class="nav-item">
+          <div class="col-sm-9 float-right">
+            <div class="row">
+              <div class="col-sm-2 mr-md-n4 my-auto">
+                <a class="nav-link" href="#" class="notification"
+                  ><span><i class="fas fa-bell text-white mt-2"></i></span>
+                  <span class="badge">3</span>
+                </a>
+              </div>
+              <div class="col-sm-2 my-auto">
+                <a class="nav-link" href="#" class="notification"
+                  ><span><i class="fas fa-inbox text-white mt-2"></i></span>
+                  <span class="badge">3</span>
+                </a>
+              </div>
+              <div class="col-sm-3 ml-md-n4 mr-md-n4">
+                <img
+                  [src]="imgSRC"
+                  width="200px"
+                  class="rounded-circle img-fluid py-2 px-2"
+                />
+              </div>
+              <div class="col-sm-6">
                 <div class="row">
-                  <div class="col-sm-2 mr-md-n4 my-auto">
-                    <a class="nav-link" href="#" class="notification"><span><i class="fas fa-bell text-white mt-2"></i></span>  
-                      <span class="badge">3</span> 
-                    </a>
+                  <div class="col-sm-10">
+                    <p class="mt-3 user-name text-light text-truncate">
+                      {{ companyData.designacao }}
+                    </p>
                   </div>
-                  <div class="col-sm-2  my-auto">
-                    <a class="nav-link" href="#" class="notification"><span><i class="fas fa-inbox text-white mt-2"></i></span>  
-                      <span class="badge">3</span> 
-                    </a>
-                                   
-                     
-                  </div>
-                  <div class="col-sm-3 ml-md-n4 mr-md-n4">
-                    <img [src]="imgSRC" width="200px"
-                    class="rounded-circle img-fluid  py-2 px-2" 
-                    />
-                  </div>
-                  <div class="col-sm-6 ">
-                    <div class="row">
-                        <div class="col-sm-10">
-                          <p class="mt-3 user-name text-light text-truncate">{{companyData.designacao}}</p>
-                        </div>
-                        <div class="col-sm-1 text-light ml-md-n4" ngbDropdown>
-                          <span><i class="fas fa-caret fa-lg mt-4" ngbDropdownToggle></i></span>
-                          <div ngbDropdownMenu aria-labelledby="dropdownBasic1" class="dropdown-menu dropdown-menu-right   rounded-0">
-                            <a ngbDropdownItem class="text-dark" [routerLink]="['/business-profile']"><i class="fas fa-user text-dark"></i>  Perfil</a>
-                            <button ngbDropdownItem class="text-dark"><span > <i class="fas fa-sliders-h "></i></span> Configurações</button>
-                            <button ngbDropdownItem class="text-dark"> <span><i class="fas fa-heart text-danger"></i></span> Favoritos</button>
-                            <!-- <button ngbDropdownItem>Registo de Actividades</button>
+                  <div class="col-sm-1 text-light ml-md-n4" ngbDropdown>
+                    <span
+                      ><i class="fas fa-caret fa-lg mt-4" ngbDropdownToggle></i
+                    ></span>
+                    <div
+                      ngbDropdownMenu
+                      aria-labelledby="dropdownBasic1"
+                      class="dropdown-menu dropdown-menu-right rounded-0"
+                    >
+                      <a
+                        ngbDropdownItem
+                        class="text-dark"
+                        [routerLink]="['/business-profile']"
+                        ><i class="fas fa-user text-dark"></i> Perfil</a
+                      >
+                      <button ngbDropdownItem class="text-dark">
+                        <span> <i class="fas fa-sliders-h"></i></span>
+                        Configurações
+                      </button>
+                      <button ngbDropdownItem class="text-dark">
+                        <span><i class="fas fa-heart text-danger"></i></span>
+                        Favoritos
+                      </button>
+                      <!-- <button ngbDropdownItem>Registo de Actividades</button>
                             <button ngbDropdownItem class="text-light">Estatica</button> -->
-                            <a ngbDropdownItem class="text-dark" [routerLink]="['/pesquisa']" routerLinkActive="router-link-active" ><span><i class="fas fa-exchange-alt "></i>  Modo Utilisador Normal </span></a>
-                            <hr class="col-7">
-                            <button ngbDropdownItem (click)="signOut()"> <span> <i class="fas fa-sign-out-alt text-dark"></i></span> Sair</button>
-                          </div>
-                        </div>
-                      
+                      <button ngbDropdownItem class="text-dark">
+                        <span
+                          ><i class="fas fa-exchange-alt"></i> Modo Utilisador
+                          Normal
+                        </span>
+                      </button>
+                      <hr class="col-7" />
+                      <button ngbDropdownItem (click)="signOut()">
+                        <span>
+                          <i class="fas fa-sign-out-alt text-dark"></i
+                        ></span>
+                        Sair
+                      </button>
                     </div>
-                    <!-- <div class="row">
+                  </div>
+                </div>
+                <!-- <div class="row">
                       <div class="col">
                         <div ngbDropdown class="d-inline-block">
                           <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>Toggle dropdown</button>
@@ -70,13 +108,11 @@
                         </div>
                       </div>
                     </div> -->
-                      
-                  </div>
-                </div>
               </div>
-          </li>
-        </ul>
-        
-      </form>
-    </div>
-  </nav>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </form>
+  </div>
+</nav>
