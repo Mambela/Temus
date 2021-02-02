@@ -1,7 +1,13 @@
+import { NgForm } from '@angular/forms';
+import { STOREDCONSTANTS } from './../../../../module/constants.service';
+import { SearchService } from './../../../../core-services/http-service/SearchService/search.service';
+import { ActivatedRoute } from '@angular/router';
+import { ResultItemServico } from './../../../../data/models/regular-user/resultItemServico.model';
 import { FiltersService } from './../../../../core-services/http-service/FiltersService/filters.service';
 import { BasicModel } from './../../../../data/models/supporting/basic-model.model';
 import { CategoriaDataServiceService } from './../../../../core-services/DataService/categoria/categoria-data-service.service';
 import { Component, OnInit } from '@angular/core';
+import { ResultItemLocal } from 'src/app/data/models/regular-user/resultItemLocal.model';
 
 @Component({
   selector: 'app-search-local',
@@ -9,7 +15,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./search-local.component.scss']
 })
 export class SearchLocalComponent implements OnInit {
-
+  
+   // Pagination
+   page = 4;
+   totalItems = 0;
+   last_page = 0;
+   itemsCount = 0;
+   paginateCounter:number = 0;
 
   //Categoria dos Produtos
   localCategoria:BasicModel[];
@@ -21,14 +33,31 @@ export class SearchLocalComponent implements OnInit {
    bairros:BasicModel[];
 
 
+   
+   _baseUrl:string;
   
 
-  constructor(private categoriaDTService:CategoriaDataServiceService, private filterService:FiltersService) { }
+   //Results Array
+   resultItems:ResultItemLocal[];
+
+   //Searching 
+   isSearching:boolean = false;
+   isEmptyResult:boolean;
+
+
+   localNome:string;
+   paginate:boolean;
+  
+
+  constructor(private categoriaDTService:CategoriaDataServiceService, private filterService:FiltersService,
+              private route:ActivatedRoute, private searchService :SearchService , private storedValues:STOREDCONSTANTS) { }
 
   ngOnInit(): void {
 
+    this._baseUrl = this.storedValues.getBASEURL() +"storage/provided/locations/image/";
     this.getLocalCategoria();
     this.getMunicipios();
+    this.getParamsToSearch();                                                            
   }
 
   getLocalCategoria()
@@ -60,6 +89,103 @@ export class SearchLocalComponent implements OnInit {
 
     });
 
+  }
+
+  onSearch(searchServiceForm :NgForm)
+  {
+    
+    const searchParam = searchServiceForm.value.localNome;
+
+    const searchCategoria =searchServiceForm.value.categoriaParam;
+    const searchSubCategoria = searchServiceForm.value.subCategoriaParam;
+
+    const searchMunicipio = searchServiceForm.value.municipioParam;
+    const searchBairro =  searchServiceForm.value.bairroParam;
+
+    console.log("Parameter "+searchParam);
+    console.log("Categoria" + searchCategoria);
+    console.log("SubCategoria" + searchSubCategoria);
+    console.log(" Municipio " + searchMunicipio);
+    console.log("Bairro "+searchBairro);
+
+    
+
+   //  this.search_a_Servico(searchParam,"",searchCategoria,searchSubCategoria,null,searchMunicipio,searchBairro);
+   this.search_a_local(searchParam,searchCategoria,searchSubCategoria,"",searchMunicipio,searchBairro);
+    
+  }
+
+  getParamsToSearch()
+  {
+    this.localNome = this.route.snapshot.queryParamMap.get("nome");
+
+    this.search_a_local(this.localNome);
+  
+  }
+
+  public onPageChange(pageNum: number): void {
+
+    this.isSearching = true;
+    this.paginateCounter =+ 1; 
+ 
+    if(this.paginateCounter > 1)
+    {
+      this.searchService.localPage(pageNum).subscribe((searchResult:ResultItemLocal[])=>{
+         
+         
+             this.resultItems = searchResult['data'];
+             console.log(searchResult['meta']);
+             this.totalItems = searchResult['meta']['total'];
+             this.page = searchResult['meta']['current_page'];
+             this.last_page = searchResult['meta']['last_page'];
+             this.itemsCount = searchResult['meta']['per_page'];
+             if(this.resultItems.length < 1)
+               {
+                
+                 this.isEmptyResult = true;
+               }
+               else{
+                 this.isEmptyResult = false;
+               }
+               this.isSearching = false;
+           });
+ 
+       }
+       else{
+        this.isSearching = false;
+         this.paginate = true;
+       }
+     
+   }
+
+
+  search_a_local(name:string = "",categoria:string ="",tipo:string ="",provincia:string ="",municipio:string ="",bairro:string ="")
+  {
+    this.isSearching = true;
+    this.paginateCounter = 0;
+
+    this.searchService.searchLocal(name,categoria,tipo,provincia,municipio,bairro).subscribe((result)=>{
+
+      console.log(result);
+      this.resultItems = result['data'];
+      console.log(result['meta']);
+      this.totalItems = result['meta']['total'];
+      this.page = result['meta']['current_page'];
+      this.last_page = result['meta']['last_page'];
+      this.itemsCount = result['meta']['per_page'];
+
+      if(this.resultItems.length < 1)
+      {
+    
+        this.isEmptyResult = true;
+      }
+      else{
+        this.isEmptyResult = false;
+      }
+
+      this.isSearching = false;
+
+    });
   }
 
 }

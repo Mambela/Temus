@@ -1,3 +1,4 @@
+import { LandingPageComponent } from './pages/start-page/landing-page/landing-page.component';
 import { ToasterComponent } from './sections/toast/toaster/toaster.component';
 
 import { AppRoutingModule } from './app-routing/app-routing.module';
@@ -13,7 +14,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MapComponent } from './sections/map/map.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { PopMapComponent } from './sections/pop-map/pop-map.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { SavingLoaderComponent } from './sections/loaders/saving-loader/saving-loader.component';
 import { BusinessDashboardComponent } from './pages/business-user/business-dashboard/business-dashboard.component';
 import {SidebarModule} from 'ng-sidebar';
@@ -48,6 +49,7 @@ import { SearchEventoComponent } from './pages/regular-user/search/search-evento
 import { SearchLocalComponent } from './pages/regular-user/search/search-local/search-local.component';
 
 
+
  
 
 @NgModule({
@@ -75,7 +77,7 @@ import { SearchLocalComponent } from './pages/regular-user/search/search-local/s
     AddNewProductServiceComponent,
     DialogboxComponent,
     AddNewServiceComponent,
-    
+    LandingPageComponent,
     SinglePostComponent,
     
     BusinessProfileComponent,
@@ -102,7 +104,7 @@ import { SearchLocalComponent } from './pages/regular-user/search/search-local/s
  
   ],
   imports: [
-    BrowserModule,AppRoutingModule,FormsModule, NgbModule, FontAwesomeModule,SidebarModule.forRoot(),HttpClientModule,
+    BrowserModule,AppRoutingModule,FormsModule,ReactiveFormsModule, NgbModule, FontAwesomeModule,SidebarModule.forRoot(),HttpClientModule,
     NgCircleProgressModule.forRoot({
       radius: 100,
       outerStrokeWidth: 16,

@@ -23,7 +23,7 @@ export class FiltersService {
     // console.log("TOKEN INSIDE TGHE PRODUCT SERVICE",this.storedConstants.userToken);
  
      return this.http.get<BasicModel[]>(this.storedConstants.BASEURL()+"produto-categorias",{
-       headers:{"Accept":"application/json","Authorization":"Bearer "+this.storedConstants.userToken}
+       headers:{"Accept":"application/json"}
      }).pipe(
        catchError((error)=>{
          return throwError(error)
@@ -45,14 +45,14 @@ export class FiltersService {
     {
       return  this.http.get<BasicModel[]>(this.storedConstants.BASEURL() + "servico-categorias",
       {
-        headers:{"Accept":"application/json","Authorization":"Bearer "+this.storedConstants.userToken}
+        headers:{"Accept":"application/json"}
       }).pipe(
         catchError((error)=>{
           return throwError(error);
   
         }),tap((categoriaData:BasicModel[])=>{
               
-            console.log(categoriaData['data']);
+           
             this.categoriaDTService.setServicoCategoria(categoriaData['data']);
         })
       )
@@ -74,9 +74,7 @@ export class FiltersService {
 
         return throwError(error);
           }),tap((categoriaResponse:BasicModel[])=>{
-       
 
-          console.log(categoriaResponse['data']);
           this.categoriaDTService.setLocalCategorias(categoriaResponse['data']);
             
         })
@@ -112,13 +110,13 @@ export class FiltersService {
 
     return this.http.get<BasicModel[]>(this.storedConstants.BASEURL() + "produto-tipo-by-categoria/" + categoriaID,
           {
-            headers:{"Accept":"application/json","Authorization":"Bearer "+this.storedConstants.userToken}   
+            headers:{"Accept":"application/json"}   
           }).pipe(
             catchError((error)=>{
             return throwError(error);
             }),tap((tipoData:BasicModel[])=>{
 
-               console.log(tipoData);
+               
             })
             
           );
@@ -131,7 +129,7 @@ export class FiltersService {
 
     return this.http.get<BasicModel[]>(this.storedConstants.BASEURL() + "local-tipos-by-categoria/" + categoriaID,
             {
-              headers:{"Accept":"application/json","Authorization":"Bearer "+this.storedConstants.userToken}
+              headers:{"Accept":"application/json"}
             }).pipe(
               catchError((error)=>{
                 return throwError(error);
@@ -150,13 +148,13 @@ export class FiltersService {
   {
     return this.http.get<BasicModel[]>(this.storedConstants.BASEURL() + "municipios",
     {
-      headers:{"Accept":"Application/json","Authorization":"Bearer "+this.storedConstants.userToken}
+      headers:{"Accept":"Application/json"}
     }).pipe(
       catchError((error)=>{
         return throwError(error);
       }),tap((municipios:BasicModel[])=>{
       
-        console.log(municipios['data']);
+        
         this.categoriaDTService.setMunicipio(municipios['data']);
 
       })
@@ -166,9 +164,10 @@ export class FiltersService {
 
   getBairrosByMunicipios(categoriaID)
   {
+    // headers:{"Accept":"Application/json","Authorization":"Bearer "+this.storedConstants.userToken}
     return this.http.get<BasicModel[]>(this.storedConstants.BASEURL() + "comunas-by-municipio/" +categoriaID,
     {
-      headers:{"Accept":"Application/json","Authorization":"Bearer "+this.storedConstants.userToken}
+      headers:{"Accept":"Application/json"}
     }).pipe(
       catchError((error)=>{
         return throwError(error);

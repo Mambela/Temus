@@ -209,7 +209,7 @@ export class AuthService {
   
        
 
-      if(companyData.id)
+      if(!companyData.id)
       {
        
         this.storedValues.userToken = tokenData.access_token;
@@ -228,7 +228,10 @@ export class AuthService {
       }
       else
       {
-        this.router.navigate(['']);
+         this.router.navigate(['']);
+         //this.router.navigate(['pesquisa/servico']);
+        //  this.router.navigate(['pesquisa/local']);
+        //this.router.navigate(['/pesquisa/produto']);
       }
  
   }

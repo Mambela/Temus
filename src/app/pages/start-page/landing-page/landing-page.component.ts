@@ -1,3 +1,7 @@
+import { FiltersService } from './../../../core-services/http-service/FiltersService/filters.service';
+import { Router } from '@angular/router';
+import { SearchService } from './../../../core-services/http-service/SearchService/search.service';
+import { NgForm } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +11,48 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LandingPageComponent implements OnInit {
 
-  constructor() { }
+  constructor(private searchService:SearchService,private router:Router,private filterService:FiltersService) { }
 
   ngOnInit(): void {
+    this.getSearchCategorias();
+  }
+
+  onSearch(searchForm : NgForm)
+  {
+
+    const searchParam = searchForm.value.searchParameter;
+    const searchSection = searchForm.value.searchSection;
+
+    console.log(searchSection);
+  
+    switch (searchSection) {
+      case "local":
+        this.router.navigate(["pesquisa/local"],{queryParams:{sector:'local','nome':searchParam}});
+        break;
+      case "servicos":      
+          this.router.navigate(["pesquisa/servico"],{queryParams:{sector:'servico','nome':searchParam}});
+        break;
+      case "produtos":
+          // this.searchService.searchProduct();
+          this.router.navigate(["pesquisa/produto"],{queryParams:{sector:'produto','nome':searchParam}});
+          break;    
+      default:
+        break;
+    }
+  
+
+  
+
+  }
+
+  getSearchCategorias()
+  {
+   
+    this.filterService.getProductCategoria().subscribe();
+    this.filterService.getLocalsCategoria().subscribe();
+    this.filterService.getServiceCategoria().subscribe();
+    this.filterService.getMunicipios().subscribe();
+
   }
 
 }

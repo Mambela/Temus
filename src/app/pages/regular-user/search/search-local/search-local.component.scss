@@ -1,0 +1,43 @@
+@import "../../../../../styles.scss";
+
+
+
+
+.rounded-local{
+    border-radius: 1.5em !important;
+}
+
+.rounded-local img{
+    border-radius: 1em !important;
+}
+
+.card-body{
+    padding: 0em !important;
+}
+
+.checkIn{
+    color: white;
+    font-size: .8em;
+    font-family: 'Quicksand', sans-serif;
+}
+
+.star {
+    font-size: 1.2rem;
+    color: #b0c4de;
+  }
+  .filled.color1 {
+    color: red;
+  }
+  .filled.color2 {
+    color: orange;
+  } 
+  .filled.color4 {
+    color: green;
+  } 
+  .filled.color3 {
+    color: grey;
+  }
+
+  .location-text{
+      font-size: .9rem;
+  }

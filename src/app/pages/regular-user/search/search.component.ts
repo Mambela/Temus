@@ -1,3 +1,5 @@
+import { SearchResultDataService } from './../../../core-services/DataService/SearchResult/search-result-data.service';
+import { ResultItemServico } from './../../../data/models/regular-user/resultItemServico.model';
 import { FiltersService } from './../../../core-services/http-service/FiltersService/filters.service';
 import { CompanyServicesService } from '../../../core-services/http-service/business/Servicos services/services.service';
 
@@ -13,7 +15,11 @@ import { NgbRatingConfig } from '@ng-bootstrap/ng-bootstrap';
 })
 export class SearchComponent implements OnInit {
 
-  constructor(config:NgbRatingConfig,private filterService:FiltersService,private productService:ProductsService,private categoriaServicoService:CompanyServicesService) { 
+
+  searchResult:ResultItemServico[];
+
+  constructor(config:NgbRatingConfig,private filterService:FiltersService,private productService:ProductsService,
+              private categoriaServicoService:CompanyServicesService,private searchResultData:SearchResultDataService) { 
     config.max = 5;
     config.readonly = true;
   }
@@ -21,6 +27,7 @@ export class SearchComponent implements OnInit {
   ngOnInit(): void {
     
     this.getSearchCategorias();
+    
   }
 
   getSearchCategorias()
@@ -31,8 +38,7 @@ export class SearchComponent implements OnInit {
     this.filterService.getServiceCategoria().subscribe();
     this.filterService.getMunicipios().subscribe();
 
-    
-
   }
+
 
 }

@@ -42,8 +42,8 @@ const appRoutes: Routes=[
     children:[
         {path:'local',component:SearchLocalComponent},
         {path:'servico',component:SearchServiceComponent},
-        {path:'produto',component:SearchProdutoComponent},
-        {path:'evento',component:SearchEventoComponent}
+        {path:'produto',component:SearchProdutoComponent}
+        //,{path:'evento',component:SearchEventoComponent}
     ]
   },
   {path:'template',component:TemplatesComponent}

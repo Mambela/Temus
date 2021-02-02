@@ -4,64 +4,110 @@
 
 
             <label for="searchInput"> Onde</label>
-            <input class="form-control " type="text" id="searchInput"/>
+            <form  #searchForm="ngForm" 
+            (ngSubmit)="onSearch(searchForm)">
+
+            <input class="form-control " type="text" id="searchInput" name="localNome" ngModel placeholder="Designação do Serviço" />
     
-            <label class="col-form-label col-form-label-sm " for="nomeparam">Categoria </label>
-            <select class="custom-select custom-select-sm mb-3 rounded-2 cursor"  name="nomeparam" (change)="onCategoriaChange($event)">
-                <option selected value="reset" class="cursor">Selecione Categoria</option>
+            <label class="col-form-label col-form-label-sm " for="categoriaParam">Categoria </label>
+            <select class="custom-select custom-select-sm mb-3 rounded-2 cursor" id="categoriaParam" name="categoriaParam" (change)="onCategoriaChange($event)" ngModel >
+                <option selected value="" class="cursor">Selecione Categoria</option>
                 <option  value="{{categoria.id}}" class="cursor" *ngFor="let categoria of localCategoria"  >{{categoria.designacao}}</option>
           
             </select>
   
-            <label class="col-form-label col-form-label-sm " for="nomeparam">Sub-categoria </label>
-            <select class="custom-select custom-select-sm mb-3 rounded-2 cursor" name="nomeparam" >
-              <option selected value="reset">Selecione Subcategoria</option>
+            <label class="col-form-label col-form-label-sm " for="subCategoriaParam">Sub-categoria </label>
+            <select class="custom-select custom-select-sm mb-3 rounded-2 cursor" id="subCategoriaParam" name="subCategoriaParam" ngModel>
+              <option selected value="">Selecione Subcategoria</option>
               <option value="{{tipo.id}}" *ngFor="let tipo of localSubCategoria">{{tipo.designacao}}</option>
             </select>
               <hr>
      
               <label class="col-form-label col-form-label-sm " for="nomeparam">Municipio</label>
-              <select class="custom-select custom-select-sm mb-3 rounded-2 cursor" name="nomeparam" (change)="onMunicipioChange($event)">
-                  <option  class="cursor" selected >Municipios</option>
+              <select class="custom-select custom-select-sm mb-3 rounded-2 cursor" name="municipioParam" (change)="onMunicipioChange($event)" ngModel>
+                  <option  class="cursor"  value="" selected >Municipios</option>
                   <option  value="{{municipio.id}}" class="cursor"  *ngFor="let municipio of municipios">{{municipio.designacao}}</option>
                    
               </select>
     
               <label class="col-form-label col-form-label-sm " for="nomeparam">Bairro </label>
-              <select class="custom-select custom-select-sm mb-3 rounded-2 cursor" name="Bairro">
-                  <option  class="cursor" selected>Bairro</option>
+              <select class="custom-select custom-select-sm mb-3 rounded-2 cursor" name="bairroParam" ngModel >
+                  <option  class="cursor" value="" selected>Bairro</option>
                   <option  value="{{bairro.id}}" class="cursor" *ngFor="let bairro of bairros">{{bairro.designacao}}</option>
                   
               </select>
-              <button class="btn btn-success"> Pesquisar </button>
+              <button type="submit" class="btn btn-success"> Pesquisar </button>
+            </form>
           </div>
     </div>
 
       <div class="col-md-9">
-        <div class="row row-cols-1 row-cols-md-3 row-cols-lg-4">
-            <div class="col mb-3">
-              <div class="card">
-                <img src="https://images.pexels.com/photos/4397890/pexels-photo-4397890.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260" height="170px" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h6 class="card-title">Card title</h6>
-                  <div class="row">
-                    <div class="col-4">
-                      <ngb-rating [rate]="3"></ngb-rating>
+
+        <div class="row" *ngIf="!isEmptyResult && !isSearching" >
+          <div class="col-md-9 justify-content-end text-end">
+            <ngb-pagination [(collectionSize)]="totalItems" [(pageSize)]="itemsCount" [(page)]="page" [(maxSize)]="last_page" [boundaryLinks]="true"
+            (pageChange)="onPageChange(page)" 
+            ></ngb-pagination>
+          </div>
+          <div class="col-md-3">
+              <h5> Encontrou {{ totalItems }} Locais </h5>
+          </div>
+        </div>
+
+        <div class="d-flex justify-content-center" *ngIf="isSearching">
+          <app-side-loader></app-side-loader>
+        </div>
+
+        <div class="row row-cols-1 row-cols-md-3 row-cols-lg-4" *ngIf="!isSearching">
+            <div class="col mb-3" *ngFor="let item of resultItems">
+              <div class="card p-1 rounded-local shadow-sm">
+                <img src="{{_baseUrl+item.imagem}}" height="140px" class="card-img-top " alt="...">
+                <div class="card-img-overlay"> 
+                    <div class="d-flex justify-content-end">  
+                         <span class="bg-success rounded-local p-2"> 
+                            <p class="card-text align-text-bottom checkIn "><i class="fas fa-check-circle"></i> 4500 (check ins)</p>
+                         </span>
+                  </div>
+                </div>
+                <div class="card-body  p-n5 py-2">
+                  <h5 class="card-title text-dark text-truncate my-2 ">{{item.name}}</h5>
+                  <div class="row my-n1 ">
+                    <div class="col-7 bg-">
+                      <p class="text-secondary location-text"><i class="fas fa-map-marker-alt text-success"></i> {{item.bairro}}, Luanda</p>
                     </div>
-                    <div class="col-8">
-                      <ul class="list-inline  ">
-                         
-                        <li class="list-inline-item"><a> 459</a> </li>
-                        <li class="list-inline-item"><a > 760</a> </li>
-                        <li class="list-inline-item"><a > 1600</a> </li>
-                      </ul>
+                    <div class="col-5">
+                      <ngb-rating [rate]="3">
+                        <ng-template let-fill="fill">
+                          <span class="star" [ngClass]="'color'+2"[class.filled]="fill === 100">&#9733;</span>
+                        </ng-template>
+                      </ngb-rating>
                     </div>
+                    
                   </div>
                 </div>
               </div>
             </div>
           
           </div>
+
+          <!-- /For empty results /-->
+        <div class="col-sm-12 mt-4">
+          <div class="d-flex justify-content-center" *ngIf="isEmptyResult && !isSearching">
+            <h2 class="text-color-main-green"> Nenhum resultado para os filtros fornecidos.  </h2>
+            <h4 class="text-color-main-green text-center "> </h4> <br><br>
+            <br>
+          </div>
+        </div>
+      
+          <div class="d-flex justify-content-center" *ngIf="(isEmptyResult && !isSearching)">
+                       
+            <ul class="text-secondary">
+              <li> <h5 class="">Verifique os parametros de pesquisa </h5></li>
+              <li><h5 class=""> Verifique se você digitou o serviço corretamente</h5> </li>
+            </ul>
+            
+          </div>
+        <!-- /.For empty results ./-->
       
     </div>
 
