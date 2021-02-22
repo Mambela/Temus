@@ -6,7 +6,10 @@ export class ResultItemServico{
     public id:number;
     public empresaId:number;
     public name:string;
+    public descricao:string;
+    public disponibilidade:boolean;
     public imagem:string;
+    public stock:number;
     public tipo:string;
     public categoria:string;
     public bairro:string;

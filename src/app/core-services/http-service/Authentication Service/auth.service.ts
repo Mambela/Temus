@@ -228,9 +228,9 @@ export class AuthService {
       }
       else
       {
-         this.router.navigate(['']);
-         //this.router.navigate(['pesquisa/servico']);
-        //  this.router.navigate(['pesquisa/local']);
+        // this.router.navigate(['']);
+        //  this.router.navigate(['pesquisa/servico']);
+         this.router.navigate(['pesquisa/local']);
         //this.router.navigate(['/pesquisa/produto']);
       }
  

@@ -36,10 +36,10 @@
   <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
       <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
-              <a class="nav-link" [routerLink] ="['/pesquisa']" >Procurar</a>
+              <a class="nav-link" [routerLink] ="['/pesquisa']">Procurar</a>
           </li>
           <li class="nav-item">
-              <a class="nav-link" href="#">Explorar</a>
+              <a class="nav-link" [routerLink]="['/explorarMapa']">Explorar</a>
           
           <li class="nav-item">
               <a class="nav-link" href="#">Perto de Mim</a>
@@ -65,13 +65,13 @@
               <a class="nav-link" href="#">Angola</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Luanda</a>
+            <a class="nav-link" href="#">{{UserLocation.provincia}}</a>
           </li>
            <li class="nav-item">
-          <a class="nav-link" href="#">Vianna</a>
+          <a class="nav-link" href="#">{{UserLocation.municipio}}</a>
           </li>
           <li class="nav-item">
-              <a class="nav-link" href="#">Zango</a>
+              <a class="nav-link" href="#">{{UserLocation.comuna}}</a>
           </li>
       </ul>
   </div>

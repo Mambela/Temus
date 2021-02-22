@@ -1,3 +1,4 @@
+import { UserAddress } from './../../../../data/models/regular-user/UserAddress.model';
 import { streetModel } from '../../../../data/models/supporting/street-model.model';
 
 import { catchError, tap } from 'rxjs/operators';
@@ -83,6 +84,21 @@ export class AddressesService {
       
     );
   }
+  
+  getUserAddress(lat:number,lng:number)
+  {
+        return this.http.get<UserAddress>(this.CONSTANTS.BASEURL() + "userCurrentAddress/" + lat+"/"+lng,
+        {
+          headers:{"Accept":"application/json"}
+        }).pipe(
+          catchError((error)=>{
+            return throwError(error);
+          }), tap((Address:UserAddress)=>{
+            
+              console.log(Address);
 
+          })
+        )
+  }
 
 }

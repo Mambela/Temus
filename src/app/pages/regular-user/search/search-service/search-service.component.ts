@@ -1,3 +1,4 @@
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Subscription } from 'rxjs';
 import { STOREDCONSTANTS } from './../../../../module/constants.service';
 import { SearchService } from './../../../../core-services/http-service/SearchService/search.service';
@@ -49,7 +50,7 @@ export class SearchServiceComponent implements OnInit,OnDestroy {
    paginate:boolean = false;
 
   constructor(private categoriaDTService:CategoriaDataServiceService,private filterService:FiltersService,private searchResultData:SearchResultDataService, private route:ActivatedRoute,
-              private searchService:SearchService,private storeValues:STOREDCONSTANTS) { }
+              private searchService:SearchService,private storeValues:STOREDCONSTANTS,private modalService: NgbModal) { }
 
   ngOnInit(): void {
   
@@ -65,6 +66,28 @@ export class SearchServiceComponent implements OnInit,OnDestroy {
 
    this.serviceCategoria = this.categoriaDTService.getServicoCategoria();
 
+  }
+
+  public openViewServico(serviceModal:any,product:ResultItemServico)
+  {
+
+    const modalRef = this.modalService.open(serviceModal,{size:'lg',centered:false});
+
+  }
+
+  checkServicoAvailability(available:boolean):boolean
+  {
+    console.log(available) 
+
+    if(available == true)
+    {
+      console.log("Servico available");
+      return true;
+    }
+    else{
+      console.log("Servico not available");
+      return false;
+    }
   }
 
   onCategoriaChange(event)

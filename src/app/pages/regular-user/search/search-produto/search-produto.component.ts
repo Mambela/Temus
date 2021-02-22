@@ -1,3 +1,4 @@
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { STOREDCONSTANTS } from './../../../../module/constants.service';
 import { SearchService } from './../../../../core-services/http-service/SearchService/search.service';
 import { NgForm } from '@angular/forms';
@@ -56,7 +57,8 @@ export class SearchProdutoComponent implements OnInit {
 
 
   constructor(private productService:ProductsService,private categoriaDTService:CategoriaDataServiceService,private filterService:FiltersService,
-              private route:ActivatedRoute, private searchService:SearchService, private storeValues:STOREDCONSTANTS) { }
+              private route:ActivatedRoute, private searchService:SearchService, private storeValues:STOREDCONSTANTS, 
+              private modalService: NgbModal) { }
 
   ngOnInit(): void {
 
@@ -146,6 +148,13 @@ export class SearchProdutoComponent implements OnInit {
 
   }
 
+  public openViewProduct(productModal:any,product:ResultItemServico)
+  {
+
+    const modalRef = this.modalService.open(productModal,{size:'md',centered:false});
+
+  }
+
 
   
   public onPageChange(pageNum: number): void {
@@ -177,6 +186,21 @@ export class SearchProdutoComponent implements OnInit {
 
      
      
+   }
+
+   checkProductAvailability(available:boolean):boolean
+   {
+     console.log(available) 
+
+     if(available == true)
+     {
+       console.log("Product available");
+       return true;
+     }
+     else{
+       console.log("Product not available");
+       return false;
+     }
    }
   
 

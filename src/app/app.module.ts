@@ -47,6 +47,7 @@ import { SearchServiceComponent } from './pages/regular-user/search/search-servi
 import { SearchProdutoComponent } from './pages/regular-user/search/search-produto/search-produto.component';
 import { SearchEventoComponent } from './pages/regular-user/search/search-evento/search-evento.component';
 import { SearchLocalComponent } from './pages/regular-user/search/search-local/search-local.component';
+import { ExploreMapViewComponent } from './pages/regular-user/explore-map-view/explore-map-view.component';
 
 
 
@@ -100,6 +101,7 @@ import { SearchLocalComponent } from './pages/regular-user/search/search-local/s
     
     
     SearchLocalComponent,
+    ExploreMapViewComponent,
   
  
   ],

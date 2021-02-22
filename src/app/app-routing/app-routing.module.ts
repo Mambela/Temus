@@ -1,7 +1,8 @@
+import { ExploreMapViewComponent } from './../pages/regular-user/explore-map-view/explore-map-view.component';
 import { SearchServiceComponent } from './../pages/regular-user/search/search-service/search-service.component';
 import { TemplatesComponent } from './../components/templates/templates.component';
 import { SearchComponent } from './../pages/regular-user/search/search.component';
-import { MainPageComponent } from './../pages/regular-user/main-page/main-page.component';
+
 import { BusinessProfileComponent } from './../pages/business-user/business-profile/business-profile.component';
 import { BusinessPostsComponent } from './../pages/business-user/business-dashboard/business-posts/business-posts.component';
 
@@ -46,7 +47,9 @@ const appRoutes: Routes=[
         //,{path:'evento',component:SearchEventoComponent}
     ]
   },
-  {path:'template',component:TemplatesComponent}
+  {path:'explorarMapa',component:ExploreMapViewComponent},
+  {path:'template',component:TemplatesComponent},
+
   
 ]
 
