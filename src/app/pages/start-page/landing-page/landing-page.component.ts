@@ -54,25 +54,4 @@ export class LandingPageComponent implements OnInit {
     this.filterService.getMunicipios().subscribe();
 
   }
-
-    //   if (signInVisibility == 'hidden') {
-    //     formSignIn.style.visibility = 'visible';
-    //     formSignUp.style.visibility = 'hidden';
-    //   } else {
-    //     formSignIn.style.visibility = 'hidden';
-    //   }
-     
-
-    // btnSignUp.addEventListener('click', (e: Event) => {
-    //   e.preventDefault();
-    //   let signUpVisibility = formSignUp.style.visibility;
-
-    //   if (signUpVisibility == 'hidden') {
-    //     formSignUp.style.visibility = 'visible';
-    //     formSignIn.style.visibility = 'hidden';
-    //   } else {
-    //     formSignUp.style.visibility = 'hidden';
-    //   }
-    // });
-   
 }
