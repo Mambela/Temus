@@ -1,0 +1,87 @@
+<body class="d-flex align-items-center justify-content-center background-wallpaper">
+    <div class="transparent"></div>
+    <header class="d-flex align-items-center fixed-top h-wrapper">
+      <div
+        class="container-fluid d-flex justify-content-between align-items-center h-container"
+      >
+        <div class="content-title">
+          <span class="title">Temus<span class="title-point">.</span></span>
+        </div>
+        <nav class="content-buttons">
+          <ul class="d-flex align-items-center">
+            <a href="#"
+              ><li>
+                <button id="btn-signIn" class="btn btn-success h-btn-custom">Entrar</button>
+              </li></a
+            >
+            <a href="#"
+              ><li>
+                <button id="btn-signUp" class="btn btn-success h-btn-custom">Criar Conta</button>
+              </li></a
+            >
+          </ul>
+        </nav>
+      </div>
+    </header>
+  
+    <form class="d-flex align-items-center search-container"
+    #searchForm="ngForm" 
+    (ngSubmit)="onSearch(searchForm)"
+    >
+  <div class="d-flex justify-content-center align-items-center icon-search"><i class="fas fa-search"></i>
+      <input type="text" name="searchParameter" id="" placeholder="O que está procurando?" ngModel />
+      <div class="list-search-option">
+        <select class="custom-select" name="searchSection" id="" ngModel>
+          <option value="" disabled selected hidden>Selecionar</option>
+          <option value="produtos">Produtos</option>
+          <option value="local">Locais</option>
+          <option value="servicos">Serviços</option>
+          <!-- <option value="eventos">Eventos</option> -->
+        </select>
+        <button type="submit" class="btn btn-search">Pesquisar</button>
+      </div>
+  </div>
+  </form>
+  
+  <div class="d-flex justify-content-center align-items-center modal-container sign-in sign-blur">
+    <div class="d-flex flex-column justify-content-center align-items-center modal-content">
+      <h2>Inicio de sessão</h2>
+        <form class="d-flex flex-column justify-content-center align-items-center" action="">
+          <input type="email" placeholder="email" />
+          <input type="password" placeholder="senha" />
+          <input type="submit" value="Entrar" />
+        </form>
+      <p><a href="#">Esqueceu senha?</a></p>
+    </div>
+  </div>
+  
+  <div class="d-flex justify-content-center align-items-center modal-container sign-up sign-blur">
+    <dialog class="teste d-flex flex-column justify-content-center align-items-center modal-content">
+      <h2>Comece já!</h2>
+        <form class="d-flex flex-column align-items-center" action="">
+          <input type="text" placeholder="nome" />
+          <input type="email" placeholder="email" />
+          <input type="password" placeholder="senha" />
+          <input type="password" placeholder="confirmar senha" />
+          <input type="submit" value="Cadastrar" />
+        </form>
+      <p>Criar <a href="#">Conta Empresa</a></p>
+    </dialog>
+  </div>
+  
+  
+  
+    <footer class="d-flex align-items-center fixed-bottom f-wrapper">
+      <nav class="container-fluid d-flex align-items-center f-container">
+        <ul class="d-flex align-items-center">
+          <li><a href="" class="nav-link" [routerLink]="['/business']" >Conta empresa</a></li>
+          <li><a href="#">Fale connosco</a></li>
+          <li><a href="#">Sobre nós</a></li>
+          <li><a href="#">Criar anúncio</a></li>
+          <li><a href="#">Política de privacidade</a></li>
+          <li><a href="#">Quesitos legais</a></li>
+          <li><a href="#">Ignis @ 2020</a></li>
+        </ul>
+      </nav>
+    </footer>
+  </body>

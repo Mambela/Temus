@@ -1,87 +1,65 @@
-<body class="d-flex align-items-center justify-content-center background-wallpaper">
-  <div class="transparent"></div>
-  <header class="d-flex align-items-center fixed-top h-wrapper">
-    <div
-      class="container-fluid d-flex justify-content-between align-items-center h-container"
-    >
-      <div class="content-title">
-        <span class="title">Temus<span class="title-point">.</span></span>
-      </div>
-      <nav class="content-buttons">
-        <ul class="d-flex align-items-center">
-          <a href="#"
-            ><li>
-              <button id="btn-signIn" class="btn btn-success h-btn-custom">Entrar</button>
-            </li></a
-          >
-          <a href="#"
-            ><li>
-              <button id="btn-signUp" class="btn btn-success h-btn-custom">Criar Conta</button>
-            </li></a
-          >
+<body class="full-screen h-100 meio temus-background">
+  <div class="transparent">
+    <header class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+      <nav class="container-fluid">
+        <a href="#" class="navbar-brand">Temus</a>
+        <div class="d-flex justify-content-end">
+          <button class="btn btn-primary">Entrar</button>
+          <button class="btn btn-primary ml-2">Criar Conta</button>
+        </div>  
+      </nav>
+    </header>
+    
+    <main class="container">
+      <section class="row justify-content-center align-item-center">
+          <form action="#" class="col-sm-9">
+            <div class="w-100 search-container">
+  
+              <div class="search-input-container">
+  
+                <div class="search-icon">
+                  <i class="fas fa-search mr-3 ml-3"></i>
+                </div>
+  
+                <div class="input-search">
+                  <input type="text" placeholder="Search" class="input-search">
+                </div>
+  
+                <div class="teste-select">
+                  <select class="teste-select1" name="searchSection" id="" ngModel>
+                    <option value="" disabled selected hidden>Selecionar</option>
+                    <option value="produtos">Produtos</option>
+                    <option value="local">Locais</option>
+                    <option value="servicos">Serviços</option>
+                  </select>
+                </div>
+  
+              </div>
+  
+              <!-- button search -->
+              <div class="search-button-container">
+                <button class="btn btn-primary btn-search">pesquisar</button>
+              </div>
+  
+            </div>
+          </form>
+        </section>  
+    </main>
+  
+    <footer>
+      <nav class="navbar fixed-bottom navbar-expand-sm navbar-dark bg-dark">
+        <ul class="navbar-nav mr-auto">
+          <li><a href="#" class="nav-link" [routerLink]="['/business']" >Conta empresa</a></li>
+          <li><a href="#" class="nav-link">Fale connosco</a></li>
+          <li><a href="#" class="nav-link">Sobre nós</a></li>
+          <li><a href="#" class="nav-link">Criar anúncio</a></li>
+          <li><a href="#" class="nav-link">Política de privacidade</a></li>
+          <li><a href="#" class="nav-link">Quesitos legais</a></li>
+        </ul>
+        <ul class="navbar-nav justify-content-end">
+          <li><a href="#" class="nav-link">Ignis @ 2020</a></li>
         </ul>
       </nav>
-    </div>
-  </header>
-
-  <form class="d-flex align-items-center search-container"
-  #searchForm="ngForm" 
-  (ngSubmit)="onSearch(searchForm)"
-  >
-<div class="d-flex justify-content-center align-items-center icon-search"><i class="fas fa-search"></i>
-    <input type="text" name="searchParameter" id="" placeholder="O que está procurando?" ngModel />
-    <div class="list-search-option">
-      <select class="custom-select" name="searchSection" id="" ngModel>
-        <option value="" disabled selected hidden>Selecionar</option>
-        <option value="produtos">Produtos</option>
-        <option value="local">Locais</option>
-        <option value="servicos">Serviços</option>
-        <!-- <option value="eventos">Eventos</option> -->
-      </select>
-      <button type="submit" class="btn btn-search">Pesquisar</button>
-    </div>
-</div>
-</form>
-
-<div class="d-flex justify-content-center align-items-center modal-container sign-in sign-blur">
-  <div class="d-flex flex-column justify-content-center align-items-center modal-content">
-    <h2>Inicio de sessão</h2>
-      <form class="d-flex flex-column justify-content-center align-items-center" action="">
-        <input type="email" placeholder="email" />
-        <input type="password" placeholder="senha" />
-        <input type="submit" value="Entrar" />
-      </form>
-    <p><a href="#">Esqueceu senha?</a></p>
+    </footer>
   </div>
-</div>
-
-<div class="d-flex justify-content-center align-items-center modal-container sign-up sign-blur">
-  <dialog class="teste d-flex flex-column justify-content-center align-items-center modal-content">
-    <h2>Comece já!</h2>
-      <form class="d-flex flex-column align-items-center" action="">
-        <input type="text" placeholder="nome" />
-        <input type="email" placeholder="email" />
-        <input type="password" placeholder="senha" />
-        <input type="password" placeholder="confirmar senha" />
-        <input type="submit" value="Cadastrar" />
-      </form>
-    <p>Criar <a href="#">Conta Empresa</a></p>
-  </dialog>
-</div>
-
-
-
-  <footer class="d-flex align-items-center fixed-bottom f-wrapper">
-    <nav class="container-fluid d-flex align-items-center f-container">
-      <ul class="d-flex align-items-center">
-        <li><a href="" class="nav-link" [routerLink]="['/business']" >Conta empresa</a></li>
-        <li><a href="#">Fale connosco</a></li>
-        <li><a href="#">Sobre nós</a></li>
-        <li><a href="#">Criar anúncio</a></li>
-        <li><a href="#">Política de privacidade</a></li>
-        <li><a href="#">Quesitos legais</a></li>
-        <li><a href="#">Ignis @ 2020</a></li>
-      </ul>
-    </nav>
-  </footer>
 </body>

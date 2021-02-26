@@ -3,240 +3,81 @@
 $default-font: "Nunito", sans-serif;
 
 // body
-
-.background-wallpaper {
+.full-screen {
   width: 100%;
-  height: 100vh;
-  background-image: url("./image/fenda-da-tundavala.jpg");
-  background-size: cover;
+  min-width: 100vh;
+
+  &.temus-background {
+    background-image: url(./image/fenda-da-tundavala.jpg);
+    background-size: cover;
+  }
+
+  &.meio {
+
+    min-height: 100vh;
+    width: 100%;
+  
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
   .transparent {
     width: 100%;
     height: 100%;
+
     position: absolute;
     z-index: 0;
-    background-color: rgba(68, 41, 74, 0.4);
+    background-color: green;
   }
+
 }
 
-// header
 
-.h-wrapper {
-  width: 100%;
-  height: 5.5rem;
-  background-color: $color-dark-purple;
-
-  .h-container {
-    .content-title {
-      .title {
-        color: white;
-        font-size: 30px;
-        font-weight: bold;
-        font-family: $default-font;
-      }
-
-      .title-point {
-        color: green;
-        font-size: 30px;
-        font-weight: bold;
-      }
-    }
-
-    .content-buttons {
-      height: 35px;
-
-      ul {
-        .h-btn-custom {
-          min-width: 10rem;
-          max-height: 3.5rem;
-          font-size: 15px;
-          font-weight: bold;
-          margin-left: 1rem;
-          border-radius: 1rem;
-          white-space: nowrap;
-        }
-      }
-    }
-  }
-}
-
-// search Bar
-.search {
-  width: 100%;
-  margin-bottom: 15rem;
-
-  p {
-    font-size: 70px;
-    font-family: $default-font;
-    font-weight: bold;
-    color: white;
-    z-index: 100;
-
-    .point {
-      font-size: 70px;
-      color: $color-light-green;
-    }
-  }
-
-  .search-container {
-    width: 65%;
-    height: 4rem;
-    background-color: white;
-    overflow: hidden;
-    border-radius: 10px;
-    position: relative;
-    bottom: 0;
+.search-container {
   
-    .icon-search {
-      width: 4.3rem;
-      height: 4rem;
-  
-      .icon {
-        width: 100%;
-        height: 100%;
-        color: black;
-        border: none;
-      }
-    }
-  
-    input {
-      width: 65%;
-      height: 4rem;
-      border: none;
-    }
-  
-    .list-search-option {
-      width: auto;
+  height: 3rem;
+  border-radius: 2rem;
+  background-color: white;
+  position: relative;
+  overflow: hidden;
+
+  display: flex;
+  align-items: center;
+
+  .search-input-container {
+    width: 80%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    left: 0;
+
+    .input-search {
+      width: 100%;
       height: 100%;
-      position: absolute;
-      right: 0;
-  
-      .custom-select {
-        width: 9.5rem;
-        height: 100%;
-        border: none;
-
-
-        &:focus {
-          outline: none;
-        }
-      }
-  
-      .btn-search {
-        width: 15rem;
-        height: 4rem;
-  
-        font-size: 18px;
-        font-weight: bold;
-        border: none;
-        color: white;
-        background-color: $color-light-green;
-      }
-    }
-  }
-}
-
-// footer
-
-.f-wrapper {
-  width: 100%;
-  height: 5rem;
-  color: white;
-  background-color: $color-dark-grey;
-
-  .f-container {
-    position: relative;
-
-    li {
-      font-size: 14px;
-      font-family: $default-font;
-
-      + li {
-        margin-left: 2rem;
-      }
-
-      &:last-child {
-        position: absolute;
-        margin-right: 1.5rem;
-        right: 0;
-      }
     }
 
-    a {
-      text-decoration: none;
-      color: white;
-    }
-  }
-}
+    .teste-select {
+      width: 6rem;
+      height: 100%;
 
-
-.modal-container {
-  width: 100%;
-  height: 100vh;
-  position: absolute;
-  z-index: 500;
-  background-color: rgba(0, 0, 0, 0.4);
-
-  &.sign-blur {
-    visibility: hidden;
-  }
-
-
-  .modal-content {
-    width: 40rem;
-    height: 44rem;
-    background-color: #EFE1F0;
-    z-index: 510;
-    padding-top: 3rem;
-
-    border-radius: 2rem;
-    
-    h2 {
-      font-size: 35px;
-      font-weight: bold;
-      font-family: $default-font;
-      color: #747373;
-    }
-
-    form {
-      width: 30rem;
-      height: 65%;
-      margin-top: 3.2rem;
-      position: relative;
-
-      input {
+      .teste-select1 {
         width: 100%;
-        height: 3.5rem;
-        border: none;
-        border-radius: 1rem;
-        margin-bottom: 1.5rem;
-        padding-left: 1.5rem;
-
-        ::placeholder {
-          font-size: 14px;
-          font-family: $default-font;
-        }
-      }
-
-      :last-child {
-        position: absolute;
-        bottom: 0;
-
-        background-color: $color-light-green;
-        
-        font-size: 14px;
-        font-family: $default-font;
-        font-weight: bold;
-        color: white;
+        height: 100%;
       }
     }
-    p {
-      font-size: 12px;
-      font-family: $default-font;
-      color: black;
-      a {
-        color: #009BFC;
-      }
+  }
+
+  .search-button-container {
+    width: 9rem;
+    height: 100%;
+
+    position: absolute;
+    right: 0;
+
+    button {
+      width: 100%;
+      height: 100%;
     }
   }
 }
