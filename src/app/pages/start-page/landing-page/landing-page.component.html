@@ -1,63 +1,59 @@
-<body class="full-screen h-100 meio temus-background">
-  <div class="transparent"></div>
-    <header class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-      <nav class="container-fluid">
-        <a href="#" class="navbar-brand">Temus</a>
-        <div class="d-flex justify-content-end">
-          <button class="btn btn-primary">Entrar</button>
-          <button class="btn btn-primary ml-2">Criar Conta</button>
-        </div>  
-      </nav>
-    </header>
-    
-    <main class="container">
-      <section class="row justify-content-center align-item-center">
-          <form action="#" class="col-sm-9">
-            <div class="w-100 search-container">
-  
-              <div class="search-input-container">
-  
-                <div class="search-icon">
-                  <i class="fas fa-search mr-3 ml-3"></i>
-                </div>
-  
-                <div class="input-search">
-                  <input type="text" placeholder="Search" class="input-search">
-                </div>
-  
-                <div class="teste-select">
-                  <select class="teste-select1" name="searchSection" id="" ngModel>
-                    <option value="" disabled selected hidden>Selecionar</option>
-                    <option value="produtos">Produtos</option>
-                    <option value="local">Locais</option>
-                    <option value="servicos">Serviços</option>
-                  </select>
-                </div>
-              </div>
-  
-              <!-- button search -->
-              <div class="search-button-container">
-                <button class="btn btn-primary btn-search">pesquisar</button>
-              </div>
-  
-            </div>
-          </form>
-        </section>  
-    </main>
-  
-    <footer>
-      <nav class="navbar fixed-bottom navbar-expand-sm navbar-dark bg-dark">
+<body>
+  <header class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="container-fluid">
+      <a class="navbar-brand h1 mb-0">Temus</a>
+
+      <div class="row">
+        <div class="col-12 d-flex">
+          <button class="btn btn-primary btn-size-navtop">entrar</button>
+          <button
+            class="btn btn-primary btn-size-navtop ml-2 d-none d-lg-block"
+          >
+            Criar Conta
+          </button>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main class="container"></main>
+
+  <footer class="navbar fixed-bottom navbar-expand-sm navbar-dark bg-dark">
+    <div class="container-fluid d-flex d-lg-none">
+        <a class="navbar-brand" href="#">Temus</a>
+        <ul class="navbar-nav justify-self-end">
+          <li class="nav-item">
+            <a href="#" class="nav-link">Ignis @ 2021</a>
+          </li>
+        </ul>         
+    </div>
+
+    <div class="container-fluid d-none d-lg-block">
+      <nav class="navbar-nav w-100">
         <ul class="navbar-nav mr-auto">
-          <li><a href="#" class="nav-link" [routerLink]="['/business']" >Conta empresa</a></li>
-          <li><a href="#" class="nav-link">Fale connosco</a></li>
-          <li><a href="#" class="nav-link">Sobre nós</a></li>
-          <li><a href="#" class="nav-link">Criar anúncio</a></li>
-          <li><a href="#" class="nav-link">Política de privacidade</a></li>
-          <li><a href="#" class="nav-link">Quesitos legais</a></li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">Conta Empresa</a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">Fale connosco</a>
+          </li>
+          <li class="nav-item"><a href="#" class="nav-link">Sobre nós</a></li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">Criar anúncio</a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">Política de privacidade</a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">Quesitos legais</a>
+          </li>
         </ul>
-        <ul class="navbar-nav justify-content-end">
-          <li><a href="#" class="nav-link">Ignis @ 2020</a></li>
+        <ul class="navbar-nav justify-self-end">
+          <li class="nav-item">
+            <a href="#" class="nav-link">Ignis @ 2021</a>
+          </li>
         </ul>
       </nav>
-    </footer>
+    </div>
+  </footer>
 </body>
