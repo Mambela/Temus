@@ -1,31 +1,77 @@
 <body>
-  <header class="navbar navbar-expand-lg navbar-light bg-light">
+  <header class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
     <nav class="container-fluid">
       <a class="navbar-brand h1 mb-0">Temus</a>
 
       <div class="row">
         <div class="col-12 d-flex">
-          <button class="btn btn-primary btn-size-navtop">entrar</button>
-          <button
+          <a
+            class="btn btn-primary btn-size-navtop"
+            href="#"
+            data-toggle="modal"
+            data-target="#sigIn"
+            >entrar</a
+          >
+          <a
             class="btn btn-primary btn-size-navtop ml-2 d-none d-lg-block"
+            data-toggle="modal"
+            data-target="#sigUp"
           >
             Criar Conta
-          </button>
+          </a>
         </div>
       </div>
     </nav>
   </header>
 
-  <main class="container"></main>
+  <main>
+    <section class="background-container">
+      <div class="blur-image-container">
+        <div class="blur-image"></div>
+        <div class="background-image"></div>
+      </div>
+    </section>
+
+    <section class="container search-bar">
+      <form action="#" class="d-flex">
+        <div class="input-icon-container">
+          <div
+            class="search-icon d-flex justify-content-center align-items-center"
+          >
+            <i class="fa fa-search"></i>
+          </div>
+
+          <div class="search-input">
+            <input type="text" name="" id="" />
+          </div>
+        </div>
+
+        <div class="select-btn-container">
+          <div class="select-container">
+            <select class="" name="searchSection" id="" ngModel>
+              <option value="" disabled selected hidden>Selecionar</option>
+              <option value="produtos">Produtos</option>
+              <option value="local">Locais</option>
+              <option value="servicos">Serviços</option>
+            </select>
+          </div>
+
+          <div class="submit-container">
+            <button class="btn-search">Pesquisar</button>
+          </div>
+        </div>
+      </form>
+    </section>
+  </main>
 
   <footer class="navbar fixed-bottom navbar-expand-sm navbar-dark bg-dark">
     <div class="container-fluid d-flex d-lg-none">
-        <a class="navbar-brand" href="#">Temus</a>
-        <ul class="navbar-nav justify-self-end">
-          <li class="nav-item">
-            <a href="#" class="nav-link">Ignis @ 2021</a>
-          </li>
-        </ul>         
+      <a class="navbar-brand" href="#">Temus</a>
+      <ul class="navbar-nav justify-self-end">
+        <li class="nav-item">
+          <a href="#" class="nav-link">Ignis @ 2021</a>
+        </li>
+      </ul>
     </div>
 
     <div class="container-fluid d-none d-lg-block">
@@ -56,4 +102,132 @@
       </nav>
     </div>
   </footer>
+
+  <!-- Modal Inissiar Sessão-->
+  <div class="modal fade" id="sigIn" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-md" role="document">
+      <div class="modal-content">
+        <div class="modal-header justify-content-center">
+          <h5 class="modal-title">Iniciar Sessão</h5>
+        </div>
+
+        <div class="modal-body">
+          <div class="container-fluid">
+            <div class="row justify-content-center">
+              <div class="col-8">
+                <form action="#">
+                  <div class="form-row">
+                    <div class="form-group col-12">
+                      <input
+                        type="text"
+                        name=""
+                        id=""
+                        class="form-control"
+                        placeholder="Email"
+                      />
+                    </div>
+
+                    <div class="from-group col-12">
+                      <input
+                        type="text"
+                        name=""
+                        id=""
+                        class="form-control"
+                        placeholder="Senha"
+                      />
+                    </div>
+
+                    <div class="from-group col-12">
+                      <button class="btn btn-primary w-100" type="submit">
+                        Iniciar Sessão
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-footer justify-content-center">
+          <a href="#">Criar uma conta</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Criar conta -->
+
+  <div class="modal fade" id="sigUp" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-md" role="document">
+      <div class="modal-content">
+        <div class="modal-header justify-content-center">
+          <h5 class="modal-title">Comece já</h5>
+        </div>
+
+        <div class="modal-body">
+          <div class="container-fluid">
+            <div class="row justify-content-center">
+              <div class="col-10">
+                <form action="#">
+                  <div class="form-row">
+                    <div class="form-group col-12">
+                      <label for="inputName">Seu nome</label>
+                      <input
+                        type="text"
+                        name="#"
+                        id="inputName"
+                        class="form-control"
+                        placeholder="nome"
+                      />
+                    </div>
+
+                    <div class="form-group col-12">
+                      <label for="inputEmail">Seu Email</label>
+                      <input
+                        type="email"
+                        name=""
+                        id="inputEmail"
+                        class="form-control"
+                      />
+                    </div>
+
+                    <div class="form-group col-12">
+                      <label for="inputPassword">Senha</label>
+                      <input
+                        type="email"
+                        name=""
+                        id="inputPassword"
+                        class="form-control"
+                      />
+                    </div>
+
+                    <div class="form-group col-12">
+                      <label for="inputPassword">Confirmar Senha</label>
+                      <input
+                        type="email"
+                        name=""
+                        id="inputPassword"
+                        class="form-control"
+                      />
+                    </div>
+
+                    <div class="form-group col-12">
+                      <button type="submit" class="btn btn-primary w-100">
+                        Criar Conta
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-footer justify-content-center">
+          <a href="#" class="#"> Ainda não tenho uma conta </a>
+        </div>
+      </div>
+    </div>
+  </div>
 </body>
