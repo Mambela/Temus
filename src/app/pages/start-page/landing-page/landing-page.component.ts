@@ -19,7 +19,7 @@ export class LandingPageComponent implements OnInit {
 
   onSearch(searchForm : NgForm)
   {
-    console.log(searchForm);
+    
 
     const searchParam = searchForm.value.searchParameter;
     const searchSection = searchForm.value.searchSection;
@@ -30,10 +30,10 @@ export class LandingPageComponent implements OnInit {
       case "local":
         this.router.navigate(["pesquisa/local"],{queryParams:{sector:'local','nome':searchParam}});
         break;
-      case "servicos":      
+      case "services":      
           this.router.navigate(["pesquisa/servico"],{queryParams:{sector:'servico','nome':searchParam}});
         break;
-      case "produtos":
+      case "product":
           // this.searchService.searchProduct();
           this.router.navigate(["pesquisa/produto"],{queryParams:{sector:'produto','nome':searchParam}});
           break;    
