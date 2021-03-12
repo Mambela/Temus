@@ -48,12 +48,15 @@ import { SearchProdutoComponent } from './pages/regular-user/search/search-produ
 import { SearchEventoComponent } from './pages/regular-user/search/search-evento/search-evento.component';
 import { SearchLocalComponent } from './pages/regular-user/search/search-local/search-local.component';
 import { ExploreMapViewComponent } from './pages/regular-user/explore-map-view/explore-map-view.component';
+ 
 import { MessageBoxComponent } from './sections/message-box/message-box.component';
 import { LocalfiltersComponent } from './components/regular-user/localfilters/localfilters.component';
 import { ServicofiltersComponent } from './components/regular-user/servicofilters/servicofilters.component';
 import { ProdutofiltersComponent } from './components/regular-user/produtofilters/produtofilters.component';
- 
+ import { SearchBarComponent } from './components/landing-page/search-bar/search-bar.component';
+import { GeneralFooterComponent } from './components/general-components/general-footer/general-footer.component';
 
+ 
 
  
 
@@ -110,7 +113,9 @@ import { ProdutofiltersComponent } from './components/regular-user/produtofilter
     LocalfiltersComponent,
     ServicofiltersComponent,
     ProdutofiltersComponent,
-    
+    SearchBarComponent,
+    GeneralFooterComponent
+ 
   
  
   ],

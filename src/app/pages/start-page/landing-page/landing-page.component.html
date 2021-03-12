@@ -1,3 +1,4 @@
+ 
 <body class="full-screen h-100 meio temus-background">
   <div class="transparent"></div>
     <header class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
@@ -33,32 +34,180 @@
                     <option value="servicos">Serviços</option>
                   </select>
                 </div>
+ 
+<body>
+  <header class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+    <nav class="container-fluid">
+      <a class="navbar-brand h1 mb-0">Temus</a>
+
+      <div class="row">
+        <div class="col-12 d-flex">
+          <a
+            class="btn btn-primary btn-size-navtop"
+            href="#"
+            data-toggle="modal"
+            data-target="#sigIn"
+            >entrar</a
+          >
+          <a
+            class="btn btn-primary btn-size-navtop ml-2 d-none d-lg-block"
+            data-toggle="modal"
+            data-target="#sigUp"
+          >
+            Criar Conta
+          </a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="background-container">
+      <div class="blur-image-container">
+        <div class="blur-image"></div>
+        <div class="background-image"></div>
+      </div>
+    </section>
+
+    <landingpage-search-bar></landingpage-search-bar>
+  </main>
+
+  <general-footer></general-footer>
+ 
   
+
+  <!-- Modal Inissiar Sessão-->
+  <div class="modal fade" id="sigIn" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-md" role="document">
+      <div class="modal-content">
+        <div class="modal-header justify-content-center">
+          <h5 class="modal-title">Iniciar Sessão</h5>
+        </div>
+
+        <div class="modal-body">
+          <div class="container-fluid">
+            <div class="row justify-content-center">
+              <div class="col-8">
+                <form action="#">
+                  <div class="form-row">
+                    <div class="form-group col-12">
+                      <input
+                        type="text"
+                        name=""
+                        id=""
+                        class="form-control"
+                        placeholder="Email"
+                      />
+                    </div>
+
+                    <div class="from-group col-12">
+                      <input
+                        type="text"
+                        name=""
+                        id=""
+                        class="form-control"
+                        placeholder="Senha"
+                      />
+                    </div>
+
+                    <div class="from-group col-12">
+                      <button class="btn btn-primary w-100" type="submit">
+                        Iniciar Sessão
+                      </button>
+                    </div>
+                  </div>
+                </form>
               </div>
+<<<<<<< HEAD
   
               <!-- button search -->
               <div class="search-button-container">
                 <button type="submit" class="btn btn-primary btn-search">pesquisar</button>
-              </div>
-  
+=======
             </div>
-          </form>
-        </section>  
-    </main>
-  
-    <footer>
-      <nav class="navbar fixed-bottom navbar-expand-sm navbar-dark bg-dark">
-        <ul class="navbar-nav mr-auto">
-          <li><a href="#" class="nav-link" [routerLink]="['/business']" >Conta empresa</a></li>
-          <li><a href="#" class="nav-link">Fale connosco</a></li>
-          <li><a href="#" class="nav-link">Sobre nós</a></li>
-          <li><a href="#" class="nav-link">Criar anúncio</a></li>
-          <li><a href="#" class="nav-link">Política de privacidade</a></li>
-          <li><a href="#" class="nav-link">Quesitos legais</a></li>
-        </ul>
-        <ul class="navbar-nav justify-content-end">
-          <li><a href="#" class="nav-link">Ignis @ 2020</a></li>
-        </ul>
-      </nav>
-    </footer>
+          </div>
+        </div>
+
+        <div class="modal-footer justify-content-center">
+          <a href="#">Criar uma conta</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Criar conta -->
+
+  <div class="modal fade" id="sigUp" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-md" role="document">
+      <div class="modal-content">
+        <div class="modal-header justify-content-center">
+          <h5 class="modal-title">Comece já</h5>
+        </div>
+
+        <div class="modal-body">
+          <div class="container-fluid">
+            <div class="row justify-content-center">
+              <div class="col-10">
+                <form action="#">
+                  <div class="form-row">
+                    <div class="form-group col-12">
+                      <label for="inputName">Seu nome</label>
+                      <input
+                        type="text"
+                        name="#"
+                        id="inputName"
+                        class="form-control"
+                        placeholder="nome"
+                      />
+                    </div>
+
+                    <div class="form-group col-12">
+                      <label for="inputEmail">Seu Email</label>
+                      <input
+                        type="email"
+                        name=""
+                        id="inputEmail"
+                        class="form-control"
+                      />
+                    </div>
+
+                    <div class="form-group col-12">
+                      <label for="inputPassword">Senha</label>
+                      <input
+                        type="email"
+                        name=""
+                        id="inputPassword"
+                        class="form-control"
+                      />
+                    </div>
+
+                    <div class="form-group col-12">
+                      <label for="inputPassword">Confirmar Senha</label>
+                      <input
+                        type="email"
+                        name=""
+                        id="inputPassword"
+                        class="form-control"
+                      />
+                    </div>
+
+                    <div class="form-group col-12">
+                      <button type="submit" class="btn btn-primary w-100">
+                        Criar Conta
+                      </button>
+                    </div>
+                  </div>
+                </form>
+>>>>>>> e34bfa973c52ab46c2ad177b8484d593a183d612
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-footer justify-content-center">
+          <a href="#" class="#"> Ainda não tenho uma conta </a>
+        </div>
+      </div>
+    </div>
+  </div>
 </body>
