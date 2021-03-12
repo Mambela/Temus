@@ -44,7 +44,7 @@ export class AuthService {
   constructor(private http:HttpClient,private storedValues:STOREDCONSTANTS, private router:Router) { }
 
   userSignUp(name:string,email:string,password:string,password_confirmation:string,phone1:number,
-             phone2:number,web:string,locationId:number,categoria:number,lat:number,lng:number,imgFile:File)
+             phone2:number=0,web:string,locationId:number,categoria:number,lat:number,lng:number,imgFile:File)
   {
 
 
@@ -96,6 +96,7 @@ export class AuthService {
              
            ).pipe(
              catchError((errorRes)=>{
+               console.log(errorRes);
             let errorMessage = 'Occorreu um erro';
             if(!errorRes.error || !errorRes.error.error){
                 return throwError(errorMessage);
@@ -190,7 +191,8 @@ export class AuthService {
      const companyData:CompanyData = JSON.parse(localStorage.getItem(this.localStorageCompany));
      const tokenData:iTokenStructure= JSON.parse(localStorage.getItem(this.localStorageToken));
       
-    
+      console.log("Company data",companyData);
+      console.log("COmpany ID",companyData.id);
 
     this.storedValues.userToken = tokenData.access_token;
     this.storedValues.userId = companyData.id;
@@ -209,7 +211,7 @@ export class AuthService {
   
        
 
-      if(!companyData.id)
+      if(companyData.id != null)
       {
        
         this.storedValues.userToken = tokenData.access_token;
@@ -224,14 +226,16 @@ export class AuthService {
 
        
         //this.router.navigate(['/pesquisa']);  
-        // this.router.navigate(['']);
+
       }
       else
       {
         // this.router.navigate(['']);
         //  this.router.navigate(['pesquisa/servico']);
-         this.router.navigate(['pesquisa/local']);
-        //this.router.navigate(['/pesquisa/produto']);
+        //  this.router.navigate(['pesquisa/local']);
+        //this.router.navigate(['explorarMapa']);
+        this.router.navigate(['/business-registration']);
+
       }
  
   }

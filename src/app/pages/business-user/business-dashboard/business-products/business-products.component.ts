@@ -1,3 +1,4 @@
+import { MessageBoxComponent } from './../../../../sections/message-box/message-box.component';
 import { CategoriaDataServiceService } from './../../../../core-services/DataService/categoria/categoria-data-service.service';
 import { CompanyInfoServiceService } from './../../../../core-services/http-service/business/Company Service/company-info-service.service';
 import { HttpEventType } from '@angular/common/http';
@@ -71,7 +72,7 @@ export class BusinessProductsComponent implements OnInit, OnDestroy {
   productAvailable:boolean=false;
   prodAvailability:string="Indisponivel";
 
-  priceDisplay:boolean =false;
+  priceDisplay:boolean = false;
   productPrice_availability:string="Ocultar ";
   
 
@@ -207,7 +208,7 @@ export class BusinessProductsComponent implements OnInit, OnDestroy {
    * **/ 
   onDeleteProduct(product:string,id:number){
 
-    console.log(product);
+     
     this.config.backdrop = 'static';
    
 
@@ -291,11 +292,15 @@ export class BusinessProductsComponent implements OnInit, OnDestroy {
 
 onUpdateProduct(updateForm:NgForm)
   {
+
+    const messageModalRef= this.modalService.open(MessageBoxComponent,{size:'md',backdropClass:'light-modal-backdrop',centered:true});
        
     let description = updateForm.value.prod_descript;
     let price = updateForm.value.prod_Price;
     let stock = updateForm.value.prod_Stock;
+    
 
+     
 
      if(this.uploadedFile === null)
      {
@@ -310,21 +315,26 @@ onUpdateProduct(updateForm:NgForm)
           else if(event.type == HttpEventType.Response){
             console.log(event);
             console.log(event.body['data']['id']);
-
-            if(event.body['data']['id'])
-            {
-              this.uploadMessageType = "success";
-              this.uploadMessage = "Serviço actualizado com successo!";
-              this.isUploadingServico = false;
-            }
-            else{
-              this.uploadMessageType = "unsuccess";
-              this.uploadMessage = "Occorreo um erro ao actualizar o serviço.";
-            }
+          
+            this.isUploadingServico = false;
+            
+            messageModalRef.componentInstance.success = true;
+            messageModalRef.componentInstance.processing = false;
+            messageModalRef.componentInstance.message = "Produto atualizado com successo! ";
+            
+  
           }
+
+        },handleError=>{
+
+
+          messageModalRef.componentInstance.success = false;
+          messageModalRef.componentInstance.processing = false;
+          messageModalRef.componentInstance.message = "Occorreo um erro ao actualizar o produto.";
 
         });
 
+       
      }
      else{
         
@@ -337,23 +347,42 @@ onUpdateProduct(updateForm:NgForm)
         else if(event.type == HttpEventType.Response){
           console.log(event);
           console.log(event.body['data']['id']);
+          
+
+         
 
           if(event.body['data']['id'])
           {
             this.uploadMessageType = "success";
             this.uploadMessage = "Serviço actualizado com successo!";
             this.isUploadingServico = false;
+            
+            messageModalRef.componentInstance.success = true;
+            messageModalRef.componentInstance.processing = false;
+            messageModalRef.componentInstance.message = "Produto atualizado com successo! ";
           }
           else{
             this.uploadMessageType = "unsuccess";
             this.uploadMessage = "Occorreo um erro ao actualizar o serviço.";
+            messageModalRef.componentInstance.success = false;
+            messageModalRef.componentInstance.processing = false;
+            messageModalRef.componentInstance.message = "Occorreo um erro ao actualizar o produto.";
           }
         }
 
 
+      },handleError=>{
+
+
+        messageModalRef.componentInstance.success = false;
+        messageModalRef.componentInstance.processing = false;
+        messageModalRef.componentInstance.message = "Occorreo um erro ao actualizar o produto.";
+
       });
       //update the product with a new Image
+      
 
+      console.log("input file is not null",this.producttoEdit);
        
      }
 
@@ -371,7 +400,7 @@ onDisplayPrice(val:any)
     this.priceDisplay = true;
     this.productPrice_availability = "Mostrar";
   }
-  console.log("Display price", this.priceDisplay);
+ 
 
 }
  

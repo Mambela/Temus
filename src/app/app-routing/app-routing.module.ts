@@ -1,3 +1,7 @@
+import { LocalfiltersComponent } from './../components/regular-user/localfilters/localfilters.component';
+import { ServicofiltersComponent } from './../components/regular-user/servicofilters/servicofilters.component';
+import { ProdutofiltersComponent } from './../components/regular-user/produtofilters/produtofilters.component';
+ 
 import { ExploreMapViewComponent } from './../pages/regular-user/explore-map-view/explore-map-view.component';
 import { SearchServiceComponent } from './../pages/regular-user/search/search-service/search-service.component';
 import { TemplatesComponent } from './../components/templates/templates.component';
@@ -44,10 +48,15 @@ const appRoutes: Routes=[
         {path:'local',component:SearchLocalComponent},
         {path:'servico',component:SearchServiceComponent},
         {path:'produto',component:SearchProdutoComponent}
-        //,{path:'evento',component:SearchEventoComponent}
     ]
   },
-  {path:'explorarMapa',component:ExploreMapViewComponent},
+  {path:'explorarMapa',component:ExploreMapViewComponent,
+    children:[
+      {path:'local',component:LocalfiltersComponent},
+      {path:'servico',component:ServicofiltersComponent},
+      {path:'produto',component:ProdutofiltersComponent}
+    ]
+  },
   {path:'template',component:TemplatesComponent},
 
   

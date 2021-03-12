@@ -334,9 +334,6 @@ previewImage(files) {
                                           _phone1,_phone2,_web,_locationID,_businessCategory,_lat,_lng,this.uploadedFile).subscribe((event)=>{
 
       
-      
-      
-      
 
         if(event.type === HttpEventType.UploadProgress)
         {

@@ -1,0 +1,50 @@
+<body>
+
+    <!-- Success Message -->
+    <div *ngIf="success">
+
+        <div class="row">
+
+       
+
+         <div  *ngIf="processing" class="col mr-4 px-5">
+            <app-data-loading></app-data-loading>
+         </div>
+
+         <div class="col">
+                <h4 class="mx-auto"><span class="text-success"> 
+                    
+                    <i class="fas fa-check" *ngIf="!processing"></i> 
+                </span> {{message }}</h4>
+
+
+                <hr class="mx-auto px-2">
+                    <button class="btn btn-success px-3 justify-content-end" type="submit" (click)="CloseModal()" *ngIf="!processing"> OK </button>
+             </div>
+        </div>
+    </div>
+
+    
+
+    <!-- Unsuccess Message -->
+    <div *ngIf="!success">
+
+        <div *ngIf="processing" class="mr-4 px-5">
+            <app-data-loading></app-data-loading>
+        </div>
+
+
+        <h4><span class="text-danger"> 
+            
+            <i class="fas fa-exclamation" *ngIf="!processing"></i> 
+        </span> {{message }}</h4>
+
+
+        <hr class="mx-auto px-2">
+        <button class="btn btn-danger px-3 justify-content-end" type="submit" (click)="CloseModal()" *ngIf="!processing"> OK </button>
+
+    </div>
+
+
+
+</body>

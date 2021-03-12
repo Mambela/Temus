@@ -12,8 +12,10 @@ Fonts Being used
 
 
 /* Texts fonts */
-@import url("https://fonts.googleapis.com/css2?family=Open+Sans&family=Quicksand:wght@300;400;500;600;700&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Manjari:wght@100;400;700&family=Roboto:wght@100;300;400;500;700;900&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Manjari:wght@100;400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 @import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,600;1,700;1,800;1,900&display=swap");
 
 * {
@@ -311,3 +313,25 @@ hr.dashed {
 @import "~bootstrap/scss/bootstrap";
 /* Importing Bootstrap SCSS file. */
 @import '~bootstrap/scss/bootstrap';
+
+
+// 
+.mapboxgl-popup-close-button{
+  display: none;
+}
+
+ 
+.mapboxgl-popup .mapboxgl-popup-content{
+  padding: 7px;
+
+  border-radius: 1.5em !important;
+}
+
+
+.mapboxgl-popup .mapboxgl-popup-content img{
+ border-radius: 1em !important;
+}
+
+// .mapboxgl-popup .mapboxgl-popup-content span .rounded-local{
+//   border-radius: 1em !important;
+// }

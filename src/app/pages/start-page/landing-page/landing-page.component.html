@@ -12,7 +12,7 @@
     
     <main class="container">
       <section class="row justify-content-center align-item-center">
-          <form action="#" class="col-sm-9">
+          <form #searchForm="ngForm" (ngSubmit)="onSearch(searchForm)" class="col-sm-9">
             <div class="w-100 search-container">
   
               <div class="search-input-container">
@@ -22,7 +22,7 @@
                 </div>
   
                 <div class="input-search">
-                  <input type="text" placeholder="Search" class="input-search">
+                  <input type="text" placeholder="Search" class="input-search" name="searchParameter" ngModel>
                 </div>
   
                 <div class="teste-select">
@@ -38,7 +38,7 @@
   
               <!-- button search -->
               <div class="search-button-container">
-                <button class="btn btn-primary btn-search">pesquisar</button>
+                <button type="submit" class="btn btn-primary btn-search">pesquisar</button>
               </div>
   
             </div>

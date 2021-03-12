@@ -1,3 +1,4 @@
+import { ExploremapService } from './../../../core-services/utility-service/exploremap.service';
 import { UserAddress } from './../../../data/models/regular-user/UserAddress.model';
 import { AddressesService } from './../../../core-services/http-service/business/Addresses Service/addresses-service.service';
 import { RegistrationMapService } from './../../../core-services/utility-service/registration-map.service';
@@ -18,12 +19,13 @@ export class UnathenticatedNavBarComponent implements OnInit {
 
   currentUserLocation:locationCoordinates; 
 
-  constructor(private mapboxmap: RegistrationMapService,private addressService: AddressesService) { }
+  constructor(private mapboxmap: RegistrationMapService,private _mapService:ExploremapService,private addressService: AddressesService) { }
 
   ngOnInit(): void {
 
     this.userCoordinates();
     this.loadUserAddress();
+    this._mapService.getCurrentCoordinates('');
 
     console.log("Initialisation Hit");
 

@@ -20,8 +20,7 @@ export class FiltersService {
   //#region Produto Categoria
   getProductCategoria(){
       
-    // console.log("TOKEN INSIDE TGHE PRODUCT SERVICE",this.storedConstants.userToken);
- 
+     
      return this.http.get<BasicModel[]>(this.storedConstants.BASEURL()+"produto-categorias",{
        headers:{"Accept":"application/json"}
      }).pipe(
@@ -29,7 +28,7 @@ export class FiltersService {
          return throwError(error)
        }),tap((produtoCategoria:BasicModel[])=>{
          
-         
+         console.log(produtoCategoria['data'][0]);
          this.categoriaDTService.setProdutoCategoria(produtoCategoria['data']);
    
        })

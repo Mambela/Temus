@@ -8,5 +8,154 @@ body{
     height: 100%;
     padding-top: 55px;
     background-color:$color-lavender;
+    // background-color: white;
   
+ }
+
+ .page-container{
+     position: relative;
+ }
+
+ .map{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+ }
+
+.filter{
+    position: absolute;
+    margin-top: 1vh;
+    z-index: 8;
+    height: 100%;
+    // width: 25%;
+    
+ }
+
+ .filter-content{
+   // background: rgba(38, 59, 52, 0.59);
+   height: 100%;
+//    background-color: $color-lavender;
+     background-color: white;
+ }
+ 
+ .filter-btn{
+   position: absolute;
+   z-index: 9;
+   width: 15%;
+   height: 25%;
+   margin-left: 37vh;
+   margin-top: 10vh;
+ }
+
+ //Side bar
+ ng-sidebar-container{
+  height: 100vh;
+}
+
+::ng-deep .ng-sidebar{
+  background-color: orange;
+  width: 45vh;
+  padding: 0.5em 0.5em;
+  margin-top: 20px;
+
+}
+ 
+::ng-deep .ng-sidebar::-webkit-scrollbar{
+  display: none;
+}
+/* Hide Scrollbar for IE, Edge and FireFox */
+::ng-deep .ng-sidebar{
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+
+
+
+
+.rounded-local{
+    border-radius: 1.5em !important;
+}
+
+.rounded-local img{
+    border-radius: 1em !important;
+}
+
+.card-body{
+    padding: 0em !important;
+}
+
+.checkIn{
+    color: white;
+    font-size: .8em;
+    font-family: 'Quicksand', sans-serif;
+}
+
+.star {
+    font-size: 1.2rem;
+    color: #b0c4de;
+  }
+  .filled.color1 {
+    color: red;
+  }
+  .filled.color2 {
+    color: orange;
+  } 
+  .filled.color4 {
+    color: green;
+  } 
+  .filled.color3 {
+    color: grey;
+  }
+
+  .location-text{
+      font-size: .9rem;
+  }
+
+
+
+  // Map Elements CSS
+
+  .removePaddings{
+      background-color: yellow !important;
+  }
+
+  .mapboxgl-popup-close-button{
+      display: none  !important;
+  }
+
+  //The side searches 
+  
+  .active-search {
+      
+    border-bottom: 3px solid $color-light-green; 
+ }
+ .router-link-active
+ {
+   border-bottom: 3px solid $color-light-green; 
+ }
+
+
+ //top  right
+ .search-content
+ {
+    min-height: 100%;
+    padding: 1% 1%;
+ }
+
+
+ //SIDE FILTERS CUSTOMS
+.search-content{
+   font-family:'Quicksand', sans-serif;
+    
+}
+
+
+ .searchCategory:hover{
+    cursor: pointer;
+    color: $color-light-green !important;
+    
+ }
+ a{
+    text-decoration: none !important;
  }

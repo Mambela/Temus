@@ -46,14 +46,16 @@ export class CategoriaDataServiceService {
 
   //#region  Produto
 
-  setProdutoCategoria(_produtosCateoria:BasicModel[])
+  setProdutoCategoria(_produtosCategoria:BasicModel[])
   {
-    this.productCategoria = _produtosCateoria;
+   
+    this.productCategoria = _produtosCategoria;
     this.produtosCategoriaSub.next(this.productCategoria.slice());
   }
 
   getProdutoCategoria()
   {
+    console.log(this.productCategoria.slice());
     return this.productCategoria.slice();
   }
 

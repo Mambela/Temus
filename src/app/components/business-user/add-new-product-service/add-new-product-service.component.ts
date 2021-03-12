@@ -1,13 +1,15 @@
+import { MessageBoxComponent } from './../../../sections/message-box/message-box.component';
+import { CategoriaDataServiceService } from './../../../core-services/DataService/categoria/categoria-data-service.service';
 import { CompanyInfoServiceService } from './../../../core-services/http-service/business/Company Service/company-info-service.service';
 import { HttpEventType } from '@angular/common/http';
-import { debounceTime, distinctUntilChanged, switchMap, tap, catchError, flatMap } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged, switchMap, tap, catchError, filter, flatMap } from 'rxjs/operators';
 import { CategoriaProductService } from './../../../core-services/DataService/categoria/categoriaProductdata-service.service';
 import { ProductsService } from '../../../core-services/http-service/business/Produto Services/products.service';
 import { BasicModel } from './../../../data/models/supporting/basic-model.model';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbTypeahead } from '@ng-bootstrap/ng-bootstrap';
 import { NgForm } from '@angular/forms';
-import { Component, OnInit, Input } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Component, OnInit, Input, ViewChild } from '@angular/core';
+import { Observable, of, Subject } from 'rxjs';
 import { CategoryService } from 'src/app/core-services/http-service/business/Category Services/category-service.service';
 
 @Component({
@@ -23,7 +25,7 @@ export class AddNewProductServiceComponent implements OnInit {
    * List of labels for Products and Services
    * **/ 
   labeltitle:string;
-  btnCreateLabl:string;
+  
   btnAddLabl:string;
   descripTitle:string;
   decisionChoice:boolean;
@@ -62,12 +64,15 @@ export class AddNewProductServiceComponent implements OnInit {
   searching:boolean = false;
 
   //changeSwitch
-  produtoAvailable:boolean;
-  priceDisplay:boolean;
+  produtoAvailable:boolean=false;
+  priceDisplay:boolean=false;
 
+  //Product cateogry Search
+  focus$ = new Subject<string>();
+  click$ = new Subject<string>();
 
   constructor(private modalService:NgbModal, private companyservice:CompanyInfoServiceService,private productservice:ProductsService,
-              private cateProData:CategoriaProductService,private categoryService:CategoryService) { }
+              private cateProData:CategoriaDataServiceService,private categoryService:CategoryService) { }
 
   ngOnInit(): void {
     this.handleSource();
@@ -92,7 +97,11 @@ resultformatter = ( categoria: {designacao: BasicModel}) => categoria.designacao
             })),
           ),
           tap(() =>this.searching =false)
-    )
+    );
+    
+    @ViewChild('instance', {static: true}) instance: NgbTypeahead;
+
+ 
 
   productSearch =(text$:Observable<string>)=>text$.pipe(
     debounceTime(300),
@@ -134,10 +143,6 @@ userSelectedProduct(event: any) {
 
   console.log(categoria);
 
-  // this.onCategoriaChange(categoria.id);
-
-  // this.onCategoriaChange(event);
-
     
 }
 
@@ -166,6 +171,12 @@ onCategoriaChange(event:any){
 
  onAddToMyProduto(addProdutoForm:NgForm)
  {  
+
+
+    //Prepare the modal
+    
+    const messageModalRef = this.modalService.open(MessageBoxComponent,{size:'md',backdropClass:'light-modal-backdrop',centered:true}) ;
+
     // this.isUploadingProduto = true;
     const product_to_Add = this.productID;
 
@@ -176,6 +187,9 @@ onCategoriaChange(event:any){
     
     const produto_availability = this.produtoAvailable;
 
+
+
+
     this.productservice.associateProdutoToEmpresa(product_to_Add,produto_availability,this.uploadedFile,
                                                   produto_price,produto_description,produtoStock, this.priceDisplay)
     .subscribe((event)=>{
@@ -185,21 +199,18 @@ onCategoriaChange(event:any){
         // this.uploadPercentage = Math.round(event.loaded / event.total * 100);
       }
       else if(event.type == HttpEventType.Response){
-        console.log(event);
-        console.log(event.body['data']['id']);
-
-        if(event.body['data']['id'])
-        {
-          // this.uploadMessageType = "success";
-          // this.uploadMessage = "Servico adicionado aos seus Serviços.";
-          console.log(
-           "Produto adicionado aos seus Serviços.")
-        }
-        else{
           
-          console.log("occorreo um erro ao salvar o serviço.");
-        }
+        messageModalRef.componentInstance.message = "Produto adicionado com successo! ";
+        messageModalRef.componentInstance.processing = false;
+        messageModalRef.componentInstance.success = true;
+          
       }
+    },addingProductError=>{
+
+        messageModalRef.componentInstance.message = "Ocorreu um erro ao adicionar o produto. '<br>' Por tente mais tarde!";
+        messageModalRef.componentInstance.processing = false;
+        messageModalRef.componentInstance.success = false;
+
     });
    
   
@@ -213,6 +224,10 @@ onCreateProduct(createNew:NgForm){
   const prodName = createNew.value.prodName;
   const prodCategoria = createNew.value.creatCategoria;
   const prodtype = createNew.value.creatType;
+
+
+  //Prepare the modal
+  const messageModalRef = this.modalService.open(MessageBoxComponent,{size:'md',backdropClass:'light-modal-backdrop',centered:true}) ;
   
     console.log(createNew.value.creatCategoria);
 
@@ -222,7 +237,18 @@ onCreateProduct(createNew:NgForm){
       if(saveResponse['data']['designacao'])
       {
         this.productCreated = "Produto  " + saveResponse['data']['designacao'] + "  criado com successo ";
+        
+        messageModalRef.componentInstance.message = this.productCreated;
+        messageModalRef.componentInstance.success = true;
+        messageModalRef.componentInstance.processing = false;
+
       }
+
+    },handleError=>{
+
+      messageModalRef.componentInstance.message = "Occorreu um erro ao adicionar o produto! ";
+      messageModalRef.componentInstance.success = false;
+      messageModalRef.componentInstance.processing = false;
 
     });
 }
@@ -230,7 +256,9 @@ onCreateProduct(createNew:NgForm){
 onLoadCategories()
 {
 
-  this.listOf_Categories = this.cateProData.getCategoria();
+  this.listOf_Categories = this.cateProData.getProdutoCategoria();
+
+  console.log(this.listOf_Categories);
    
 }
  

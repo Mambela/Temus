@@ -1,3 +1,7 @@
+import { CategoriaDataServiceService } from './../../../core-services/DataService/categoria/categoria-data-service.service';
+import { BasicModel } from './../../../data/models/supporting/basic-model.model';
+import { FiltersService } from './../../../core-services/http-service/FiltersService/filters.service';
+import { CategoriaProductService } from './../../../core-services/DataService/categoria/categoriaProductdata-service.service';
 import { CompanyInfoServiceService } from './../../../core-services/http-service/business/Company Service/company-info-service.service';
 
 import { CompanyServicesService } from '../../../core-services/http-service/business/Servicos services/services.service';
@@ -22,7 +26,7 @@ export class BusinessDashboardComponent implements OnInit {
   
   _opened: boolean = true;
   _rightBarOpened: boolean = false;
-  _docked: boolean = true;
+  _docked: boolean = false;
   _Mode:string = 'push';
   isAuthenticated = false;
 
@@ -44,7 +48,7 @@ export class BusinessDashboardComponent implements OnInit {
 
   constructor(private authService:AuthService,private router:Router, private companyService:CompanyInfoServiceService,
             private modalService:NgbModal,private config:NgbModalConfig, private productService:ProductsService,
-            private companyManageService: CompanyServicesService) { }
+            private filterService:FiltersService,private cateProdService:CategoriaDataServiceService) { }
   
 
   ngOnInit(): void {
@@ -52,7 +56,8 @@ export class BusinessDashboardComponent implements OnInit {
      
 
     this.verifyAuthentication();  
-    this.getuserData();
+    this.getuserData();  
+    
      
     
   }
@@ -96,12 +101,22 @@ export class BusinessDashboardComponent implements OnInit {
   }  
 
 
+
+
   getuserData()
   {
+
+    this.filterService.getProductCategoria().subscribe((response:BasicModel[])=>{ });
+    this.filterService.getServiceCategoria().subscribe((response:BasicModel[])=>{
+      console.log(response);
+     });
+
+
     this.isLoading = true;
     this.companyService.getDetails().subscribe((userData)=>{
       
       console.log(userData);
+      
       
       this.numberOfEvents = userData[0].eventCount;
       this.numberOfProducts = userData[0].productCount;

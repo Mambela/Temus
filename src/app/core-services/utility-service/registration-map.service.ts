@@ -43,6 +43,29 @@ export class RegistrationMapService {
   }
 
   
+  getUserLocation(container){
+    
+    this.container = container
+
+      if(navigator.geolocation){
+      
+          navigator.geolocation.getCurrentPosition((position)=>{
+            this.showPosition(position);
+            this.lat = position.coords.latitude;
+            this.lng = position.coords.longitude;
+            this.iniLng = position.coords.longitude;
+            this.initLat = position.coords.latitude;
+              
+
+          });
+        }
+        else{
+        
+          alert("Your location could not be located");
+        }
+
+  }
+  
 
   showPosition(position)
   {
@@ -56,6 +79,26 @@ export class RegistrationMapService {
         }
         
   }
+
+  private buildMap(){
+     
+   
+    this.map = new mapboxgl.Map({
+
+      container:this.container,
+      style: this.style,
+      zoom:this.zoom,
+      center:[this.lng,this.lat]      
+    });
+
+    
+   this.map.addControl(new mapboxgl.NavigationControl());
+  
+  
+   this.createMarker(this.lng,this.lat);
+
+    // marker.on('dragend', onDragEnd);        
+}
   
 
   //Method to build location 
@@ -81,7 +124,7 @@ export class RegistrationMapService {
           }
           else{
           
-            alert("Your location could not be lcoated");
+            alert("Your location could not be located");
           }
 
 
@@ -101,32 +144,14 @@ export class RegistrationMapService {
       container:this.container,
       style:this.style,
       zoom:this.zoom,
-      center:[this.lng,this.lat]      
+      center:[this.lat,this.lng]      
       // center:[0.000000,0.0000]      
       
     });
     console.log("Registration ",this.lng,this.lat);
   }
 
-  private buildMap(){
-     
-   
-        this.map = new mapboxgl.Map({
-    
-          container:this.container,
-          style: this.style,
-          zoom:this.zoom,
-          center:[this.lng,this.lat]      
-        });
-    
-        
-       this.map.addControl(new mapboxgl.NavigationControl());
-      
-      
-       this.createMarker(this.lng,this.lat);
-
-        // marker.on('dragend', onDragEnd);        
-  }
+ 
 
   createMarker(lng,lat)
   {
@@ -155,29 +180,6 @@ export class RegistrationMapService {
 
   }
  
-  getUserLocation(container){
-    
-    this.container = container
-
-      if(navigator.geolocation){
-      
-          navigator.geolocation.getCurrentPosition((position)=>{
-            this.showPosition(position);
-            this.lat = position.coords.latitude;
-            this.lng = position.coords.longitude;
-            this.iniLng = position.coords.longitude;
-            this.initLat = position.coords.latitude;
-              
-
-          });
-        }
-        else{
-        
-          alert("Your location could not be lcoated");
-        }
-
-  }
-  
 
 
 

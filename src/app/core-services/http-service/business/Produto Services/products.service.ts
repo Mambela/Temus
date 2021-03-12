@@ -150,6 +150,9 @@ export class ProductsService {
         reportProgress:true 
       }
       ).pipe(catchError((error)=>{
+
+
+        
             return throwError(error);
           }),tap((event)=>{
             // console.log(respdata);
@@ -200,15 +203,19 @@ export class ProductsService {
     formData.append('descricao',description);
     formData.append('stock',stock.toString());
     formData.append('_method','put');
-   
+     
+
+ 
   
     
       if(imageFile)
       {
+       
         formData.append('imagem',imageFile,imageFile.name);  
       }
       else{
         formData.append('oldimagem',previousImage);
+      
       }
 
     return this.http.post(this.storedConstants.BASEURL() + "empresa-produto",
@@ -218,6 +225,8 @@ export class ProductsService {
       observe:'events',
       reportProgress:true 
     }).pipe(catchError((error)=>{
+      
+
       return throwError(error);
     }),tap((respadata)=>{
         
@@ -236,7 +245,7 @@ export class ProductsService {
       }).pipe(catchError((error)=>{
           return throwError(error);
       }),tap((respdata)=>{
-        console.log(respdata)
+       
       })
 
       );

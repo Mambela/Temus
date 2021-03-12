@@ -23,6 +23,7 @@ export class CategoriaProductService {
 
   setCategoriaDetail(stCategoria:BasicModel[])
   {
+    console.log(stCategoria);
     this.categoria = stCategoria;
     this.categoriaChanged.next(this.categoria);
   }

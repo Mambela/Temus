@@ -1,3 +1,5 @@
+import { MessageBoxComponent } from './../../../sections/message-box/message-box.component';
+import { CategoriaDataServiceService } from './../../../core-services/DataService/categoria/categoria-data-service.service';
 import { Router } from '@angular/router';
 import { HttpEventType } from '@angular/common/http';
 import { CompanyServicesService } from '../../../core-services/http-service/business/Servicos services/services.service';
@@ -59,7 +61,7 @@ export class AddNewServiceComponent implements OnInit {
 
 
 
-  constructor(private modalService:NgbModal,private serviceData:CategoriaProductService,private companyServices:CompanyServicesService, private activeModal:NgbActiveModal,private router:Router) { }
+  constructor(private modalService:NgbModal,private serviceData:CategoriaDataServiceService,private companyServices:CompanyServicesService, private activeModal:NgbActiveModal,private router:Router) { }
 
   ngOnInit(): void {
 
@@ -97,8 +99,8 @@ export class AddNewServiceComponent implements OnInit {
 
    onLoadCategories()
    {
-     this.listOfService_Categories = this.serviceData.getServiceCategoria();
-     console.log(this.serviceData.getServiceCategoria());
+     this.listOfService_Categories = this.serviceData.getServicoCategoria();
+     console.log(this.serviceData.getServicoCategoria());
    }
 
   userSelectedCategoria(event: any) {
@@ -164,8 +166,8 @@ export class AddNewServiceComponent implements OnInit {
       choicePrice = 1
     }
     
+    const messageModalRef= this.modalService.open(MessageBoxComponent,{size:'md',backdropClass:'light-modal-backdrop',centered:true});
     
-
     this.companyServices.associateServiceToEmpresa(this.serviceID,this.ServicoAvailable,this.uploadedFile,
           price,description,choicePrice).subscribe((event)=>{
 
@@ -183,16 +185,29 @@ export class AddNewServiceComponent implements OnInit {
                 this.serviceCreated = "Servico adicionado aos seus Serviços.";
                 console.log(
                  "Servico adicionado aos seus Serviços.")
+                 messageModalRef.componentInstance.message = this.serviceCreated;
+                 messageModalRef.componentInstance.success = true;
+                 messageModalRef.componentInstance.processing = false;
               }
               else{
                 
                 console.log("occorreo um erro ao salvar o serviço.");
+
+                messageModalRef.componentInstance.message = "Occorreo um erro ao salvar o serviço. ";
+                messageModalRef.componentInstance.success = false;
+                messageModalRef.componentInstance.processing = false;
               }
             }
 
             this.isSavingService = false;
 
             this.activeModal.close();
+
+          },handleError=>{
+                
+                messageModalRef.componentInstance.message = "Occorreo um erro ao salvar o serviço. ";
+                messageModalRef.componentInstance.success = false;
+                messageModalRef.componentInstance.processing = false;
 
           });
 
@@ -275,6 +290,8 @@ export class AddNewServiceComponent implements OnInit {
 
   onCreateService(createServiceForm:NgForm)
   {
+
+      const messageModalRef= this.modalService.open(MessageBoxComponent,{size:'md',backdropClass:'light-modal-backdrop',centered:true});
       console.log(createServiceForm);
 
       const category = createServiceForm.value.creatServiceCategoria;
@@ -286,12 +303,24 @@ export class AddNewServiceComponent implements OnInit {
       createServiceForm.resetForm;
 
       this.companyServices.createNewService(serviceName,"none",category,type).subscribe((saveResp)=>{
-
+        
+        console.log(saveResp);
+        
         if(saveResp['data']['designacao'])
         {
           this.serviceCreated = "Serviço " + saveResp['data']['designacao'] + "  adicionado com successo ";
+          messageModalRef.componentInstance.message = this.serviceCreated;
+          messageModalRef.componentInstance.success = true;
+          messageModalRef.componentInstance.processing = false;
         }
         this.isSavingService = false;
+
+      },handleError=>{
+    
+        messageModalRef.componentInstance.message = "Aconteceu um erro ao adicionar o serviço!";
+        messageModalRef.componentInstance.success = false;
+        messageModalRef.componentInstance.processing = false;
+
 
       });
 

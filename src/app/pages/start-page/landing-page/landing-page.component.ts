@@ -19,6 +19,7 @@ export class LandingPageComponent implements OnInit {
 
   onSearch(searchForm : NgForm)
   {
+    console.log(searchForm);
 
     const searchParam = searchForm.value.searchParameter;
     const searchSection = searchForm.value.searchSection;

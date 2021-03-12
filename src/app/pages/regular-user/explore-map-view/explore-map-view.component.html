@@ -1,6 +1,42 @@
 <body class="">
+  <head>
+   <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.4.1/mapbox-gl.css' rel='stylesheet' />
+  </head>
+
     <app-unathenticated-nav-bar></app-unathenticated-nav-bar>
-    <main class="min-vh-100">
-        <h3> Explore map</h3>
-    </main>
+    <ng-sidebar-container>
+
+      <ng-sidebar [(opened)]="_opened" 
+      [(dock)]="_docked"
+      [mode]="_Mode" class="bg-danger">
+
+                           
+        <div class="row justify-content-start">
+            
+              
+                <ul class="list-inline  text-black mx-auto border-top pt-3">
+                  <li class="list-inline-item mx-2" ><a class="text-reset searchCategory" [routerLink]="['local']" routerLinkActive="active-search"> Local </a> </li>
+                  <li class="list-inline-item mx-3"><a class="text-reset searchCategory" [routerLink]="['servico']"   routerLinkActive="active-search"> Serviço</a> </li>
+                  <li class="list-inline-item mx-3"><a class="text-reset searchCategory" [routerLink]="['produto']" routerLinkActive="active-search"> Produto</a> </li>
+                  <!-- <li class="list-inline-item mx-2"><a class="text-reset searchCategory" [routerLink]="['evento']" routerLinkActive="active-search"> Evento</a> </li> -->
+                </ul>
+                  
+                  
+                  <div class="form-group row bg-warning mx-auto">
+                    <router-outlet></router-outlet>
+                  </div>
+          </div>
+
+      </ng-sidebar>
+
+        <div ng-sidebar-content class="map"  id="map">
+          
+            <div class="filter-btn">
+              <button class="left-menu btn btn-success border-0 ml-5 bg-danger" (click)="_toggleSidebar()"><i class="fas fa-caret-right"></i> </button>
+            </div>
+          
+        </div>
+
+  </ng-sidebar-container>
+     
 </body>

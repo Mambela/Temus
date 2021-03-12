@@ -1,3 +1,4 @@
+import { MessageBoxComponent } from './../../../../sections/message-box/message-box.component';
 import { CategoriaDataServiceService } from './../../../../core-services/DataService/categoria/categoria-data-service.service';
 import { CompanyInfoServiceService } from './../../../../core-services/http-service/business/Company Service/company-info-service.service';
 import { AddNewServiceComponent } from '../../../../components/business-user/add-new-service/add-new-service.component';
@@ -179,6 +180,9 @@ export class BusinessServiceComponent implements OnInit, OnDestroy {
 
   onUpdateService(updateForm:NgForm)
   {
+
+    const messageModalRef= this.modalService.open(MessageBoxComponent,{size:'md',backdropClass:'light-modal-backdrop',centered:true});
+
     let description = updateForm.value.service_descript;
     let preco = updateForm.value.service_Price;
 
@@ -203,12 +207,28 @@ export class BusinessServiceComponent implements OnInit, OnDestroy {
               this.uploadMessageType = "success";
               this.uploadMessage = "Serviço actualizado com successo!";
               this.isUploadingServico = false;
+
+
+              messageModalRef.componentInstance.success = true;
+              messageModalRef.componentInstance.processing = false;
+              messageModalRef.componentInstance.message = "Serviço actualizado com successo!";
             }
             else{
               this.uploadMessageType = "unsuccess";
               this.uploadMessage = "Occorreo um erro ao actualizar o serviço.";
+
+              messageModalRef.componentInstance.success = false;
+              messageModalRef.componentInstance.processing = false;
+              messageModalRef.componentInstance.message = "Occorreo um erro ao actualizar o serviço.";
+
             }
           }
+
+        },handleError=>{
+
+              messageModalRef.componentInstance.success = false;
+              messageModalRef.componentInstance.processing = false;
+              messageModalRef.componentInstance.message = "Occorreo um erro ao actualizar o serviço.";
 
         });
 
@@ -233,15 +253,29 @@ export class BusinessServiceComponent implements OnInit, OnDestroy {
               this.uploadMessageType = "success";
               this.uploadMessage = "Serviço actualizado com successo!";
               this.isUploadingServico = false;
+
+              messageModalRef.componentInstance.success = true;
+              messageModalRef.componentInstance.processing = false;
+              messageModalRef.componentInstance.message = "Serviço actualizado com successo!";
             }
             else{
               this.uploadMessageType = "unsuccess";
               this.uploadMessage = "Occorreo um erro ao actualizar o serviço.";
+
+              messageModalRef.componentInstance.success = false;
+              messageModalRef.componentInstance.processing = false;
+              messageModalRef.componentInstance.message = "Occorreo um erro ao actualizar o serviço.";
             }
           }
         
         
         
+        },handleError=>{
+
+          messageModalRef.componentInstance.success = false;
+              messageModalRef.componentInstance.processing = false;
+              messageModalRef.componentInstance.message = "Occorreo um erro ao actualizar o serviço.";
+
         });
 
        

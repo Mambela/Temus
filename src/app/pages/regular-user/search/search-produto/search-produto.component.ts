@@ -72,6 +72,8 @@ export class SearchProdutoComponent implements OnInit {
    * Categoria do Produtos. 
   */
 
+   
+
   getProductCategoria()
   {
 
