@@ -1,7 +1,7 @@
 import { LocalfiltersComponent } from './../components/regular-user/localfilters/localfilters.component';
 import { ServicofiltersComponent } from './../components/regular-user/servicofilters/servicofilters.component';
 import { ProdutofiltersComponent } from './../components/regular-user/produtofilters/produtofilters.component';
- 
+
 import { ExploreMapViewComponent } from './../pages/regular-user/explore-map-view/explore-map-view.component';
 import { SearchServiceComponent } from './../pages/regular-user/search/search-service/search-service.component';
 import { TemplatesComponent } from './../components/templates/templates.component';
@@ -20,52 +20,50 @@ import { BusinessPageComponent } from './../pages/business-user/business-page/bu
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import {Routes, RouterModule}from '@angular/router';
+import { Routes, RouterModule } from '@angular/router';
 import { BusinessEventsComponent } from '../pages/business-user/business-dashboard/business-events/business-events.component';
 import { SearchProdutoComponent } from '../pages/regular-user/search/search-produto/search-produto.component';
 import { SearchEventoComponent } from '../pages/regular-user/search/search-evento/search-evento.component';
 import { SearchLocalComponent } from '../pages/regular-user/search/search-local/search-local.component';
+import { HomeComponent } from '../pages/home/home.component';
 
-// Eládio imports
-import { LandingPageComponent } from '../pages/home/landing-page/landing-page.component';
 
-// End Eládio imports
-
-const appRoutes: Routes=[
-  {path: '', component:LandingPageComponent},
-  {path:'business',component:BusinessPageComponent},
-  {path:'business-registration',component:BusinessRegistrationComponent},
-  {path:'business-dashboard',component:BusinessDashboardComponent},
-  {path:'business-page',component:BusinessContentPageComponent},
-  {path:'business-products',component:BusinessProductsComponent},
-  {path:'business-services',component:BusinessServiceComponent},
-  {path:'business-events',component:BusinessEventsComponent},
-  {path:'business-posts',component:BusinessPostsComponent},
-  {path:'business-advertisement',component:BusinessPostsComponent},
-  {path:'business-profile',component:BusinessProfileComponent},
-  {path:'pesquisa',component:SearchComponent,
-    children:[
-        {path:'local',component:SearchLocalComponent},
-        {path:'servico',component:SearchServiceComponent},
-        {path:'produto',component:SearchProdutoComponent}
-    ]
+const appRoutes: Routes = [
+  { path: '', component: HomeComponent },
+  { path: 'business', component: BusinessPageComponent },
+  { path: 'business-registration', component: BusinessRegistrationComponent },
+  { path: 'business-dashboard', component: BusinessDashboardComponent },
+  { path: 'business-page', component: BusinessContentPageComponent },
+  { path: 'business-products', component: BusinessProductsComponent },
+  { path: 'business-services', component: BusinessServiceComponent },
+  { path: 'business-events', component: BusinessEventsComponent },
+  { path: 'business-posts', component: BusinessPostsComponent },
+  { path: 'business-advertisement', component: BusinessPostsComponent },
+  { path: 'business-profile', component: BusinessProfileComponent },
+  {
+    path: 'pesquisa',
+    component: SearchComponent,
+    children: [
+      { path: 'local', component: SearchLocalComponent },
+      { path: 'servico', component: SearchServiceComponent },
+      { path: 'produto', component: SearchProdutoComponent },
+    ],
   },
-  {path:'explorarMapa',component:ExploreMapViewComponent,
-    children:[
-      {path:'local',component:LocalfiltersComponent},
-      {path:'servico',component:ServicofiltersComponent},
-      {path:'produto',component:ProdutofiltersComponent}
-    ]
+  {
+    path: 'explorarMapa',
+    component: ExploreMapViewComponent,
+    children: [
+      { path: 'local', component: LocalfiltersComponent },
+      { path: 'servico', component: ServicofiltersComponent },
+      { path: 'produto', component: ProdutofiltersComponent },
+    ],
   },
-  {path:'template',component:TemplatesComponent},
-
-  
-]
+  { path: 'template', component: TemplatesComponent },
+];
 
 @NgModule({
   declarations: [],
-  imports: [RouterModule.forRoot(appRoutes,{onSameUrlNavigation:'reload'})],
-  exports:[RouterModule]
-    
+  imports: [RouterModule.forRoot(appRoutes, { onSameUrlNavigation: 'reload' })],
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

@@ -1,15 +1,15 @@
-import { FiltersService } from '../../../core-services/http-service/FiltersService/filters.service';
+import { FiltersService } from '../../core-services/http-service/FiltersService/filters.service';
 import { Router } from '@angular/router';
-import { SearchService } from '../../../core-services/http-service/SearchService/search.service';
+import { SearchService } from '../../core-services/http-service/SearchService/search.service';
 import { NgForm } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-landing-page',
-  templateUrl: './landing-page.component.html',
-  styleUrls: ['./landing-page.component.scss'],
+  selector: 'app-home',
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.scss']
 })
-export class LandingPageComponent implements OnInit {
+export class HomeComponent implements OnInit {
 
   constructor(private searchService:SearchService,private router:Router,private filterService:FiltersService) { }
 
@@ -55,4 +55,5 @@ export class LandingPageComponent implements OnInit {
     this.filterService.getMunicipios().subscribe();
 
   }
+
 }
