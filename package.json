@@ -25,6 +25,7 @@
     "@fortawesome/fontawesome-svg-core": "^1.2.34",
     "@fortawesome/free-solid-svg-icons": "^5.15.2",
     "@ng-bootstrap/ng-bootstrap": "^6.2.0",
+    "bootstrap": "^4.6.0",
     "bs-stepper": "^1.7.0",
     "date-fns": "^2.17.0",
     "mapbox-gl": "^1.13.1",
