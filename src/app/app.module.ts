@@ -1,4 +1,4 @@
-import { LandingPageComponent } from './pages/start-page/landing-page/landing-page.component';
+import { LandingPageComponent } from './pages/home/landing-page/landing-page.component';
 import { ToasterComponent } from './sections/toast/toaster/toaster.component';
 
 import { AppRoutingModule } from './app-routing/app-routing.module';
@@ -54,7 +54,13 @@ import { LocalfiltersComponent } from './components/regular-user/localfilters/lo
 import { ServicofiltersComponent } from './components/regular-user/servicofilters/servicofilters.component';
 import { ProdutofiltersComponent } from './components/regular-user/produtofilters/produtofilters.component';
  import { SearchBarComponent } from './components/landing-page/search-bar/search-bar.component';
-import { GeneralFooterComponent } from './components/general-components/general-footer/general-footer.component';
+import { SimpleHeaderComponent } from './components/general-components/headers/simple-header/simple-header.component';
+import { SiginSigupHeaderComponent } from './components/general-components/headers/sigin-sigup-header/sigin-sigup-header.component';
+import { LocalOptionComponent } from './components/general-components/headers/local-option/local-option.component';
+import { SimpleFooterComponent } from './components/general-components/footer/simple-footer/simple-footer.component';
+import { SiginModalComponent } from './components/general-components/modals/sigin-modal/sigin-modal.component';
+import { SigupModalComponent } from './components/general-components/modals/sigup-modal/sigup-modal.component';
+
 
  
 
@@ -114,7 +120,12 @@ import { GeneralFooterComponent } from './components/general-components/general-
     ServicofiltersComponent,
     ProdutofiltersComponent,
     SearchBarComponent,
-    GeneralFooterComponent
+    SimpleHeaderComponent,
+    SiginSigupHeaderComponent,
+    LocalOptionComponent,
+    SimpleFooterComponent,
+    SiginModalComponent,
+    SigupModalComponent,
  
   
  

@@ -1,6 +1,6 @@
-import { FiltersService } from './../../../core-services/http-service/FiltersService/filters.service';
+import { FiltersService } from '../../../core-services/http-service/FiltersService/filters.service';
 import { Router } from '@angular/router';
-import { SearchService } from './../../../core-services/http-service/SearchService/search.service';
+import { SearchService } from '../../../core-services/http-service/SearchService/search.service';
 import { NgForm } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 

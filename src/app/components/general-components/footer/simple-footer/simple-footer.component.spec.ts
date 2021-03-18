@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { GeneralFooterComponent } from './general-footer.component';
+import { SimpleFooterComponent } from './simple-footer.component';
 
-describe('GeneralFooterComponent', () => {
-  let component: GeneralFooterComponent;
-  let fixture: ComponentFixture<GeneralFooterComponent>;
+describe('SimpleFooterComponent', () => {
+  let component: SimpleFooterComponent;
+  let fixture: ComponentFixture<SimpleFooterComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ GeneralFooterComponent ]
+      declarations: [ SimpleFooterComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(GeneralFooterComponent);
+    fixture = TestBed.createComponent(SimpleFooterComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -27,12 +27,12 @@ import { SearchEventoComponent } from '../pages/regular-user/search/search-event
 import { SearchLocalComponent } from '../pages/regular-user/search/search-local/search-local.component';
 
 // Eládio imports
-import { LandingPageComponent } from '../pages/start-page/landing-page/landing-page.component';
+import { LandingPageComponent } from '../pages/home/landing-page/landing-page.component';
 
 // End Eládio imports
 
 const appRoutes: Routes=[
-   {path: '', component:LandingPageComponent},
+  {path: '', component:LandingPageComponent},
   {path:'business',component:BusinessPageComponent},
   {path:'business-registration',component:BusinessRegistrationComponent},
   {path:'business-dashboard',component:BusinessDashboardComponent},
