@@ -56,8 +56,8 @@ import { SimpleHeaderComponent } from './components/general-components/headers/s
 import { SiginSigupHeaderComponent } from './components/general-components/headers/sigin-sigup-header/sigin-sigup-header.component';
 import { LocalOptionComponent } from './components/general-components/headers/local-option/local-option.component';
 import { SimpleFooterComponent } from './components/general-components/footer/simple-footer/simple-footer.component';
-import { SiginModalComponent } from './components/general-components/modals/sigin-modal/sigin-modal.component';
-import { SigupModalComponent } from './components/general-components/modals/sigup-modal/sigup-modal.component';
+import { SiginModalComponent } from './components/general-components/modal/sigin-modal/sigin-modal.component';
+import { SigupModalComponent } from './components/general-components/modal/sigup-modal/sigup-modal.component';
 import { MainSearchBarComponent } from './components/components-per-page/landing-page/main-search-bar/main-search-bar.component';
 import { HomeComponent } from './pages/home/home.component';
 
