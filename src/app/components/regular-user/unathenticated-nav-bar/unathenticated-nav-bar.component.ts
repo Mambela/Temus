@@ -25,8 +25,7 @@ export class UnathenticatedNavBarComponent implements OnInit {
     this.userCoordinates();
     this.loadUserAddress();
 
-    console.log("Initialisation Hit");
-
+     
   }
 
 
@@ -60,16 +59,21 @@ export class UnathenticatedNavBarComponent implements OnInit {
 
       console.log(currentAddress);
 
-      if(currentAddress[0].comuna == null)
+      if(currentAddress ==null)
+      {
+        if(currentAddress[0].comuna == null)
         {
           console.log("You are out of the country");
         }
         else
         {
           console.log(currentAddress[0].comuna);
-          this.UserLocation =currentAddress[0];
+          this.UserLocation = currentAddress[0];
         }
 
+      }
+
+      
     });
   }
 

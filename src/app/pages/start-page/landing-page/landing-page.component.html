@@ -33,7 +33,7 @@
     </section>
 
     <section class="container search-bar">
-      <form action="#" class="d-flex">
+      <form #searchForm="ngForm"  class="d-flex" (ngSubmit)="onSearch(searchForm)">
         <div class="input-icon-container">
           <div
             class="search-icon d-flex justify-content-center align-items-center"
@@ -78,7 +78,7 @@
       <nav class="navbar-nav w-100">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-            <a href="#" class="nav-link">Conta Empresa</a>
+            <a [routerLink]="['/business']"  class="nav-link">Conta Empresa</a>
           </li>
           <li class="nav-item">
             <a href="#" class="nav-link">Fale connosco</a>

@@ -19,10 +19,10 @@ export class STOREDCONSTANTS{
 
     public userRole:string;
     public userId:number;
-    // private URL: string = 'http://127.0.0.1:8000/api/';
-    // private resourceURL: string = 'http://127.0.0.1:8000/';
-        private URL: string = 'http://10.0.0.103:8000/api/';
-    private resourceURL: string = 'http://10.0.0.103:8000/';
+    private URL: string = 'http://127.0.0.1:8000/api/';
+    private resourceURL: string = 'http://127.0.0.1:8000/';
+   // private URL: string = 'http://10.0.0.103:8000/api/';
+    //private resourceURL: string = 'http://10.0.0.103:8000/';
     public userToken: string;
 
     setToken:TokenData;

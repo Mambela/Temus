@@ -6,6 +6,7 @@ import { STOREDCONSTANTS } from '../../../module/constants.service';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { throwError, Subject, BehaviorSubject } from 'rxjs';
+import { exitCode } from 'process';
  
 
 interface AuthResponseData{
@@ -187,13 +188,32 @@ export class AuthService {
   {
      // retrieve data from the Local Storage
 
-     const companyData:CompanyData = JSON.parse(localStorage.getItem(this.localStorageCompany));
-     const tokenData:iTokenStructure= JSON.parse(localStorage.getItem(this.localStorageToken));
-      
     
+  
+    console.log(localStorage.getItem(this.localStorageCompany));
+    
+    if(localStorage.getItem(this.localStorageCompany) == null || localStorage.getItem(this.localStorageCompany) == undefined)
+    {
+      return;
+    }
 
-    this.storedValues.userToken = tokenData.access_token;
-    this.storedValues.userId = companyData.id;
+     const companyData:CompanyData = JSON.parse(localStorage.getItem(this.localStorageCompany));
+     var tokenData:iTokenStructure;
+      
+    tokenData= JSON.parse(localStorage.getItem(this.localStorageToken));
+       
+    console.log(typeof tokenData.access_token);
+     
+    if(tokenData.access_token == null)
+    {
+      this.storedValues.userToken = tokenData.access_token;
+      this.storedValues.userId = companyData.id;
+    }
+
+
+    //tokenData.access_token == null && companyData.id == null
+
+
       
      if(!companyData || !tokenData)
      {

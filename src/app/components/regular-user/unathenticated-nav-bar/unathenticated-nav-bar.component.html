@@ -59,8 +59,9 @@
           <span class="navbar-toggler-icon"></span>
       </button>
   </div>
-  <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
-      <ul class="navbar-nav ml-auto">
+  <div class="navbar-collapse collapse w-100 order-3 dual-collapse2" *ngIf="UserLocation">
+      
+    <ul class="navbar-nav ml-auto " >
           <li class="nav-item">
               <a class="nav-link" href="#">Angola</a>
           </li>
@@ -74,5 +75,6 @@
               <a class="nav-link" href="#">{{UserLocation.comuna}}</a>
           </li>
       </ul>
+
   </div>
 </nav> 
