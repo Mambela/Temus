@@ -60,6 +60,7 @@ import { SiginModalComponent } from './components/general-components/modal/sigin
 import { SigupModalComponent } from './components/general-components/modal/sigup-modal/sigup-modal.component';
 import { MainSearchBarComponent } from './components/components-per-page/landing-page/main-search-bar/main-search-bar.component';
 import { HomeComponent } from './pages/home/home.component';
+import { LogedHeaderComponent } from './components/general-components/headers/loged-header/loged-header.component';
 
 @NgModule({
   declarations: [
@@ -110,7 +111,8 @@ import { HomeComponent } from './pages/home/home.component';
     SiginModalComponent,
     SigupModalComponent,
     MainSearchBarComponent,
-    HomeComponent
+    HomeComponent,
+    LogedHeaderComponent
   ],
   imports: [
     BrowserModule,
