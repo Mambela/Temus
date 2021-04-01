@@ -1,42 +1,73 @@
-<header class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
-    <nav class="container-fluid">
-      <a class="navbar-brand h1 mb-0">Temus</a>
+<header class="navbar fixed-top navbar-expand-lg color-background-purple">
+  <nav class="container-fluid mb-0">
+    <a class="navbar-brand h1 mb-0 unselect-text color-white color-white-hover"
+      >Temus<span class="color-green">.</span></a
+    >
 
-      <div class="row">
-        <div class="col-12 d-flex">
-          <div class="d-flex aligh-items-center">
-            <ul class="navbar nav notify-header">
-              <li class="nav-item">
-                <a class="nav-link icon-container">
-                  <span><i class="far fa-bell icons-size-header"></i></span>
-                  <span class="badge">3</span>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link icon-container">
-                  <span><i class="far fa-envelope icons-size-header"></i></span>
-                  <span class="badge">4</span>
-                </a>
-              </li>
-
-              <ul class="navbar nav ml-2 btn-menu-header">
-                <li class="nav-item">
-                  <a class=""
-                    ><i class="fas fa-bars icons-size-header mr-2"></i
-                  ></a>
-                </li>
-                <li>
-                  <img
-                    src="./../../images/tundavala.jpeg"
-                    class="rounded-circle photo-profile-header ml-2"
-                    alt=""
-                    id="burger-menu-header"
-                  />
-                </li>
-              </ul>
-            </ul>
+    <div class="row">
+      <div class="col-12 d-flex">
+        <div class="nav d-flex align-items-center">
+          <ul class="navbar nav notify-header">
+            <li class="nav-item">
+              <a class="nav-link icon-container">
+                <span
+                  ><i class="far fa-bell icons-size-header color-white"></i
+                ></span>
+                <span class="badge unselect-text color-background-green"
+                  >9+</span
+                >
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link icon-container">
+                <span
+                  ><i
+                    class="far fa-envelope icons-size-header color-white"
+                  ></i
+                ></span>
+                <span class="badge unselect-text color-background-green"
+                  >9+</span
+                >
+              </a>
+            </li>
+          </ul>
+          <div class="dropdown">
+            <button
+              class="d-flex flex-row align-items-center justify-content-center btn-menu-header ml-2 p-2 color-background-white"
+              type="button"
+              data-toggle="dropdown"
+              id="options-menu-list-header"
+            >
+              <a class=""
+                ><i
+                  class="fas fa-bars icons-size-header mr-1 color-black"
+                ></i
+              ></a>
+              <img
+                src="./images/índice.png"
+                class="rounded-circle ml-1 photo-profile-header"
+                alt=""
+                id="burger-menu-header"
+              />
+            </button>
+            <div
+              class="dropdown-menu dropdown-menu-right mt-3 p-2"
+              aria-labelledby="options-menu-list-header"
+            >
+              <a class="dropdown-item list-member bg-color-purple-hover color-white-hover" href="#">Perfil</a>
+              <a class="dropdown-item list-member bg-color-purple-hover color-white-hover" href="#"
+                >Favoritos</a
+              >
+              <a class="dropdown-item list-member bg-color-purple-hover color-white-hover" href="#"
+                >Configurações de conta</a
+              >
+              <a class="dropdown-item list-member bg-color-purple-hover color-white-hover" href="#"
+                >Terminar sessão</a
+              >
+            </div>
           </div>
         </div>
       </div>
-    </nav>
-  </header>
+    </div>
+  </nav>
+</header>
