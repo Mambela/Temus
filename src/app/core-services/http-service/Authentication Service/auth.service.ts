@@ -187,14 +187,16 @@ export class AuthService {
   autoLoginBusiness()
   {
      // retrieve data from the Local Storage
-
+      
      const companyData:CompanyData = JSON.parse(localStorage.getItem(this.localStorageCompany));
      const tokenData:iTokenStructure= JSON.parse(localStorage.getItem(this.localStorageToken));
-      
+
+     if(companyData != null || companyData != undefined){
+       
       console.log("Company data",companyData);
       console.log("COmpany ID",companyData.id);
 
-    this.storedValues.userToken = tokenData.access_token;
+      this.storedValues.userToken = tokenData.access_token;
     this.storedValues.userId = companyData.id;
       
      if(!companyData || !tokenData)
@@ -237,6 +239,12 @@ export class AuthService {
         this.router.navigate(['/business-registration']);
 
       }
+      
+    }
+      
+      
+
+    
  
   }
 

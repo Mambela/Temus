@@ -42,7 +42,9 @@ export class ExploreMapViewComponent implements OnInit {
   populatemarkers()
   {
     this.searchService.searchLocal("","","","","","").subscribe((locations:ResultItemLocal[])=>{
-      
+        
+
+      console.log(locations['data']);
       this._mapService.populateLocations(locations['data']);
     });
   }

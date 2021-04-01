@@ -13,7 +13,8 @@ import { Component, OnInit } from '@angular/core';
 export class LocalOptionComponent implements OnInit {
   lat: number;
   lng: number;
-  emptyLocation: boolean = false;UserLocation: UserAddress;
+  emptyLocation: boolean = false;
+  UserLocation: UserAddress;
 
   currentUserLocation: locationCoordinates;
 
@@ -55,11 +56,12 @@ export class LocalOptionComponent implements OnInit {
       (currentAddress: UserAddress) => {
 
         console.log(currentAddress);
-        if(currentAddress[0].comuna == null) {
+        if(currentAddress.comuna == null) {
           console.log("You are out of the country");
         }
         else {
-          console.log(currentAddress[0].comuna);this.UserLocation = currentAddress[0];
+          console.log(currentAddress[0].comuna);
+          this.UserLocation = currentAddress[0];
         }
         
       }

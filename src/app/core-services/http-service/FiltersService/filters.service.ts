@@ -28,7 +28,7 @@ export class FiltersService {
          return throwError(error)
        }),tap((produtoCategoria:BasicModel[])=>{
          
-         console.log(produtoCategoria['data'][0]);
+         console.log(produtoCategoria['data']);
          this.categoriaDTService.setProdutoCategoria(produtoCategoria['data']);
    
        })
@@ -73,6 +73,7 @@ export class FiltersService {
 
         return throwError(error);
           }),tap((categoriaResponse:BasicModel[])=>{
+            console.log(categoriaResponse);
 
           this.categoriaDTService.setLocalCategorias(categoriaResponse['data']);
             
