@@ -31,12 +31,11 @@
               </a>
             </li>
           </ul>
-          <div class="dropdown">
-            <button
+          <div ngbDropdown class="dropdown" #myDrop="ngbDropdown">
+            <button 
               class="d-flex flex-row align-items-center justify-content-center btn-menu-header ml-2 p-2 color-background-white"
               type="button"
-              data-toggle="dropdown"
-              id="options-menu-list-header"
+              id="options-menu-list-header" (click)="myDrop.open();"
             >
               <a class=""
                 ><i
@@ -51,17 +50,18 @@
               />
             </button>
             <div
+            ngbDropdownMenu 
               class="dropdown-menu dropdown-menu-right mt-3 p-2"
               aria-labelledby="options-menu-list-header"
             >
-              <a class="dropdown-item list-member bg-color-purple-hover color-white-hover" href="#">Perfil</a>
-              <a class="dropdown-item list-member bg-color-purple-hover color-white-hover" href="#"
+              <a ngbDropdownItem class="dropdown-item list-member bg-color-purple-hover color-white-hover" href="#">Perfil</a>
+              <a ngbDropdownItem class="dropdown-item list-member bg-color-purple-hover color-white-hover" href="#"
                 >Favoritos</a
               >
-              <a class="dropdown-item list-member bg-color-purple-hover color-white-hover" href="#"
+              <a ngbDropdownItem class="dropdown-item list-member bg-color-purple-hover color-white-hover" href="#"
                 >Configurações de conta</a
               >
-              <a class="dropdown-item list-member bg-color-purple-hover color-white-hover" href="#"
+              <a ngbDropdownItem class="dropdown-item list-member bg-color-purple-hover color-white-hover" href="#"
                 >Terminar sessão</a
               >
             </div>
