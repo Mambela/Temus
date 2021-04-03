@@ -1,190 +1,20 @@
 /* You can add global styles to this file, and also import other style files */
 
-/* Texts fonts */
-
-// @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
-// @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap');
-// @import url('https://fonts.googleapis.com/css2?family=Manjari:wght@100;400;700&display=swap');
-// @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
-// @import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,600;1,700;1,800;1,900&display=swap");
-
-// * {
-//   margin: 0;
-//   padding: 0;W
-//   box-sizing: border-box;
-//   list-style-type: none;
-//   outline: none;
-// }
-
-@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Manjari:wght@100;400;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
-@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,600;1,700;1,800;1,900&display=swap");
-
-
+@import "./styles/fonts.scss";
+@import "./styles/colours.scss";
+@import "./styles/colored-classes.scss";
+@import "./styles/colored-classes-hover.scss";
+@import "./styles/config-classes.scss";
 
 
 :root {
   font-size: 84.5%;
 }
-$color-dark-purple:#471B52;
-$color-main-purple:#8E24AA;
-$color-lavender:#EEDBF1;
-$color-ghost-white:#F8F2F9;
 
-$color-dark-green:#246713;
-$color-main-green:#4CAF50;
-$color-main-light-green:#71DB55;
-$color-very-light-green:#CBF3C0;
-$color-extreme-light-green:#F9FFF9;
-
-$color-dark-grey:#252525;
-$color-normal-grey:#707070;
-$color-very-light-grey:#CACACA;
-
-$color-dark-purple: #471b52;
-$color-main-purple: #800080;
-$color-lavender: #e6e6fa;
-$color-ghost-white: #f8f8ff;
-
-$color-dark-green: #006400;
-$color-main-green: #5cb85c;
-$color-light-green: #00ff00;
-$color-very-light-green: #98fb98;
-$color-mintcream: #f5fffa;
-
-$color-dark-grey: #252525;
-$color-normal-grey: #707070;
-$color-very-light-grey: #f1f1f1;
-
-/* angular-cli file: src/styles.css */
-
-//#references
-// font-family: 'Open Sans', sans-serif;
-// font-family: 'Quicksand', sans-serif;
-
-// font-family: 'Manjari', sans-serif;
-// font-family: 'Roboto', sans-serif;
-
-h1 {
-  font-family: "Quicksand", sans-serif;
-}
-h2 {
-  font-family: "Quicksand", sans-serif;
-}
-
-h3 {
-  font-family: "Quicksand", sans-serif;
-}
-
-h4 {
-  font-family: "Quicksand", sans-serif;
-}
-
-h5 {
-  font-family: "Quicksand", sans-serif;
-}
-
-h6 {
-  font-family: "Quicksand", sans-serif;
-}
-
-p {
-  font-family: "Roboto", sans-serif;
-}
 
 label {
   font-family: "Quicksand", sans-serif;
   font-weight: 500;
-}
-
-/*
-BACKGROUND COLORS
-*/
-.bg-color-dark-purple {
-  background-color: $color-dark-purple;
-}
-.bg-color-main-purple {
-  background-color: $color-main-purple;
-}
-.bg-color-light-purple {
-  background-color: $color-lavender;
-}
-.bg-color-very-light-purple {
-  background-color: $color-ghost-white;
-}
-
-.bg-color-dark-green {
-  background-color: $color-dark-green;
-}
-.bg-color-main-green {
-  background-color: $color-main-green;
-}
-.bg-color-main-light-green {
-  background-color: $color-light-green;
-}
-.bg-color-very-light-green {
-  background-color: $color-very-light-green;
-}
-.bg-color-extreme-light-green {
-  background-color: $color-very-light-green;
-}
-
-.bg-color-dark-grey {
-  background-color: $color-dark-grey;
-}
-.bg-color-normal-grey {
-  background-color: $color-normal-grey;
-}
-.bg-color-very-light-grey {
-  background-color: $color-very-light-grey;
-}
-
-// /*
-// TEXT COLORS
-// */
-
-.text-color-dark-purple {
-  color: $color-dark-purple;
-}
-.txt-dk-purple {
-  color: $color-dark-purple;
-}
-.text-color-main-purple {
-  color: $color-main-purple;
-}
-.text-color-light-purple {
-  color: $color-lavender;
-}
-.text-color-very-light-purple {
-  color: $color-ghost-white;
-}
-
-.text-color-dark-green {
-  color: $color-dark-green;
-}
-.text-color-main-green {
-  color: $color-main-green;
-}
-.text-color-main-light-green {
-  color: $color-light-green;
-}
-.text-color-very-light-green {
-  color: $color-very-light-green;
-}
-.text-color-extreme-light-green {
-  color: $color-very-light-green;
-}
-
-.txt-dark-grey {
-  color: $color-dark-grey;
-}
-.txt-grey {
-  color: $color-normal-grey;
-}
-.txt-grey-1 {
-  color: $color-very-light-grey;
 }
 
 .btn {
@@ -277,52 +107,18 @@ hr.dashed {
   border-width: 5px !important;
 }
 
-// 320px — 480px: Mobile devices
-// 481px — 768px: iPads, Tablets
-// 769px — 1024px: Small screens, laptops
-// 1025px — 1200px: Desktops, large screens
-// 1201px and more —  Extra large screens, TV
-
-/* Extra small devices (phones, 600px and down) */
-@media only screen and (max-width: 600px) {
-}
-
-/* Small devices (portrait tablets and large phones, 600px and up) */
-@media only screen and (min-width: 600px) {
-}
-
-/* Medium devices (landscape tablets, 768px and up) */
-@media only screen and (min-width: 768px) {
-}
-
-/* Large devices (laptops/desktops, 992px and up) */
-@media only screen and (min-width: 992px) {
-}
-
-/* Extra large devices (large laptops and desktops, 1200px and up) */
-@media only screen and (min-width: 1200px) and (max-width: 1400px) and (orientation: landscape) {
-}
-
-@media only screen and (min-width: 1400px) {
-}
-
-
-
-// 
-.mapboxgl-popup-close-button{
+.mapboxgl-popup-close-button {
   display: none;
 }
 
- 
-.mapboxgl-popup .mapboxgl-popup-content{
+.mapboxgl-popup .mapboxgl-popup-content {
   padding: 7px;
 
   border-radius: 1.5em !important;
 }
 
-
-.mapboxgl-popup .mapboxgl-popup-content img{
- border-radius: 1em !important;
+.mapboxgl-popup .mapboxgl-popup-content img {
+  border-radius: 1em !important;
 }
 
 .mapboxgl-popup .mapboxgl-popup-content span .rounded-local{
