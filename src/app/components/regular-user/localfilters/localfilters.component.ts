@@ -2,14 +2,15 @@ import { FiltersService } from './../../../core-services/http-service/FiltersSer
 import { CategoriaDataServiceService } from './../../../core-services/DataService/categoria/categoria-data-service.service';
 import { BasicModel } from './../../../data/models/supporting/basic-model.model';
 import { NgForm } from '@angular/forms';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-localfilters',
   templateUrl: './localfilters.component.html',
   styleUrls: ['./localfilters.component.scss']
 })
-export class LocalfiltersComponent implements OnInit {
+export class LocalfiltersComponent implements OnInit,OnDestroy {
+
 
   
   //Categoria dos Produtos
@@ -33,6 +34,8 @@ export class LocalfiltersComponent implements OnInit {
   constructor(private categoriaDTService:CategoriaDataServiceService, private filterService:FiltersService,) { }
 
   ngOnInit(): void {
+
+    this.getLocalCategoria();
   }
 
   onSearch(filterForm:NgForm)
@@ -69,6 +72,12 @@ export class LocalfiltersComponent implements OnInit {
       this.bairros = bairros['data'];
 
     });
+
+  }
+
+  ngOnDestroy()
+  {
+    
 
   }
 

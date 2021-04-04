@@ -36,6 +36,29 @@ export class CategoryService {
 
   }
 
+ SearchSubCategoria(term:any,categoryId:number)
+  {
+    
+
+    return this.http.get<BasicModel[]>(this.storedValues.BASEURL() + 'EmpresaTipoCategoria/' +categoryId+'/'+ term,
+      
+      {headers:{"Accept": "application/json"}
+      }).pipe( catchError(error=> {
+        console.log('locals with param error',error);
+
+        return throwError(error);
+      }),tap((categoriaResponse:BasicModel[])=>{
+        
+
+        console.log(categoriaResponse);
+      //  return categoriaResponse[0].designacao;
+        
+        
+      })
+
+    );
+  }
+
   searchCategoria(term:any)
   {
     

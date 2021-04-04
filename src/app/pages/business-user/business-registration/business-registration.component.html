@@ -93,6 +93,25 @@
                                                                         <div class="invalid-feedback" *ngIf="searchingFailed">Desculpa, as suggestões não foram encontradas.</div>
                                                                 </div>
                                                             </div>
+                                                            <div class="row ">
+                                                                <div class="form-group col-sm-12 col-md-12 col-lg-6 ">
+                                                                    
+                                                                </div>
+                                                                <div class=" col-sm-12 col-md-12 col-lg-6 mb-3">
+                                                                    <label for="typeahead-basic">Subcategoria do seu negócio</label>
+                                                                    <input id="typeahead-basic" type="text" class="form-control"  name="businessSubcategoria" [class.is-invalid]="searchingFailed"
+                                                                         [ngbTypeahead]="subcategoriaSearch"
+                                                                         [(ngModel)]="selectedSubCategoria"
+                                                                         [resultFormatter]="resultformatter"    
+                                                                         [inputFormatter]="resultformatter"  
+                                                                         [editable]='false'   
+                                                                        (selectItem)='userSelectedSubCategoria($event)'
+                                                                        placeholder="Insira nome da subcategoria"                                      
+                                                                        />
+                                                                        <small *ngIf="searchingSubcateoria" class="form-text text-muted">a pesquisar...</small>
+                                                                        <div class="invalid-feedback" *ngIf="searchingSubcategoriaFailed">Desculpa, as suggestões não foram encontradas.</div>
+                                                                </div>
+                                                            </div>
                                                             
                                                             <div class="btn-group-step-1 bg-danger col-sm-12">
                                                                 <button type="button" (click)="onfinaliseBusinessInfo(businessName)" class="btn btn-success float-right">Continuar</button>
