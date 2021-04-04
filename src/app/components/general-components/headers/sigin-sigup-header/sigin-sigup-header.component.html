@@ -1,22 +1,22 @@
-<header class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+<header class="navbar fixed-top navbar-expand-lg bg-color-dark-purple">
     <nav class="container-fluid">
-      <a class="navbar-brand h1 mb-0" [routerLink]="['/']">Temus</a>
+      <a class="navbar-brand h1 mb-0 text-color-white-1 color-white-hover" [routerLink]="['/']">Temus<span class="text-color-main-light-green">.</span></a>
 
       <div class="row">
         <div class="col-12 d-flex">
           <a
-            class="btn btn-primary btn-size-navtop"
+            class="btn bg-color-main-green btn-size-navtop border-none"
             href="#"
             data-toggle="modal"
             data-target="#sigIn"
-            (click)="openSiginModal()"
+            (click)="open()"
             >entrar</a
           >
           <a
-            class="btn btn-primary btn-size-navtop ml-2 d-none d-lg-block"
+            class="btn bg-color-main-green btn-size-navtop ml-2 d-none d-lg-block border-none"
             data-toggle="modal"
             data-target="#sigUp"
-            (click)="openSigupModal()"
+            
           >
             Criar Conta
           </a>
