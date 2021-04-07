@@ -7,16 +7,18 @@
           <a
             class="btn bg-color-main-green btn-size-navtop border-none"
             href="#"
+            ngbAutofocus
             data-toggle="modal"
             data-target="#sigIn"
-            (click)="open()"
+            (click)="openSigin()"
             >entrar</a
           >
           <a
             class="btn bg-color-main-green btn-size-navtop ml-2 d-none d-lg-block border-none"
+            ngbAutofocus
             data-toggle="modal"
             data-target="#sigUp"
-            
+            (click)="openSigup()"            
           >
             Criar Conta
           </a>
