@@ -1,6 +1,6 @@
 <body>
-  <sigin-sigup-header></sigin-sigup-header>
-
+  <sigin-sigup-header *ngIf="!isAuthenticated"></sigin-sigup-header>
+  <loged-header *ngIf="isAuthenticated"></loged-header>
   <main>
     <section class="background-container">
       <div class="blur-image-container">
@@ -14,7 +14,7 @@
   <simple-footer></simple-footer>
 
   <!-- Modal Inissiar Sessão-->
-  <sigin-modal></sigin-modal>
+  <!-- <sigin-modal></sigin-modal> -->
   <!-- Modal Criar conta -->
-  <sigup-modal></sigup-modal>
+  <!-- <sigup-modal></sigup-modal> -->
 </body>

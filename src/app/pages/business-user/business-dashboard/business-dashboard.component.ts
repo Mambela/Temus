@@ -53,13 +53,9 @@ export class BusinessDashboardComponent implements OnInit {
 
   ngOnInit(): void {
 
-     
-
     this.verifyAuthentication();  
     this.getuserData();  
-    
-     
-    
+        
   }
   
  

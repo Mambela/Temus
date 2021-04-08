@@ -1,9 +1,10 @@
 
 
   <body class="">
-    <sigin-sigup-header></sigin-sigup-header>
-    <local-option></local-option>
     
+    <sigin-sigup-header *ngIf="!isAuthenticated"></sigin-sigup-header>
+    <loged-header *ngIf="isAuthenticated"></loged-header>
+    <local-option></local-option>
  
 <main class=" search-content  min-vh-100">
    
