@@ -12,8 +12,7 @@ export class SiginSigupHeaderComponent implements OnInit {
   constructor(private modalService:NgbModal,private config:NgbModalConfig) { }
 
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
   
     openSignIn() {
 
@@ -26,7 +25,7 @@ export class SiginSigupHeaderComponent implements OnInit {
       this.modalService.open(SigupModalComponent,{size:'md',backdropClass:'light-modal-backdrop',centered:true})
     }
 
-  // openSigupModal() {
-  //   this.modalService.open(this.sigupModal);
-  // }
+    openSigup() {
+      const modalRef = this.modalService.open(SigupModalComponent);
+    }
 }
