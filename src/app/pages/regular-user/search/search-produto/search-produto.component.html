@@ -1,194 +1,336 @@
 <div class="row">
-    <div class=" col-xs-3 col-md-3">
-        <div class="form-group col-sm-6 col-md-12 col-lg-12">
+  <div class="col-xs-3 col-md-3">
+    <div class="form-group col-sm-6 col-md-12 col-lg-12">
+      <label for="searchInput"> Nome </label>
+      <form #searchForm="ngForm" (ngSubmit)="onSearch(searchForm)">
+        <input
+          class="form-control"
+          type="text"
+          id="searchInput"
+          name="produtoNome"
+          ngModel
+          placeholder="Designação do Produto"
+        />
 
+        <label class="col-form-label col-form-label-sm" for="nomeparam"
+          >Categoria
+        </label>
+        <select
+          class="custom-select custom-select-sm mb-3 rounded-2 cursor"
+          name="categoriaParam"
+          (change)="onCategoriaChange($event)"
+          ngModel
+        >
+          <option selected value="" class="cursor">Selecione Categoria</option>
+          <option
+            value="{{ categoria.id }}"
+            class="cursor"
+            *ngFor="let categoria of productCategoria"
+          >
+            {{ categoria.designacao }}
+          </option>
+        </select>
 
-            <label for="searchInput"> Nome </label>
-            <form  #searchForm="ngForm" 
-            (ngSubmit)="onSearch(searchForm)">
-            <input class="form-control " type="text" id="searchInput" name="produtoNome" ngModel placeholder="Designação do Produto"/>
-    
-              <label class="col-form-label col-form-label-sm " for="nomeparam">Categoria </label>
-              <select class="custom-select custom-select-sm mb-3 rounded-2 cursor"  name="categoriaParam" (change)="onCategoriaChange($event)" ngModel>
-                  <option selected value="" class="cursor">Selecione Categoria</option>
-                  <option  value="{{categoria.id}}" class="cursor" *ngFor="let categoria of productCategoria"  >{{categoria.designacao}}</option>
+        <label class="col-form-label col-form-label-sm" for="nomeparam"
+          >Sub-categoria
+        </label>
+        <select
+          class="custom-select custom-select-sm mb-3 rounded-2 cursor"
+          name="subCategoriaParam"
+          ngModel
+        >
+          <option selected value="">Selecione Subcategoria</option>
+          <option
+            value="{{ tipo.id }}"
+            *ngFor="let tipo of productSubCategoria"
+          >
+            {{ tipo.designacao }}
+          </option>
+        </select>
 
-              </select>
-    
-              <label class="col-form-label col-form-label-sm " for="nomeparam">Sub-categoria </label>
-              <select class="custom-select custom-select-sm mb-3 rounded-2 cursor" name="subCategoriaParam" ngModel>
-                <option selected value="">Selecione Subcategoria</option>
-                <option value="{{tipo.id}}" *ngFor="let tipo of productSubCategoria">{{tipo.designacao}}</option>
-              </select>
-              
-    
-              <hr>
-     
-              <label class="col-form-label col-form-label-sm " for="nomeparam">Municipio</label>
-              <select class="custom-select custom-select-sm mb-3 rounded-2 cursor" name="municipioParam" (change)="onMunicipioChange($event)" ngModel>
-                  <option  class="cursor" value="" selected >Municipios</option>
-                  <option  value="{{municipio.id}}" class="cursor"  *ngFor="let municipio of municipios">{{municipio.designacao}}</option>
-                   
-              </select>
-    
-              <label class="col-form-label col-form-label-sm " for="nomeparam">Bairro </label>
-              <select class="custom-select custom-select-sm mb-3 rounded-2 cursor"  name="bairroParam" ngModel>
-                  <option  class="cursor" value="" selected>Bairro</option>
-                  <option  value="{{bairro.id}}" class="cursor" *ngFor="let bairro of bairros">{{bairro.designacao}}</option>
-                  
-              </select>
-              <button  type="submit" class="btn btn-success"> Pesquisar </button>
-              </form>
-          </div>
+        <hr />
+
+        <label class="col-form-label col-form-label-sm" for="nomeparam"
+          >Municipio</label
+        >
+        <select
+          class="custom-select custom-select-sm mb-3 rounded-2 cursor"
+          name="municipioParam"
+          (change)="onMunicipioChange($event)"
+          ngModel
+        >
+          <option class="cursor" value="" selected>Municipios</option>
+          <option
+            value="{{ municipio.id }}"
+            class="cursor"
+            *ngFor="let municipio of municipios"
+          >
+            {{ municipio.designacao }}
+          </option>
+        </select>
+
+        <label class="col-form-label col-form-label-sm" for="nomeparam"
+          >Bairro
+        </label>
+        <select
+          class="custom-select custom-select-sm mb-3 rounded-2 cursor"
+          name="bairroParam"
+          ngModel
+        >
+          <option class="cursor" value="" selected>Bairro</option>
+          <option
+            value="{{ bairro.id }}"
+            class="cursor"
+            *ngFor="let bairro of bairros"
+          >
+            {{ bairro.designacao }}
+          </option>
+        </select>
+        <button type="submit" class="btn btn-success">Pesquisar</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="col-md-9">
+    <div class="row" *ngIf="!isEmptyResult && !isSearching">
+      <div class="col-md-9 justify-content-end text-end">
+        <ngb-pagination
+          [(collectionSize)]="totalItems"
+          [(pageSize)]="itemsCount"
+          [(page)]="page"
+          [maxSize]="12"
+          [boundaryLinks]="true"
+          (pageChange)="onPageChange(page)"
+        ></ngb-pagination>
+      </div>
+      <div class="col-md-3">
+        <h5>Encontrou {{ totalItems }} Produtos</h5>
+      </div>
     </div>
 
-      <div class="col-md-9">
+    <div class="d-flex justify-content-center" *ngIf="isSearching">
+      <app-side-loader></app-side-loader>
+    </div>
 
-        <div class="row" *ngIf="!isEmptyResult && (!isSearching )" >
-          <div class="col-md-9 justify-content-end text-end">
-            <ngb-pagination [(collectionSize)]="totalItems" [(pageSize)]="itemsCount" [(page)]="page" [maxSize]="12" [boundaryLinks]="true"
-            (pageChange)="onPageChange(page)" 
-            ></ngb-pagination>
-          </div>
-          <div class="col-md-3">
-              <h5> Encontrou {{ totalItems }} Produtos </h5>
-          </div>
-          
-          
-  
-        </div>
-        
-        <div class="d-flex justify-content-center" *ngIf="isSearching ">
-              <app-side-loader></app-side-loader>
-        </div>
+    <!-- Resultados aparecem aqui -->
+    <div
+      class="row row-cols-1 row-cols-md-3 row-cols-lg-4"
+      *ngIf="!isSearching"
+    >
+      <div class="col mb-3" *ngFor="let item of resultItems">
+        <div
+          class="card shadow-sm"
+          (click)="openViewProduct(viewProduct, item)"
+        >
+          <img
+            src="{{ _baseUrl + item.empresaId }}/produtos/{{ item.imagem }}"
+            height="170px"
+            class="card-img-top"
+            alt="..."
+          />
+          <div class="card-body pb-n3">
+            <div class="row">
+              <div class="col-12 px-2">
+                <h5 class="text-color-main-purple">{{ item.name }}</h5>
+                <p class="my-n1 text-dark labels">
+                  <i class="fas fa-layer-group"></i> {{ item.categoria }}
+                </p>
+                <p class="my-n1 text-secondary labels">
+                  <i class="fas fa-building"></i> {{ item.empresa }}
+                </p>
+              </div>
 
-        <!-- Resultados aparecem aqui -->
-        <div class="row row-cols-1 row-cols-md-3 row-cols-lg-4" *ngIf="!isSearching">
-            <div class="col mb-3" *ngFor="let item of resultItems" >
-              <div class="card shadow-sm" (click)="openViewProduct(viewProduct,item)">
-                <img src="{{_baseUrl + item.empresaId}}/produtos/{{item.imagem}}" height="170px" class="card-img-top" alt="...">
-                <div class="card-body pb-n3">
-                  
-                  <div class="row ">
-                    <div class="col-12 px-2">
-                      <h5 class="text-color-main-purple">  {{item.name}} </h5>
-                      <p class="my-n1 text-dark labels"><i class="fas fa-layer-group"></i> {{item.categoria}}</p>
-                      <p class="my-n1 text-secondary labels"><i class="fas fa-building"></i> {{item.empresa}} </p>
-                    </div>
-                    
-                    <div class="col-6 mt-2">
-                      <ngb-rating [rate]="3">
-                        <ng-template let-fill="fill">
-                          <span class="star" [ngClass]="'color'+2"[class.filled]="fill === 100">&#9733;</span>
-                        </ng-template>
-                      </ngb-rating>
-                    </div>
-                    <div class="col-6 text-secondary mt-2 mb-n3 text-truncate">
-                      <span class="text-truncate mt-3" ><i class="fas fa-map-marker-alt text-success"></i> {{item.bairro}}</span>
-                    </div>
-                  </div>
-                </div>
-
-                
-                  <ng-template #viewProduct let-modal class="rounded-0 px-4 bg-color-very-light-purple">
-
-                    <div class="col-12">
-                     
-                      <br>
-                      <div class="row  ">
-                        <div class="col-6">
-                          <img src="{{_baseUrl + item.empresaId}}/produtos/{{item.imagem}}" height="170px" class="card-img-top" alt="...">
-                        </div>
-                        <div class="col-5  ">
-                          <table class="table table-borderless table-sm mt-3">
-                      
-                            <tbody>
-                              <tr>
-                                <td><h5>{{item.name}}</h5> 
-                                  <span class="text-secondary ml-2">Estoque: {{item.stock}} </span>
-                                </td>                              
-                              </tr>
-                              <tr>
-                                <td>
-                                  <span class="text-secondary" *ngIf="checkProductAvailability(item.disponibilidade)"> <i class="fas fa-circle text-success"></i> Disponivel  </span>            
-                                  <span class="text-secondary" *ngIf="!checkProductAvailability(item.disponibilidade)"> <i class="fas fa-circle text-danger"></i> Indisponivel  </span>                                
-                                </td> 
-                              </tr>
-                              <tr>
-                                <td><p><i class="fas fa-layer-group"></i> {{item.categoria}}</p></td> 
-                              </tr>
-                              <tr>
-                                <td > <i class="fas fa-building"></i> {{item.empresa}}</td>
-                              </tr>
-                              <tr>
-                                <td ><span > <span class="bg-light p-2 text-secondary font-weight-bold"> 4.2 </span>  <ngb-rating [rate]="3">
-                                  <ng-template let-fill="fill">
-                                    <span class="star" [ngClass]="'color'+2"[class.filled]="fill === 100">&#9733;</span>
-                                  </ng-template>
-                                </ngb-rating> </span></td>
-                              </tr>
-                              <tr>
-                                <td ><i class="fas fa-map-marker-alt text-success"></i> {{item.bairro}}</td>
-                              </tr>
-                              <tr>
-                                <td ><i class="fas fa-location-arrow"></i> 34 km</td>
-                              </tr>
-                              <tr>
-                                <td ><a class="btn btn-sm btn-success">Mais produtos de {{item.empresa}}</a></td>
-                              </tr>
-                            </tbody>
-                          </table>
-                        </div>
-                        <div class="col-sm-12 col-md-11 bg-white">
-                          <h3>Sobre</h3>
-                            <p class="text-secondary"> {{item.descricao}}</p>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-12">
-                      <!-- Section of the rating of the product  right here -->
-                      <div class="form-group">
-                        <label for="exampleFormControlTextarea1">Avalie este produto </label>
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Insira os seus comentarios sobre este produto"></textarea>
-                      </div>
-                    </div>
-
+              <div class="col-6 mt-2">
+                <ngb-rating [rate]="3">
+                  <ng-template let-fill="fill">
+                    <span
+                      class="star"
+                      [ngClass]="'color' + 2"
+                      [class.filled]="fill === 100"
+                      >&#9733;</span
+                    >
                   </ng-template>
+                </ngb-rating>
+              </div>
+              <div class="col-6 text-secondary mt-2 mb-n3 text-truncate">
+                <span class="text-truncate mt-3"
+                  ><i class="fas fa-map-marker-alt text-success"></i>
+                  {{ item.bairro }}</span
+                >
               </div>
             </div>
-          
           </div>
-          <!-- Fim dos resulatados -->
 
-        <!-- /For empty results /-->
-        <div class="col-sm-12 mt-4">
-          <div class="d-flex justify-content-center" *ngIf="isEmptyResult && !isSearching">
-            <h2 class="text-color-main-green"> Nenhum resultado para os filtros fornecidos.  </h2>
-            <h4 class="text-color-main-green text-center "> </h4> <br><br>
-            <br>
-          </div>
-        </div>
-      
-          <div class="d-flex justify-content-center" *ngIf="(isEmptyResult && !isSearching)">
-                       
-            <ul class="text-secondary">
-              <li> <h5 class="">Verifique os parametros de pesquisa </h5></li>
-              <li><h5 class=""> Verifique se você digitou o serviço corretamente</h5> </li>
-            </ul>
-            
-          </div>
-        <!-- /.For empty results ./-->
-
-          <div class="row" *ngIf="!isSearching ">
-            <div class="col-md-9 justify-content-end text-end">
-              <ngb-pagination [(collectionSize)]="totalItems" [(pageSize)]="itemsCount" [(page)]="page" [(maxSize)]="last_page" [boundaryLinks]="false"
-              (pageChange)="onPageChange(page)" *ngIf="!isEmptyResult"
-              ></ngb-pagination>
+          <ng-template
+            #viewProduct
+            let-modal
+            class="rounded-0 px-4 bg-color-very-light-purple"
+          >
+            <div class="col-12">
+              <br />
+              <div class="row">
+                <div class="col-6">
+                  <img
+                    src="{{ _baseUrl + item.empresaId }}/produtos/{{
+                      item.imagem
+                    }}"
+                    height="170px"
+                    class="card-img-top"
+                    alt="..."
+                  />
+                </div>
+                <div class="col-5">
+                  <table class="table table-borderless table-sm mt-3">
+                    <tbody>
+                      <tr>
+                        <td>
+                          <h5>{{ item.name }}</h5>
+                          <span class="text-secondary ml-2"
+                            >Estoque: {{ item.stock }}
+                          </span>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <span
+                            class="text-secondary"
+                            *ngIf="
+                              checkProductAvailability(item.disponibilidade)
+                            "
+                          >
+                            <i class="fas fa-circle text-success"></i>
+                            Disponivel
+                          </span>
+                          <span
+                            class="text-secondary"
+                            *ngIf="
+                              !checkProductAvailability(item.disponibilidade)
+                            "
+                          >
+                            <i class="fas fa-circle text-danger"></i>
+                            Indisponivel
+                          </span>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <p>
+                            <i class="fas fa-layer-group"></i>
+                            {{ item.categoria }}
+                          </p>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <i class="fas fa-building"></i> {{ item.empresa }}
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <span>
+                            <span
+                              class="bg-light p-2 text-secondary font-weight-bold"
+                            >
+                              4.2
+                            </span>
+                            <ngb-rating [rate]="3">
+                              <ng-template let-fill="fill">
+                                <span
+                                  class="star"
+                                  [ngClass]="'color' + 2"
+                                  [class.filled]="fill === 100"
+                                  >&#9733;</span
+                                >
+                              </ng-template>
+                            </ngb-rating>
+                          </span>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <i class="fas fa-map-marker-alt text-success"></i>
+                          {{ item.bairro }}
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><i class="fas fa-location-arrow"></i> 34 km</td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <a class="btn btn-sm btn-success"
+                            >Mais produtos de {{ item.empresa }}</a
+                          >
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="col-sm-12 col-md-11 bg-white">
+                  <h3>Sobre</h3>
+                  <p class="text-secondary">{{ item.descricao }}</p>
+                </div>
+              </div>
             </div>
-          </div>
-      
+            <div class="col-12">
+              <!-- Section of the rating of the product  right here -->
+              <div class="form-group">
+                <label for="exampleFormControlTextarea1"
+                  >Avalie este produto
+                </label>
+                <textarea
+                  class="form-control"
+                  id="exampleFormControlTextarea1"
+                  rows="3"
+                  placeholder="Insira os seus comentarios sobre este produto"
+                ></textarea>
+              </div>
+            </div>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+    <!-- Fim dos resulatados -->
+
+    <!-- /For empty results /-->
+    <div class="col-sm-12 mt-4">
+      <div
+        class="d-flex justify-content-center"
+        *ngIf="isEmptyResult && !isSearching"
+      >
+        <h2 class="text-color-main-green">
+          Nenhum resultado para os filtros fornecidos.
+        </h2>
+        <h4 class="text-color-main-green text-center"></h4>
+        <br /><br />
+        <br />
+      </div>
     </div>
 
+    <div
+      class="d-flex justify-content-center"
+      *ngIf="isEmptyResult && !isSearching"
+    >
+      <ul class="text-secondary">
+        <li><h5 class="">Verifique os parametros de pesquisa</h5></li>
+        <li>
+          <h5 class="">Verifique se você digitou o serviço corretamente</h5>
+        </li>
+      </ul>
+    </div>
+    <!-- /.For empty results ./-->
 
+    <div class="row" *ngIf="!isSearching">
+      <div class="col-md-9 justify-content-end text-end">
+        <ngb-pagination
+          [(collectionSize)]="totalItems"
+          [(pageSize)]="itemsCount"
+          [(page)]="page"
+          [(maxSize)]="last_page"
+          [boundaryLinks]="false"
+          (pageChange)="onPageChange(page)"
+          *ngIf="!isEmptyResult"
+        ></ngb-pagination>
+      </div>
+    </div>
+  </div>
 </div>
-

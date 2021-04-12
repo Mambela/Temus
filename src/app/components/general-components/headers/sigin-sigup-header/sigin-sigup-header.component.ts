@@ -136,6 +136,7 @@ export class SiginModalComponent {
     </div>
   </div>
   `
+
 })
 export class SigupModalComponent {
   constructor(public activeModal: NgbActiveModal) {}
