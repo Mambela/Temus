@@ -76,6 +76,10 @@ export class SearchProdutoComponent implements OnInit {
 
   getProductCategoria()
   {
+    if(this.categoriaDTService.getProdutoCategoria())
+    {
+      console.log("Null category ");      
+    }
 
     this.productCategoria = this.categoriaDTService.getProdutoCategoria();
 

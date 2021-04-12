@@ -13,14 +13,14 @@
       <label class="col-form-label   " for="nomeparam">Categoria </label>
       <select class="custom-select   mb-3 rounded-2 cursor"  name="categoriaParam"  (change)="onCategoriaChange($event)" ngModel>
           <option selected value="" class="cursor">Selecione Categoria</option>
-          <!-- <option  value="{{categoria.id}}" class="cursor" *ngFor="let categoria of serviceCategoria"  >{{categoria.designacao}}</option> -->
+         <option  value="{{categoria.id}}" class="cursor" *ngFor="let categoria of localCategoria"  >{{categoria.designacao}}</option> 
 
       </select>
 
       <label class="col-form-label   " for="nomeparam">Sub-categoria </label>
       <select class="custom-select   mb-3 rounded-2 cursor" name="subCategoriaParam" ngModel>
         <option selected value="">Selecione Subcategoria</option>
-        <!-- <option value="{{tipo.id}}" *ngFor="let tipo of serviceSubCategoria">{{tipo.designacao}}</option> -->
+       <!-- <option value="{{tipo.id}}" *ngFor="let tipo of serviceSubCategoria">{{tipo.designacao}}</option> -->
       </select>
 
       <br>

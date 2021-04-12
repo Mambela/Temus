@@ -53,7 +53,7 @@ export class ExploremapService {
 
   public displayExplorerMap(container,position)
   {
-    
+    console.log(" The container "+ container);
     // this.imageBaseUrl = this.storedValues.BASEURL()+"/storage/provided/locations/image/"
 
     /*
@@ -62,7 +62,7 @@ export class ExploremapService {
     // this.lat = position.coords.latitude;
     // this.lng = position.coords.longitude;
 
-    console.log(this.lat,this.lng);
+    // console.log(this.lat,this.lng);
 
     this.map = new mapboxgl.Map({
       container:container,
@@ -81,8 +81,7 @@ export class ExploremapService {
   public populateLocations(Locations:ResultItemLocal[])
   {
     Locations.forEach(Location => {
-      console.log(Location.name);
-
+       
       this.createMarker(Location);    
 
     });
@@ -92,8 +91,6 @@ export class ExploremapService {
 
   createMarker(location:ResultItemLocal)
   {
-
- 
 
     var markerPopup =` <img src="`+this.imageBaseUrl+location.imagem+`" height="120px" class="card-img-top rounded" alt="...">
       <div class="card-img-overlay "> 
@@ -107,11 +104,9 @@ export class ExploremapService {
         <div>
         <h5 class="card-title text-dark text-truncate ">`+location.name+`</h5>
         <p class="text-secondary location-text"><i class="fas fa-map-marker-alt text-success"></i> `+location.bairro+`, Luanda</p>
-        </div>
-        
-          `;
+        </div>`;
     
-  var popup =new mapboxgl.Popup().setHTML(markerPopup);
+  var popup = new mapboxgl.Popup().setHTML(markerPopup);
 
   popup.addClassName('bg-warning')
 

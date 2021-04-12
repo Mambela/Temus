@@ -41,6 +41,9 @@ export class BusinessRegistrationComponent implements OnInit {
   businessCategoriaID:number = 0;
   businessCategoriaDesignacao:string ="";
 
+  businessSubCategoriaID:number = 0;
+  businessSubCategoriaDesignacao:string ="";
+
   isCompleted:boolean = false;
   hasErrors:boolean = false;
 
@@ -75,13 +78,23 @@ export class BusinessRegistrationComponent implements OnInit {
   neighbourhoods:BasicModel[];
   streets:streetModel;
 
+  //Address location 
+  provinciaId:number=null;
+  cityId:number=null;
+  municipioId:number=null;
+  bairroId:number=null;
+  ruaId:number=null;
+
 
   //USed for the search of Categoria
   searching=false;
   searchingFailed = false;
   selectedCategoria:BasicModel;
 
- 
+  //USed for the search of SubCategoria
+  searchingSubcateoria =false;
+  searchingSubcategoriaFailed = false;
+  selectedSubCategoria:BasicModel;
   
   
   userSelectedCategoria(event: any) {
@@ -89,8 +102,13 @@ export class BusinessRegistrationComponent implements OnInit {
     
     this.businessCategoriaID = categoria.id;
     this.businessCategoriaDesignacao = categoria.designacao;
+  }
 
-    
+  userSelectedSubCategoria(event: any){
+    const subcategoria:BasicModel = event.item;
+
+    this.businessSubCategoriaID = subcategoria.id;
+    this.businessCategoriaDesignacao = subcategoria.designacao;    
   }
 
   userSelectedRua(event:any){
@@ -147,6 +165,23 @@ export class BusinessRegistrationComponent implements OnInit {
   resultformatter = ( categoria: {designacao: BasicModel}) => categoria.designacao;
 
   streetresultformatter = (StreetList: {rua : streetModel})=> StreetList.rua;
+
+  subcategoriaSearch = (text$: Observable<string>)=> 
+  text$.pipe(
+    debounceTime(300),
+    distinctUntilChanged(),
+    
+    tap(()=> this.searchingSubcateoria = true),
+    switchMap(term => 
+       this.categoriaService.SearchSubCategoria(term,this.businessCategoriaID).pipe(
+         tap(() => this.searchingSubcategoriaFailed = false),
+          catchError(() => {
+            this.searchingSubcategoriaFailed = true;
+            return of([]);
+          })),
+        ),
+        tap(() =>this.searchingSubcateoria =false)
+  )
   
    categoriaSearch = (text$: Observable<string>)=> 
     text$.pipe(
@@ -312,7 +347,7 @@ previewImage(files) {
     // step 1
     const _businessName = this.businessName;
     const _businessCategory = this.businessCategoriaID;
-  
+    const _businessType = this.businessSubCategoriaID;
 
 
     // step 2
@@ -324,14 +359,15 @@ previewImage(files) {
     const _phone1 = this.businessPhoneNumber1;
     const _phone2 = this.businessPhoneNumber2;
     const _web = this.businessWebsite;
-    const _locationID = this.businessRuaID;
+    const _rudaId = this.businessRuaID;
+    
     const _logo ='';
     const _lng = this.currentUserLocation.lng;
     const _lat =  this.currentUserLocation.lng;
 
 
-    this.authenticationService.userSignUp(_businessName,_email,_password,_password_confirmation,
-                                          _phone1,_phone2,_web,_locationID,_businessCategory,_lat,_lng,this.uploadedFile).subscribe((event)=>{
+    this.authenticationService.companySignUp(_businessName,_email,_password,_password_confirmation,_phone1,
+                                          _phone2,_web,this.provinciaId,this.municipioId,this.bairroId,_rudaId,_businessCategory,_businessType,_lat,_lng,this.uploadedFile).subscribe((event)=>{
 
       
 
@@ -358,7 +394,7 @@ previewImage(files) {
     // 
     });
 
-    console.log(businessRegisterForm);
+    
    
   }
 
@@ -376,6 +412,7 @@ previewImage(files) {
   
   getAllProvinces(){
 
+
     this.addressService.getPronvinces().subscribe((provinceResp:BasicModel[]) =>{
         
       this.provinces = provinceResp['data'];
@@ -386,6 +423,7 @@ previewImage(files) {
 
   getMunicipalitybyProvinces(event){
     const provinciaID = event.target.value;
+    this.provinciaId = provinciaID;
 
     this.businessProvince = event.target.options[event.target.options.selectedIndex].text;
 
@@ -406,6 +444,8 @@ previewImage(files) {
   getNeighboorhoodsbyMunicipality(event){
     const municipality = event.target.value;
 
+    this.municipioId = municipality;
+
     this.businessMunicipality = event.target.options[event.target.options.selectedIndex].text;
 
     this.addressService.getNeighbourhood(municipality).subscribe((neighborhoodResp:BasicModel[])=>{
@@ -420,6 +460,8 @@ previewImage(files) {
 
   getStreetsbyNeighbourhood(event){
     this.neighborhood = event.target.value;
+
+    this.bairroId = this.neighborhood;
   
     this.businessNeighbourhood = event.target.options[event.target.options.selectedIndex].text;
 
@@ -487,5 +529,6 @@ previewImage(files) {
   //   filter(term => term.length >= 2),
   //   map(term => states.filter(state => new RegExp(term, 'mi').test(state.name)).slice(0, 10))
   // )
+
 
 }

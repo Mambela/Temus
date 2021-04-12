@@ -1,8 +1,8 @@
 <body class="">
-<div class="">
-  <sigin-sigup-header></sigin-sigup-header>
+  <sigin-sigup-header *ngIf="!isAuthenticated"></sigin-sigup-header>
+  <loged-header *ngIf="isAuthenticated"></loged-header>
   <local-option></local-option>
-</div>
+
   <main class="search-content min-vh-100">
     <!-- <h1 class="txt-dk-purple">Local</h1> -->
     <div class="row">

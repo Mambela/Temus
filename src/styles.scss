@@ -6,6 +6,7 @@
 @import "./styles/colored-classes-hover.scss";
 @import "./styles/config-classes.scss";
 
+
 :root {
   font-size: 84.5%;
 }
@@ -120,6 +121,6 @@ hr.dashed {
   border-radius: 1em !important;
 }
 
-// .mapboxgl-popup .mapboxgl-popup-content span .rounded-local{
-//   border-radius: 1em !important;
-// }
+.mapboxgl-popup .mapboxgl-popup-content span .rounded-local{
+  border-radius: 1em !important;
+}

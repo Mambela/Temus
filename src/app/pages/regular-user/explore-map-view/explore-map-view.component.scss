@@ -22,12 +22,14 @@ body{
     height: 100%;
  }
 
-.filter{
+.filters{
     position: absolute;
     margin-top: 1vh;
     z-index: 8;
-    height: 100%;
-    // width: 25%;
+    background-color: hotpink;
+    z-index: 9;
+    // height: 100%;
+    width: 25%;
     
  }
 
@@ -38,37 +40,16 @@ body{
      background-color: white;
  }
  
- .filter-btn{
-   position: absolute;
-   z-index: 9;
-   width: 15%;
-   height: 25%;
-   margin-left: 37vh;
-   margin-top: 10vh;
- }
-
- //Side bar
- ng-sidebar-container{
-  height: 100vh;
-}
-
-::ng-deep .ng-sidebar{
-  background-color: orange;
-  width: 45vh;
-  padding: 0.5em 0.5em;
-  margin-top: 20px;
-
-}
+//  .filter-btn{
+//    position: absolute;
+//    z-index: 9;
+  
+//    height: 75%;
+//    background-color: hotpink;
+//    margin-left: 0.2vh;
+//    margin-top: 2vh;
+//  }
  
-::ng-deep .ng-sidebar::-webkit-scrollbar{
-  display: none;
-}
-/* Hide Scrollbar for IE, Edge and FireFox */
-::ng-deep .ng-sidebar{
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-
 
 
 
@@ -121,7 +102,7 @@ body{
   }
 
   .mapboxgl-popup-close-button{
-      display: none  !important;
+      // display: none  !important;
   }
 
   //The side searches 
@@ -133,6 +114,7 @@ body{
  .router-link-active
  {
    border-bottom: 3px solid $color-light-green; 
+   
  }
 
 

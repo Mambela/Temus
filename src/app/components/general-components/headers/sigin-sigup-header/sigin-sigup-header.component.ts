@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core'; 
-import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal, NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
 
 
 @Component({
@@ -149,16 +149,20 @@ export class SigupModalComponent {
 })
 export class SiginSigupHeaderComponent implements OnInit {
 
-  constructor(private modalService: NgbModal) { }
+  constructor(private modalService:NgbModal,private config:NgbModalConfig) { }
 
 
   ngOnInit(): void { }
   
-    openSigin() {
-      const modalRef = this.modalService.open(SiginModalComponent);
+    openSignIn() {
+
+      this.modalService.open(SiginModalComponent,{size:'md',backdropClass:'light-modal-backdrop',centered:true})
     }
 
-    openSigup() {
-      const modalRef = this.modalService.open(SigupModalComponent);
+
+    openSignUp()
+    {
+      this.modalService.open(SigupModalComponent,{size:'md',backdropClass:'light-modal-backdrop',centered:true})
     }
+
 }

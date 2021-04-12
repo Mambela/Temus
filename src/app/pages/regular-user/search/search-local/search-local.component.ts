@@ -6,7 +6,7 @@ import { ResultItemServico } from './../../../../data/models/regular-user/result
 import { FiltersService } from './../../../../core-services/http-service/FiltersService/filters.service';
 import { BasicModel } from './../../../../data/models/supporting/basic-model.model';
 import { CategoriaDataServiceService } from './../../../../core-services/DataService/categoria/categoria-data-service.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ResultItemLocal } from 'src/app/data/models/regular-user/resultItemLocal.model';
 
 @Component({
@@ -14,7 +14,7 @@ import { ResultItemLocal } from 'src/app/data/models/regular-user/resultItemLoca
   templateUrl: './search-local.component.html',
   styleUrls: ['./search-local.component.scss']
 })
-export class SearchLocalComponent implements OnInit {
+export class SearchLocalComponent implements OnInit,OnDestroy {
   
    // Pagination
    page = 4;
@@ -186,6 +186,11 @@ export class SearchLocalComponent implements OnInit {
       this.isSearching = false;
 
     });
+  }
+
+  ngOnDestroy()
+  {
+    this.municipios = null;
   }
 
 }
