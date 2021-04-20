@@ -58,7 +58,8 @@ import { LocalOptionComponent } from './components/general-components/headers/lo
 import { SimpleFooterComponent } from './components/general-components/footer/simple-footer/simple-footer.component';
 import { MainSearchBarComponent } from './components/components-per-page/landing-page/main-search-bar/main-search-bar.component';
 import { HomeComponent } from './pages/home/home.component';
-import { LogedHeaderComponent } from './components/general-components/headers/loged-header/loged-header.component';
+import { LogedHeaderComponent } from './components/regular-user/_headers/loged-header/loged-header.component';
+import { SearchSideBarComponent } from './components/regular-user/_sidebar/search-side-bar/search-side-bar.component';
 
 @NgModule({
   declarations: [
@@ -108,7 +109,8 @@ import { LogedHeaderComponent } from './components/general-components/headers/lo
     SimpleFooterComponent,
     MainSearchBarComponent,
     HomeComponent,
-    LogedHeaderComponent
+    LogedHeaderComponent,
+    SearchSideBarComponent
   ],
   imports: [
     BrowserModule,
