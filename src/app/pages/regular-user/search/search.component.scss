@@ -1,2 +1,28 @@
 @import "../../../../styles.scss";
 
+
+
+.wrapper {
+    width: 100%;
+    height: 100vh;
+
+    .main__container {
+        width: 100%;
+        height: 100%;
+        background-color: black;
+
+        .section__container {
+            width: 100%;
+            height: 100%;
+
+            .sidebar__wrapper {
+
+            }
+
+            .result__wrapper {
+                width: 100%;
+                height: 100%;
+            }
+        }
+    }
+}

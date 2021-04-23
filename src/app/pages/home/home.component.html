@@ -1,6 +1,8 @@
-<body>
-  <sigin-sigup-header *ngIf="!isAuthenticated"></sigin-sigup-header>
-  <loged-header *ngIf="isAuthenticated"></loged-header>
+<div>
+  <div class="fixed-top">
+    <sigin-sigup-header *ngIf="!isAuthenticated"></sigin-sigup-header>
+    <loged-header *ngIf="isAuthenticated"></loged-header>  
+  </div>
   <main>
     <section class="background-container">
       <div class="blur-image-container">
@@ -10,6 +12,5 @@
     </section>
     <main-search-bar></main-search-bar>
   </main>
-
   <simple-footer></simple-footer>
-</body>
+</div>
