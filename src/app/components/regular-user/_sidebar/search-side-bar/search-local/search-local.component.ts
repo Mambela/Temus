@@ -1,11 +1,11 @@
 import { NgForm } from '@angular/forms';
-import { STOREDCONSTANTS } from './../../../../module/constants.service';
-import { SearchService } from './../../../../core-services/http-service/SearchService/search.service';
+import { STOREDCONSTANTS } from './../../../../../module/constants.service';
+import { SearchService } from './../../../../../core-services/http-service/SearchService/search.service';
 import { ActivatedRoute } from '@angular/router';
-import { ResultItemServico } from './../../../../data/models/regular-user/resultItemServico.model';
-import { FiltersService } from './../../../../core-services/http-service/FiltersService/filters.service';
-import { BasicModel } from './../../../../data/models/supporting/basic-model.model';
-import { CategoriaDataServiceService } from './../../../../core-services/DataService/categoria/categoria-data-service.service';
+import { ResultItemServico } from './../../../../../data/models/regular-user/resultItemServico.model';
+import { FiltersService } from './../../../../../core-services/http-service/FiltersService/filters.service';
+import { BasicModel } from './../../../../../data/models/supporting/basic-model.model';
+import { CategoriaDataServiceService } from './../../../../../core-services/DataService/categoria/categoria-data-service.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ResultItemLocal } from 'src/app/data/models/regular-user/resultItemLocal.model';
 
