@@ -18,6 +18,7 @@ export class ResultItemLocal{
     public  publico :boolean;
     public  empresa :string;
     public  logo :string;
+     
     public  telephone :string;
     public  lat:number;
     public  lng:number;   

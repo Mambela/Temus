@@ -1,7 +1,8 @@
-import { ProdutofiltersComponent } from './../components/regular-user/produtofilters/produtofilters.component';
-import { ServicofiltersComponent } from './../components/regular-user/servicofilters/servicofilters.component';
 import { ViewPublicComponent } from './../Local/view-public/view-public.component';
 import { ViewPrivateComponent } from './../Local/view-private/view-private.component';
+
+import { ServicofiltersComponent } from './../components/regular-user/Filters/servicofilters/servicofilters.component';
+import { ProdutofiltersComponent } from './../components/regular-user/Filters/produtofilters/produtofilters.component';
 
 import { TemplatesComponent } from './../components/templates/templates.component';
 import { SearchComponent } from './../pages/regular-user/search/search.component';
@@ -17,7 +18,7 @@ import { BusinessDashboardComponent } from './../pages/business-user/business-da
 import { BusinessRegistrationComponent } from './../pages/business-user/business-registration/business-registration.component';
 import { BusinessPageComponent } from './../pages/business-user/business-page/business-page.component';
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+ 
 
 import { Routes, RouterModule } from '@angular/router';
 import { BusinessEventsComponent } from '../pages/business-user/business-dashboard/business-events/business-events.component';

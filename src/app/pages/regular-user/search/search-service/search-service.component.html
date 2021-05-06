@@ -42,7 +42,7 @@
   </div>
 
     <div class="col-md-9">
-      <div class="row" *ngIf="!isEmptyResult && !isSearching" >
+      <div class="row mb-2" *ngIf="!isEmptyResult && !isSearching" >
         <div class="col-md-9 justify-content-end text-end">
           <ngb-pagination [(collectionSize)]="totalItems" [(pageSize)]="itemsCount" [(page)]="page" [(maxSize)]="last_page" [boundaryLinks]="true"
           (pageChange)="onPageChange(page)" 

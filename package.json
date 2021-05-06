@@ -31,6 +31,7 @@
     "mapbox-gl": "^1.13.1",
     "ng-circle-progress": "^1.6.0",
     "ng-sidebar": "^9.4.2",
+    "normalize-css": "^2.3.1",
     "normalize.css": "^8.0.1",
     "rxjs": "~6.5.4",
     "tslib": "^1.14.1",

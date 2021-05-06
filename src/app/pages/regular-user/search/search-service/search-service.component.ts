@@ -48,7 +48,7 @@ export class SearchServiceComponent implements OnInit,OnDestroy {
    servicoName:string;
 
    paginate:boolean = false;
-
+ 
   constructor(private categoriaDTService:CategoriaDataServiceService,private filterService:FiltersService,private searchResultData:SearchResultDataService, private route:ActivatedRoute,
               private searchService:SearchService,private storeValues:STOREDCONSTANTS,private modalService: NgbModal) { }
 

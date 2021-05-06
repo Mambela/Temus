@@ -41,8 +41,7 @@ export class RatingComponent implements OnInit {
       {
         this.yellow -=1;
       }
-        
-      console.log("half the star",this.half);
+         console.log("half the star",this.half);
     }
     else{
 
