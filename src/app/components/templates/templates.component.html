@@ -1,39 +1,60 @@
-<body class=""><head>
-  <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.4.1/mapbox-gl.css' rel='stylesheet' />
-</head>
+<body class="">
+  <head>
+    <link
+      href="https://api.tiles.mapbox.com/mapbox-gl-js/v1.4.1/mapbox-gl.css"
+      rel="stylesheet"
+    />
+  </head>
 
-    <app-unathenticated-nav-bar></app-unathenticated-nav-bar>
-    
-    <main class="">
-        <div class="page-container min-vh-100">
-                <div class="filter col-12 bg-primary "> 
-                    
-                    <div class="row justify-content-start">
-                      
-                        <div class="col-12 rounded justify-content-center pt-3 pl-4 filter-content">
-                          <ul class="list-inline  text-black mx-auto">
-                            <li class="list-inline-item mx-2" ><a class="text-reset searchCategory" [routerLink]="['local']" routerLinkActive="active-search"> Local </a> </li>
-                            <li class="list-inline-item mx-3"><a class="text-reset searchCategory" [routerLink]="['servico']"   routerLinkActive="active-search"> Serviço</a> </li>
-                            <li class="list-inline-item mx-3"><a class="text-reset searchCategory" [routerLink]="['produto']" routerLinkActive="active-search"> Produto</a> </li>
-                            <!-- <li class="list-inline-item mx-2"><a class="text-reset searchCategory" [routerLink]="['evento']" routerLinkActive="active-search"> Evento</a> </li> -->
-                          </ul>
-                             
-                             
-                            <div class="form-group row px-4 bg-warning mx-auto">
-                              <router-outlet></router-outlet>
-                            </div>
-                            
-                           
-                        </div>
+  <app-unathenticated-nav-bar></app-unathenticated-nav-bar>
 
-                    </div>
-                    
-                    
-                </div>
-                <div class="map bg-light"  id="map">
-                  <!-- <app-map></app-map> -->
-                </div>
+  <main class="">
+    <div class="page-container min-vh-100">
+      <div class="filter col-12 bg-primary">
+        <div class="row justify-content-start">
+          <div
+            class="col-12 rounded justify-content-center pt-3 pl-4 filter-content"
+          >
+            <ul class="list-inline text-black mx-auto">
+              <li class="list-inline-item mx-2">
+                <a
+                  class="text-reset searchCategory"
+                  [routerLink]="['local']"
+                  routerLinkActive="active-search"
+                >
+                  Local
+                </a>
+              </li>
+              <li class="list-inline-item mx-3">
+                <a
+                  class="text-reset searchCategory"
+                  [routerLink]="['servico']"
+                  routerLinkActive="active-search"
+                >
+                  Serviço</a
+                >
+              </li>
+              <li class="list-inline-item mx-3">
+                <a
+                  class="text-reset searchCategory"
+                  [routerLink]="['produto']"
+                  routerLinkActive="active-search"
+                >
+                  Produto</a
+                >
+              </li>
+              <!-- <li class="list-inline-item mx-2"><a class="text-reset searchCategory" [routerLink]="['evento']" routerLinkActive="active-search"> Evento</a> </li> -->
+            </ul>
+
+            <div class="form-group row px-4 bg-warning mx-auto">
+              <router-outlet></router-outlet>
+            </div>
+          </div>
         </div>
-     
-    </main>
+      </div>
+      <div class="map bg-light" id="map">
+        <!-- <app-map></app-map> -->
+      </div>
+    </div>
+  </main>
 </body>

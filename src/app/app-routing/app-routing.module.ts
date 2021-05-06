@@ -5,7 +5,7 @@ import { ServicofiltersComponent } from './../components/regular-user/Filters/se
 import { ProdutofiltersComponent } from './../components/regular-user/Filters/produtofilters/produtofilters.component';
 
 import { ExploreMapViewComponent } from './../pages/regular-user/explore-map-view/explore-map-view.component';
-import { SearchServiceComponent } from './../pages/regular-user/search/search-service/search-service.component';
+import { SearchServiceComponent } from './../components/regular-user/_sidebar/search-side-bar/search-service/search-service.component';
 import { TemplatesComponent } from './../components/templates/templates.component';
 import { SearchComponent } from './../pages/regular-user/search/search.component';
 
@@ -24,9 +24,9 @@ import { CommonModule } from '@angular/common';
 
 import { Routes, RouterModule } from '@angular/router';
 import { BusinessEventsComponent } from '../pages/business-user/business-dashboard/business-events/business-events.component';
-import { SearchProdutoComponent } from '../pages/regular-user/search/search-produto/search-produto.component';
-import { SearchEventoComponent } from '../pages/regular-user/search/search-evento/search-evento.component';
-import { SearchLocalComponent } from '../pages/regular-user/search/search-local/search-local.component';
+import { SearchProdutoComponent } from '../components/regular-user/_sidebar/search-side-bar/search-produto/search-produto.component';
+import { SearchEventoComponent } from '../components/regular-user/_sidebar/search-side-bar/search-evento/search-evento.component';
+import { SearchLocalComponent } from '../components/regular-user/_sidebar/search-side-bar/search-local/search-local.component';
 import { HomeComponent } from '../pages/home/home.component';
 
 

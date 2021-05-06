@@ -1,37 +1,131 @@
+  $color-dark-purple: #471b52;
+  $color-main-purple: #800080;
+
+  $color-lavender: #e6e6fa;
+  $color-ghost-white: #f8f8ff;
+
+  $color-dark-green: #006400;
+  $color-main-green: #5cb85c;
+  $color-light-green: #00ff00;
+  $color-very-light-green: #98fb98;
+
+  $color-mintcream: #f5fffa;
+
+  $color-dark-grey: #252525;
+  $color-normal-grey: #707070;
+  $color-very-light-grey: #f1f1f1;
+
+  $color-white-1: #ffffff;
+  $color-black-1: #000000;
 
 
-$color-dark-purple: #471b52;
-$color-main-purple: #800080;
 
-$color-lavender: #e6e6fa;
-$color-ghost-white: #f8f8ff;
+/* ===================== Background colours ===================== */
 
-$color-dark-green: #006400;
-$color-main-green: #5cb85c;
-$color-light-green: #00ff00;
-$color-very-light-green: #98fb98;
+.bg-color-dark-purple {
+  background-color: $color-dark-purple;
+}
+.bg-color-main-purple {
+  background-color: $color-main-purple;
+}
+.bg-color-light-purple {
+  background-color: $color-lavender;
+}
+.bg-color-very-light-purple {
+  background-color: $color-ghost-white;
+}
 
-$color-mintcream: #f5fffa;
+.bg-color-dark-green {
+  background-color: $color-dark-green;
+}
+.bg-color-main-green {
+  background-color: $color-main-green;
+}
+.bg-color-main-light-green {
+  background-color: $color-light-green;
+}
+.bg-color-very-light-green {
+  background-color: $color-very-light-green;
+}
+.bg-color-extreme-light-green {
+  background-color: $color-very-light-green;
+}
 
-$color-dark-grey: #252525;
-$color-normal-grey: #707070;
-$color-very-light-grey: #f1f1f1;
+.bg-color-dark-grey {
+  background-color: $color-dark-grey;
+}
+.bg-color-normal-grey {
+  background-color: $color-normal-grey;
+}
+.bg-color-very-light-grey {
+  background-color: $color-very-light-grey;
+}
 
-$color-white-1: #FFFFFF;
-$color-black-1: #000000;
+.bg-color-white-1 {
+  background-color: $color-white-1;
+}
 
+/* ===================== Text colours ===================== */
 
-// $color-dark-purple:#471B52;
-// $color-main-purple:#8E24AA;
-// $color-lavender:#EEDBF1;
-// $color-ghost-white:#F8F2F9;
+.text-color-dark-purple {
+  color: $color-dark-purple;
+}
+.txt-dk-purple {
+  color: $color-dark-purple;
+}
+.text-color-main-purple {
+  color: $color-main-purple;
+}
+.text-color-light-purple {
+  color: $color-lavender;
+}
+.text-color-very-light-purple {
+  color: $color-ghost-white;
+}
 
-// $color-dark-green:#246713;
-// $color-main-green:#4CAF50;
-// $color-main-light-green:#71DB55;
-// $color-very-light-green:#CBF3C0;
-// $color-extreme-light-green:#F9FFF9;
+.text-color-dark-green {
+  color: $color-dark-green;
+}
+.text-color-main-green {
+  color: $color-main-green;
+}
+.text-color-main-light-green {
+  color: $color-light-green;
+}
+.text-color-very-light-green {
+  color: $color-very-light-green;
+}
+.text-color-extreme-light-green {
+  color: $color-very-light-green;
+}
 
-// $color-dark-grey:#252525;
-// $color-normal-grey:#707070;
-// $color-very-light-grey:#CACACA;
+.txt-dark-grey {
+  color: $color-dark-grey;
+}
+.txt-grey {
+  color: $color-normal-grey;
+}
+.txt-grey-1 {
+  color: $color-very-light-grey;
+}
+
+.text-color-white-1 {
+  color: $color-white-1;
+}
+
+/* ===================== Hover colors ===================== */
+
+// Text Colours
+.color-white-hover {
+  &:hover {
+    color: $color-white-1;
+  }
+}
+
+// Background colours
+
+.bg-color-purple-hover {
+  &:hover {
+    background-color: $color-dark-purple;
+  }
+}

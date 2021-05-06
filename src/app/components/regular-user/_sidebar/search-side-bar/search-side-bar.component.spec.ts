@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SiginModalComponent } from './sigin-modal.component';
+import { SearchSideBarComponent } from './search-side-bar.component';
 
-describe('SiginModalComponent', () => {
-  let component: SiginModalComponent;
-  let fixture: ComponentFixture<SiginModalComponent>;
+describe('SearchSideBarComponent', () => {
+  let component: SearchSideBarComponent;
+  let fixture: ComponentFixture<SearchSideBarComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SiginModalComponent ]
+      declarations: [ SearchSideBarComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SiginModalComponent);
+    fixture = TestBed.createComponent(SearchSideBarComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
