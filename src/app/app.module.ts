@@ -1,3 +1,4 @@
+import { LogedHeaderComponent } from './components/regular-user/_headers/loged-header/loged-header.component';
 import { ToasterComponent } from './sections/toast/toaster/toaster.component';
 
 import { AppRoutingModule } from './app-routing/app-routing.module';
@@ -58,7 +59,7 @@ import { LocalOptionComponent } from './components/general-components/headers/lo
 import { SimpleFooterComponent } from './components/general-components/footer/simple-footer/simple-footer.component';
 import { MainSearchBarComponent } from './components/components-per-page/landing-page/main-search-bar/main-search-bar.component';
 import { HomeComponent } from './pages/home/home.component';
-import { LogedHeaderComponent } from './components/general-components/headers/loged-header/loged-header.component';
+ 
 import { ViewPublicComponent } from './Local/view-public/view-public.component';
 import { ViewPrivateComponent } from './Local/view-private/view-private.component';
 import { NewCommentComponent } from './components/regular-user/new-comment/new-comment.component';
