@@ -1,0 +1,198 @@
+<body>
+    <sigin-sigup-header *ngIf="!isAuthenticated"></sigin-sigup-header>
+    <loged-header *ngIf="isAuthenticated"></loged-header>
+    <local-option></local-option>
+
+    <main class="min-vh-100">   
+        <div class="container-xl"> 
+           <div class="row">
+            <div class="col-sm-12 col-md-7 my-1   mx-3 py-3 rounded">
+                <div class="col-12 ">
+                     <h4 class="ml-2 mt-1"> {{ aLocal.designacao}} </h4>
+                    <!-- IMAGES -->
+                    <div class="row bg-white pt-3 pb-2 rounded shadow-sm container-rounded">
+                        <div class="col-sm-6 col-md-4 mb-2" *ngFor="let image of aLocal.images">
+                            <img src="{{_baseUrl+image.link}}" class="img-fluid rounded image-rounded" alt="...">
+                        </div>
+                       
+    
+                    </div>
+                    <!-- ./IMAGES -->
+
+                    <!-- TAGS -->
+                    <div class="row mt-2">
+                        <div class="col" *ngFor="let tag of aLocal.tags">
+                            <span class="badge badge-light my-1">{{tag.designacao}}</span>
+                        </div>
+                    </div>
+                    <!-- /TAGS -->
+                    <div class="row pt-2">
+
+                        <div class="col">
+                                <!-- Categoria:  -->
+                                <p> <i class="fas fa-layer-group"></i> {{aLocal.categoria[0].designacao}}</p>
+                        </div>
+                        <div class="col">
+                                <!-- Tipo:  -->
+                                <p> <i class="fas fa-layer-group"></i> {{aLocal.tipo[0].designacao}}</p>
+                        </div>
+                        <div class="col-12">
+
+                            <div class="row">
+                                <div class="col-sm-12 col-md-9">
+                                    <h5 for=""> <i class="fas fa-map-marker-alt text-success"></i> {{localAddress[0].street}} , {{localAddress[0].bairro}} </h5>
+                                </div>
+                                <div class="col-sm-12 col-md-3">
+                                    <p class="font-weight-bold text-secondary"> <i class="fas fa-location-arrow"></i> {{distanceToLocal}}</p>
+                                </div>   
+                            </div>
+                        </div>
+                        <div class="col-11 mx-auto mt-2">
+                            <div class="row shadow-sm rounded">
+                                <div class="col-sm-2 col-md-5 bg-light p-2 px-4">
+                                    <br>
+                                    <app-rating [rating]=avgRating></app-rating>
+                                    <span class=" mx-1 text-secondary numb-rating font-weight-bold"> {{avgRating }}/5 </span>
+                                    <!-- <h5 class="text-success font-weight-bold"> Análise </h5> -->
+                                </div>
+                                <div class="col-sm-4 col-md-4 bg-white py-4">
+                                    <h6 class="mt-3 font-weight-bold text-secondary"> {{comentCount}} avali<span *ngIf="comentCount > 1">ções</span><span *ngIf="comentCount == 0">ção</span>  </h6>
+
+                                </div>
+                                <div class="col-sm-5 col-md-3 bg-white py-4">
+                                    <a class="text-success font-weight-bold px-1 mr-1 vr-ava" (click)="avaliar()"> Ver avaliações </a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+
+
+                </div>
+
+                <div class="col-12 mt-4">
+                     
+                    <!-- <hr class="mx-2"> -->
+                    <!-- THE COMMENT -->
+                    <!-- ./ COMMENT -->
+
+                    <div class="col-xs-10 col-md-12" *ngIf="openReview">
+                        <div class="row">
+                            <div class="row" *ngIf="hideNewComment">
+<!-- 
+                                <div class="col-xs-2 col-md-2"  >
+                                    <img class="img-thumbnail rounded-circle" src="data:image/jpeg;base64,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" alt="">
+                                </div> -->
+                                <div class="col-xs-9  col-md-10"  >
+                                    <div class="row">
+                                        <!-- <div class="col-xs-7 col-md-9 "> <h6 class="font-weight-bold">Haroldo Ferro </h6></div> -->
+                                        <app-new-comment  (addCommentEvent)="newCommentHandler($event)"></app-new-comment>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- <div class="mt-4" > 
+                            justify-content-end    
+                            -->
+                            <div class="col-12 " *ngFor="let comment of localComments">
+                                <div class="d-flex flex-column comment-section " >
+                                    <hr class="mx-3"> 
+                                    <div class="bg-white p-2">
+                                        <div class="d-flex flex-row user-info"><img class="rounded-circle" src="data:image/jpeg;base64,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" width="40">
+                                            <div class="d-flex flex-column  ml-2">
+                                                <span class="d-block justify-content-start font-weight-bold name">{{comment.primeiro_nome}} {{comment.ultimo_nome}} 
+                                                 </span> <span class="date text-black-50">Compartilhado - {{comment.updated_at | date:'d-M-yy'}}</span>
+                                                
+                                            </div>
+                                                 <div class="justify-content-end">
+                                                      <app-rating [rating]="comment.rating"></app-rating>
+                                                 </div>
+                                        </div>
+                                        <div class="mt-2 col-12">
+                                            <p class="comment-text">{{comment.comment}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="bg-white">
+                                        <div class="d-flex flex-row fs-12">
+                                            <!-- <div class="like p-2 cursor"><i class="fa fa-thumbs-o-up"></i><span class="ml-1">Like</span></div>
+                                            <div class="like p-2 cursor"><i class="fa fa-commenting-o"></i><span class="ml-1">Comment</span></div>
+                                            <div class="like p-2 cursor"><i class="fa fa-share"></i><span class="ml-1">Share</span></div> -->
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                            <!-- </div> -->
+
+                        </div>
+                    </div>
+
+
+
+                </div>
+            </div>
+
+            <div class="col-xs-10  col-md-4 my-2 mx-3">
+                <h4 class="ml-2 mt-3">Locais de Referência</h4>
+                <div class="row bg-white rounded shadow-sm container-rounded">
+
+                    <!-- BEgining of a local -->
+                    <div class="col-md-12 my-3 mr-2" *ngFor="let local of localsCloseBy">
+                            <div class="row h-50">
+                                <div class="col-md-5">
+                                    <img src="{{_baseUrl+local.imagem}}" class="img-fluid image-rounded shadow-sm" alt="...">
+                                </div>
+                                <div class="col-md-7   pt-1 ">
+                                    <h6 class="font-weight-bold"> {{local.name}}</h6>
+                                    <p class="str-name"><i class="fas fa-map-marker-alt text-success"></i> {{local.rua}} </p>
+                                    <div class="col-12 mx-auto">
+                                        <div class="row">
+                                            <div class="col-8 pl-n2">
+                                                    <app-rating [rating]="local.rating"></app-rating>
+                                             
+                                            </div>
+                                            <div class="col-4 ">
+                                                <span class="text-secondary font-weight-bold"><i class="far fa-comment-alt "></i> {{local.no_comments /2 | number: '1.0-0' }} </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+                    <!-- End of a local -->
+      
+                </div>
+
+                 <h4 class="ml-2 mt-3">Veja outros locais como este... </h4>
+
+                 <!-- BEgining of a local -->
+                 <div class="col-md-12 my-3 mr-2 py-3" *ngFor="let local of similarLocation">
+                    <div class="row h-50">
+                        <div class="col-md-5">
+                            <img src="{{_baseUrl+local.imagem}}" class="img-fluid image-rounded shadow-sm" alt="...">
+                        </div>
+                        <div class="col-md-7   pt-1 ">
+                            <h6 class="font-weight-bold"> {{local.name}}</h6>
+                            <p class="str-name"><i class="fas fa-map-marker-alt text-success"></i> {{local.rua}} </p>
+                            <div class="col-12 mx-auto">
+                                <div class="row">
+                                    <div class="col-8 pl-n2">
+                                            <app-rating [rating]="local.rating"></app-rating>
+                                     
+                                    </div>
+                                    <div class="col-4 ">
+                                        <span class="text-secondary font-weight-bold"><i class="far fa-comment-alt "></i> {{local.no_comments /2 | number: '1.0-0' }} </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+            <!-- End of a local -->
+            </div>
+            
+           </div>  
+        </div>
+
+    </main>
+</body>

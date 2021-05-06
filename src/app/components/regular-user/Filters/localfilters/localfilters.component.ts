@@ -1,6 +1,7 @@
-import { FiltersService } from './../../../core-services/http-service/FiltersService/filters.service';
-import { CategoriaDataServiceService } from './../../../core-services/DataService/categoria/categoria-data-service.service';
-import { BasicModel } from './../../../data/models/supporting/basic-model.model';
+import { BasicModel } from './../../../../data/models/supporting/basic-model.model';
+import { FiltersService } from '../../../../core-services/http-service/FiltersService/filters.service';
+import { CategoriaDataServiceService } from '../../../../core-services/DataService/categoria/categoria-data-service.service';
+
 import { NgForm } from '@angular/forms';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 
@@ -31,7 +32,7 @@ export class LocalfiltersComponent implements OnInit,OnDestroy {
 
 
 
-  constructor(private categoriaDTService:CategoriaDataServiceService, private filterService:FiltersService,) { }
+  constructor(private categoriaDTService:CategoriaDataServiceService, private filterService:FiltersService) { }
 
   ngOnInit(): void {
 

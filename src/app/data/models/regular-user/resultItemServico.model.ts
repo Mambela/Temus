@@ -12,6 +12,7 @@ export class ResultItemServico{
     public stock:number;
     public tipo:string;
     public categoria:string;
+    public rating:number=0;
     public bairro:string;
     public empresa:string;
     public logo:string;

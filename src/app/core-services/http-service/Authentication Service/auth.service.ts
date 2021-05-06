@@ -250,9 +250,11 @@ export class AuthService {
 
      this.storedValues.userToken = tokenDetails.access_token;
      this.storedValues.userId = userDetails.id;
+     this.storedValues.userInfo = User;
 
      
      localStorage.setItem(this.localStorageToken,JSON.stringify(Token));
+     localStorage.setItem(this.localStorageUser,JSON.stringify(User));
       
   }
 
@@ -312,13 +314,13 @@ export class AuthService {
 
      if(companyData != null || companyData != undefined){
        
-      console.log("Company data HIT",companyData);
+     
 
           this.completeBusinessAutoLogin(companyData,tokenData) ;
       }
       else if(userData != null || userData != undefined )
       {
-        console.log("USer Data Hit",userData);
+         
         this.completeUserAutoLogin(userData,tokenData);
       }
  
@@ -326,8 +328,7 @@ export class AuthService {
 
 private  completeBusinessAutoLogin(companyData:CompanyData,tokenData:iTokenStructure)
   {
-    console.log("Company data",companyData);
-    console.log("COmpany ID",companyData.id);
+   
 
     this.storedValues.userToken = tokenData.access_token;
     this.storedValues.userId = companyData.id;
@@ -376,7 +377,7 @@ private  completeBusinessAutoLogin(companyData:CompanyData,tokenData:iTokenStruc
 
   completeUserAutoLogin(userData:UserData,tokenData:iTokenStructure)
   {
-        console.log("User Data ",userData);
+        
 
         this.storedValues.userToken = tokenData.access_token;
         this.storedValues.userId = userData.id;
@@ -385,8 +386,6 @@ private  completeBusinessAutoLogin(companyData:CompanyData,tokenData:iTokenStruc
 
         if(!userData || !tokenData)
         {
-
-          console.log("Checking No User Data set",userData);
           return;
         }
 
@@ -401,14 +400,15 @@ private  completeBusinessAutoLogin(companyData:CompanyData,tokenData:iTokenStruc
 
         if(userData.id != null)
         {
-          console.log("User Data not null", userData);
+          
           this.storedValues.userToken = tokenData.access_token;
+          this.storedValues.userInfo = loadedUser;
           this.userDataSubj.next(loadedUser);
           this.tokenDataSubj.next(loadedToken);
 
         }
         else{
-          console.log("User data not set");
+          
           this.router.navigate(['/']);
         }
   }

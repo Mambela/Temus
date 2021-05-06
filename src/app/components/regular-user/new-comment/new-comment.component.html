@@ -1,0 +1,21 @@
+<div class="row">
+  
+    <!-- #rateForm="ngForm"  (ngSubmit)="onPostNewComment(rateForm)" -->
+    <div class="col-xs-3 col-md-3 ">
+        <!-- <small class="text-secondary"> 3 days ago</small> -->
+        <div class="col-5 pl-n2">
+            <ngb-rating [(rate)]="currentRating">
+              <ng-template let-fill="fill">
+                <span class="star" [ngClass]="'color'+2"[class.filled]="fill === 100">&#9733;</span>
+              </ng-template>
+            </ngb-rating>
+         </div>
+    </div>
+    <div class="textareacont col-sm-12 col-md-12 pl-3">
+      <textarea #newcomment  class="form-control rounded-right ml-4 txtarea" name="comment" id="exampleFormControlTextarea1" rows="3" placeholder="Deixe seu comentário sobre este local aqui ..." ></textarea>
+      <button type="button" (click)="onPostNewComment(newcomment.value)" class="btn btn-sm btn-success mt-2 ml-3 py-2 post-btn">Postar Comentário</button>
+
+    </div>
+ 
+
+</div>

@@ -1,7 +1,7 @@
 import { NgForm } from '@angular/forms';
 import { STOREDCONSTANTS } from './../../../../module/constants.service';
 import { SearchService } from './../../../../core-services/http-service/SearchService/search.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ResultItemServico } from './../../../../data/models/regular-user/resultItemServico.model';
 import { FiltersService } from './../../../../core-services/http-service/FiltersService/filters.service';
 import { BasicModel } from './../../../../data/models/supporting/basic-model.model';
@@ -49,7 +49,7 @@ export class SearchLocalComponent implements OnInit,OnDestroy {
    paginate:boolean;
   
 
-  constructor(private categoriaDTService:CategoriaDataServiceService, private filterService:FiltersService,
+  constructor(private categoriaDTService:CategoriaDataServiceService, private filterService:FiltersService,private router:Router,
               private route:ActivatedRoute, private searchService :SearchService , private storedValues:STOREDCONSTANTS) { }
 
   ngOnInit(): void {
@@ -186,6 +186,38 @@ export class SearchLocalComponent implements OnInit,OnDestroy {
       this.isSearching = false;
 
     });
+  }
+
+  viewLocal(local:ResultItemLocal)
+  {
+
+    
+
+    //this.router.navigate([''])
+
+    if(local.publico)
+    {
+     
+    //  this.router.navigate(['/localpublico']);
+      
+      this.router.navigate(['/localpublico'], {
+        queryParams: { local: local.id,lat:local.lat,lng:local.lng  },
+      });
+
+    }
+    else
+    {
+  
+
+      // this.router.navigate(['/localprivate']);
+      this.router.navigate(['/localprivate'], {
+        queryParams: { local: local.id},
+      });
+    }
+  
+
+
+
   }
 
   ngOnDestroy()

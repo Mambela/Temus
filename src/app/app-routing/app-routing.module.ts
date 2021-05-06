@@ -1,6 +1,8 @@
-import { LocalfiltersComponent } from './../components/regular-user/localfilters/localfilters.component';
-import { ServicofiltersComponent } from './../components/regular-user/servicofilters/servicofilters.component';
-import { ProdutofiltersComponent } from './../components/regular-user/produtofilters/produtofilters.component';
+import { ViewPublicComponent } from './../Local/view-public/view-public.component';
+import { ViewPrivateComponent } from './../Local/view-private/view-private.component';
+import { LocalfiltersComponent } from '../components/regular-user/Filters/localfilters/localfilters.component';
+import { ServicofiltersComponent } from './../components/regular-user/Filters/servicofilters/servicofilters.component';
+import { ProdutofiltersComponent } from './../components/regular-user/Filters/produtofilters/produtofilters.component';
 
 import { ExploreMapViewComponent } from './../pages/regular-user/explore-map-view/explore-map-view.component';
 import { SearchServiceComponent } from './../pages/regular-user/search/search-service/search-service.component';
@@ -58,6 +60,8 @@ const appRoutes: Routes = [
       { path: 'produto', component: ProdutofiltersComponent },
     ],
   },
+  { path: 'localpublico', component: ViewPublicComponent },
+  { path: 'localprivate', component: ViewPrivateComponent },
   { path: 'template', component: TemplatesComponent },
 ];
 

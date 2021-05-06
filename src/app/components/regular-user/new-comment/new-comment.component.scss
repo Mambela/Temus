@@ -1,0 +1,76 @@
+
+
+ .star {
+    font-size: 1.5rem;
+    color: #b0c4de;
+  }
+  .filled.color1 {
+    color: red;
+  }
+  .filled.color2 {
+    color: orange;
+  } 
+  .filled.color4 {
+    color: green;
+  } 
+  .filled.color3 {
+    color: grey;
+  }
+
+  .location-text{
+      font-size: .9rem;
+  }
+
+  .str-name{
+      font-size: 0.9rem;
+  }
+
+  .badge{
+    font-size: 1rem !important;
+}
+
+.container-rounded{
+    border-radius: .8rem !important;
+
+}
+
+.image-rounded{
+    border-radius: 1rem !important;
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color:#ccc;
+  opacity: 1; /* Firefox */
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color:#ccc;
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+  color: #ccc;
+}
+
+.textareacont{
+  // position: relative;
+ 
+  width:auto;
+  height:auto;
+  display: inline-block;
+  padding:0;
+}
+
+.txtarea{
+  width:500px;
+  height:70px;
+  margin:0;
+  border-color: rgba(255,255,255,0);
+  padding:10px;
+  border: 1px solid #ccc ;
+}
+.post-btn
+{
+  // position:absolute;
+  bottom:8px;
+  right:15px;
+}

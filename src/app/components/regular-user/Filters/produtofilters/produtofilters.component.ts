@@ -1,6 +1,6 @@
 import { NgForm } from '@angular/forms';
-import { CategoriaDataServiceService } from './../../../core-services/DataService/categoria/categoria-data-service.service';
-import { BasicModel } from './../../../data/models/supporting/basic-model.model';
+import { CategoriaDataServiceService } from './../../../../core-services/DataService/categoria/categoria-data-service.service';
+import { BasicModel } from './../../../../data/models/supporting/basic-model.model';
 import { Component, OnInit } from '@angular/core';
 import { FiltersService } from 'src/app/core-services/http-service/FiltersService/filters.service';
 

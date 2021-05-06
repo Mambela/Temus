@@ -37,7 +37,13 @@ export class ExploreMapViewComponent implements OnInit {
     this._mapService.getCurrentCoordinates('map');     
     this.populatemarkers();
   }
+ 
 
+
+  test()
+  {
+    alert("");
+  }
 
   populatemarkers()
   {

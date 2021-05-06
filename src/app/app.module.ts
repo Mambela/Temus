@@ -49,9 +49,9 @@ import { SearchLocalComponent } from './pages/regular-user/search/search-local/s
 import { ExploreMapViewComponent } from './pages/regular-user/explore-map-view/explore-map-view.component';
 
 import { MessageBoxComponent } from './sections/message-box/message-box.component';
-import { LocalfiltersComponent } from './components/regular-user/localfilters/localfilters.component';
-import { ServicofiltersComponent } from './components/regular-user/servicofilters/servicofilters.component';
-import { ProdutofiltersComponent } from './components/regular-user/produtofilters/produtofilters.component';
+import { LocalfiltersComponent } from './components/regular-user/Filters/localfilters/localfilters.component';
+import { ServicofiltersComponent } from './components/regular-user/Filters/servicofilters/servicofilters.component';
+import { ProdutofiltersComponent } from './components/regular-user/Filters/produtofilters/produtofilters.component';
 import { SimpleHeaderComponent } from './components/general-components/headers/simple-header/simple-header.component';
 import { SiginSigupHeaderComponent } from './components/general-components/headers/sigin-sigup-header/sigin-sigup-header.component';
 import { LocalOptionComponent } from './components/general-components/headers/local-option/local-option.component';
@@ -61,6 +61,11 @@ import { SigupModalComponent } from './components/general-components/modal/sigup
 import { MainSearchBarComponent } from './components/components-per-page/landing-page/main-search-bar/main-search-bar.component';
 import { HomeComponent } from './pages/home/home.component';
 import { LogedHeaderComponent } from './components/general-components/headers/loged-header/loged-header.component';
+import { ViewPublicComponent } from './Local/view-public/view-public.component';
+import { ViewPrivateComponent } from './Local/view-private/view-private.component';
+import { NewCommentComponent } from './components/regular-user/new-comment/new-comment.component';
+import { RatingComponent } from './components/regular-user/rating/rating.component';
+import { SinglecommentComponent } from './components/regular-user/singlecomment/singlecomment.component';
 
 @NgModule({
   declarations: [
@@ -112,7 +117,12 @@ import { LogedHeaderComponent } from './components/general-components/headers/lo
     SigupModalComponent,
     MainSearchBarComponent,
     HomeComponent,
-    LogedHeaderComponent
+    LogedHeaderComponent,
+    ViewPublicComponent,
+    ViewPrivateComponent,
+    NewCommentComponent,
+    RatingComponent,
+    SinglecommentComponent
   ],
   imports: [
     BrowserModule,

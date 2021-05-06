@@ -1,3 +1,4 @@
+import { UserData } from './../data/models/regular-user/UserData.model';
 import { TokenData } from './../data/models/supporting/token-model';
 import { Injectable } from '@angular/core';
 import { tokenName } from '@angular/compiler';
@@ -19,10 +20,11 @@ export class STOREDCONSTANTS{
 
     public userRole:string;
     public userId:number;
-    private URL: string = 'http://127.0.0.1:8000/api/';
-    private resourceURL: string = 'http://127.0.0.1:8000/';
-    //     private URL: string = 'http://10.0.0.112:8000/api/';
-    // private resourceURL: string = 'http://10.0.0.112:8000/';
+    public userInfo:UserData;
+    private URL: string = 'http://temus.theignis.co.za/api/';
+    private resourceURL: string = 'http://temus.theignis.co.za/';
+    // private URL: string = 'http://127.0.0.1:8000/api/';  
+    // private resourceURL: string = 'http://127.0.0.1:8000/';
     public userToken: string;
 
     setToken:TokenData;

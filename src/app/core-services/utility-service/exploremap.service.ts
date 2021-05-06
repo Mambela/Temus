@@ -10,6 +10,8 @@ import { ResultItemLocal } from 'src/app/data/models/regular-user/resultItemLoca
 })
 export class ExploremapService {
 
+
+  R:number = 6371;
   map: mapboxgl.Map;
   zoom:number = 13;
   style ='mapbox://styles/mapbox/streets-v11';
@@ -29,19 +31,19 @@ export class ExploremapService {
   public getCurrentCoordinates(container)
   {
 
-    this.lat =-8.823549;
-    this.lng =13.240714;
+    // this.lat =-8.823549;
+    // this.lng =13.240714;
 
 
       if(navigator.geolocation)
       {
         navigator.geolocation.getCurrentPosition((position)=>{
           // this.showPosition(position);
-          this.displayExplorerMap(container,position)
-         
+         //this.displayExplorerMap(container,position)
 
-          // this.lat = position.coords.latitude;
-          // this.lng = position.coords.longitude;
+          this.lat = position.coords.latitude;
+          this.lng = position.coords.longitude;
+          console.log(position);
         });
       }
     
@@ -89,10 +91,36 @@ export class ExploremapService {
   }  
   
 
+  
+  calculateDistanceBetweenTwoPoints(latPoint1:number,lngPoint1:number,latPoint2:number,lngPoint2:number):number
+  {
+
+    console.log(latPoint1,lngPoint1,latPoint2,lngPoint2);
+
+    let dLat = this.deg2rad(latPoint1 - latPoint2);
+    let dlng = this.deg2rad(lngPoint1 - lngPoint2);
+
+
+
+    let a = 
+    Math.sin(dLat/2) * Math.sin(dLat/2) + 
+    Math.cos(this.deg2rad(latPoint2)) * Math.cos(this.deg2rad(latPoint1)) * 
+    Math.sin(dlng/2) * Math.sin(dlng/2);
+
+    let c = 2 * Math.atan2(Math.sqrt(a),Math.sqrt(1-a));
+    let distance = this.R * c; 
+
+
+
+    return distance;
+  }
+
+
+
   createMarker(location:ResultItemLocal)
   {
 
-    var markerPopup =` <img src="`+this.imageBaseUrl+location.imagem+`" height="120px" class="card-img-top rounded" alt="...">
+    var markerPopup =`<img src="`+this.imageBaseUrl+location.imagem+`" height="120px" class="card-img-top rounded" alt="...">
       <div class="card-img-overlay "> 
           <div class="d-flex justify-content-end">  
                <span class="bg-success rounded-local rounded px-1"> 
@@ -102,8 +130,9 @@ export class ExploremapService {
         </div>
 
         <div>
-        <h5 class="card-title text-dark text-truncate ">`+location.name+`</h5>
+        <h5 class="card-title text-dark text-truncate mb-n1">`+location.name+`</h5>
         <p class="text-secondary location-text"><i class="fas fa-map-marker-alt text-success"></i> `+location.bairro+`, Luanda</p>
+        <a  (click)="test()"> Visitar Pagina </a>
         </div>`;
     
   var popup = new mapboxgl.Popup().setHTML(markerPopup);
@@ -121,6 +150,12 @@ export class ExploremapService {
 
 
   }
+  
 
+  deg2rad(deg:any){
+
+    return deg * (Math.PI/180);
+
+  }
 
 }
