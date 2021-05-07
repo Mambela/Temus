@@ -48,7 +48,7 @@ export class BusinessPageComponent implements OnInit {
         const password = signinForm.value.password;
         this.isLoading = true;
 
-        this.authService.userSingIn(username,password).subscribe((authresp)=>{
+        this.authService.companySingIn(username,password).subscribe((authresp)=>{
 
        
             
@@ -56,7 +56,7 @@ export class BusinessPageComponent implements OnInit {
            * In case we get no error here is where we re route the user to the Dashboard of the application. 
            * */ 
           
-          if(authresp.sucess === true)
+          if(authresp.success === true)
           {
             this.router.navigate(['/business-dashboard']);
           }

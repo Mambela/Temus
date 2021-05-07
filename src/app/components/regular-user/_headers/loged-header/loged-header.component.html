@@ -1,0 +1,74 @@
+<header class="navbar fixed-top navbar-expand-lg bg-color-dark-purple">
+  <nav class="container-fluid mb-0">
+    <a class="navbar-brand h1 mb-0 unselect-text text-color-white-1 color-white-hover"
+      >Temus<span class="text-color-main-light-green">.</span></a
+    >
+
+    <div class="row">
+      <div class="col-12 d-flex">
+        <div class="nav d-flex align-items-center">
+          <ul class="navbar nav notify-header">
+            <li class="nav-item">
+              <a class="nav-link icon-container">
+                <span
+                  ><i class="far fa-bell icons-size-header text-color-white-1"></i
+                ></span>
+                <span class="badge unselect-text bg-color-main-green"
+                  >9+</span
+                >
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link icon-container">
+                <span
+                  ><i
+                    class="far fa-envelope icons-size-header text-color-white-1"
+                  ></i
+                ></span>
+                <span class="badge unselect-text bg-color-main-green"
+                  >9+</span
+                >
+              </a>
+            </li>
+          </ul>
+          <div ngbDropdown class="dropdown" #myDrop="ngbDropdown">
+            <button 
+              class="d-flex flex-row align-items-center justify-content-center btn-menu-header ml-2 p-2 color-background-white"
+              type="button"
+              id="options-menu-list-header" (click)="myDrop.open();"
+            >
+              <a class=""
+                ><i
+                  class="fas fa-bars icons-size-header mr-1 color-black"
+                ></i
+              ></a>
+              <img
+                src="./../../../../../assets/images/persons/índice.png"
+                class="rounded-circle ml-1 photo-profile-header"
+                alt=""
+                id="burger-menu-header"
+              />
+            </button>
+            <div
+            ngbDropdownMenu 
+              class="dropdown-menu dropdown-menu-right mt-3 p-2"
+              aria-labelledby="options-menu-list-header"
+            >
+              <a ngbDropdownItem class="dropdown-item list-member bg-color-purple-hover color-white-hover" href="#">Perfil</a>
+              <a ngbDropdownItem class="dropdown-item list-member bg-color-purple-hover color-white-hover" href="#"
+                >Favoritos</a
+              >
+              <a ngbDropdownItem class="dropdown-item list-member bg-color-purple-hover color-white-hover" href="#"
+                >Configurações de conta</a
+              >
+              <a ngbDropdownItem class="dropdown-item list-member bg-color-purple-hover color-white-hover" href="#"
+                >Terminar sessão</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+  
+</header>

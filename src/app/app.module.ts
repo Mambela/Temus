@@ -1,3 +1,6 @@
+
+// import { SearchSideBarComponent } from './components/regular-user/_sidebar/search-side-bar/search-side-bar.component';
+import { LogedHeaderComponent } from './components/regular-user/_headers/loged-header/loged-header.component';
 import { ToasterComponent } from './sections/toast/toaster/toaster.component';
 
 import { AppRoutingModule } from './app-routing/app-routing.module';
@@ -42,25 +45,27 @@ import { SearchComponent } from './pages/regular-user/search/search.component';
 import { TemplatesComponent } from './components/templates/templates.component';
 import { UnathenticatedNavBarComponent } from './components/regular-user/unathenticated-nav-bar/unathenticated-nav-bar.component';
 
-import { SearchServiceComponent } from './pages/regular-user/search/search-service/search-service.component';
-import { SearchProdutoComponent } from './pages/regular-user/search/search-produto/search-produto.component';
-import { SearchEventoComponent } from './pages/regular-user/search/search-evento/search-evento.component';
-import { SearchLocalComponent } from './pages/regular-user/search/search-local/search-local.component';
+ 
 import { ExploreMapViewComponent } from './pages/regular-user/explore-map-view/explore-map-view.component';
 
 import { MessageBoxComponent } from './sections/message-box/message-box.component';
-import { LocalfiltersComponent } from './components/regular-user/localfilters/localfilters.component';
-import { ServicofiltersComponent } from './components/regular-user/servicofilters/servicofilters.component';
-import { ProdutofiltersComponent } from './components/regular-user/produtofilters/produtofilters.component';
+ 
 import { SimpleHeaderComponent } from './components/general-components/headers/simple-header/simple-header.component';
 import { SiginSigupHeaderComponent } from './components/general-components/headers/sigin-sigup-header/sigin-sigup-header.component';
 import { LocalOptionComponent } from './components/general-components/headers/local-option/local-option.component';
 import { SimpleFooterComponent } from './components/general-components/footer/simple-footer/simple-footer.component';
-import { SiginModalComponent } from './components/general-components/modal/sigin-modal/sigin-modal.component';
-import { SigupModalComponent } from './components/general-components/modal/sigup-modal/sigup-modal.component';
 import { MainSearchBarComponent } from './components/components-per-page/landing-page/main-search-bar/main-search-bar.component';
 import { HomeComponent } from './pages/home/home.component';
-import { LogedHeaderComponent } from './components/general-components/headers/loged-header/loged-header.component';
+ 
+import { ViewPublicComponent } from './Local/view-public/view-public.component';
+import { ViewPrivateComponent } from './Local/view-private/view-private.component';
+ 
+// import { SearchProdutoComponent } from './components/regular-user/_sidebar/search-side-bar/search-produto/search-produto.component';
+// import { SearchEventoComponent } from './components/regular-user/_sidebar/search-side-bar/search-evento/search-evento.component';
+// import { SearchLocalComponent } from './components/regular-user/_sidebar/search-side-bar/search-local/search-local.component';
+import { NewCommentComponent } from './components/regular-user/new-comment/new-comment.component';
+import { RatingComponent } from './components/regular-user/rating/rating.component';
+import { SinglecommentComponent } from './components/regular-user/singlecomment/singlecomment.component';
 
 @NgModule({
   declarations: [
@@ -95,24 +100,24 @@ import { LogedHeaderComponent } from './components/general-components/headers/lo
     SearchComponent,
     TemplatesComponent,
     UnathenticatedNavBarComponent,
-    SearchServiceComponent,
-    SearchProdutoComponent,
-    SearchEventoComponent,
-    SearchLocalComponent,
+    // SearchSideBarComponent,
+    // SearchProdutoComponent,
+    // SearchEventoComponent,
+    // SearchLocalComponent,
     ExploreMapViewComponent,
     MessageBoxComponent,
-    LocalfiltersComponent,
-    ServicofiltersComponent,
-    ProdutofiltersComponent,
     SimpleHeaderComponent,
     SiginSigupHeaderComponent,
     LocalOptionComponent,
     SimpleFooterComponent,
-    SiginModalComponent,
-    SigupModalComponent,
     MainSearchBarComponent,
     HomeComponent,
-    LogedHeaderComponent
+    LogedHeaderComponent,
+    ViewPublicComponent,
+    ViewPrivateComponent,
+    NewCommentComponent,
+    RatingComponent,
+    SinglecommentComponent
   ],
   imports: [
     BrowserModule,

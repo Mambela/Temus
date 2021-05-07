@@ -2,23 +2,72 @@
 
 @import "./styles/fonts.scss";
 @import "./styles/colours.scss";
-@import "./styles/colored-classes.scss";
-@import "./styles/colored-classes-hover.scss";
 @import "./styles/config-classes.scss";
 
 
 :root {
-  font-size: 84.5%;
+  $z__fixed: 100;
+  outline: none;
 }
 
 
-label {
-  font-family: "Quicksand", sans-serif;
-  font-weight: 500;
+*,
+::before,
+::after {
+  box-sizing: border-box;
+}
+
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+
+
+
+
+
+/*
+hr.dashed {
+  border-top: 1px dashed $color-main-purple;
+  border-bottom: 1px dashed #fff;
+}
+
+.custom-control-input:focus ~ .custom-control-label::before {
+  border-color: #28a745;
+  box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
+}
+
+.custom-control-input:checked ~ .custom-control-label::before {
+  border-color: #28a745;
+  background-color: #28a745;
+}
+
+.custom-control-input:focus:not(:checked) ~ .custom-control-label::before {
+  border-color: #5bd778;
+}
+
+.custom-control-input:not(:disabled):active ~ .custom-control-label::before {
+  background-color: #d6f5dd;
+  border-color: #d6f5dd;
+}
+
+.bg-menu {
+  background-color: $color-lavender;
+}
+
+.bg-menu:hover {
+  background-color: $color-very-light-grey;
 }
 
 .btn {
-  font-family: "Quicksand", sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 hr.dashed {
@@ -27,84 +76,46 @@ hr.dashed {
 }
 
 .custom-control-input:focus ~ .custom-control-label::before {
-  border-color: #28a745 !important;
-  box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25) !important;
+  border-color: #28a745;
+  box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
 }
 
 .custom-control-input:checked ~ .custom-control-label::before {
-  border-color: #28a745 !important;
-  background-color: #28a745 !important;
+  border-color: #28a745;
+  background-color: #28a745;
 }
 
 .custom-control-input:focus:not(:checked) ~ .custom-control-label::before {
-  border-color: #5bd778 !important;
+  border-color: #5bd778;
 }
 
 .custom-control-input:not(:disabled):active ~ .custom-control-label::before {
-  background-color: #d6f5dd !important;
-  border-color: #d6f5dd !important;
+  background-color: #d6f5dd;
+  border-color: #d6f5dd;
 }
 
 .bg-menu {
-  background-color: $color-lavender !important;
+  background-color: $color-lavender;
 }
 
 .bg-menu:hover {
-  background-color: $color-very-light-grey !important;
-  // color: $color-ghost-white !important;
-}
-
-.btn {
-  font-family: "Quicksand", sans-serif;
-}
-
-hr.dashed {
-  border-top: 1px dashed $color-main-purple;
-  border-bottom: 1px dashed #fff;
-}
-
-.custom-control-input:focus ~ .custom-control-label::before {
-  border-color: #28a745 !important;
-  box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25) !important;
-}
-
-.custom-control-input:checked ~ .custom-control-label::before {
-  border-color: #28a745 !important;
-  background-color: #28a745 !important;
-}
-
-.custom-control-input:focus:not(:checked) ~ .custom-control-label::before {
-  border-color: #5bd778 !important;
-}
-
-.custom-control-input:not(:disabled):active ~ .custom-control-label::before {
-  background-color: #d6f5dd !important;
-  border-color: #d6f5dd !important;
-}
-
-.bg-menu {
-  background-color: $color-lavender !important;
-}
-
-.bg-menu:hover {
-  background-color: $color-very-light-grey !important;
-  // color: $color-ghost-white !important;
+  background-color: $color-very-light-grey;
 }
 
 //Border thickness
 .border-2 {
-  border-width: 2px !important;
+  border-width: 2px;
 }
 .border-3 {
-  border-width: 3px !important;
+  border-width: 3px;
 }
 
 .border-4 {
-  border-width: 4px !important;
+  border-width: 4px;
 }
 
 .border-5 {
-  border-width: 5px !important;
+  border-width: 5px;
 }
 
 .mapboxgl-popup-close-button {
@@ -114,13 +125,14 @@ hr.dashed {
 .mapboxgl-popup .mapboxgl-popup-content {
   padding: 7px;
 
-  border-radius: 1.5em !important;
+  border-radius: 1.5em;
 }
 
 .mapboxgl-popup .mapboxgl-popup-content img {
-  border-radius: 1em !important;
+  border-radius: 1em;
 }
 
 .mapboxgl-popup .mapboxgl-popup-content span .rounded-local{
-  border-radius: 1em !important;
+  border-radius: 1em;
 }
+*/

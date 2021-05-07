@@ -1,3 +1,5 @@
+import { UserData } from './../../../data/models/regular-user/UserData.model';
+import { error } from 'protractor';
 import { TokenData } from './../../../data/models/supporting/token-model';
 import { Router } from '@angular/router';
 
@@ -23,23 +25,7 @@ interface iUserDataResponse{
   username:string;
 }
 
-interface IEmpresaData{
-categoria_id: number;
-created_at: Date;
-description: string;
-designacao: string;
-email: string;
-id: number
-localizacao_id: number
-logo: string;
-referencia: string;
-telefone: string;
-telefone_2: string;
-tipo_id: number;
-updated_at: Date;
-user_id: number;
-website: string;
-}
+ 
 
 interface iTokenStructure{
   token_type:string;
@@ -61,6 +47,7 @@ interface AuthEmpresaResponseData{
   perfil:string;
   empresaData:CompanyData;
   tokenData:iTokenStructure;
+  userData:UserData;
 }
 
 @Injectable({
@@ -73,18 +60,21 @@ export class AuthService {
 
   localStorageCompany:string='companyData';
   localStorageToken:string = 'tokenData';
+  localStorageUser:string ='userData';
 
 
   companyDataSubj = new BehaviorSubject<CompanyData>(null);
   tokenDataSubj = new BehaviorSubject<TokenData>(null);
+  userDataSubj = new BehaviorSubject<UserData>(null);
 
   companyDetails:CompanyData;
   tokenDetails:iTokenStructure;
+  userDetails:UserData;
 
 
   constructor(private http:HttpClient,private storedValues:STOREDCONSTANTS, private router:Router) { }
 
-  userSignUp(name:string,email:string,password:string,password_confirmation:string,phone1:number,
+  companySignUp(name:string,email:string,password:string,password_confirmation:string,phone1:number,
              phone2:number=0,web:string,provinciaId:number,municipalityId:number,bairroId:number,ruaId:number,categoria:number,tipo:number,lat:number,lng:number,imgFile:File)
   {
 
@@ -133,7 +123,7 @@ export class AuthService {
 
   }
 
-  userSingIn(setUsername:string,setPassword:string)
+  companySingIn(setUsername:string,setPassword:string)
   {
     let formData = new FormData();
   
@@ -156,22 +146,32 @@ export class AuthService {
                   break;
             }
             return throwError(errorMessage);
-          }),tap((respdata) =>{
+          }),tap((respdata) =>{            
             
-            console.log("User Data =>",respdata.empresaData);
-            console.log("Token Data =>",respdata.tokenData);
+            if(respdata.empresaData != undefined)
+            {
+              alert("Company details "+ respdata.empresaData);
+
+              //Prepare Details before sending it to be saved!
+              this.companyDetails = respdata.empresaData;
+              this.tokenDetails = respdata.tokenData;
+
+              this.handleCompanyAuthentication(this.companyDetails,this.tokenDetails);
+            }
+            
+            
+            if(respdata.userData != undefined)
+            {
+               alert("USer Details "+respdata.userData);
+
+               this.userDetails = respdata.userData;
+               this.tokenDetails = respdata.tokenData;
+
+              this.handleUserAuthentication(this.userDetails,this.tokenDetails);
+
+            }
+            
             console.log("/n/n",respdata);
-
- 
-         
-            
-            this.tokenDetails = respdata.tokenData;
-            this.companyDetails = respdata.empresaData;
-
-           this.handleAuthentication(this.companyDetails,this.tokenDetails);
-            
-            
-            console.log("Description ",this.companyDetails.referencia);
 
             })
           );
@@ -183,22 +183,82 @@ export class AuthService {
 
   }
 
+ 
+  userSignUp(_p_nome:string,_u_nome:string,_email:string,_password:string,_password_C:string)
+  {
+    this.businessAccountType = 2;
+    this.userProfile = 3;
+    
+      return this.http.post(this.storedValues.BASEURL()+"register-user",
+      {
+        primeiro_nome:_p_nome,
+        ultimo_nome:_u_nome,
+        email:_email,
+        password:_password,
+        password_confirmation:_password_C,
+        conta:this.businessAccountType,
+        perfil:this.userProfile
+        
+      },
+        {headers:{"Accept":"application/json"}
+      }).pipe(catchError((error)=>{
+        return throwError(error);
+      }),tap((response)=>{
+  
+        })
+      );
+  }
+  
+
+
 
   
   signOut(){
     this.companyDataSubj.next(null);
     this.tokenDataSubj.next(null);
-     
+    this.userDataSubj.next(null);
     
     localStorage.clear();
     
 
-    this.router.navigate(['/business']);
+    this.router.navigate(['/']);
 
     
   }
 
-  private handleAuthentication(companyDetails:CompanyData,tokenDetails:iTokenStructure)
+  private handleUserAuthentication(userDetails:UserData,tokenDetails:iTokenStructure)
+  {
+    const User = new UserData(0,userDetails.created_at,userDetails.email,userDetails.email_verified_at,
+                               userDetails.id,userDetails.perfil_id,userDetails.primeiro_nome,userDetails.sexo,
+                              userDetails.telefone,userDetails.ultimo_nome,userDetails.updated_at,userDetails.username);
+
+
+    /**
+     * Create a new expiration date that will be handled in the application 
+     * */ 
+     const expirationDate = new Date(new Date().getTime() + tokenDetails.expires_in * 10000);
+
+     this.storedValues.userToken = tokenDetails.access_token;
+
+      /**
+     * Handle the token information that comes with the resonse of the data that you are currenty receinving from the server. 
+     * */ 
+     const Token = new TokenData(tokenDetails.token_type,expirationDate,tokenDetails.access_token,tokenDetails.refresh_token);     
+
+     this.userDataSubj.next(User);
+     this.tokenDataSubj.next(Token);
+
+     this.storedValues.userToken = tokenDetails.access_token;
+     this.storedValues.userId = userDetails.id;
+     this.storedValues.userInfo = User;
+
+     
+     localStorage.setItem(this.localStorageToken,JSON.stringify(Token));
+     localStorage.setItem(this.localStorageUser,JSON.stringify(User));
+      
+  }
+
+  private handleCompanyAuthentication(companyDetails:CompanyData,tokenDetails:iTokenStructure)
   {
     
     
@@ -235,7 +295,9 @@ export class AuthService {
 
     localStorage.setItem(this.localStorageCompany,JSON.stringify(Company));
     localStorage.setItem(this.localStorageToken,JSON.stringify(Token));
-  
+
+    
+    this.router.navigate(['/business-dashboard']);
     
   }
 
@@ -246,62 +308,109 @@ export class AuthService {
       
      const companyData:CompanyData = JSON.parse(localStorage.getItem(this.localStorageCompany));
      const tokenData:iTokenStructure= JSON.parse(localStorage.getItem(this.localStorageToken));
+     const userData:UserData = JSON.parse(localStorage.getItem(this.localStorageUser));
+
+     console.log(userData);
 
      if(companyData != null || companyData != undefined){
        
-      console.log("Company data",companyData);
-      console.log("COmpany ID",companyData.id);
+     
 
-      this.storedValues.userToken = tokenData.access_token;
+          this.completeBusinessAutoLogin(companyData,tokenData) ;
+      }
+      else if(userData != null || userData != undefined )
+      {
+         
+        this.completeUserAutoLogin(userData,tokenData);
+      }
+ 
+  }
+
+private  completeBusinessAutoLogin(companyData:CompanyData,tokenData:iTokenStructure)
+  {
+   
+
+    this.storedValues.userToken = tokenData.access_token;
     this.storedValues.userId = companyData.id;
-      
+    
      if(!companyData || !tokenData)
      {
        return;
      }
 
       const loadedCompany = new CompanyData(companyData.id,companyData.designacao,companyData.referencia,companyData.website,companyData.user_id
-          ,companyData.localizacao_id,companyData.logo,companyData.categoria_id,companyData.tipo_id,companyData.telefone,companyData.description,companyData.email,companyData.telefone_2);
+        ,companyData.localizacao_id,companyData.logo,companyData.categoria_id,companyData.tipo_id,companyData.telefone,companyData.description,companyData.email,companyData.telefone_2);
 
-          const expirationDate = new Date(new Date().getTime() + tokenData.expires_in * 10000);      
+        const expirationDate = new Date(new Date().getTime() + tokenData.expires_in * 10000);      
 
-          const loadedToken = new TokenData(tokenData.token_type,expirationDate,tokenData.access_token,tokenData.refresh_token);
-  
-       
+        const loadedToken = new TokenData(tokenData.token_type,expirationDate,tokenData.access_token,tokenData.refresh_token);
 
-      if(companyData.id != null)
-      {
-       
-        this.storedValues.userToken = tokenData.access_token;
-        this.companyDataSubj.next(loadedCompany);
-        this.tokenDataSubj.next(loadedToken);
-            // this.router.navigate(['/business-dashboard']);
+     
 
-        // alert(companyData.)
-
-        this.router.navigate(['/business-dashboard']);
-        //this.router.navigate(['/business-dashboard']);
-
-       
-        //this.router.navigate(['/pesquisa']);  
-
-      }
-      else
-      {
-        // this.router.navigate(['']);
-        //  this.router.navigate(['pesquisa/servico']);
-        //  this.router.navigate(['pesquisa/local']);
-        //this.router.navigate(['explorarMapa']);
-        this.router.navigate(['/business-registration']);
-
-      }
-      
-    }
-      
-      
-
+          if(companyData.id != null)
+          {
+           
+            this.storedValues.userToken = tokenData.access_token;
+            this.companyDataSubj.next(loadedCompany);
+            this.tokenDataSubj.next(loadedToken);
+                // this.router.navigate(['/business-dashboard']);
     
- 
+            // alert(companyData.)
+    
+            this.router.navigate(['/business-dashboard']);
+            //this.router.navigate(['/business-dashboard']);
+    
+           
+            //this.router.navigate(['/pesquisa']);  
+    
+          }
+          else
+          {
+            // this.router.navigate(['']);
+            //  this.router.navigate(['pesquisa/servico']);
+            //  this.router.navigate(['pesquisa/local']);
+            //this.router.navigate(['explorarMapa']);
+            this.router.navigate(['/business-registration']);
+    
+          }
+  }
+
+  completeUserAutoLogin(userData:UserData,tokenData:iTokenStructure)
+  {
+        
+
+        this.storedValues.userToken = tokenData.access_token;
+        this.storedValues.userId = userData.id;
+
+
+
+        if(!userData || !tokenData)
+        {
+          return;
+        }
+
+        const loadedUser = new UserData(userData.id,userData.created_at,userData.email,userData.email_verified_at,
+                                        userData.id,userData.perfil_id,userData.primeiro_nome,userData.sexo,
+                                        userData.telefone,userData.ultimo_nome,userData.updated_at,userData.username);
+        
+
+        const expirationDate = new Date(new Date().getTime()+ tokenData.expires_in * 10000);
+
+        const loadedToken = new TokenData(tokenData.token_type,expirationDate,tokenData.access_token,tokenData.refresh_token);
+
+        if(userData.id != null)
+        {
+          
+          this.storedValues.userToken = tokenData.access_token;
+          this.storedValues.userInfo = loadedUser;
+          this.userDataSubj.next(loadedUser);
+          this.tokenDataSubj.next(loadedToken);
+
+        }
+        else{
+          
+          this.router.navigate(['/']);
+        }
   }
 
 

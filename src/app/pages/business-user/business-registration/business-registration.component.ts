@@ -366,7 +366,7 @@ previewImage(files) {
     const _lat =  this.currentUserLocation.lng;
 
 
-    this.authenticationService.userSignUp(_businessName,_email,_password,_password_confirmation,_phone1,
+    this.authenticationService.companySignUp(_businessName,_email,_password,_password_confirmation,_phone1,
                                           _phone2,_web,this.provinciaId,this.municipioId,this.bairroId,_rudaId,_businessCategory,_businessType,_lat,_lng,this.uploadedFile).subscribe((event)=>{
 
       

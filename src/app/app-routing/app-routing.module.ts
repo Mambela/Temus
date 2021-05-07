@@ -1,9 +1,8 @@
-import { LocalfiltersComponent } from './../components/regular-user/localfilters/localfilters.component';
-import { ServicofiltersComponent } from './../components/regular-user/servicofilters/servicofilters.component';
 import { ProdutofiltersComponent } from './../components/regular-user/produtofilters/produtofilters.component';
+import { ServicofiltersComponent } from './../components/regular-user/servicofilters/servicofilters.component';
+import { ViewPublicComponent } from './../Local/view-public/view-public.component';
+import { ViewPrivateComponent } from './../Local/view-private/view-private.component';
 
-import { ExploreMapViewComponent } from './../pages/regular-user/explore-map-view/explore-map-view.component';
-import { SearchServiceComponent } from './../pages/regular-user/search/search-service/search-service.component';
 import { TemplatesComponent } from './../components/templates/templates.component';
 import { SearchComponent } from './../pages/regular-user/search/search.component';
 
@@ -22,10 +21,14 @@ import { CommonModule } from '@angular/common';
 
 import { Routes, RouterModule } from '@angular/router';
 import { BusinessEventsComponent } from '../pages/business-user/business-dashboard/business-events/business-events.component';
-import { SearchProdutoComponent } from '../pages/regular-user/search/search-produto/search-produto.component';
-import { SearchEventoComponent } from '../pages/regular-user/search/search-evento/search-evento.component';
-import { SearchLocalComponent } from '../pages/regular-user/search/search-local/search-local.component';
+
+
 import { HomeComponent } from '../pages/home/home.component';
+import { SearchLocalComponent } from '../pages/regular-user/search/search-local/search-local.component';
+import { SearchServiceComponent } from '../pages/regular-user/search/search-service/search-service.component';
+import { SearchProdutoComponent } from '../pages/regular-user/search/search-produto/search-produto.component';
+import { LocalfiltersComponent } from '../components/regular-user/Filters/localfilters/localfilters.component';
+import { ExploreMapViewComponent } from '../pages/regular-user/explore-map-view/explore-map-view.component';
 
 
 const appRoutes: Routes = [
@@ -58,6 +61,8 @@ const appRoutes: Routes = [
       { path: 'produto', component: ProdutofiltersComponent },
     ],
   },
+  { path: 'localpublico', component: ViewPublicComponent },
+  { path: 'localprivate', component: ViewPrivateComponent },
   { path: 'template', component: TemplatesComponent },
 ];
 

@@ -1,0 +1,109 @@
+@import "../../../styles.scss";
+@import "../../../styles/colours.scss";
+@import "../../../styles/config-classes.scss";
+ 
+body{ 
+    min-height: 100%;
+    height: 100%;
+    padding-top: 55px;
+    background-color:$color-lavender;
+  
+ }
+
+ .star {
+    font-size: 1.5rem;
+    color: #b0c4de;
+  }
+  .filled.color1 {
+    color: red;
+  }
+  .filled.color2 {
+    color: orange;
+  } 
+  .filled.color4 {
+    color: green;
+  } 
+  .filled.color3 {
+    color: grey;
+  }
+
+  .location-text{
+      font-size: .9rem;
+  }
+
+  .str-name{
+      font-size: 0.9rem;
+  }
+
+  .badge{
+    font-size: 1rem !important;
+}
+
+.container-rounded{
+    border-radius: .2rem !important;
+
+}
+
+.vr-ava{
+  text-decoration: none !important;
+  font-family:"Quicksand", sans-serif ;
+  margin-top: 5px;
+  cursor: pointer;
+}
+
+.image-rounded{
+    border-radius: .4rem !important;
+}
+.numb-rating{
+
+  font-family: "Quicksand", sans-serif ;
+}
+
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color:#ccc;
+  opacity: 1; /* Firefox */
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color:#ccc;
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+  color: #ccc;
+}
+
+/*
+* NEw Coment
+*/
+
+
+
+.date {
+  font-size: 11px
+}
+
+.comment-text {
+  font-size: 12px
+}
+
+.fs-12 {
+  font-size: 12px
+}
+
+.shadow-none {
+  box-shadow: none
+}
+
+.name {
+  color: $color-main-purple;
+}
+ 
+
+.cursor {
+  cursor: pointer
+}
+
+.textarea {
+  resize: none
+}

@@ -1,38 +1,38 @@
 
 
   <body class="">
-    <sigin-sigup-header></sigin-sigup-header>
-    <local-option></local-option>
     
+    <sigin-sigup-header *ngIf="!isAuthenticated"></sigin-sigup-header>
+    <loged-header *ngIf="isAuthenticated"></loged-header>
+    <local-option></local-option>
  
-<main class=" search-content  min-vh-100">
-   
-  <!-- <h1 class="txt-dk-purple">Local</h1> -->
-  <div class="row">
-    <div class="col-md-3  border-right pt-2 ">
-      
-      <!-- Beginning of the section  -->
-      <ul class="list-inline  text-black">
-        <li class="list-inline-item mx-2" ><a class="text-reset searchCategory" [routerLink]="['local']" routerLinkActive="active-search"> Local </a> </li>
-        <li class="list-inline-item mx-3"><a class="text-reset searchCategory" [routerLink]="['servico']"   routerLinkActive="active-search"> Serviço</a> </li>
-        <li class="list-inline-item mx-3"><a class="text-reset searchCategory" [routerLink]="['produto']" routerLinkActive="active-search"> Produto</a> </li>
-        <!-- <li class="list-inline-item mx-2"><a class="text-reset searchCategory" [routerLink]="['evento']" routerLinkActive="active-search"> Evento</a> </li> -->
-      </ul>
-      <hr>
-      <!-- End of the section -->
+  <main class=" search-content  min-vh-100">
+    
+    <!-- <h1 class="txt-dk-purple">Local</h1> -->
+    <div class="row">
+      <div class="col-md-3  border-right pt-2 ">
+        
+        <!-- Beginning of the section  -->
+        <ul class="list-inline  text-black">
+          <li class="list-inline-item mx-2" ><a class="text-reset searchCategory" [routerLink]="['local']" routerLinkActive="active-search"> Local </a> </li>
+          <li class="list-inline-item mx-3"><a class="text-reset searchCategory" [routerLink]="['servico']"   routerLinkActive="active-search"> Serviço</a> </li>
+          <li class="list-inline-item mx-3"><a class="text-reset searchCategory" [routerLink]="['produto']" routerLinkActive="active-search"> Produto</a> </li>
+          <!-- <li class="list-inline-item mx-2"><a class="text-reset searchCategory" [routerLink]="['evento']" routerLinkActive="active-search"> Evento</a> </li> -->
+        </ul>
+        <hr>
+        <!-- End of the section -->
 
-      <!-- Start of the section  -->
-      
-      <!-- end of the section -->
+        <!-- Start of the section  -->
+        
+        <!-- end of the section -->
+
+      </div>
+      <div class="col-md-9">
+        <router-outlet></router-outlet>
+      </div>
 
     </div>
-     
-  </div>
-    <router-outlet></router-outlet>    
 
-</main>
-
-<!-- <app-main-footer></app-main-footer> -->
-
- </body>
-
+    
+  </main>
+</body>

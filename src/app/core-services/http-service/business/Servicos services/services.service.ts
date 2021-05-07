@@ -192,7 +192,7 @@ export class CompanyServicesService {
     formData.append('preco',price.toString());
     formData.append('disponibilidade',String(availability));
     formData.append('servico_id',servicoID.toString());
-    formData.append('descricao',description);
+    formData.append('description',description);
     formData.append('_method','put');
    
   

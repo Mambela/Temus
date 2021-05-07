@@ -60,8 +60,8 @@
 
         <div class="row row-cols-1 row-cols-md-3 row-cols-lg-4" *ngIf="!isSearching">
             <div class="col mb-3" *ngFor="let item of resultItems">
-              <div class="card p-1 rounded-local shadow-sm">
-                <img src="{{_baseUrl+item.imagem}}" height="140px" class="card-img-top " alt="...">
+              <div class="card p-1 rounded-local shadow-sm" (click)="viewLocal(item)">
+                <img src="{{_baseUrl+item.imagem}}" height="140px" class="card-img-top " alt="{{item.name}}">
                 <div class="card-img-overlay"> 
                     <div class="d-flex justify-content-end">  
                          <span class="bg-success rounded-local p-2"> 
@@ -76,11 +76,8 @@
                       <p class="text-secondary location-text"><i class="fas fa-map-marker-alt text-success"></i> {{item.bairro}}, Luanda</p>
                     </div>
                     <div class="col-5">
-                      <ngb-rating [rate]="3">
-                        <ng-template let-fill="fill">
-                          <span class="star" [ngClass]="'color'+2"[class.filled]="fill === 100">&#9733;</span>
-                        </ng-template>
-                      </ngb-rating>
+                    
+                      <app-rating [rating]=item.rating></app-rating>
                     </div>
                     
                   </div>

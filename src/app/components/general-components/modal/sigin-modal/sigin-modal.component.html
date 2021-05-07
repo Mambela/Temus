@@ -1,53 +1,56 @@
-<ng-template #siginModal>
-  <div class="modal fade" id="sigIn" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-md" role="document">
-      <div class="modal-content">
-        <div class="modal-header justify-content-center">
-          <h5 class="modal-title">Iniciar Sessão</h5>
-        </div>
+ 
+        
+<div *ngIf="!isSigningIn">
+          <h5 class="modal-title mt-3 text-center">Iniciar Sessão</h5>
+          <div class="modal-body">
+            <div class="container-fluid">
+              <div class="row justify-content-center">
+                <div class="col-8">
+                  <form #accountSignIn="ngForm" (ngSubmit)="onUserSignIn(accountSignIn)">
+                    <div class="form-row">
+                      <div class="form-group col-12">
+                        <input
+                          type="text"
+                          name="username"
+                          id=""
+                          class="form-control"
+                          placeholder="Email"
+                          ngModel
+                        />
+                      </div>
 
-        <div class="modal-body">
-          <div class="container-fluid">
-            <div class="row justify-content-center">
-              <div class="col-8">
-                <form action="#">
-                  <div class="form-row">
-                    <div class="form-group col-12">
-                      <input
-                        type="text"
-                        name=""
-                        id=""
-                        class="form-control"
-                        placeholder="Email"
-                      />
-                    </div>
+                      <div class="from-group col-12">
+                        <input
+                          type="password"
+                          name="password"
+                          id=""
+                          class="form-control"
+                          placeholder="Senha"
+                          ngModel
+                        />
+                      </div>
 
-                    <div class="from-group col-12">
-                      <input
-                        type="text"
-                        name=""
-                        id=""
-                        class="form-control"
-                        placeholder="Senha"
-                      />
+                      <div class="from-group col-12">
+                        <button class="btn btn-success w-100 my-2 font-weight-bold" type="submit">
+                          Iniciar Sessão
+                        </button>
+                      </div>
                     </div>
-
-                    <div class="from-group col-12">
-                      <button class="btn btn-primary w-100" type="submit">
-                        Iniciar Sessão
-                      </button>
-                    </div>
-                  </div>
-                </form>
+                  </form>
+                </div>
               </div>
+               
             </div>
           </div>
+         
+        <div class="modal-footer justify-content-center py-2">
+          <a href="#" >Criar uma conta</a>
         </div>
+</div>         
 
-        <div class="modal-footer justify-content-center">
-          <a href="#">Criar uma conta</a>
-        </div>
-      </div>
-    </div>
+<!-- Loading  -->
+<div class="col-12 loading" *ngIf="isSigningIn">
+  <div class="col-3 mx-auto  my-4">
+    <!-- <app-side-loader></app-side-loader> -->
   </div>
-</ng-template>
+</div>

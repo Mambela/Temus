@@ -20,6 +20,7 @@ interface IchoosenCoordinates{
 export class RegistrationMapService {
 
   //@Output()
+   R:number = 6371;
   coordinatesUpdated = new EventEmitter<locationCoordinates>();
   distanceUpdated = new EventEmitter<any>();
   
@@ -43,7 +44,7 @@ export class RegistrationMapService {
   }
 
   
-  getUserLocation(container){
+  getUserLocation(container =null){
     
     this.container = container
 
@@ -181,13 +182,10 @@ export class RegistrationMapService {
   }
  
 
-
-
-
   // Calculate the distance between the user location and marker
   calculateDistanceToMarker():any
   {
-    const R = 6371;
+    
     let dLat = this.deg2rad(this.lat - this.initLat);
     let dlng = this.deg2rad(this.lng - this.iniLng);
       
@@ -198,7 +196,7 @@ export class RegistrationMapService {
     Math.sin(dlng/2) * Math.sin(dlng/2);
 
     let c = 2 * Math.atan2(Math.sqrt(a),Math.sqrt(1-a));
-    let d = R * c; 
+    let d = this.R * c; 
 
     return d;
 

@@ -33,8 +33,7 @@ export class SidebarComponent implements OnInit {
   imgSRC = "https://i.pinimg.com/236x/ab/5a/73/ab5a738539e17fb0b4adb350a11f39f6--logo-design-contest-media-marketing.jpg";
 
   isLoadingCategoria:boolean;
-  productCategoria:BasicModel[];
-
+            
   constructor(private authService:AuthService,private productService:ProductsService,private storeValues:STOREDCONSTANTS,private filterService:FiltersService) { }
 
   ngOnInit(): void {

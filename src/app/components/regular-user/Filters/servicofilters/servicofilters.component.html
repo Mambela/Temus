@@ -1,0 +1,48 @@
+<div class="row">
+    
+        <div class="form-group col-sm-6 col-md-12 col-lg-12">
+  
+  
+            <label for="searchInput"> Nome </label>
+            <form  #searchForm="ngForm" 
+            (ngSubmit)="onSearch(searchForm)">
+            <input class="form-control " type="text" id="searchInput" placeholder="Designação do Serviço" name="servicoNome" ngModel/>
+            
+
+            <br>
+            <label class="col-form-label   " for="nomeparam">Categoria </label>
+            <select class="custom-select   mb-3 rounded-2 cursor"  name="categoriaParam"  (change)="onCategoriaChange($event)" ngModel>
+                <option selected value="" class="cursor">Selecione Categoria</option>
+                <option  value="{{categoria.id}}" class="cursor" *ngFor="let categoria of serviceCategoria"  >{{categoria.designacao}}</option>
+  
+            </select>
+  
+            <label class="col-form-label   " for="nomeparam">Sub-categoria </label>
+            <select class="custom-select   mb-3 rounded-2 cursor" name="subCategoriaParam" ngModel>
+              <option selected value="">Selecione Subcategoria</option>
+              <option value="{{tipo.id}}" *ngFor="let tipo of serviceSubCategoria">{{tipo.designacao}}</option>
+            </select>
+
+            <br>
+            <br>
+              <hr>
+     
+              <label class="col-form-label   " for="nomeparam">Municipio</label>
+                <select class="custom-select   mb-3 rounded-2 cursor" name="municipioParam" (change)="onMunicipioChange($event)" ngModel>
+                    <option  class="cursor" value="" selected >Municipios</option>
+                    <option  value="{{municipio.id}}" class="cursor"  *ngFor="let municipio of municipios">{{municipio.designacao}}</option>
+                     
+                </select>
+      
+                <label class="col-form-label   " for="nomeparam">Bairro </label>
+                <select class="custom-select   mb-3 rounded-2 cursor"  name="bairroParam" ngModel>
+                    <option  class="cursor" value="" selected>Bairro</option>
+                    <option  value="{{bairro.id}}" class="cursor" *ngFor="let bairro of bairros">{{bairro.designacao}}</option>
+                    
+                </select>
+              <button type="submit" class="btn btn-success"> Pesquisar </button>
+            </form>
+          </div>
+  
+</div>
+
