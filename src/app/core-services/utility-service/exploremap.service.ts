@@ -1,3 +1,5 @@
+
+  
 import { STOREDCONSTANTS } from './../../module/constants.service';
 import { Injectable } from '@angular/core';
 import { environment } from './../../../environments/environment';
@@ -13,7 +15,7 @@ export class ExploremapService {
 
   R:number = 6371;
   map: mapboxgl.Map;
-  zoom:number = 13;
+  zoom:number = 11.15;
   style ='mapbox://styles/mapbox/streets-v11';
   // style = 'mapbox://styles/jacklumba/ckelwsq9p1qnu19lqlu43x6us';
   imageBaseUrl:string ="";
@@ -39,10 +41,10 @@ export class ExploremapService {
       {
         navigator.geolocation.getCurrentPosition((position)=>{
           // this.showPosition(position);
-         //this.displayExplorerMap(container,position)
-
+          
           this.lat = position.coords.latitude;
           this.lng = position.coords.longitude;
+          this.displayExplorerMap(container,position)
           console.log(position);
         });
       }
@@ -55,7 +57,7 @@ export class ExploremapService {
 
   public displayExplorerMap(container,position)
   {
-    console.log(" The container "+ container);
+    console.log(" The container "+ position);
     // this.imageBaseUrl = this.storedValues.BASEURL()+"/storage/provided/locations/image/"
 
     /*
@@ -63,7 +65,7 @@ export class ExploremapService {
     */
     // this.lat = position.coords.latitude;
     // this.lng = position.coords.longitude;
-
+    //-8.851818,13.246383,12.75z/data=!4m
     // console.log(this.lat,this.lng);
 
     this.map = new mapboxgl.Map({
@@ -71,6 +73,7 @@ export class ExploremapService {
       style:this.style,
       zoom:this.zoom,
       center:[this.lng,this.lat]      
+      // center:[13.246383,-8.851818]
           
       
     })
@@ -128,7 +131,6 @@ export class ExploremapService {
                </span>
           </div>
         </div>
-
         <div>
         <h5 class="card-title text-dark text-truncate mb-n1">`+location.name+`</h5>
         <p class="text-secondary location-text"><i class="fas fa-map-marker-alt text-success"></i> `+location.bairro+`, Luanda</p>

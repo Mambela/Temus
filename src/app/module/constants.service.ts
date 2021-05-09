@@ -26,6 +26,13 @@ export class STOREDCONSTANTS{
     // private URL: string = 'http://127.0.0.1:8000/api/';  
     // private resourceURL: string = 'http://127.0.0.1:8000/';
     public userToken: string;
+    
+
+    //GEO COORDINATES
+
+    public userLng:number;
+    public userLat:number;
+
 
     setToken:TokenData;
 

@@ -26,7 +26,7 @@ export class ProdutofiltersComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.getProductCategoria();
+    //this.getProductCategoria();
     this.getMunicipios();
   }
 

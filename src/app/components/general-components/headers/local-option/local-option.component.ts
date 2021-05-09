@@ -1,3 +1,4 @@
+import { STOREDCONSTANTS } from './../../../../module/constants.service';
 import { ExploremapService } from './../../../../core-services/utility-service/exploremap.service';
 import { UserAddress } from './../../../../data/models/regular-user/UserAddress.model';
 import { AddressesService } from './../../../../core-services/http-service/business/Addresses Service/addresses-service.service';
@@ -18,7 +19,7 @@ export class LocalOptionComponent implements OnInit {
 
   currentUserLocation: locationCoordinates;
 
-  constructor(private mapboxmap: RegistrationMapService, private _mapService: ExploremapService, private addressService: AddressesService) { }
+  constructor(private mapboxmap: RegistrationMapService, private _mapService: ExploremapService, private addressService: AddressesService,private StoredValues:STOREDCONSTANTS) { }
 
   ngOnInit(): void {
 
@@ -41,6 +42,9 @@ export class LocalOptionComponent implements OnInit {
 
         console.log(" Latitude" + this.lat);
         console.log(" Longitude" + this.lng);
+
+        this.StoredValues.userLat = this.lat;
+        this.StoredValues.userLng = this.lng;
         
       })
 

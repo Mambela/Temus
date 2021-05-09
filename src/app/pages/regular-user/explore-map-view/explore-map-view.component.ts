@@ -13,7 +13,7 @@ export class ExploreMapViewComponent implements OnInit {
   
   _opened: boolean = true;
   _rightBarOpened: boolean = false;
-  _docked: boolean = true;
+  _docked: boolean = false;
   _Mode:string = 'over';
 
   constructor(private _mapService:ExploremapService,private searchService :SearchService  ) {
@@ -22,8 +22,6 @@ export class ExploreMapViewComponent implements OnInit {
 
   ngOnInit(): void {
   
-    console.log('ngOnInit');
-    
     this.displayMap();
     
   }
@@ -34,7 +32,8 @@ export class ExploreMapViewComponent implements OnInit {
 
   displayMap()
   {
-    this._mapService.getCurrentCoordinates('map');     
+    //this._mapService.getCurrentCoordinates('map');     
+    this._mapService.getCurrentCoordinates('explore-map');
     this.populatemarkers();
   }
  

@@ -36,7 +36,7 @@ export class LocalfiltersComponent implements OnInit,OnDestroy {
 
   ngOnInit(): void {
 
-    this.getLocalCategoria();
+    //this.getLocalCategoria();
   }
 
   onSearch(filterForm:NgForm)
