@@ -1,5 +1,9 @@
+import { SiginModalComponent } from './components/general-components/modal/sigin-modal/sigin-modal.component';
 import { SearchServiceComponent } from './pages/regular-user/search/search-service/search-service.component';
 
+
+
+import {SigupModalComponent} from './components/general-components/modal/sigup-modal/sigup-modal.component'
 // import { SearchSideBarComponent } from './components/regular-user/_sidebar/search-side-bar/search-side-bar.component';
 // import { LogedHeaderComponent } from './components/regular-user/_headers/loged-header/loged-header.component';
 import { ToasterComponent } from './sections/toast/toaster/toaster.component';
@@ -103,15 +107,16 @@ import { LogedHeaderComponent } from './components/regular-user/_headers/loged-h
     SearchComponent,
     TemplatesComponent,
     UnathenticatedNavBarComponent,
-    // SearchSideBarComponent,
+    SigupModalComponent,
     SearchServiceComponent,
     SearchProdutoComponent,
- 
     SearchLocalComponent,
     ExploreMapViewComponent,
     MessageBoxComponent,
     SimpleHeaderComponent,
     SiginSigupHeaderComponent,
+    SiginModalComponent,
+    
     LocalOptionComponent,
     SimpleFooterComponent,
     MainSearchBarComponent,
