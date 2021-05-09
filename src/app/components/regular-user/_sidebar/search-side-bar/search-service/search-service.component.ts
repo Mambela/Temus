@@ -1,13 +1,13 @@
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Subscription } from 'rxjs';
-import { STOREDCONSTANTS } from './../../../../module/constants.service';
-import { SearchService } from './../../../../core-services/http-service/SearchService/search.service';
-import { SearchResultDataService } from './../../../../core-services/DataService/SearchResult/search-result-data.service';
-import { ResultItemServico } from './../../../../data/models/regular-user/resultItemServico.model';
+import { STOREDCONSTANTS } from './../../../../../module/constants.service';
+import { SearchService } from './../../../../../core-services/http-service/SearchService/search.service';
+import { SearchResultDataService } from './../../../../../core-services/DataService/SearchResult/search-result-data.service';
+import { ResultItemServico } from './../../../../../data/models/regular-user/resultItemServico.model';
 import { NgForm } from '@angular/forms';
-import { FiltersService } from './../../../../core-services/http-service/FiltersService/filters.service';
-import { BasicModel } from './../../../../data/models/supporting/basic-model.model';
-import { CategoriaDataServiceService } from './../../../../core-services/DataService/categoria/categoria-data-service.service';
+import { FiltersService } from './../../../../../core-services/http-service/FiltersService/filters.service';
+import { BasicModel } from './../../../../../data/models/supporting/basic-model.model';
+import { CategoriaDataServiceService } from './../../../../../core-services/DataService/categoria/categoria-data-service.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 

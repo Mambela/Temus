@@ -59,15 +59,16 @@ import { LocalOptionComponent } from './components/general-components/headers/lo
 import { SimpleFooterComponent } from './components/general-components/footer/simple-footer/simple-footer.component';
 import { MainSearchBarComponent } from './components/components-per-page/landing-page/main-search-bar/main-search-bar.component';
 import { HomeComponent } from './pages/home/home.component';
-import { LogedHeaderComponent } from './components/general-components/headers/loged-header/loged-header.component';
+ 
 import { ViewPublicComponent } from './Local/view-public/view-public.component';
 import { ViewPrivateComponent } from './Local/view-private/view-private.component';
 import { NewCommentComponent } from './components/regular-user/new-comment/new-comment.component';
 import { RatingComponent } from './components/regular-user/rating/rating.component';
 import { SinglecommentComponent } from './components/regular-user/singlecomment/singlecomment.component';
 import { SearchLocalComponent } from './pages/regular-user/search/search-local/search-local.component';
-import { SearchEventoComponent } from './pages/regular-user/search/search-evento/search-evento.component';
+ 
 import { SearchProdutoComponent } from './pages/regular-user/search/search-produto/search-produto.component';
+import { LogedHeaderComponent } from './components/regular-user/_headers/loged-header/loged-header.component';
 
 @NgModule({
   declarations: [
@@ -105,7 +106,7 @@ import { SearchProdutoComponent } from './pages/regular-user/search/search-produ
     // SearchSideBarComponent,
     SearchServiceComponent,
     SearchProdutoComponent,
-    SearchEventoComponent,
+ 
     SearchLocalComponent,
     ExploreMapViewComponent,
     MessageBoxComponent,

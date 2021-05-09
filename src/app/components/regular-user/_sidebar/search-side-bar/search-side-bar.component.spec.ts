@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ServicofiltersComponent } from './servicofilters.component';
+import { SearchSideBarComponent } from './search-side-bar.component';
 
-describe('ServicofiltersComponent', () => {
-  let component: ServicofiltersComponent;
-  let fixture: ComponentFixture<ServicofiltersComponent>;
+describe('SearchSideBarComponent', () => {
+  let component: SearchSideBarComponent;
+  let fixture: ComponentFixture<SearchSideBarComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ServicofiltersComponent ]
+      declarations: [ SearchSideBarComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ServicofiltersComponent);
+    fixture = TestBed.createComponent(SearchSideBarComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

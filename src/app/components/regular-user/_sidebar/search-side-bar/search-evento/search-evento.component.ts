@@ -1,6 +1,6 @@
-import { FiltersService } from './../../../../core-services/http-service/FiltersService/filters.service';
-import { CategoriaDataServiceService } from './../../../../core-services/DataService/categoria/categoria-data-service.service';
-import { BasicModel } from './../../../../data/models/supporting/basic-model.model';
+import { FiltersService } from './../../../../../core-services/http-service/FiltersService/filters.service';
+import { CategoriaDataServiceService } from './../../../../../core-services/DataService/categoria/categoria-data-service.service';
+import { BasicModel } from './../../../../../data/models/supporting/basic-model.model';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
