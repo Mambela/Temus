@@ -15,7 +15,7 @@ export class ExploremapService {
 
   R:number = 6371;
   map: mapboxgl.Map;
-  zoom:number = 11.15;
+  zoom:number = 12.15;
   style ='mapbox://styles/mapbox/streets-v11';
   // style = 'mapbox://styles/jacklumba/ckelwsq9p1qnu19lqlu43x6us';
   imageBaseUrl:string ="";
@@ -33,8 +33,8 @@ export class ExploremapService {
   public getCurrentCoordinates(container)
   {
 
-    // this.lat =-8.823549;
-    // this.lng =13.240714;
+    this.lat =-8.823549;
+    this.lng =13.240714;
 
 
       if(navigator.geolocation)
@@ -42,8 +42,8 @@ export class ExploremapService {
         navigator.geolocation.getCurrentPosition((position)=>{
           // this.showPosition(position);
           
-          this.lat = position.coords.latitude;
-          this.lng = position.coords.longitude;
+          // this.lat = position.coords.latitude;
+          // this.lng = position.coords.longitude;
           this.displayExplorerMap(container,position)
           console.log(position);
         });

@@ -10,47 +10,67 @@ body{
     // background-color: white;
   
  }
+ 
+ //Beginning of the side bar and map
 
- .page-container{
-     position: relative;
- }
 
- .map{
-    position: absolute;
-    width: 100%;
-    height: 100%;
- }
+ .main-menu:hover,nav.main-menu.expanded {
+  width:300px;
+  height:80.5%;
+  overflow:visible;
+  }
+ 
+  .main-menu {
+    background:white;
+    border-right:1px solid #e5e5e5;
+    position:absolute;
+    top: 2;
+    bottom:2;
+    height:5.5%;
+    left:0.5;
+    width:30px;
+    overflow:hidden;
+    -webkit-transition:width .05s linear;
+    transition:width .05s linear;
+    -webkit-transform:translateZ(0) scale(1,1);
+    z-index:1000;
+  }
 
-.filters{
-    position: absolute;
-    margin-top: 1vh;
-    z-index: 8;
-    background-color: hotpink;
-    z-index: 9;
-    // height: 100%;
-    width: 25%;
+  .main-menu .filter-block:hover + div{
+    display: block;
+  }
+  .main-menu .filter-info
+  {
+    display: block;
     
- }
+  }
 
- .filter-content{
-   // background: rgba(38, 59, 52, 0.59);
-   height: 100%;
-//    background-color: $color-lavender;
-     background-color: white;
- }
- 
-//  .filter-btn{
-//    position: absolute;
-//    z-index: 9;
-  
-//    height: 75%;
-//    background-color: hotpink;
-//    margin-left: 0.2vh;
-//    margin-top: 2vh;
-//  }
- 
+  // .no-touch .scrollable.hover {
+  //   overflow-y:hidden;
+  //   }
+    
+  //   .no-touch .scrollable.hover:hover {
+  //   overflow-y:auto;
+  //   overflow:visible;
+  //   }
 
+    .main-menu-hidden {
+      -webkit-user-select:none;
+      -moz-user-select:none;
+      -ms-user-select:none;
+      -o-user-select:none;
+      user-select:none;
+      }
+  .area {
+    float: left;
+    background: #e2e2e2;
+    width: 100%;
+    height: 100vh;
+    
+    }
+    
 
+  // End of the sidebar and map
 
 
 .rounded-local{
@@ -92,51 +112,6 @@ body{
       font-size: .9rem;
   }
 
-
-
-  // Map Elements CSS
-
-  .removePaddings{
-      background-color: yellow !important;
-  }
-
-  .mapboxgl-popup-close-button{
-      // display: none  !important;
-  }
-
-  //The side searches 
-  
-  .active-search {
-      
-    border-bottom: 3px solid $color-light-green; 
- }
- .router-link-active
- {
-   border-bottom: 3px solid $color-light-green; 
-   
- }
-
-
- //top  right
- .search-content
- {
-    min-height: 100%;
-    padding: 1% 1%;
- }
-
-
- //SIDE FILTERS CUSTOMS
-.search-content{
-   font-family:'Quicksand', sans-serif;
-    
-}
-
-
- .searchCategory:hover{
-    cursor: pointer;
-    color: $color-light-green !important;
-    
- }
- a{
-    text-decoration: none !important;
+ .mapboxgl-canvas{
+   height: 100%;
  }

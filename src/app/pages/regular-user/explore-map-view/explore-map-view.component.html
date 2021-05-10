@@ -2,47 +2,32 @@
 
   <sigin-sigup-header></sigin-sigup-header>
   <local-option></local-option>
+  
+  <div class="main-menu mt-5 ">
+    <div class="row justify-content-around">
+      <div class="col-4">
+        <span class="pt-2 pt-1 view-map"> <i class="fas fa-chevron-right fa-lg"></i> </span>
+        
 
-  <!-- <ng-sidebar-container>
-    <ng-sidebar [(opened)]="_opened" [(dock)]="_docked" [mode]="_Mode" class="bg-danger">
-      <div class="row justify-content-start">
-        <div   class="map" id="map">
-          <div class="filters">
-            <div class="col-md-12 bg-warning">
-              <ul class="list-inline text-black mx-auto border-top pt-3">
-                <li class="list-inline-item mx-2 bg-danger">
-                  <a class="text-reset searchCategory" [routerLink]="['local']" routerLinkActive="active-search">Local</a>
-                </li>
-                <li class="list-inline-item mx-3">
-                  <a class="text-reset searchCategory" [routerLink]="['servico']" routerLinkActive="active-search">Serviço</a>
-                </li>
-                <li class="list-inline-item mx-3">
-                  <a class="text-reset searchCategory" [routerLink]="['produto']" routerLinkActive="active-search">Produto</a>
-                </li>
-               
-              </ul>
-              
-              <div class="form-group row bg-warning mx-auto">
-                <router-outlet></router-outlet>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
-    </ng-sidebar>
+   <!-- <span class="pt-2"> <i class="fas fa-layer-group fa-2x"></i> </span>  -->
+      </div>
+    <div class="filter-block p-4">
+      <h4>Filtros de pesquisa</h4>
 
-    <div ng-sidebar-content >
-      <div class="map" id="explore-map"> 
-           <div class="filter-btn">
-        <button class="left-menu btn btn-success border-0 ml-5 bg-danger" (click)="_toggleSidebar()">
-          <i class="fas fa-caret-right"></i>
-        </button>
+      <div class="btn-group px-4" role="group" aria-label="Basic example">
+        <button type="button" class="btn btn-lg btn-secondary px-2"> Locais </button>
+        <button type="button" class="btn btn-lg btn-secondary px-2">Serviços</button>
+        <button type="button" class="btn btn-lg btn-secondary">Produtos</button>
+      </div>
+
+      <div class="filter-info">        
         <router-outlet></router-outlet>
-            </div>
-      </div>
+        
+      </div> 
     </div>
-  </ng-sidebar-container> -->
-  <div class="map" id="explore-map"> 
+  </div>
+  <div class="area" id="explore-map"> 
       
   </div>
 </body>
